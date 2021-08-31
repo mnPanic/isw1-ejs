@@ -1,13 +1,13 @@
-!classDefinition: #I category: 'Natural Numbers'!
+!classDefinition: #I category: 'NumerosNaturales'!
 DenotativeObject subclass: #I
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Natural Numbers'!
+	category: 'NumerosNaturales'!
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'I class' category: 'Natural Numbers'!
+!classDefinition: 'I class' category: 'NumerosNaturales'!
 I class
 	instanceVariableNames: ''!
 
@@ -15,9 +15,9 @@ I class
 * unFactor
 	^unFactor.! !
 
-!I class methodsFor: 'as yet unclassified' stamp: 'IA 8/26/2021 21:24:53'!
-+ aNaturalNumber
-	^aNaturalNumber  next.! !
+!I class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 18:22:04'!
++ unSumando
+	^unSumando  next.! !
 
 !I class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:15:56'!
 - unSustraendo
@@ -28,6 +28,10 @@ I class
 	unDivisor = I ifTrue: [^I].
 	self error: self descripcionDeErrorDeNoSePuedeDividirPorUnNumeroMayor! !
 
+!I class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 18:13:54'!
+< unNumeroAComparar
+	^(unNumeroAComparar = I) not.! !
+
 !I class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:08:55'!
 descripcionDeErrorDeNoSePuedeDividirPorUnNumeroMayor
 	^ 'No se puede dividir por un numero mayor'.! !
@@ -36,9 +40,8 @@ descripcionDeErrorDeNoSePuedeDividirPorUnNumeroMayor
 descripcionDeErrorDeNumerosNegativosNoSoportados
 	^ 'Numeros negativos no soportados'! !
 
-!I class methodsFor: 'as yet unclassified' stamp: 'IA 8/26/2021 21:20:11'!
+!I class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 18:22:18'!
 next
-	
 	^II! !
 
 !I class methodsFor: 'as yet unclassified' stamp: 'IA 8/30/2021 23:25:41'!
@@ -46,16 +49,16 @@ restarCon: unMinuendo
 	^ unMinuendo previous! !
 
 
-!classDefinition: #II category: 'Natural Numbers'!
+!classDefinition: #II category: 'NumerosNaturales'!
 DenotativeObject subclass: #II
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Natural Numbers'!
+	category: 'NumerosNaturales'!
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'II class' category: 'Natural Numbers'!
+!classDefinition: 'II class' category: 'NumerosNaturales'!
 II class
 	instanceVariableNames: 'next previous'!
 
@@ -63,22 +66,35 @@ II class
 * unFactor
 	^ unFactor + (unFactor * self previous)! !
 
-!II class methodsFor: 'as yet unclassified' stamp: 'IA 8/26/2021 21:27:38'!
-+ aNaturalNumber
+!II class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 18:22:59'!
++ unSumando
 
-	^self previous + aNaturalNumber  next.! !
+	^self previous + unSumando  next.! !
 
 !II class methodsFor: 'as yet unclassified' stamp: 'IA 8/30/2021 23:28:29'!
 - unSustraendo
 	
 	^unSustraendo restarCon: self! !
 
-!II class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:04:49'!
+!II class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 18:18:50'!
 / unDivisor
-	self next - unDivisor = I ifTrue: [^I].
+	self = unDivisor ifTrue: [^I].
+	self < unDivisor ifTrue: [self error: self descripcionDeErrorDeNoSePuedeDividirPorUnNumeroMayor].
+	self - unDivisor < unDivisor ifTrue: [^I].
 	^ I + ((self - unDivisor) / unDivisor)! !
 
-!II class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
+!II class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 18:12:31'!
+< unNumeroAComparar
+
+	unNumeroAComparar = I ifTrue: [^false].
+	^self previous < unNumeroAComparar previous.
+	! !
+
+!II class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 17:44:28'!
+descripcionDeErrorDeNoSePuedeDividirPorUnNumeroMayor
+	^ 'No se puede dividir por numero mayor'! !
+
+!II class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 18:24:17'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -97,30 +113,30 @@ previous
 
 	^previous! !
 
-!II class methodsFor: 'as yet unclassified' stamp: 'IA 8/26/2021 21:31:37'!
-previous: aNaturalNumber
+!II class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 18:23:39'!
+previous: unNumeroPrevio
 
-	previous _ aNaturalNumber.! !
+	previous _ unNumeroPrevio.! !
 
 !II class methodsFor: 'as yet unclassified' stamp: 'IA 8/30/2021 23:31:47'!
 restarCon: unMinuendo 
 	^ unMinuendo previous - self previous.! !
 
 
-!classDefinition: #III category: 'Natural Numbers'!
+!classDefinition: #III category: 'NumerosNaturales'!
 II subclass: #III
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Natural Numbers'!
+	category: 'NumerosNaturales'!
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'III class' category: 'Natural Numbers'!
+!classDefinition: 'III class' category: 'NumerosNaturales'!
 III class
 	instanceVariableNames: ''!
 
-!III class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
+!III class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 18:24:17'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -128,20 +144,20 @@ initializeCollaboratorsFromFile
 	previous := II.! !
 
 
-!classDefinition: #IIII category: 'Natural Numbers'!
+!classDefinition: #IIII category: 'NumerosNaturales'!
 II subclass: #IIII
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Natural Numbers'!
+	category: 'NumerosNaturales'!
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'IIII class' category: 'Natural Numbers'!
+!classDefinition: 'IIII class' category: 'NumerosNaturales'!
 IIII class
 	instanceVariableNames: ''!
 
-!IIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
+!IIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 18:24:17'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -149,20 +165,20 @@ initializeCollaboratorsFromFile
 	previous := III.! !
 
 
-!classDefinition: #IIIII category: 'Natural Numbers'!
+!classDefinition: #IIIII category: 'NumerosNaturales'!
 II subclass: #IIIII
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Natural Numbers'!
+	category: 'NumerosNaturales'!
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'IIIII class' category: 'Natural Numbers'!
+!classDefinition: 'IIIII class' category: 'NumerosNaturales'!
 IIIII class
 	instanceVariableNames: ''!
 
-!IIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
+!IIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 18:24:17'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -170,20 +186,20 @@ initializeCollaboratorsFromFile
 	previous := IIII.! !
 
 
-!classDefinition: #IIIIII category: 'Natural Numbers'!
+!classDefinition: #IIIIII category: 'NumerosNaturales'!
 II subclass: #IIIIII
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Natural Numbers'!
+	category: 'NumerosNaturales'!
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'IIIIII class' category: 'Natural Numbers'!
+!classDefinition: 'IIIIII class' category: 'NumerosNaturales'!
 IIIIII class
 	instanceVariableNames: ''!
 
-!IIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
+!IIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 18:24:17'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -191,20 +207,20 @@ initializeCollaboratorsFromFile
 	previous := IIIII.! !
 
 
-!classDefinition: #IIIIIII category: 'Natural Numbers'!
+!classDefinition: #IIIIIII category: 'NumerosNaturales'!
 II subclass: #IIIIIII
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Natural Numbers'!
+	category: 'NumerosNaturales'!
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'IIIIIII class' category: 'Natural Numbers'!
+!classDefinition: 'IIIIIII class' category: 'NumerosNaturales'!
 IIIIIII class
 	instanceVariableNames: ''!
 
-!IIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
+!IIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 18:24:17'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -212,20 +228,20 @@ initializeCollaboratorsFromFile
 	previous := IIIIII.! !
 
 
-!classDefinition: #IIIIIIII category: 'Natural Numbers'!
+!classDefinition: #IIIIIIII category: 'NumerosNaturales'!
 II subclass: #IIIIIIII
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Natural Numbers'!
+	category: 'NumerosNaturales'!
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'IIIIIIII class' category: 'Natural Numbers'!
+!classDefinition: 'IIIIIIII class' category: 'NumerosNaturales'!
 IIIIIIII class
 	instanceVariableNames: ''!
 
-!IIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
+!IIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 18:24:17'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -233,20 +249,20 @@ initializeCollaboratorsFromFile
 	previous := IIIIIII.! !
 
 
-!classDefinition: #IIIIIIIII category: 'Natural Numbers'!
+!classDefinition: #IIIIIIIII category: 'NumerosNaturales'!
 II subclass: #IIIIIIIII
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Natural Numbers'!
+	category: 'NumerosNaturales'!
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'IIIIIIIII class' category: 'Natural Numbers'!
+!classDefinition: 'IIIIIIIII class' category: 'NumerosNaturales'!
 IIIIIIIII class
 	instanceVariableNames: ''!
 
-!IIIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
+!IIIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 18:24:17'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -254,20 +270,20 @@ initializeCollaboratorsFromFile
 	previous := IIIIIIII.! !
 
 
-!classDefinition: #IIIIIIIIII category: 'Natural Numbers'!
+!classDefinition: #IIIIIIIIII category: 'NumerosNaturales'!
 II subclass: #IIIIIIIIII
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Natural Numbers'!
+	category: 'NumerosNaturales'!
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'IIIIIIIIII class' category: 'Natural Numbers'!
+!classDefinition: 'IIIIIIIIII class' category: 'NumerosNaturales'!
 IIIIIIIIII class
 	instanceVariableNames: ''!
 
-!IIIIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
+!IIIIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 18:24:17'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -275,20 +291,20 @@ initializeCollaboratorsFromFile
 	previous := IIIIIIIII.! !
 
 
-!classDefinition: #IIIIIIIIIII category: 'Natural Numbers'!
+!classDefinition: #IIIIIIIIIII category: 'NumerosNaturales'!
 II subclass: #IIIIIIIIIII
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Natural Numbers'!
+	category: 'NumerosNaturales'!
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'IIIIIIIIIII class' category: 'Natural Numbers'!
+!classDefinition: 'IIIIIIIIIII class' category: 'NumerosNaturales'!
 IIIIIIIIIII class
 	instanceVariableNames: ''!
 
-!IIIIIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
+!IIIIIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 18:24:17'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -296,319 +312,25 @@ initializeCollaboratorsFromFile
 	previous := IIIIIIIIII.! !
 
 
-!classDefinition: #IIIIIIIIIIII category: 'Natural Numbers'!
+!classDefinition: #IIIIIIIIIIII category: 'NumerosNaturales'!
 II subclass: #IIIIIIIIIIII
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Natural Numbers'!
+	category: 'NumerosNaturales'!
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'IIIIIIIIIIII class' category: 'Natural Numbers'!
+!classDefinition: 'IIIIIIIIIIII class' category: 'NumerosNaturales'!
 IIIIIIIIIIII class
 	instanceVariableNames: ''!
 
-!IIIIIIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
+!IIIIIIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 18:24:17'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
-	next := IIIIIIIIIIIII.
+	next := AnObsoleteIIIIIIIIIIIII.
 	previous := IIIIIIIIIII.! !
-
-
-!classDefinition: #IIIIIIIIIIIII category: 'Natural Numbers'!
-II subclass: #IIIIIIIIIIIII
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Natural Numbers'!
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'IIIIIIIIIIIII class' category: 'Natural Numbers'!
-IIIIIIIIIIIII class
-	instanceVariableNames: ''!
-
-!IIIIIIIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
-initializeCollaboratorsFromFile
-	"Auto generated method for loading purposes - Do not modify it"
-
-	next := IIIIIIIIIIIIII.
-	previous := IIIIIIIIIIII.! !
-
-
-!classDefinition: #IIIIIIIIIIIIII category: 'Natural Numbers'!
-II subclass: #IIIIIIIIIIIIII
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Natural Numbers'!
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'IIIIIIIIIIIIII class' category: 'Natural Numbers'!
-IIIIIIIIIIIIII class
-	instanceVariableNames: ''!
-
-!IIIIIIIIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
-initializeCollaboratorsFromFile
-	"Auto generated method for loading purposes - Do not modify it"
-
-	next := IIIIIIIIIIIIIII.
-	previous := IIIIIIIIIIIII.! !
-
-
-!classDefinition: #IIIIIIIIIIIIIII category: 'Natural Numbers'!
-II subclass: #IIIIIIIIIIIIIII
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Natural Numbers'!
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'IIIIIIIIIIIIIII class' category: 'Natural Numbers'!
-IIIIIIIIIIIIIII class
-	instanceVariableNames: ''!
-
-!IIIIIIIIIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
-initializeCollaboratorsFromFile
-	"Auto generated method for loading purposes - Do not modify it"
-
-	next := IIIIIIIIIIIIIIII.
-	previous := IIIIIIIIIIIIII.! !
-
-
-!classDefinition: #IIIIIIIIIIIIIIII category: 'Natural Numbers'!
-II subclass: #IIIIIIIIIIIIIIII
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Natural Numbers'!
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'IIIIIIIIIIIIIIII class' category: 'Natural Numbers'!
-IIIIIIIIIIIIIIII class
-	instanceVariableNames: ''!
-
-!IIIIIIIIIIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
-initializeCollaboratorsFromFile
-	"Auto generated method for loading purposes - Do not modify it"
-
-	next := IIIIIIIIIIIIIIIII.
-	previous := IIIIIIIIIIIIIII.! !
-
-
-!classDefinition: #IIIIIIIIIIIIIIIII category: 'Natural Numbers'!
-II subclass: #IIIIIIIIIIIIIIIII
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Natural Numbers'!
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'IIIIIIIIIIIIIIIII class' category: 'Natural Numbers'!
-IIIIIIIIIIIIIIIII class
-	instanceVariableNames: ''!
-
-!IIIIIIIIIIIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
-initializeCollaboratorsFromFile
-	"Auto generated method for loading purposes - Do not modify it"
-
-	next := IIIIIIIIIIIIIIIIII.
-	previous := IIIIIIIIIIIIIIII.! !
-
-
-!classDefinition: #IIIIIIIIIIIIIIIIII category: 'Natural Numbers'!
-II subclass: #IIIIIIIIIIIIIIIIII
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Natural Numbers'!
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'IIIIIIIIIIIIIIIIII class' category: 'Natural Numbers'!
-IIIIIIIIIIIIIIIIII class
-	instanceVariableNames: ''!
-
-!IIIIIIIIIIIIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
-initializeCollaboratorsFromFile
-	"Auto generated method for loading purposes - Do not modify it"
-
-	next := IIIIIIIIIIIIIIIIIII.
-	previous := IIIIIIIIIIIIIIIII.! !
-
-
-!classDefinition: #IIIIIIIIIIIIIIIIIII category: 'Natural Numbers'!
-II subclass: #IIIIIIIIIIIIIIIIIII
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Natural Numbers'!
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'IIIIIIIIIIIIIIIIIII class' category: 'Natural Numbers'!
-IIIIIIIIIIIIIIIIIII class
-	instanceVariableNames: ''!
-
-!IIIIIIIIIIIIIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
-initializeCollaboratorsFromFile
-	"Auto generated method for loading purposes - Do not modify it"
-
-	next := IIIIIIIIIIIIIIIIIIII.
-	previous := IIIIIIIIIIIIIIIIII.! !
-
-
-!classDefinition: #IIIIIIIIIIIIIIIIIIII category: 'Natural Numbers'!
-II subclass: #IIIIIIIIIIIIIIIIIIII
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Natural Numbers'!
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'IIIIIIIIIIIIIIIIIIII class' category: 'Natural Numbers'!
-IIIIIIIIIIIIIIIIIIII class
-	instanceVariableNames: ''!
-
-!IIIIIIIIIIIIIIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
-initializeCollaboratorsFromFile
-	"Auto generated method for loading purposes - Do not modify it"
-
-	next := IIIIIIIIIIIIIIIIIIIII.
-	previous := IIIIIIIIIIIIIIIIIII.! !
-
-
-!classDefinition: #IIIIIIIIIIIIIIIIIIIII category: 'Natural Numbers'!
-II subclass: #IIIIIIIIIIIIIIIIIIIII
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Natural Numbers'!
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'IIIIIIIIIIIIIIIIIIIII class' category: 'Natural Numbers'!
-IIIIIIIIIIIIIIIIIIIII class
-	instanceVariableNames: ''!
-
-!IIIIIIIIIIIIIIIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
-initializeCollaboratorsFromFile
-	"Auto generated method for loading purposes - Do not modify it"
-
-	next := IIIIIIIIIIIIIIIIIIIIII.
-	previous := IIIIIIIIIIIIIIIIIIII.! !
-
-
-!classDefinition: #IIIIIIIIIIIIIIIIIIIIII category: 'Natural Numbers'!
-II subclass: #IIIIIIIIIIIIIIIIIIIIII
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Natural Numbers'!
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'IIIIIIIIIIIIIIIIIIIIII class' category: 'Natural Numbers'!
-IIIIIIIIIIIIIIIIIIIIII class
-	instanceVariableNames: ''!
-
-!IIIIIIIIIIIIIIIIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
-initializeCollaboratorsFromFile
-	"Auto generated method for loading purposes - Do not modify it"
-
-	next := IIIIIIIIIIIIIIIIIIIIIII.
-	previous := IIIIIIIIIIIIIIIIIIIII.! !
-
-
-!classDefinition: #IIIIIIIIIIIIIIIIIIIIIII category: 'Natural Numbers'!
-II subclass: #IIIIIIIIIIIIIIIIIIIIIII
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Natural Numbers'!
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'IIIIIIIIIIIIIIIIIIIIIII class' category: 'Natural Numbers'!
-IIIIIIIIIIIIIIIIIIIIIII class
-	instanceVariableNames: ''!
-
-!IIIIIIIIIIIIIIIIIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
-initializeCollaboratorsFromFile
-	"Auto generated method for loading purposes - Do not modify it"
-
-	next := IIIIIIIIIIIIIIIIIIIIIIII.
-	previous := IIIIIIIIIIIIIIIIIIIIII.! !
-
-
-!classDefinition: #IIIIIIIIIIIIIIIIIIIIIIII category: 'Natural Numbers'!
-II subclass: #IIIIIIIIIIIIIIIIIIIIIIII
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Natural Numbers'!
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'IIIIIIIIIIIIIIIIIIIIIIII class' category: 'Natural Numbers'!
-IIIIIIIIIIIIIIIIIIIIIIII class
-	instanceVariableNames: ''!
-
-!IIIIIIIIIIIIIIIIIIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
-initializeCollaboratorsFromFile
-	"Auto generated method for loading purposes - Do not modify it"
-
-	next := IIIIIIIIIIIIIIIIIIIIIIIII.
-	previous := IIIIIIIIIIIIIIIIIIIIIII.! !
-
-
-!classDefinition: #IIIIIIIIIIIIIIIIIIIIIIIII category: 'Natural Numbers'!
-II subclass: #IIIIIIIIIIIIIIIIIIIIIIIII
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Natural Numbers'!
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'IIIIIIIIIIIIIIIIIIIIIIIII class' category: 'Natural Numbers'!
-IIIIIIIIIIIIIIIIIIIIIIIII class
-	instanceVariableNames: ''!
-
-!IIIIIIIIIIIIIIIIIIIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
-initializeCollaboratorsFromFile
-	"Auto generated method for loading purposes - Do not modify it"
-
-	next := IIIIIIIIIIIIIIIIIIIIIIIIII.
-	previous := IIIIIIIIIIIIIIIIIIIIIIII.! !
-
-
-!classDefinition: #IIIIIIIIIIIIIIIIIIIIIIIIII category: 'Natural Numbers'!
-II subclass: #IIIIIIIIIIIIIIIIIIIIIIIIII
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Natural Numbers'!
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'IIIIIIIIIIIIIIIIIIIIIIIIII class' category: 'Natural Numbers'!
-IIIIIIIIIIIIIIIIIIIIIIIIII class
-	instanceVariableNames: ''!
-
-!IIIIIIIIIIIIIIIIIIIIIIIIII class methodsFor: 'as yet unclassified' stamp: 'IA 8/31/2021 00:32:48'!
-initializeCollaboratorsFromFile
-	"Auto generated method for loading purposes - Do not modify it"
-
-	next := AnObsoleteIIIIIIIIIIIIIIIIIIIIIIIIIII.
-	previous := IIIIIIIIIIIIIIIIIIIIIIIII.! !
 
 II initializeAfterFileIn!
 III initializeAfterFileIn!
@@ -621,17 +343,3 @@ IIIIIIIII initializeAfterFileIn!
 IIIIIIIIII initializeAfterFileIn!
 IIIIIIIIIII initializeAfterFileIn!
 IIIIIIIIIIII initializeAfterFileIn!
-IIIIIIIIIIIII initializeAfterFileIn!
-IIIIIIIIIIIIII initializeAfterFileIn!
-IIIIIIIIIIIIIII initializeAfterFileIn!
-IIIIIIIIIIIIIIII initializeAfterFileIn!
-IIIIIIIIIIIIIIIII initializeAfterFileIn!
-IIIIIIIIIIIIIIIIII initializeAfterFileIn!
-IIIIIIIIIIIIIIIIIII initializeAfterFileIn!
-IIIIIIIIIIIIIIIIIIII initializeAfterFileIn!
-IIIIIIIIIIIIIIIIIIIII initializeAfterFileIn!
-IIIIIIIIIIIIIIIIIIIIII initializeAfterFileIn!
-IIIIIIIIIIIIIIIIIIIIIII initializeAfterFileIn!
-IIIIIIIIIIIIIIIIIIIIIIII initializeAfterFileIn!
-IIIIIIIIIIIIIIIIIIIIIIIII initializeAfterFileIn!
-IIIIIIIIIIIIIIIIIIIIIIIIII initializeAfterFileIn!
