@@ -44,7 +44,7 @@ test02RemovingCustomerShouldNotTakeMoreThan100Milliseconds
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'MP 9/9/2021 01:19:48'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'MP 9/9/2021 01:48:18'!
 test03CanNotAddACustomerWithEmptyName 
 
 	| customerBook |
@@ -52,12 +52,12 @@ test03CanNotAddACustomerWithEmptyName
 	customerBook := CustomerBook new.
 
 	self should: [customerBook addCustomerNamed: '']
-		failWith: Error
-		andOnFailureDo: [ :anError | 
+		raise: Error
+		withExceptionDo: [ :anError | 
 			self assert: anError messageText = CustomerBook customerCanNotBeEmptyErrorMessage.
 			self assert: customerBook isEmpty ].! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'MP 9/8/2021 23:47:57'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'MP 9/9/2021 01:48:18'!
 test04CanNotRemoveAnInvalidCustomer
 	
 	| customerBook johnLennon |
@@ -67,8 +67,8 @@ test04CanNotRemoveAnInvalidCustomer
 	customerBook addCustomerNamed: johnLennon.
 	
 	self should: [ customerBook removeCustomerNamed: 'Paul McCartney' ]
-		failWith: NotFound
-		andOnFailureDo: [ :anError | 
+		raise: NotFound
+		withExceptionDo: [ :anError | 
 			self assert: customerBook numberOfCustomers = 1.
 			self assert: (customerBook includesCustomerNamed: johnLennon) ]! !
 
@@ -113,7 +113,7 @@ test06RemovingASuspendedCustomerShouldRemoveItFromCustomerBook
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'MP 9/8/2021 23:51:20'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'MP 9/9/2021 01:48:18'!
 test07CanNotSuspendAnInvalidCustomer
 	
 	| customerBook johnLennon |
@@ -123,13 +123,13 @@ test07CanNotSuspendAnInvalidCustomer
 	customerBook addCustomerNamed: johnLennon.
 
 	self should: [customerBook suspendCustomerNamed: 'George Harrison']
-		failWith: CantSuspend
-		andOnFailureDo: [:anError | 
+		raise: CantSuspend
+		withExceptionDo: [:anError | 
 			self assert: customerBook numberOfCustomers = 1.
 			self assert: (customerBook includesCustomerNamed: johnLennon) ].
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'MP 9/8/2021 23:49:56'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'MP 9/9/2021 01:48:18'!
 test08CanNotSuspendAnAlreadySuspendedCustomer
 	
 	| customerBook johnLennon |
@@ -140,18 +140,11 @@ test08CanNotSuspendAnAlreadySuspendedCustomer
 	customerBook suspendCustomerNamed: johnLennon.
 	
 	self should: [ customerBook suspendCustomerNamed: johnLennon]
-		failWith: CantSuspend
-		andOnFailureDo: [ :anError | 
+		raise: CantSuspend
+		withExceptionDo: [ :anError | 
 			self assert: customerBook numberOfCustomers = 1.
 			self assert: (customerBook includesCustomerNamed: johnLennon) ].! !
 
-
-!CustomerBookTest methodsFor: 'assertions' stamp: 'MP 9/9/2021 01:21:50'!
-should: aClosureThatShouldFail failWith: anErrorToCatch andOnFailureDo: anErrorHandler
-	[ aClosureThatShouldFail value.
-	  self fail ]
-		on: anErrorToCatch 
-		do: [:anError | anErrorHandler value: anError].! !
 
 !CustomerBookTest methodsFor: 'assertions' stamp: 'MP 9/8/2021 23:08:08'!
 should: aClosureToMeasureTime notTakeMoreThan: aNumberOfMilliseconds	
@@ -162,6 +155,13 @@ should: aClosureToMeasureTime notTakeMoreThan: aNumberOfMilliseconds
 	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
 	
 	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (aNumberOfMilliseconds * millisecond)! !
+
+!CustomerBookTest methodsFor: 'assertions' stamp: 'MP 9/9/2021 01:50:28'!
+should: aClosureThatShouldFail raise: anExceptionToCatch withExceptionDo: anExceptionHandler
+	[ aClosureThatShouldFail value.
+	  self fail ]
+		on: anExceptionToCatch 
+		do: [:anException | anExceptionHandler value: anException].! !
 
 
 !classDefinition: #CustomerBook category: 'CodigoRepetido-Ejercicio'!
@@ -189,8 +189,8 @@ initialize
 	suspended:= OrderedCollection new.! !
 
 
-!CustomerBook methodsFor: 'customer management - private' stamp: 'MP 9/9/2021 01:13:44'!
-findCustomerIn: aCollectionOfCustomers withName: aCustomerName ifFoundDo: anActionWithACustomerIndex
+!CustomerBook methodsFor: 'customer management - private' stamp: 'MP 9/9/2021 01:49:12'!
+findCustomerIn: aCollectionOfCustomers withName: aCustomerName withMatchDo: anActionWithACustomerIndex
 	1 to: aCollectionOfCustomers size do: 
 	[ :index |
 		aCustomerName = (aCollectionOfCustomers at: index)
@@ -221,15 +221,15 @@ numberOfSuspendedCustomers
 	
 	^suspended size! !
 
-!CustomerBook methodsFor: 'customer management' stamp: 'MP 9/9/2021 01:08:42'!
+!CustomerBook methodsFor: 'customer management' stamp: 'MP 9/9/2021 01:49:51'!
 removeCustomerNamed: aName 
 	self findCustomerIn: active withName: aName
-		ifFoundDo: [ :indexOfCustomer | 
+		withMatchDo: [ :indexOfCustomer | 
 			active removeAt: indexOfCustomer.
 			^aName ].
 
 	self findCustomerIn: suspended withName: aName
-		ifFoundDo: [ :indexOfCustomer |
+		withMatchDo: [ :indexOfCustomer |
 			suspended removeAt: indexOfCustomer.
 			^aName ].	
 	
