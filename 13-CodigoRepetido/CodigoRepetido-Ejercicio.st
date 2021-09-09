@@ -190,15 +190,6 @@ initialize
 	suspended:= OrderedCollection new.! !
 
 
-!CustomerBook methodsFor: 'customer management - private' stamp: 'MP 9/9/2021 01:49:12'!
-findCustomerIn: aCollectionOfCustomers withName: aCustomerName withMatchDo: anActionWithACustomerIndex
-	1 to: aCollectionOfCustomers size do: 
-	[ :index |
-		aCustomerName = (aCollectionOfCustomers at: index)
-			ifTrue: [anActionWithACustomerIndex value: index]
-	].! !
-
-
 !CustomerBook methodsFor: 'customer management' stamp: 'NR 4/3/2019 10:14:26'!
 addCustomerNamed: aName
 
@@ -222,19 +213,12 @@ numberOfSuspendedCustomers
 	
 	^suspended size! !
 
-!CustomerBook methodsFor: 'customer management' stamp: 'MP 9/9/2021 01:49:51'!
+!CustomerBook methodsFor: 'customer management' stamp: 'MP 9/9/2021 14:53:18'!
 removeCustomerNamed: aName 
-	self findCustomerIn: active withName: aName
-		withMatchDo: [ :indexOfCustomer | 
-			active removeAt: indexOfCustomer.
-			^aName ].
-
-	self findCustomerIn: suspended withName: aName
-		withMatchDo: [ :indexOfCustomer |
-			suspended removeAt: indexOfCustomer.
-			^aName ].	
-	
-	^NotFound signal.
+	^active remove: aName
+		ifAbsent: [
+			suspended remove: aName
+				ifAbsent: [NotFound signal.] ].
 ! !
 
 !CustomerBook methodsFor: 'customer management' stamp: 'HernanWilkinson 7/6/2011 17:52'!
