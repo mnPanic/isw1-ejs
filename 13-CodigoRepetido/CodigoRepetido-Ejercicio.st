@@ -21,16 +21,34 @@ TestCase subclass: #CustomerBookTest
 	poolDictionaries: ''
 	category: 'CodigoRepetido-Ejercicio'!
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'MP 9/8/2021 23:09:22'!
+!CustomerBookTest methodsFor: 'assertions' stamp: 'MP 9/9/2021 14:31:29'!
+assert: aCustomerBook hasActiveCustomers: aCollectionOfActiveCustomers hasSuspendedCustomers: aCollectionOfSuspendedCustomers doesntHaveCustomers: aCollectionOfNonCustomers
+	
+	| expectedNumberOfActiveCustomers expectedNumberOfSuspendedCustomers expectedTotalNumberOfCustomers |
+
+	expectedNumberOfActiveCustomers := aCollectionOfActiveCustomers size.
+	expectedNumberOfSuspendedCustomers := aCollectionOfSuspendedCustomers size.	
+	expectedTotalNumberOfCustomers := expectedNumberOfActiveCustomers  + expectedNumberOfSuspendedCustomers.
+
+	self assert: aCustomerBook numberOfCustomers equals: expectedTotalNumberOfCustomers.
+	self assert: aCustomerBook numberOfActiveCustomers equals: expectedNumberOfActiveCustomers.
+	self assert: aCustomerBook numberOfSuspendedCustomers equals: expectedNumberOfSuspendedCustomers.
+	
+	self assert: (aCollectionOfActiveCustomers allSatisfy: [ :aCustomer | aCustomerBook 	includesCustomerNamed: aCustomer ]).
+	self assert: (aCollectionOfSuspendedCustomers allSatisfy: [ :aCustomer | aCustomerBook 	includesCustomerNamed: aCustomer ]).
+	self assert: (aCollectionOfNonCustomers allSatisfy: [ :aCustomer | (aCustomerBook 	includesCustomerNamed: aCustomer) not ]).! !
+
+
+!CustomerBookTest methodsFor: 'testing' stamp: 'MP 9/9/2021 13:57:01'!
 test01AddingCustomerShouldNotTakeMoreThan50Milliseconds
 	| customerBook |
 	customerBook := CustomerBook new.
 
-	self should: [customerBook addCustomerNamed: 'John Lennon'] notTakeMoreThan: 50.
+	self should: [customerBook addCustomerNamed: 'John Lennon'] notTakeMoreThan: 50 milliSeconds.
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'MP 9/8/2021 23:09:11'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'MP 9/9/2021 13:57:08'!
 test02RemovingCustomerShouldNotTakeMoreThan100Milliseconds
 
 	| customerBook paulMcCartney |
@@ -40,7 +58,7 @@ test02RemovingCustomerShouldNotTakeMoreThan100Milliseconds
 	
 	customerBook addCustomerNamed: paulMcCartney.
 
-	self should: [customerBook removeCustomerNamed: paulMcCartney] notTakeMoreThan: 100.
+	self should: [customerBook removeCustomerNamed: paulMcCartney] notTakeMoreThan: 100 milliSeconds.
 	
 ! !
 
@@ -72,7 +90,7 @@ test04CanNotRemoveAnInvalidCustomer
 			self assert: customerBook numberOfCustomers = 1.
 			self assert: (customerBook includesCustomerNamed: johnLennon) ]! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'NR 4/3/2019 10:50:25'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'MP 9/9/2021 14:30:50'!
 test05SuspendingACustomerShouldNotRemoveItFromCustomerBook
 
 	| customerBook paulMcCartney|
@@ -83,16 +101,17 @@ test05SuspendingACustomerShouldNotRemoveItFromCustomerBook
 	customerBook addCustomerNamed: paulMcCartney.
 	customerBook suspendCustomerNamed: paulMcCartney.
 	
-	self assert: 0 equals: customerBook numberOfActiveCustomers.
-	self assert: 1 equals: customerBook numberOfSuspendedCustomers.
-	self assert: 1 equals: customerBook numberOfCustomers.
-	self assert: (customerBook includesCustomerNamed: paulMcCartney).
+	self assert: customerBook 
+		hasActiveCustomers: {}
+		hasSuspendedCustomers: { paulMcCartney }
+		doesntHaveCustomers: {}.
+
 	
 
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'NR 4/3/2019 10:50:28'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'MP 9/9/2021 14:31:11'!
 test06RemovingASuspendedCustomerShouldRemoveItFromCustomerBook
 
 	| customerBook paulMcCartney|
@@ -104,10 +123,10 @@ test06RemovingASuspendedCustomerShouldRemoveItFromCustomerBook
 	customerBook suspendCustomerNamed: paulMcCartney.
 	customerBook removeCustomerNamed: paulMcCartney.
 	
-	self assert: 0 equals: customerBook numberOfActiveCustomers.
-	self assert: 0 equals: customerBook numberOfSuspendedCustomers.
-	self assert: 0 equals: customerBook numberOfCustomers.
-	self deny: (customerBook includesCustomerNamed: paulMcCartney).
+	self assert: customerBook 
+		hasActiveCustomers: {}
+		hasSuspendedCustomers: {}
+		doesntHaveCustomers: { paulMcCartney }.
 
 
 	
@@ -144,24 +163,6 @@ test08CanNotSuspendAnAlreadySuspendedCustomer
 		withExceptionDo: [ :anError | 
 			self assert: customerBook numberOfCustomers = 1.
 			self assert: (customerBook includesCustomerNamed: johnLennon) ].! !
-
-
-!CustomerBookTest methodsFor: 'assertions' stamp: 'MP 9/8/2021 23:08:08'!
-should: aClosureToMeasureTime notTakeMoreThan: aNumberOfMilliseconds	
-	| millisecondsAfterRunning millisecondsBeforeRunning |
-	"Nota: se podría implementar con el mensaje 'timeToRun' pero sería cambiar la implementación y no estaríamos respetando el algoritmo".
-	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
-	aClosureToMeasureTime value.
-	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
-	
-	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (aNumberOfMilliseconds * millisecond)! !
-
-!CustomerBookTest methodsFor: 'assertions' stamp: 'MP 9/9/2021 01:50:28'!
-should: aClosureThatShouldFail raise: anExceptionToCatch withExceptionDo: anExceptionHandler
-	[ aClosureThatShouldFail value.
-	  self fail ]
-		on: anExceptionToCatch 
-		do: [:anException | anExceptionHandler value: anException].! !
 
 
 !classDefinition: #CustomerBook category: 'CodigoRepetido-Ejercicio'!
