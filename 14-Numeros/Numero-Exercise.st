@@ -364,33 +364,51 @@ Numero subclass: #Entero
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'HernanWilkinson 5/7/2016 23:13'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 18:12:50'!
 * aMultiplier 
 	
-	^self class with: value * aMultiplier integerValue
+	(aMultiplier isKindOf: self class) 
+		ifTrue: [	^self class with: value * aMultiplier integerValue]
+		ifFalse: [(aMultiplier isKindOf: Fraccion)
+			ifTrue: [^Fraccion with: self * aMultiplier numerator over: aMultiplier denominator]
+		].
+	^self error: 'Multiplicacion no soportada para esta clase'
 	! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/9/2021 21:57:13'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 18:20:47'!
 + anAdder 
-	(self class = anAdder class) 
+	(anAdder isKindOf: self class) 
 		ifTrue: [	^self class with: value + anAdder integerValue	]
 		ifFalse: [
 			(anAdder isKindOf: Fraccion)
 				ifTrue: [^Fraccion with: self * anAdder denominator + anAdder numerator over: anAdder denominator]
-				ifFalse: [self error: 'pepe Error']
-			]
+			].
+		^self error: 'Suma no implementada para esta clase'
 	
 ! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'NR 9/23/2018 23:40:37'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 18:32:56'!
 - aSubtrahend 
-	
-	^ self class with: value - aSubtrahend integerValue.! !
+	(aSubtrahend isKindOf: self class) 
+		ifTrue: [	^ self class with: value - aSubtrahend integerValue.]
+		ifFalse: [
+			(aSubtrahend isKindOf: Fraccion)
+				ifTrue: [^self + ((Entero with: -1) * aSubtrahend)]
+			].
+	^self error: 'Resta no implementada para esta clase'
+	! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'HernanWilkinson 5/7/2016 23:14'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 18:20:38'!
 / aDivisor 
 	
-	^Fraccion with: self over: aDivisor! !
+	(aDivisor isKindOf: self class) 
+		ifTrue: [	^Fraccion with: self over: aDivisor]
+		ifFalse: [
+			(aDivisor isKindOf: Fraccion)
+				ifTrue: [^self * (Fraccion with: aDivisor denominator over: aDivisor numerator)]
+			].
+		^self error: 'Division no implementada para esta clase'
+	! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'HernanWilkinson 5/7/2016 21:55'!
 // aDivisor 
@@ -489,16 +507,22 @@ Numero subclass: #Fraccion
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'HernanWilkinson 5/7/2016 23:14'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 18:14:52'!
 * aMultiplier 
 	
-	^(numerator * aMultiplier numerator) / (denominator * aMultiplier denominator)
+	(aMultiplier isKindOf: self class) 
+		ifTrue: [^(numerator * aMultiplier numerator) / (denominator * aMultiplier denominator)]
+		ifFalse: [(aMultiplier isKindOf: Entero)
+				ifTrue: [^aMultiplier * self]
+			].
+	^self error: 'Multiplicacion no soportada para esta clase'
+	
 	! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'IA 9/9/2021 21:57:56'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 18:21:04'!
 + anAdder 
 	
-	(self class = anAdder class) 
+	(anAdder isKindOf: self class) 
 	ifTrue: [	
 		| newNumerator newDenominator |
 		newNumerator := (numerator * anAdder denominator) + (denominator * anAdder numerator).
@@ -509,26 +533,41 @@ Numero subclass: #Fraccion
 	ifFalse: [
 		(anAdder isKindOf: Entero)
 			ifTrue: [^anAdder + self]
-			ifFalse: [self error: 'pepe Error']
-		]
+		].
+	^self error: 'Suma no implementada para esta clase'
 	
 	! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'NR 9/23/2018 23:43:50'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 18:43:57'!
 - aSubtrahend 
 	
-	| newNumerator newDenominator |
+	(aSubtrahend isKindOf: self class) 
+		ifTrue: [	
+			| newNumerator newDenominator |
 	
-	newNumerator := (numerator * aSubtrahend denominator) - (denominator * aSubtrahend numerator).
-	newDenominator := denominator * aSubtrahend denominator.
-	
-	^newNumerator / newDenominator 
+			newNumerator := (numerator * aSubtrahend denominator) - (denominator * aSubtrahend numerator).
+			newDenominator := denominator * aSubtrahend denominator.
+			
+			^newNumerator / newDenominator
+		]
+		ifFalse: [
+			(aSubtrahend isKindOf: Entero)
+				ifTrue: [^aSubtrahend - self * (Entero with: -1)]
+			].
+	^self error: 'Resta no implementada para esta clase'
+
 ! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'HernanWilkinson 5/7/2016 23:14'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 18:27:00'!
 / aDivisor 
-	
-	^(numerator * aDivisor denominator) / (denominator * aDivisor numerator)! !
+	(aDivisor isKindOf: self class) 
+		ifTrue: [^(numerator * aDivisor denominator) / (denominator * aDivisor numerator)]
+		ifFalse: [
+			(aDivisor isKindOf: Entero)
+				ifTrue: [^self * ((Entero with: 1) / aDivisor)]
+			].
+	^self error: 'Division no implementada para esta clase'
+	! !
 
 
 !Fraccion methodsFor: 'comparing' stamp: 'HernanWilkinson 5/7/2016 20:42'!
