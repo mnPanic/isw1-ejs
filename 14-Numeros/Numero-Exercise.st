@@ -364,6 +364,16 @@ Numero subclass: #Entero
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:53:38'!
+multiplyWithFraction: aFractionToMultiply
+
+	^self * aFractionToMultiply.! !
+
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:46:04'!
+multiplyWithInteger: anIntegerToMultiply
+
+	^ self class with: value * anIntegerToMultiply integerValue! !
+
 !Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:32:19'!
 sumWithFraction: aFractionToAdd
 
@@ -375,16 +385,10 @@ sumWithInteger: anIntegerToAdd
 	^self class with: value + anIntegerToAdd integerValue	.! !
 
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 18:12:50'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 20:44:05'!
 * aMultiplier 
 	
-	(aMultiplier isKindOf: self class) 
-		ifTrue: [	^self class with: value * aMultiplier integerValue]
-		ifFalse: [(aMultiplier isKindOf: Fraccion)
-			ifTrue: [^Fraccion with: self * aMultiplier numerator over: aMultiplier denominator]
-		].
-	^self error: 'Multiplicacion no soportada para esta clase'
-	! !
+	^aMultiplier multiplyWithInteger: self.! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 20:36:32'!
 + anAdder
@@ -513,6 +517,16 @@ Numero subclass: #Fraccion
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:51:02'!
+multiplyWithFraction: aFractionToMultiply
+
+	^ aFractionToMultiply numerator * numerator / (aFractionToMultiply denominator * denominator)! !
+
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:45:08'!
+multiplyWithInteger: anIntegerToMultiply
+
+	^self class with: anIntegerToMultiply * numerator over: denominator! !
+
 !Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:17:44'!
 sumWithFraction: aFractionToAdd
 
@@ -522,23 +536,16 @@ sumWithFraction: aFractionToAdd
 
 	^newNumerator / newDenominator! !
 
-!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:13:08'!
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:45:20'!
 sumWithInteger: anIntegerToAdd
 
-	^self class with: anIntegerToAdd * self denominator + self numerator over: self denominator.! !
+	^self class with: anIntegerToAdd * denominator + numerator over: denominator.! !
 
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 18:14:52'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 20:51:34'!
 * aMultiplier 
 	
-	(aMultiplier isKindOf: self class) 
-		ifTrue: [^(numerator * aMultiplier numerator) / (denominator * aMultiplier denominator)]
-		ifFalse: [(aMultiplier isKindOf: Entero)
-				ifTrue: [^aMultiplier * self]
-			].
-	^self error: 'Multiplicacion no soportada para esta clase'
-	
-	! !
+	^aMultiplier multiplyWithFraction: self.! !
 
 !Fraccion methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 20:36:44'!
 + anAdder 
