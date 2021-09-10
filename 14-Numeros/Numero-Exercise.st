@@ -364,6 +364,17 @@ Numero subclass: #Entero
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:32:19'!
+sumWithFraction: aFractionToAdd
+
+	^self + aFractionToAdd.! !
+
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:23:08'!
+sumWithInteger: anIntegerToAdd
+
+	^self class with: value + anIntegerToAdd integerValue	.! !
+
+
 !Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 18:12:50'!
 * aMultiplier 
 	
@@ -375,15 +386,10 @@ Numero subclass: #Entero
 	^self error: 'Multiplicacion no soportada para esta clase'
 	! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 18:20:47'!
-+ anAdder 
-	(anAdder isKindOf: self class) 
-		ifTrue: [	^self class with: value + anAdder integerValue	]
-		ifFalse: [
-			(anAdder isKindOf: Fraccion)
-				ifTrue: [^Fraccion with: self * anAdder denominator + anAdder numerator over: anAdder denominator]
-			].
-		^self error: 'Suma no implementada para esta clase'
+!Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 20:36:32'!
++ anAdder
+
+	^anAdder sumWithInteger: self.
 	
 ! !
 
@@ -507,6 +513,21 @@ Numero subclass: #Fraccion
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:17:44'!
+sumWithFraction: aFractionToAdd
+
+	| newNumerator newDenominator |
+	newNumerator := (numerator * aFractionToAdd denominator) + (denominator * aFractionToAdd numerator).
+	newDenominator := denominator * aFractionToAdd denominator.
+
+	^newNumerator / newDenominator! !
+
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:13:08'!
+sumWithInteger: anIntegerToAdd
+
+	^self class with: anIntegerToAdd * self denominator + self numerator over: self denominator.! !
+
+
 !Fraccion methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 18:14:52'!
 * aMultiplier 
 	
@@ -519,23 +540,10 @@ Numero subclass: #Fraccion
 	
 	! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 18:21:04'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 20:36:44'!
 + anAdder 
 	
-	(anAdder isKindOf: self class) 
-	ifTrue: [	
-		| newNumerator newDenominator |
-		newNumerator := (numerator * anAdder denominator) + (denominator * anAdder numerator).
-		newDenominator := denominator * anAdder denominator.
-	
-		^newNumerator / newDenominator
-	]
-	ifFalse: [
-		(anAdder isKindOf: Entero)
-			ifTrue: [^anAdder + self]
-		].
-	^self error: 'Suma no implementada para esta clase'
-	
+	^anAdder sumWithFraction: self.
 	! !
 
 !Fraccion methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 18:43:57'!
