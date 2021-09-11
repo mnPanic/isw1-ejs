@@ -374,6 +374,16 @@ multiplyWithInteger: anIntegerToMultiply
 
 	^ self class with: value * anIntegerToMultiply integerValue! !
 
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 21:11:43'!
+subtractWithFraction: aFractionToSubtract
+
+	^self - aFractionToSubtract * (Entero with: -1)! !
+
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:59:29'!
+subtractWithInteger: anIntegerToSubtract
+
+	^ self class with: anIntegerToSubtract integerValue - value! !
+
 !Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:32:19'!
 sumWithFraction: aFractionToAdd
 
@@ -397,16 +407,10 @@ sumWithInteger: anIntegerToAdd
 	
 ! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 18:32:56'!
-- aSubtrahend 
-	(aSubtrahend isKindOf: self class) 
-		ifTrue: [	^ self class with: value - aSubtrahend integerValue.]
-		ifFalse: [
-			(aSubtrahend isKindOf: Fraccion)
-				ifTrue: [^self + ((Entero with: -1) * aSubtrahend)]
-			].
-	^self error: 'Resta no implementada para esta clase'
-	! !
+!Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 21:00:09'!
+- aSubtrahend
+
+	^aSubtrahend subtractWithInteger: self! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 18:20:38'!
 / aDivisor 
@@ -527,6 +531,21 @@ multiplyWithInteger: anIntegerToMultiply
 
 	^self class with: anIntegerToMultiply * numerator over: denominator! !
 
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 21:10:27'!
+subtractWithFraction: aFractionToSubtract
+
+	| newNumerator newDenominator |
+	
+	newNumerator := (aFractionToSubtract numerator * denominator) - (aFractionToSubtract denominator * numerator).
+	newDenominator := aFractionToSubtract denominator * denominator.
+	
+	^newNumerator / newDenominator! !
+
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 21:01:48'!
+subtractWithInteger: anIntegerToSubtract
+
+	^anIntegerToSubtract + ((Entero with: -1) * self)! !
+
 !Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:17:44'!
 sumWithFraction: aFractionToAdd
 
@@ -553,23 +572,10 @@ sumWithInteger: anIntegerToAdd
 	^anAdder sumWithFraction: self.
 	! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 18:43:57'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 21:12:06'!
 - aSubtrahend 
 	
-	(aSubtrahend isKindOf: self class) 
-		ifTrue: [	
-			| newNumerator newDenominator |
-	
-			newNumerator := (numerator * aSubtrahend denominator) - (denominator * aSubtrahend numerator).
-			newDenominator := denominator * aSubtrahend denominator.
-			
-			^newNumerator / newDenominator
-		]
-		ifFalse: [
-			(aSubtrahend isKindOf: Entero)
-				ifTrue: [^aSubtrahend - self * (Entero with: -1)]
-			].
-	^self error: 'Resta no implementada para esta clase'
+	^ aSubtrahend subtractWithFraction: self.
 
 ! !
 
