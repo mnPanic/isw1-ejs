@@ -437,10 +437,10 @@ sumInteger: anIntegerToAdd
 	
 	^self class with: value // aDivisor integerValue! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/14/2021 17:48:59'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/14/2021 18:26:03'!
 fibonacci
 
-	^self subclassResponsibility .
+	self subclassResponsibility .
 
 		! !
 
@@ -465,6 +465,11 @@ hash
 initalizeWith: aValue 
 	
 	value := aValue! !
+
+!Entero methodsFor: 'initialization' stamp: 'IA 9/14/2021 18:25:51'!
+initializeFractionUnder: aDividend
+
+	self subclassResponsibility.! !
 
 
 !Entero methodsFor: 'value' stamp: 'HernanWilkinson 5/7/2016 21:02'!
@@ -773,10 +778,12 @@ printOn: aStream
 Fraccion class
 	instanceVariableNames: ''!
 
-!Fraccion class methodsFor: 'intance creation' stamp: 'NR 9/23/2018 23:45:19'!
+!Fraccion class methodsFor: 'intance creation' stamp: 'IA 9/14/2021 18:23:31'!
 with: aDividend over: aDivisor
 
 	| greatestCommonDivisor numerator denominator |
+	
+	aDivisor initializeFractionUnder: aDividend.
 	
 	aDivisor isZero ifTrue: [ self error: self canNotDivideByZeroErrorDescription ].
 	aDividend isZero ifTrue: [ ^aDividend ].
