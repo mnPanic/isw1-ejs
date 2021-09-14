@@ -437,15 +437,10 @@ sumInteger: anIntegerToAdd
 	
 	^self class with: value // aDivisor integerValue! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/14/2021 00:52:00'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/14/2021 17:48:59'!
 fibonacci
 
-	| one two |
-	
-	one := Entero with: 1.
-	two := Entero with: 2.
-	
-	^ (self - one) fibonacci + (self - two) fibonacci.
+	^self subclassResponsibility .
 
 		! !
 
@@ -507,8 +502,8 @@ isZero
 Entero class
 	instanceVariableNames: ''!
 
-!Entero class methodsFor: 'testing' stamp: 'IA 9/14/2021 01:22:37'!
-incluyeA: aValue
+!Entero class methodsFor: 'instance creation - private' stamp: 'IA 9/14/2021 17:50:36'!
+canHandle: aValue
 
 	^ self subclassResponsibility.! !
 
@@ -517,22 +512,15 @@ incluyeA: aValue
 negativeFibonacciErrorDescription
 	^ ' Fibonacci no está definido aquí para Enteros Negativos!!!!!!'! !
 
-!Entero class methodsFor: 'instance creation' stamp: 'IA 9/14/2021 01:51:44'!
+!Entero class methodsFor: 'instance creation' stamp: 'IA 9/14/2021 17:51:57'!
 with: aValue 
 	
 	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
 	aValue isInteger ifFalse: [ self error: 'aValue debe ser anInteger' ].
 	
-	"aValue < 0 ifTrue: [^EnteroNegativo new initalizeWith: aValue].
-	aValue = 0 ifTrue: [^Cero new initalizeWith: 0].
-	aValue = 1 ifTrue: [^Uno new initalizeWith: 1].
-	aValue > 0 ifTrue: [^Entero new initalizeWith: aValue]."
-	
 	^(Entero subclasses
-		detect: [:aSubclass | aSubclass incluyeA: aValue]
-		ifNone: [Entero]) new initalizeWith: aValue.
-	
-	"^self error: 'No se pudo inicializar un Entero con ese valor'"! !
+		detect: [:aSubclass | aSubclass canHandle: aValue]
+		ifNone: [self error: 'No se pudo inicializar un Entero con ese valor']) new initalizeWith: aValue.! !
 
 
 !classDefinition: #Cero category: 'Numero-Exercise'!
@@ -553,10 +541,39 @@ fibonacci
 Cero class
 	instanceVariableNames: ''!
 
-!Cero class methodsFor: 'testing' stamp: 'IA 9/14/2021 01:23:20'!
-incluyeA: aValue
+!Cero class methodsFor: 'instance creation - private' stamp: 'IA 9/14/2021 17:50:36'!
+canHandle: aValue
 
 	^ aValue = 0.! !
+
+
+!classDefinition: #EnteroMayorAUno category: 'Numero-Exercise'!
+Entero subclass: #EnteroMayorAUno
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+!EnteroMayorAUno methodsFor: 'arithmetic operations' stamp: 'IA 9/14/2021 17:49:15'!
+fibonacci
+
+	| one two |
+	
+	one := Entero with: 1.
+	two := Entero with: 2.
+	
+	^ (self - one) fibonacci + (self - two) fibonacci.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'EnteroMayorAUno class' category: 'Numero-Exercise'!
+EnteroMayorAUno class
+	instanceVariableNames: ''!
+
+!EnteroMayorAUno class methodsFor: 'instance creation - private' stamp: 'IA 9/14/2021 17:56:05'!
+canHandle: aValue
+	
+	^ aValue > 1.! !
 
 
 !classDefinition: #EnteroNegativo category: 'Numero-Exercise'!
@@ -577,8 +594,8 @@ fibonacci
 EnteroNegativo class
 	instanceVariableNames: ''!
 
-!EnteroNegativo class methodsFor: 'testing' stamp: 'IA 9/14/2021 01:25:51'!
-incluyeA: aValue
+!EnteroNegativo class methodsFor: 'instance creation - private' stamp: 'IA 9/14/2021 17:50:36'!
+canHandle: aValue
 
 	^ aValue < 0.! !
 
@@ -601,8 +618,8 @@ fibonacci
 Uno class
 	instanceVariableNames: ''!
 
-!Uno class methodsFor: 'testing' stamp: 'IA 9/14/2021 01:26:15'!
-incluyeA: aValue
+!Uno class methodsFor: 'instance creation - private' stamp: 'IA 9/14/2021 17:50:36'!
+canHandle: aValue
 
 	^ aValue = 1.! !
 
