@@ -364,63 +364,63 @@ Numero subclass: #Entero
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/13/2021 21:11:37'!
-divideFraction: aFractionToDivide
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/13/2021 21:40:37'!
+divideFraction: aFractionDividend
 
-	^aFractionToDivide * ((Entero with: 1) / self)! !
+	^aFractionDividend * ((Entero with: 1) / self)! !
 
-!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/13/2021 21:10:57'!
-divideInteger: anIntegerToDivide
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/13/2021 21:40:02'!
+divideInteger: anIntegerDividend
 
-	^ Fraccion with: anIntegerToDivide over: self! !
+	^ Fraccion with: anIntegerDividend over: self! !
 
-!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:53:38'!
-multiplyWithFraction: aFractionToMultiply
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/13/2021 21:31:59'!
+multiplyFraction: aFractionToMultiply
 
 	^self * aFractionToMultiply.! !
 
-!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:46:04'!
-multiplyWithInteger: anIntegerToMultiply
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/13/2021 21:32:29'!
+multiplyInteger: anIntegerToMultiply
 
 	^ self class with: value * anIntegerToMultiply integerValue! !
 
-!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 21:11:43'!
-subtractWithFraction: aFractionToSubtract
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/13/2021 21:37:22'!
+subtractFraction: aFractionMinuend
 
-	^self - aFractionToSubtract * (Entero with: -1)! !
+	^self - aFractionMinuend * (Entero with: -1)! !
 
-!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:59:29'!
-subtractWithInteger: anIntegerToSubtract
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/13/2021 21:37:02'!
+subtractInteger: anIntegerMinuend
 
-	^ self class with: anIntegerToSubtract integerValue - value! !
+	^ self class with: anIntegerMinuend integerValue - value! !
 
-!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:32:19'!
-sumWithFraction: aFractionToAdd
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/13/2021 21:33:52'!
+sumFraction: aFractionToAdd
 
 	^self + aFractionToAdd.! !
 
-!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:23:08'!
-sumWithInteger: anIntegerToAdd
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/13/2021 21:34:16'!
+sumInteger: anIntegerToAdd
 
 	^self class with: value + anIntegerToAdd integerValue	.! !
 
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 20:44:05'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/13/2021 21:32:29'!
 * aMultiplier 
 	
-	^aMultiplier multiplyWithInteger: self.! !
+	^aMultiplier multiplyInteger: self.! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 20:36:32'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/13/2021 21:34:16'!
 + anAdder
 
-	^anAdder sumWithInteger: self.
+	^anAdder sumInteger: self.
 	
 ! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 21:00:09'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/13/2021 21:33:38'!
 - aSubtrahend
 
-	^aSubtrahend subtractWithInteger: self! !
+	^aSubtrahend subtractInteger: self! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/13/2021 21:06:10'!
 / aDivisor 
@@ -535,18 +535,18 @@ divideInteger: anInteger
 
 	^anInteger * (Fraccion with: self denominator over: self numerator).! !
 
-!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:51:02'!
-multiplyWithFraction: aFractionToMultiply
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/13/2021 21:31:59'!
+multiplyFraction: aFractionToMultiply
 
 	^ aFractionToMultiply numerator * numerator / (aFractionToMultiply denominator * denominator)! !
 
-!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:45:08'!
-multiplyWithInteger: anIntegerToMultiply
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/13/2021 21:32:29'!
+multiplyInteger: anIntegerToMultiply
 
 	^self class with: anIntegerToMultiply * numerator over: denominator! !
 
-!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 21:10:27'!
-subtractWithFraction: aFractionToSubtract
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/13/2021 21:33:22'!
+subtractFraction: aFractionToSubtract
 
 	| newNumerator newDenominator |
 	
@@ -555,13 +555,13 @@ subtractWithFraction: aFractionToSubtract
 	
 	^newNumerator / newDenominator! !
 
-!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 21:01:48'!
-subtractWithInteger: anIntegerToSubtract
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/13/2021 21:33:38'!
+subtractInteger: anIntegerToSubtract
 
 	^anIntegerToSubtract + ((Entero with: -1) * self)! !
 
-!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:17:44'!
-sumWithFraction: aFractionToAdd
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/13/2021 21:33:52'!
+sumFraction: aFractionToAdd
 
 	| newNumerator newDenominator |
 	newNumerator := (numerator * aFractionToAdd denominator) + (denominator * aFractionToAdd numerator).
@@ -569,27 +569,27 @@ sumWithFraction: aFractionToAdd
 
 	^newNumerator / newDenominator! !
 
-!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:45:20'!
-sumWithInteger: anIntegerToAdd
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/13/2021 21:34:16'!
+sumInteger: anIntegerToAdd
 
 	^self class with: anIntegerToAdd * denominator + numerator over: denominator.! !
 
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 20:51:34'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'IA 9/13/2021 21:31:59'!
 * aMultiplier 
 	
-	^aMultiplier multiplyWithFraction: self.! !
+	^aMultiplier multiplyFraction: self.! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 20:36:44'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'IA 9/13/2021 21:33:52'!
 + anAdder 
 	
-	^anAdder sumWithFraction: self.
+	^anAdder sumFraction: self.
 	! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 21:12:06'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'IA 9/13/2021 21:33:22'!
 - aSubtrahend 
 	
-	^ aSubtrahend subtractWithFraction: self.
+	^ aSubtrahend subtractFraction: self.
 
 ! !
 
