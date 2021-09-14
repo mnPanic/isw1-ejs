@@ -364,6 +364,16 @@ Numero subclass: #Entero
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/13/2021 21:11:37'!
+divideFraction: aFractionToDivide
+
+	^aFractionToDivide * ((Entero with: 1) / self)! !
+
+!Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/13/2021 21:10:57'!
+divideInteger: anIntegerToDivide
+
+	^ Fraccion with: anIntegerToDivide over: self! !
+
 !Entero methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:53:38'!
 multiplyWithFraction: aFractionToMultiply
 
@@ -412,16 +422,10 @@ sumWithInteger: anIntegerToAdd
 
 	^aSubtrahend subtractWithInteger: self! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 18:20:38'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'IA 9/13/2021 21:06:10'!
 / aDivisor 
 	
-	(aDivisor isKindOf: self class) 
-		ifTrue: [	^Fraccion with: self over: aDivisor]
-		ifFalse: [
-			(aDivisor isKindOf: Fraccion)
-				ifTrue: [^self * (Fraccion with: aDivisor denominator over: aDivisor numerator)]
-			].
-		^self error: 'Division no implementada para esta clase'
+	^ aDivisor divideInteger: self.
 	! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'HernanWilkinson 5/7/2016 21:55'!
@@ -521,6 +525,16 @@ Numero subclass: #Fraccion
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/13/2021 21:09:03'!
+divideFraction: aFractionToDivide
+
+	^aFractionToDivide numerator * self denominator / ( aFractionToDivide denominator * self numerator).! !
+
+!Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/13/2021 21:05:08'!
+divideInteger: anInteger
+
+	^anInteger * (Fraccion with: self denominator over: self numerator).! !
+
 !Fraccion methodsFor: 'arithmetic operations - private' stamp: 'IA 9/10/2021 20:51:02'!
 multiplyWithFraction: aFractionToMultiply
 
@@ -579,15 +593,10 @@ sumWithInteger: anIntegerToAdd
 
 ! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'IA 9/10/2021 18:27:00'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'IA 9/13/2021 21:12:27'!
 / aDivisor 
-	(aDivisor isKindOf: self class) 
-		ifTrue: [^(numerator * aDivisor denominator) / (denominator * aDivisor numerator)]
-		ifFalse: [
-			(aDivisor isKindOf: Entero)
-				ifTrue: [^self * ((Entero with: 1) / aDivisor)]
-			].
-	^self error: 'Division no implementada para esta clase'
+	
+	^ aDivisor divideFraction: self.
 	! !
 
 
