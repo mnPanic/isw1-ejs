@@ -773,15 +773,93 @@ printOn: aStream
 Fraccion class
 	instanceVariableNames: ''!
 
-!Fraccion class methodsFor: 'intance creation' stamp: 'NR 9/23/2018 23:45:19'!
+!Fraccion class methodsFor: 'instance creation - private' stamp: 'IA 9/16/2021 01:36:12'!
+canHandle: aNumerator and: aDenominator
+
+	self subclassResponsibility.! !
+
+
+!Fraccion class methodsFor: 'instance creation' stamp: 'IA 9/16/2021 02:02:24'!
 with: aDividend over: aDivisor
 
-	| greatestCommonDivisor numerator denominator |
-	
-	aDivisor isZero ifTrue: [ self error: self canNotDivideByZeroErrorDescription ].
-	aDividend isZero ifTrue: [ ^aDividend ].
-	
-	aDivisor isNegative ifTrue:[ ^aDividend negated / aDivisor negated].
+	^(Fraccion subclasses
+		detect: [:aSubclass | aSubclass canHandle: aDividend and: aDivisor]
+		ifNone: [self error: 'No se pudo inicializar una Fraccion con esos valores']) with: aDividend over: aDivisor.! !
+
+
+!classDefinition: #FraccionConDenominadorCero category: 'Numero-Exercise'!
+Fraccion subclass: #FraccionConDenominadorCero
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'FraccionConDenominadorCero class' category: 'Numero-Exercise'!
+FraccionConDenominadorCero class
+	instanceVariableNames: ''!
+
+!FraccionConDenominadorCero class methodsFor: 'instance creation' stamp: 'IA 9/16/2021 01:46:55'!
+with: aDividend over: aDivisor
+
+	self error: self canNotDivideByZeroErrorDescription.! !
+
+
+!FraccionConDenominadorCero class methodsFor: 'instance creation - private' stamp: 'IA 9/16/2021 02:06:01'!
+canHandle: aNumerator and: aDenominator
+
+	^aDenominator isZero! !
+
+
+!classDefinition: #FraccionConDenominadorNegativo category: 'Numero-Exercise'!
+Fraccion subclass: #FraccionConDenominadorNegativo
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'FraccionConDenominadorNegativo class' category: 'Numero-Exercise'!
+FraccionConDenominadorNegativo class
+	instanceVariableNames: ''!
+
+!FraccionConDenominadorNegativo class methodsFor: 'instance creation - private' stamp: 'IA 9/16/2021 02:06:32'!
+canHandle: aNumerator and: aDenominator
+
+	^ aDenominator isNegative.! !
+
+
+!FraccionConDenominadorNegativo class methodsFor: 'instance creation' stamp: 'IA 9/16/2021 01:49:20'!
+with: aDividend over: aDivisor
+
+	^aDividend negated / aDivisor negated.! !
+
+
+!classDefinition: #FraccionConDenominadorPositivoONumeradorNoCero category: 'Numero-Exercise'!
+Fraccion subclass: #FraccionConDenominadorPositivoONumeradorNoCero
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'FraccionConDenominadorPositivoONumeradorNoCero class' category: 'Numero-Exercise'!
+FraccionConDenominadorPositivoONumeradorNoCero class
+	instanceVariableNames: ''!
+
+!FraccionConDenominadorPositivoONumeradorNoCero class methodsFor: 'instance creation - private' stamp: 'IA 9/16/2021 02:07:42'!
+canHandle: aNumerator and: aDenominator
+
+	^ (aDenominator integerValue > 0) or: (aNumerator isZero not)! !
+
+
+!FraccionConDenominadorPositivoONumeradorNoCero class methodsFor: 'instance creation' stamp: 'IA 9/16/2021 02:13:28'!
+with: aDividend over: aDivisor
+
+	| denominator greatestCommonDivisor numerator |
 	
 	greatestCommonDivisor := aDividend greatestCommonDivisorWith: aDivisor. 
 	numerator := aDividend // greatestCommonDivisor.
@@ -789,5 +867,29 @@ with: aDividend over: aDivisor
 	
 	denominator isOne ifTrue: [ ^numerator ].
 
-	^self new initializeWith: numerator over: denominator
-	! !
+	^self new initializeWith: numerator over: denominator! !
+
+
+!classDefinition: #FraccionConNumeradorCero category: 'Numero-Exercise'!
+Fraccion subclass: #FraccionConNumeradorCero
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'FraccionConNumeradorCero class' category: 'Numero-Exercise'!
+FraccionConNumeradorCero class
+	instanceVariableNames: ''!
+
+!FraccionConNumeradorCero class methodsFor: 'instance creation - private' stamp: 'IA 9/16/2021 02:07:08'!
+canHandle: aNumerator and: aDenominator
+
+	^ aNumerator isZero.! !
+
+
+!FraccionConNumeradorCero class methodsFor: 'instance creation' stamp: 'IA 9/16/2021 02:01:03'!
+with: aDividend over: aDivisor
+
+	^ aDividend.! !
