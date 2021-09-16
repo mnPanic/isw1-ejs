@@ -466,10 +466,29 @@ initalizeWith: aValue
 	
 	value := aValue! !
 
-!Entero methodsFor: 'initialization' stamp: 'IA 9/14/2021 18:25:51'!
-initializeFractionUnder: aDividend
+!Entero methodsFor: 'initialization' stamp: 'IA 9/16/2021 00:00:13'!
+initializeFractionOver: aDivisor
 
-	self subclassResponsibility.! !
+	"self subclassResponsibility."
+	
+	| denominator greatestCommonDivisor numerator |
+	greatestCommonDivisor := self greatestCommonDivisorWith: aDivisor. 
+	numerator := self // greatestCommonDivisor.
+	denominator := aDivisor // greatestCommonDivisor.
+	
+	^denominator xxxxxx: numerator.! !
+
+!Entero methodsFor: 'initialization' stamp: 'IA 9/16/2021 00:05:57'!
+initializeFractionUnder: aDividend
+	
+	"self subclassResponsibility."
+	^aDividend initializeFractionOver: self.! !
+
+!Entero methodsFor: 'initialization' stamp: 'IA 9/16/2021 00:02:23'!
+xxxxxx: aNumerator
+
+	"self subclassResponsibility."
+	^Fraccion new initializeWith: aNumerator over: self.! !
 
 
 !Entero methodsFor: 'value' stamp: 'HernanWilkinson 5/7/2016 21:02'!
@@ -535,6 +554,17 @@ Entero subclass: #Cero
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
+!Cero methodsFor: 'initialization' stamp: 'IA 9/15/2021 23:39:18'!
+initializeFractionOver: aDivisor
+
+	^self! !
+
+!Cero methodsFor: 'initialization' stamp: 'IA 9/15/2021 23:03:44'!
+initializeFractionUnder: aDividend
+
+	self error: self class canNotDivideByZeroErrorDescription.! !
+
+
 !Cero methodsFor: 'arithmetic operations' stamp: 'IA 9/14/2021 00:15:48'!
 fibonacci
 	
@@ -588,6 +618,12 @@ Entero subclass: #EnteroNegativo
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
+!EnteroNegativo methodsFor: 'initialization' stamp: 'IA 9/15/2021 23:44:48'!
+initializeFractionUnder: aDividend
+
+	^aDividend negated / self negated! !
+
+
 !EnteroNegativo methodsFor: 'arithmetic operations' stamp: 'IA 9/14/2021 00:18:14'!
 fibonacci
 	
@@ -616,6 +652,12 @@ Entero subclass: #Uno
 fibonacci
 	
 	^self! !
+
+
+!Uno methodsFor: 'initialization' stamp: 'IA 9/15/2021 23:57:03'!
+xxxxxx: aNumerator
+
+	^aNumerator.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -778,14 +820,12 @@ printOn: aStream
 Fraccion class
 	instanceVariableNames: ''!
 
-!Fraccion class methodsFor: 'intance creation' stamp: 'IA 9/14/2021 18:23:31'!
+!Fraccion class methodsFor: 'intance creation' stamp: 'IA 9/16/2021 00:02:57'!
 with: aDividend over: aDivisor
-
-	| greatestCommonDivisor numerator denominator |
 	
-	aDivisor initializeFractionUnder: aDividend.
+	^aDivisor initializeFractionUnder: aDividend.
 	
-	aDivisor isZero ifTrue: [ self error: self canNotDivideByZeroErrorDescription ].
+	"aDivisor isZero ifTrue: [ self error: self canNotDivideByZeroErrorDescription ].
 	aDividend isZero ifTrue: [ ^aDividend ].
 	
 	aDivisor isNegative ifTrue:[ ^aDividend negated / aDivisor negated].
@@ -796,5 +836,5 @@ with: aDividend over: aDivisor
 	
 	denominator isOne ifTrue: [ ^numerator ].
 
-	^self new initializeWith: numerator over: denominator
+	^self new initializeWith: numerator over: denominator"
 	! !
