@@ -856,7 +856,7 @@ canHandle: aNumerator and: aDenominator
 	^ (aDenominator integerValue > 0) or: (aNumerator isZero not)! !
 
 
-!FraccionConDenominadorPositivoONumeradorNoCero class methodsFor: 'instance creation' stamp: 'IA 9/16/2021 02:13:28'!
+!FraccionConDenominadorPositivoONumeradorNoCero class methodsFor: 'instance creation' stamp: 'IA 9/16/2021 02:21:31'!
 with: aDividend over: aDivisor
 
 	| denominator greatestCommonDivisor numerator |
@@ -865,9 +865,59 @@ with: aDividend over: aDivisor
 	numerator := aDividend // greatestCommonDivisor.
 	denominator := aDivisor // greatestCommonDivisor.
 	
-	denominator isOne ifTrue: [ ^numerator ].
+	^(FraccionConDenominadorPositivoONumeradorNoCero subclasses
+		detect: [:aSubclass | aSubclass isFor: denominator]
+		ifNone: [self error: 'No se pudo inicializar una Fraccion con esos valores']) with: numerator over: denominator.! !
 
-	^self new initializeWith: numerator over: denominator! !
+
+!classDefinition: #FraccionConDenominadorNoUno category: 'Numero-Exercise'!
+FraccionConDenominadorPositivoONumeradorNoCero subclass: #FraccionConDenominadorNoUno
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'FraccionConDenominadorNoUno class' category: 'Numero-Exercise'!
+FraccionConDenominadorNoUno class
+	instanceVariableNames: ''!
+
+!FraccionConDenominadorNoUno class methodsFor: 'instance creation - private' stamp: 'IA 9/16/2021 02:22:57'!
+isFor: aDenominator
+
+	^ aDenominator isOne not.! !
+
+
+!FraccionConDenominadorNoUno class methodsFor: 'instance creation' stamp: 'IA 9/16/2021 02:22:23'!
+with: aNumerator over: aDenominator
+	
+	^self new initializeWith: aNumerator over: aDenominator.! !
+
+
+!classDefinition: #FraccionConDenominadorUno category: 'Numero-Exercise'!
+FraccionConDenominadorPositivoONumeradorNoCero subclass: #FraccionConDenominadorUno
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'FraccionConDenominadorUno class' category: 'Numero-Exercise'!
+FraccionConDenominadorUno class
+	instanceVariableNames: ''!
+
+!FraccionConDenominadorUno class methodsFor: 'instance creation - private' stamp: 'IA 9/16/2021 02:23:32'!
+isFor: aDenominator
+
+	^ aDenominator isOne.! !
+
+
+!FraccionConDenominadorUno class methodsFor: 'instance creation' stamp: 'IA 9/16/2021 02:24:29'!
+with: aNumerator over: aDenominator
+
+	^ aNumerator.! !
 
 
 !classDefinition: #FraccionConNumeradorCero category: 'Numero-Exercise'!
