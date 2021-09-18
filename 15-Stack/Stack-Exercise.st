@@ -146,7 +146,7 @@ TestCase subclass: #SentenceFinderByPrefixTest
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'Agustin Frenkel 9/17/2021 20:22:14'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'Agustin Frenkel 9/18/2021 16:37:45'!
 test01FindWithNoSentecesReturnsAnEmptyList
 
 	|sentences sentenceFinder |
@@ -154,7 +154,8 @@ test01FindWithNoSentecesReturnsAnEmptyList
 	sentences _ OOStack new.
 	sentenceFinder _ SentenceFinderByPrefix withSentences: sentences.
 	
-	self assert: (sentenceFinder find: 'pepe') isEmpty.  
+	self assert: (sentenceFinder find: 'pepe') isEmpty. 
+	self assert: (sentences isEmpty). 
 	
 	
 	! !
@@ -178,6 +179,144 @@ test02FindWithPrefixReturnOneSentence
 	self assert: (sentenceFinder find: prefix) equals: expectedSentences. 
 	
 	self assertStack: sentences  isEquivalentTo: {secondSentence. firstSentence}.	! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'Agustin Frenkel 9/18/2021 16:53:07'!
+test03FindWithPrefixReturnsAllSentencesMatchingPrefix
+
+	|sentences sentenceFinder firstSentence secondSentence expectedSentences prefix fourthSentence thirdSentence fifthSentence sixthSentence |
+	
+	sentences _ OOStack new.
+	sentenceFinder _ SentenceFinderByPrefix withSentences: sentences.
+
+	firstSentence _ 'Peter Naur'.
+	secondSentence _ 'singleton pattern is the best algorthim'.
+	thirdSentence _ firstSentence, ' was the best programer'.
+	fourthSentence _ 'smothing diferent'.
+	fifthSentence _ firstSentence , ' was wrong'.
+	sixthSentence _ firstSentence, ' loves chicken wings'.
+	
+	sentences push: firstSentence.
+	sentences push:	 secondSentence.
+	sentences push: thirdSentence.
+	sentences push: fourthSentence.
+	sentences push: fifthSentence.
+	sentences push: sixthSentence.
+	
+	prefix _ firstSentence copyFrom: 1 to: 4. 
+	expectedSentences _ OrderedCollection with: sixthSentence with: fifthSentence with: thirdSentence with: firstSentence.
+	self assert: (sentenceFinder find: prefix) equals: expectedSentences. 
+	
+	self assertStack: sentences  isEquivalentTo: {sixthSentence. fifthSentence. fourthSentence. thirdSentence. secondSentence. firstSentence.}.	! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'Agustin Frenkel 9/18/2021 16:54:50'!
+test04FindIsCaseSensitive
+
+	|sentences sentenceFinder firstSentence secondSentence expectedSentences prefix |
+	
+	sentences _ OOStack new.
+	sentenceFinder _ SentenceFinderByPrefix withSentences: sentences.
+
+	firstSentence _ 'Peter Naur'.
+	secondSentence _ 'peter Naur is great!!'.
+	
+	sentences push: firstSentence.
+	sentences push:	 secondSentence.
+	
+	prefix _ secondSentence copyFrom: 1 to: 4. 
+	expectedSentences _ OrderedCollection with: secondSentence.
+	self assert: (sentenceFinder find: prefix) equals: expectedSentences. 
+	
+	self assertStack: sentences  isEquivalentTo: {secondSentence. firstSentence}.	! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'Agustin Frenkel 9/18/2021 17:25:05'!
+test05StackWithSentencesThatDontMatchThePrefixShouldReturnEmptyList
+
+	|sentences sentenceFinder firstSentence secondSentence expectedSentences prefix fourthSentence thirdSentence fifthSentence sixthSentence |
+	
+	sentences _ OOStack new.
+	sentenceFinder _ SentenceFinderByPrefix withSentences: sentences.
+
+	firstSentence _ 'Peter Naur'.
+	secondSentence _ 'singleton pattern is the best algorthim'.
+	thirdSentence _ firstSentence, ' was the best programer'.
+	fourthSentence _ 'smothing diferent'.
+	fifthSentence _ firstSentence , ' was wrong'.
+	sixthSentence _ firstSentence, ' loves chicken wings'.
+	
+	sentences push: firstSentence.
+	sentences push:	 secondSentence.
+	sentences push: thirdSentence.
+	sentences push: fourthSentence.
+	sentences push: fifthSentence.
+	sentences push: sixthSentence.
+	
+	prefix _ 'doble dispatch'.
+	expectedSentences _ OrderedCollection new.
+	self assert: (sentenceFinder find: prefix) equals: expectedSentences. 
+	
+	self assertStack: sentences  isEquivalentTo: {sixthSentence. fifthSentence. fourthSentence. thirdSentence. secondSentence. firstSentence.}.	! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'Agustin Frenkel 9/18/2021 17:39:51'!
+test06EmptyPrefixShouldReturnAllSentences
+
+	|sentences sentenceFinder firstSentence secondSentence expectedSentences prefix fourthSentence thirdSentence fifthSentence sixthSentence |
+	
+	sentences _ OOStack new.
+	sentenceFinder _ SentenceFinderByPrefix withSentences: sentences.
+
+	firstSentence _ 'Peter Naur'.
+	secondSentence _ 'singleton pattern is the best algorthim'.
+	thirdSentence _ firstSentence, ' was the best programer'.
+	fourthSentence _ 'smothing diferent'.
+	fifthSentence _ firstSentence , ' was wrong'.
+	sixthSentence _ firstSentence, ' loves chicken wings'.
+	
+	sentences push: firstSentence.
+	sentences push:	 secondSentence.
+	sentences push: thirdSentence.
+	sentences push: fourthSentence.
+	sentences push: fifthSentence.
+	sentences push: sixthSentence.
+	
+	prefix _ ''.
+	expectedSentences _ OrderedCollection with:sixthSentence with:fifthSentence with:fourthSentence with:thirdSentence with:secondSentence with:firstSentence.
+	self assert: (sentenceFinder find: prefix) equals: expectedSentences. 
+	
+	self assertStack: sentences  isEquivalentTo: {sixthSentence. fifthSentence. fourthSentence. thirdSentence. secondSentence. firstSentence.}.	! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'Agustin Frenkel 9/18/2021 17:38:12'!
+test07StackWithInvalidElementsReturnsError
+
+	|sentences sentenceFinder prefix|
+	
+	sentences _ OOStack new.
+	sentenceFinder _ SentenceFinderByPrefix withSentences: sentences.
+
+	sentences push: 1.
+	sentences push:	 2.
+	sentences push: 3.
+	
+	prefix _ 'doble dispatch'.
+	self
+		should: [ sentenceFinder find: prefix]
+		raise: MessageNotUnderstood.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'Agustin Frenkel 9/18/2021 17:50:35'!
+test08InvalidPrefixReturnsError
+
+	|sentences sentenceFinder prefix|
+	
+	sentences _ OOStack new.
+	sentenceFinder _ SentenceFinderByPrefix withSentences: sentences.
+
+	sentences push: 'haha joke funny'.
+	sentences push:	 'Wilkinson AYUDA'.
+	sentences push: 'makumbero'.
+	
+	prefix _ 9.
+	self
+		should: [ sentenceFinder find: prefix]
+		raise:  Error - MessageNotUnderstood.! !
 
 
 !SentenceFinderByPrefixTest methodsFor: 'assertions' stamp: 'Agustin Frenkel 9/17/2021 21:00:47'!
