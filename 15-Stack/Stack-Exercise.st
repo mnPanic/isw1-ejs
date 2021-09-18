@@ -146,44 +146,92 @@ TestCase subclass: #SentenceFinderByPrefixTest
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'Agustin Frenkel 9/17/2021 20:22:14'!
+test01FindWithNoSentecesReturnsAnEmptyList
+
+	|sentences sentenceFinder |
+	
+	sentences _ OOStack new.
+	sentenceFinder _ SentenceFinderByPrefix withSentences: sentences.
+	
+	self assert: (sentenceFinder find: 'pepe') isEmpty.  
+	
+	
+	! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'Agustin Frenkel 9/17/2021 21:00:47'!
+test02FindWithPrefixReturnOneSentence
+
+	|sentences sentenceFinder firstSentence secondSentence expectedSentences prefix |
+	
+	sentences _ OOStack new.
+	sentenceFinder _ SentenceFinderByPrefix withSentences: sentences.
+
+	firstSentence _ 'Peter Naur'.
+	secondSentence _ 'singleton pattern is the best algorthim'.
+	
+	sentences push: firstSentence.
+	sentences push:	 secondSentence.
+	
+	prefix _ secondSentence copyFrom: 1 to: 4. 
+	expectedSentences _ OrderedCollection with: secondSentence.
+	self assert: (sentenceFinder find: prefix) equals: expectedSentences. 
+	
+	self assertStack: sentences  isEquivalentTo: {secondSentence. firstSentence}.	! !
+
+
+!SentenceFinderByPrefixTest methodsFor: 'assertions' stamp: 'Agustin Frenkel 9/17/2021 21:00:47'!
+assertStack: aStack isEquivalentTo: aCollection
+
+	self assert: (aStack size) equals: aCollection size.
+	aCollection do: [:aSentence |
+		self assert: (aStack pop) equals: aSentence
+	].! !
+
 
 !classDefinition: #OOStack category: 'Stack-Exercise'!
 Object subclass: #OOStack
-	instanceVariableNames: 'listOfElements'
+	instanceVariableNames: 'contentManager content'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStack methodsFor: 'testing' stamp: 'Agustin Frenkel 9/16/2021 20:45:16'!
+!OOStack methodsFor: 'testing' stamp: 'Agustin Frenkel 9/17/2021 18:42:43'!
 isEmpty
-	^ listOfElements isEmpty.! !
+	^ content isEmpty.! !
 
 
-!OOStack methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/16/2021 21:02:18'!
+!OOStack methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/17/2021 19:02:39'!
 pop
-	self isEmpty ifTrue: [self error: self class stackEmptyErrorDescription].
-	^listOfElements removeFirst.
+	
+	| top |
+	top _ contentManager pop.
+	contentManager _ contentManager update.
+	^top.
 	! !
 
-!OOStack methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/16/2021 20:58:58'!
+!OOStack methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/17/2021 19:16:11'!
 push: anElement
 	
-	listOfElements addFirst: anElement.! !
+	content addFirst: anElement.
+	contentManager _ NonEmptyContentManager with: content.
+	! !
 
-!OOStack methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/16/2021 20:53:39'!
+!OOStack methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/17/2021 18:42:43'!
 size
-	^listOfElements size.! !
+	^content size.! !
 
-!OOStack methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/16/2021 21:07:29'!
+!OOStack methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/17/2021 19:04:57'!
 top
-	self isEmpty ifTrue: [self error: self class stackEmptyErrorDescription].
-	^listOfElements first .! !
+
+	^contentManager top.! !
 
 
-!OOStack methodsFor: 'initialize' stamp: 'Agustin Frenkel 9/16/2021 20:58:48'!
+!OOStack methodsFor: 'initialization' stamp: 'Agustin Frenkel 9/17/2021 19:15:43'!
 initialize
 	
-	listOfElements _ OrderedCollection new.! !
+	content _ OrderedCollection new.
+	contentManager _ EmptyContentManager with: content.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -197,15 +245,180 @@ stackEmptyErrorDescription
 	^ 'stack is empty!!!!!!'! !
 
 
-!OOStack class methodsFor: 'as yet unclassified' stamp: 'Agustin Frenkel 9/16/2021 20:57:27'!
-new
+
+!classDefinition: #OOStackContentManager category: 'Stack-Exercise'!
+Object subclass: #OOStackContentManager
+	instanceVariableNames: 'stackContents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!OOStackContentManager methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/17/2021 18:40:41'!
+pop
+
+	self subclassResponsibility.! !
+
+!OOStackContentManager methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/17/2021 18:49:45'!
+top
+
+	self subclassResponsibility.! !
+
+!OOStackContentManager methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/17/2021 18:59:36'!
+update
+
+	^self class for: 	stackContents.! !
+
+
+!OOStackContentManager methodsFor: 'initialization' stamp: 'Agustin Frenkel 9/17/2021 19:13:49'!
+initializeWith: aStackContents
+
+	stackContents _ aStackContents.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'OOStackContentManager class' category: 'Stack-Exercise'!
+OOStackContentManager class
+	instanceVariableNames: ''!
+
+!OOStackContentManager class methodsFor: 'instance creation - private' stamp: 'Agustin Frenkel 9/17/2021 18:38:09'!
+canHandle: content
+
+	self subclassResponsibility.! !
+
+!OOStackContentManager class methodsFor: 'instance creation - private' stamp: 'Agustin Frenkel 9/17/2021 19:12:04'!
+with: aStackContents
+
+	^self new initializeWith: aStackContents.! !
+
+
+!OOStackContentManager class methodsFor: 'instance creation' stamp: 'Agustin Frenkel 9/17/2021 19:28:58'!
+for: content
 	
-	^super new initialize.! !
+	^(OOStackContentManager subclasses
+		detect: [:aSubclass | aSubclass canHandle: content]
+		ifNone: [self error: 'no se puede inicializar un estado con esos contenidos']) new initializeWith: content.! !
 
 
-!classDefinition: #SentenceFinderByPrefix category: 'Stack-Exercise'!
-Object subclass: #SentenceFinderByPrefix
+!classDefinition: #EmptyContentManager category: 'Stack-Exercise'!
+OOStackContentManager subclass: #EmptyContentManager
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
+
+!EmptyContentManager methodsFor: 'as yet unclassified' stamp: 'Agustin Frenkel 9/17/2021 18:46:42'!
+pop
+
+	self error: OOStack stackEmptyErrorDescription.! !
+
+!EmptyContentManager methodsFor: 'as yet unclassified' stamp: 'Agustin Frenkel 9/17/2021 19:05:11'!
+top
+
+	self error: OOStack stackEmptyErrorDescription.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'EmptyContentManager class' category: 'Stack-Exercise'!
+EmptyContentManager class
+	instanceVariableNames: ''!
+
+!EmptyContentManager class methodsFor: 'as yet unclassified' stamp: 'Agustin Frenkel 9/17/2021 18:38:37'!
+canHandle: content
+
+	^content isEmpty.
+
+	! !
+
+
+!classDefinition: #NonEmptyContentManager category: 'Stack-Exercise'!
+OOStackContentManager subclass: #NonEmptyContentManager
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!NonEmptyContentManager methodsFor: 'as yet unclassified' stamp: 'Agustin Frenkel 9/17/2021 18:48:40'!
+pop
+
+	^stackContents removeFirst.! !
+
+!NonEmptyContentManager methodsFor: 'as yet unclassified' stamp: 'Agustin Frenkel 9/17/2021 19:05:24'!
+top
+
+	^stackContents first.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'NonEmptyContentManager class' category: 'Stack-Exercise'!
+NonEmptyContentManager class
+	instanceVariableNames: ''!
+
+!NonEmptyContentManager class methodsFor: 'as yet unclassified' stamp: 'Agustin Frenkel 9/17/2021 18:39:17'!
+canHandle: content
+
+	^content isEmpty not.
+
+	! !
+
+
+!classDefinition: #SentenceFinderByPrefix category: 'Stack-Exercise'!
+Object subclass: #SentenceFinderByPrefix
+	instanceVariableNames: 'stackOfSenteces'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'Agustin Frenkel 9/17/2021 21:32:38'!
+do: aClosureWithASentence
+
+	
+	| backupStack |
+	backupStack _ OOStack new.	
+	 
+	[stackOfSenteces isEmpty not] whileTrue: [ 
+		|currentSentence |
+		currentSentence _ stackOfSenteces pop.
+		backupStack push: currentSentence.
+		aClosureWithASentence value: currentSentence.
+		].
+	
+	self transferFrom: backupStack to: stackOfSenteces.
+	! !
+
+!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'Agustin Frenkel 9/17/2021 21:33:26'!
+find: aPrefix 
+
+	
+	|matchingSentences|
+	matchingSentences _ OrderedCollection new.
+	
+	self do: [:aSentence | (aSentence beginsWith: aPrefix) 
+			ifTrue: [matchingSentences add: aSentence].
+		].
+	
+	 ^matchingSentences.! !
+
+!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'Agustin Frenkel 9/17/2021 19:55:37'!
+initializeWithSenteces: aStackOfSenteces
+
+	stackOfSenteces _ aStackOfSenteces.! !
+
+!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'Agustin Frenkel 9/17/2021 21:15:03'!
+transferFrom: sourceStack to: destinationStack
+
+	^ [sourceStack isEmpty not] whileTrue: [ 
+		| currentSentence |
+		currentSentence _ sourceStack pop.
+		destinationStack push: currentSentence.
+		]! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'SentenceFinderByPrefix class' category: 'Stack-Exercise'!
+SentenceFinderByPrefix class
+	instanceVariableNames: ''!
+
+!SentenceFinderByPrefix class methodsFor: 'as yet unclassified' stamp: 'Agustin Frenkel 9/17/2021 19:59:43'!
+withSentences: aStack
+
+	^self basicNew initializeWithSenteces: aStack.! !
