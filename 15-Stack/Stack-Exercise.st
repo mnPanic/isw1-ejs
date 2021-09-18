@@ -330,35 +330,35 @@ assertStack: aStack isEquivalentTo: aCollection
 
 !classDefinition: #OOStack category: 'Stack-Exercise'!
 Object subclass: #OOStack
-	instanceVariableNames: 'contentManager content'
+	instanceVariableNames: 'contentManager'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStack methodsFor: 'testing' stamp: 'Agustin Frenkel 9/17/2021 18:42:43'!
+!OOStack methodsFor: 'testing' stamp: 'Agustin Frenkel 9/18/2021 18:02:20'!
 isEmpty
-	^ content isEmpty.! !
+	^ contentManager isEmpty.! !
 
 
-!OOStack methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/17/2021 19:02:39'!
+!OOStack methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/18/2021 18:14:25'!
 pop
 	
 	| top |
-	top _ contentManager pop.
-	contentManager _ contentManager update.
+	top _ contentManager top.
+	contentManager _ contentManager pop.
+	 
 	^top.
 	! !
 
-!OOStack methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/17/2021 19:16:11'!
+!OOStack methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/18/2021 18:06:05'!
 push: anElement
 	
-	content addFirst: anElement.
-	contentManager _ NonEmptyContentManager with: content.
+	contentManager _ contentManager push: anElement.
 	! !
 
-!OOStack methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/17/2021 18:42:43'!
+!OOStack methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/18/2021 18:02:44'!
 size
-	^content size.! !
+	^contentManager size.! !
 
 !OOStack methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/17/2021 19:04:57'!
 top
@@ -366,11 +366,9 @@ top
 	^contentManager top.! !
 
 
-!OOStack methodsFor: 'initialization' stamp: 'Agustin Frenkel 9/17/2021 19:15:43'!
+!OOStack methodsFor: 'initialization' stamp: 'Agustin Frenkel 9/18/2021 18:31:08'!
 initialize
-	
-	content _ OrderedCollection new.
-	contentManager _ EmptyContentManager with: content.! !
+	contentManager _ EmptyContentManager new.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -396,6 +394,17 @@ Object subclass: #OOStackContentManager
 pop
 
 	self subclassResponsibility.! !
+
+!OOStackContentManager methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/18/2021 18:22:16'!
+push: anElement
+	
+	stackContents addFirst: anElement.
+	^NonEmptyContentManager with: stackContents .! !
+
+!OOStackContentManager methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/18/2021 18:28:41'!
+size
+
+	^stackContents size.! !
 
 !OOStackContentManager methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/17/2021 18:49:45'!
 top
@@ -445,12 +454,22 @@ OOStackContentManager subclass: #EmptyContentManager
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!EmptyContentManager methodsFor: 'as yet unclassified' stamp: 'Agustin Frenkel 9/17/2021 18:46:42'!
+!EmptyContentManager methodsFor: 'testing' stamp: 'Agustin Frenkel 9/18/2021 18:15:44'!
+isEmpty
+	^true.! !
+
+
+!EmptyContentManager methodsFor: 'initialization' stamp: 'Agustin Frenkel 9/18/2021 18:31:50'!
+initialize
+	stackContents _ OrderedCollection new.! !
+
+
+!EmptyContentManager methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/17/2021 18:46:42'!
 pop
 
 	self error: OOStack stackEmptyErrorDescription.! !
 
-!EmptyContentManager methodsFor: 'as yet unclassified' stamp: 'Agustin Frenkel 9/17/2021 19:05:11'!
+!EmptyContentManager methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/17/2021 19:05:11'!
 top
 
 	self error: OOStack stackEmptyErrorDescription.! !
@@ -476,15 +495,21 @@ OOStackContentManager subclass: #NonEmptyContentManager
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!NonEmptyContentManager methodsFor: 'as yet unclassified' stamp: 'Agustin Frenkel 9/17/2021 18:48:40'!
+!NonEmptyContentManager methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/18/2021 18:27:12'!
 pop
 
-	^stackContents removeFirst.! !
+	stackContents removeFirst.
+	^self update.! !
 
-!NonEmptyContentManager methodsFor: 'as yet unclassified' stamp: 'Agustin Frenkel 9/17/2021 19:05:24'!
+!NonEmptyContentManager methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/17/2021 19:05:24'!
 top
 
 	^stackContents first.! !
+
+
+!NonEmptyContentManager methodsFor: 'testing' stamp: 'Agustin Frenkel 9/18/2021 18:23:37'!
+isEmpty
+	^false.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
