@@ -349,9 +349,10 @@ Object subclass: #OOStack
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStack methodsFor: 'testing' stamp: 'Agustin Frenkel 9/18/2021 18:02:20'!
+!OOStack methodsFor: 'testing' stamp: 'MP 9/19/2021 17:14:36'!
 isEmpty
-	^ contentManager isEmpty.! !
+
+	^contentManager isEmpty.! !
 
 
 !OOStack methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/18/2021 18:14:25'!
@@ -370,8 +371,9 @@ push: anElement
 	contentManager _ contentManager push: anElement.
 	! !
 
-!OOStack methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/18/2021 18:02:44'!
+!OOStack methodsFor: 'accessing' stamp: 'MP 9/19/2021 17:14:52'!
 size
+
 	^contentManager size.! !
 
 !OOStack methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/17/2021 19:04:57'!
@@ -380,8 +382,9 @@ top
 	^contentManager top.! !
 
 
-!OOStack methodsFor: 'initialization' stamp: 'Agustin Frenkel 9/18/2021 18:31:08'!
+!OOStack methodsFor: 'initialization' stamp: 'MP 9/19/2021 17:15:01'!
 initialize
+
 	contentManager _ EmptyContentManager new.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
@@ -424,11 +427,6 @@ top
 
 	self subclassResponsibility.! !
 
-!OOStackContentManager methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/17/2021 18:59:36'!
-update
-
-	^self class for: 	stackContents.! !
-
 
 !OOStackContentManager methodsFor: 'initialization' stamp: 'Agustin Frenkel 9/17/2021 19:13:49'!
 initializeWith: aStackContents
@@ -452,12 +450,12 @@ with: aStackContents
 	^self new initializeWith: aStackContents.! !
 
 
-!OOStackContentManager class methodsFor: 'instance creation' stamp: 'Agustin Frenkel 9/17/2021 19:28:58'!
+!OOStackContentManager class methodsFor: 'instance creation' stamp: 'MP 9/19/2021 17:18:12'!
 for: content
 	
 	^(OOStackContentManager subclasses
 		detect: [:aSubclass | aSubclass canHandle: content]
-		ifNone: [self error: 'no se puede inicializar un estado con esos contenidos']) new initializeWith: content.! !
+		ifNone: [self error: 'cannot initialize content manager for that content']) new initializeWith: content.! !
 
 
 !classDefinition: #EmptyContentManager category: 'Stack-Exercise'!
@@ -493,7 +491,7 @@ top
 EmptyContentManager class
 	instanceVariableNames: ''!
 
-!EmptyContentManager class methodsFor: 'as yet unclassified' stamp: 'Agustin Frenkel 9/17/2021 18:38:37'!
+!EmptyContentManager class methodsFor: 'instance creation - private' stamp: 'Agustin Frenkel 9/17/2021 18:38:37'!
 canHandle: content
 
 	^content isEmpty.
@@ -508,11 +506,11 @@ OOStackContentManager subclass: #NonEmptyContentManager
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!NonEmptyContentManager methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/18/2021 18:27:12'!
+!NonEmptyContentManager methodsFor: 'accessing' stamp: 'MP 9/19/2021 17:17:14'!
 pop
 
 	stackContents removeFirst.
-	^self update.! !
+	^self reclassify.! !
 
 !NonEmptyContentManager methodsFor: 'accessing' stamp: 'Agustin Frenkel 9/17/2021 19:05:24'!
 top
@@ -524,13 +522,19 @@ top
 isEmpty
 	^false.! !
 
+
+!NonEmptyContentManager methodsFor: 'accessing - private' stamp: 'MP 9/19/2021 17:17:14'!
+reclassify
+
+	^self class for: 	stackContents.! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'NonEmptyContentManager class' category: 'Stack-Exercise'!
 NonEmptyContentManager class
 	instanceVariableNames: ''!
 
-!NonEmptyContentManager class methodsFor: 'as yet unclassified' stamp: 'Agustin Frenkel 9/17/2021 18:39:17'!
+!NonEmptyContentManager class methodsFor: 'instance creation - private' stamp: 'Agustin Frenkel 9/17/2021 18:39:17'!
 canHandle: content
 
 	^content isEmpty not.
