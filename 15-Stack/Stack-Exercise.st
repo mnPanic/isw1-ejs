@@ -136,8 +136,6 @@ test10CanNotTopWhenThereAreNoObjectsInTheStack
 		
 ! !
 
-
-
 
 !classDefinition: #SentenceFinderByPrefixTest category: 'Stack-Exercise'!
 TestCase subclass: #SentenceFinderByPrefixTest
@@ -160,40 +158,38 @@ test01FindWithNoSentecesReturnsAnEmptyList
 	
 	! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'Agustin Frenkel 9/17/2021 21:00:47'!
-test02FindWithPrefixReturnOneSentence
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'MP 9/19/2021 16:52:42'!
+test02FindWithPrefixMatchingASingleSentenceReturnsThatSentence
 
 	|sentences sentenceFinder firstSentence secondSentence expectedSentences prefix |
 	
 	sentences _ OOStack new.
-	sentenceFinder _ SentenceFinderByPrefix withSentences: sentences.
-
 	firstSentence _ 'Peter Naur'.
 	secondSentence _ 'singleton pattern is the best algorthim'.
 	
 	sentences push: firstSentence.
 	sentences push:	 secondSentence.
 	
+	sentenceFinder _ SentenceFinderByPrefix withSentences: sentences.
+
 	prefix _ secondSentence copyFrom: 1 to: 4. 
 	expectedSentences _ OrderedCollection with: secondSentence.
 	self assert: (sentenceFinder find: prefix) equals: expectedSentences. 
 	
 	self assertStack: sentences  isEquivalentTo: {secondSentence. firstSentence}.	! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'Agustin Frenkel 9/18/2021 16:53:07'!
-test03FindWithPrefixReturnsAllSentencesMatchingPrefix
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'MP 9/19/2021 16:53:24'!
+test03FindReturnsAllSentencesMatchingPrefix
 
 	|sentences sentenceFinder firstSentence secondSentence expectedSentences prefix fourthSentence thirdSentence fifthSentence sixthSentence |
 	
 	sentences _ OOStack new.
-	sentenceFinder _ SentenceFinderByPrefix withSentences: sentences.
-
 	firstSentence _ 'Peter Naur'.
 	secondSentence _ 'singleton pattern is the best algorthim'.
 	thirdSentence _ firstSentence, ' was the best programer'.
 	fourthSentence _ 'smothing diferent'.
 	fifthSentence _ firstSentence , ' was wrong'.
-	sixthSentence _ firstSentence, ' loves chicken wings'.
+	sixthSentence _ firstSentence, ' loved chicken wings'.
 	
 	sentences push: firstSentence.
 	sentences push:	 secondSentence.
@@ -202,40 +198,41 @@ test03FindWithPrefixReturnsAllSentencesMatchingPrefix
 	sentences push: fifthSentence.
 	sentences push: sixthSentence.
 	
+	sentenceFinder _ SentenceFinderByPrefix withSentences: sentences.
+	
 	prefix _ firstSentence copyFrom: 1 to: 4. 
 	expectedSentences _ OrderedCollection with: sixthSentence with: fifthSentence with: thirdSentence with: firstSentence.
 	self assert: (sentenceFinder find: prefix) equals: expectedSentences. 
 	
-	self assertStack: sentences  isEquivalentTo: {sixthSentence. fifthSentence. fourthSentence. thirdSentence. secondSentence. firstSentence.}.	! !
+	self assertStack: sentences isEquivalentTo: {sixthSentence. fifthSentence. fourthSentence. thirdSentence. secondSentence. firstSentence.}.	! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'Agustin Frenkel 9/18/2021 16:54:50'!
-test04FindIsCaseSensitive
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'MP 9/19/2021 16:53:39'!
+test04FindPrefixIsCaseSensitive
 
 	|sentences sentenceFinder firstSentence secondSentence expectedSentences prefix |
 	
 	sentences _ OOStack new.
-	sentenceFinder _ SentenceFinderByPrefix withSentences: sentences.
-
 	firstSentence _ 'Peter Naur'.
 	secondSentence _ 'peter Naur is great!!'.
 	
 	sentences push: firstSentence.
 	sentences push:	 secondSentence.
 	
+	sentenceFinder _ SentenceFinderByPrefix withSentences: sentences.
+
+	
 	prefix _ secondSentence copyFrom: 1 to: 4. 
 	expectedSentences _ OrderedCollection with: secondSentence.
 	self assert: (sentenceFinder find: prefix) equals: expectedSentences. 
 	
 	self assertStack: sentences  isEquivalentTo: {secondSentence. firstSentence}.	! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'Agustin Frenkel 9/18/2021 17:25:05'!
-test05StackWithSentencesThatDontMatchThePrefixShouldReturnEmptyList
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'MP 9/19/2021 16:54:03'!
+test05StackWithSentencesThatDontMatchThePrefixShouldReturnAnEmptyList
 
 	|sentences sentenceFinder firstSentence secondSentence expectedSentences prefix fourthSentence thirdSentence fifthSentence sixthSentence |
 	
 	sentences _ OOStack new.
-	sentenceFinder _ SentenceFinderByPrefix withSentences: sentences.
-
 	firstSentence _ 'Peter Naur'.
 	secondSentence _ 'singleton pattern is the best algorthim'.
 	thirdSentence _ firstSentence, ' was the best programer'.
@@ -250,16 +247,74 @@ test05StackWithSentencesThatDontMatchThePrefixShouldReturnEmptyList
 	sentences push: fifthSentence.
 	sentences push: sixthSentence.
 	
-	prefix _ 'doble dispatch'.
+	sentenceFinder _ SentenceFinderByPrefix withSentences: sentences.
+
+	
+	prefix _ 'doble'.
 	expectedSentences _ OrderedCollection new.
 	self assert: (sentenceFinder find: prefix) equals: expectedSentences. 
 	
 	self assertStack: sentences  isEquivalentTo: {sixthSentence. fifthSentence. fourthSentence. thirdSentence. secondSentence. firstSentence.}.	! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'Agustin Frenkel 9/18/2021 17:39:51'!
-test06EmptyPrefixShouldReturnAllSentences
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'MP 9/19/2021 16:25:30'!
+test06EmptyPrefixShouldReturnError
 
-	|sentences sentenceFinder firstSentence secondSentence expectedSentences prefix fourthSentence thirdSentence fifthSentence sixthSentence |
+	|sentences sentenceFinder firstSentence secondSentence prefix thirdSentence |
+	
+	sentences _ OOStack new.
+	firstSentence _ 'Peter Naur'.
+	secondSentence _ 'singleton pattern is the best algorthim'.
+	thirdSentence _ firstSentence, ' was the best programer'.
+
+	sentences push: firstSentence.
+	sentences push:	 secondSentence.
+	sentences push: thirdSentence.
+	
+	sentenceFinder _ SentenceFinderByPrefix withSentences: sentences.
+
+	prefix _ ''.
+	self should: [sentenceFinder find: prefix]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: SentenceFinderByPrefix errorDescriptionEmptyPrefix].! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'MP 9/19/2021 16:23:38'!
+test07StackWithInvalidElementsReturnsError
+
+	|sentences sentenceFinder prefix|
+	
+	sentences _ OOStack new.
+	sentences push: 1.
+	sentences push:	 2.
+	sentences push: 3.
+
+	sentenceFinder _ SentenceFinderByPrefix withSentences: sentences.
+	
+	prefix _ 'doubledispatch'.
+	self
+		should: [ sentenceFinder find: prefix]
+		raise: MessageNotUnderstood.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'MP 9/19/2021 16:55:41'!
+test08InvalidPrefixReturnsError
+
+	|sentences sentenceFinder prefix|
+	
+	sentences _ OOStack new.
+	sentences push: 'sentence 1'.
+	sentences push:	 'sentence 2'.
+	sentences push: 'sentence 3'.
+	
+	sentenceFinder _ SentenceFinderByPrefix withSentences: sentences.
+
+	prefix _ 9.
+	self
+		should: [ sentenceFinder find: prefix]
+		raise:  MessageNotUnderstood.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'MP 9/19/2021 16:20:22'!
+test09PrefixWithSpacesShouldReturnError
+
+	|sentences sentenceFinder firstSentence secondSentence prefix thirdSentence |
 	
 	sentences _ OOStack new.
 	sentenceFinder _ SentenceFinderByPrefix withSentences: sentences.
@@ -267,56 +322,15 @@ test06EmptyPrefixShouldReturnAllSentences
 	firstSentence _ 'Peter Naur'.
 	secondSentence _ 'singleton pattern is the best algorthim'.
 	thirdSentence _ firstSentence, ' was the best programer'.
-	fourthSentence _ 'smothing diferent'.
-	fifthSentence _ firstSentence , ' was wrong'.
-	sixthSentence _ firstSentence, ' loves chicken wings'.
 	
 	sentences push: firstSentence.
 	sentences push:	 secondSentence.
 	sentences push: thirdSentence.
-	sentences push: fourthSentence.
-	sentences push: fifthSentence.
-	sentences push: sixthSentence.
 	
-	prefix _ ''.
-	expectedSentences _ OrderedCollection with:sixthSentence with:fifthSentence with:fourthSentence with:thirdSentence with:secondSentence with:firstSentence.
-	self assert: (sentenceFinder find: prefix) equals: expectedSentences. 
-	
-	self assertStack: sentences  isEquivalentTo: {sixthSentence. fifthSentence. fourthSentence. thirdSentence. secondSentence. firstSentence.}.	! !
-
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'Agustin Frenkel 9/18/2021 17:38:12'!
-test07StackWithInvalidElementsReturnsError
-
-	|sentences sentenceFinder prefix|
-	
-	sentences _ OOStack new.
-	sentenceFinder _ SentenceFinderByPrefix withSentences: sentences.
-
-	sentences push: 1.
-	sentences push:	 2.
-	sentences push: 3.
-	
-	prefix _ 'doble dispatch'.
-	self
-		should: [ sentenceFinder find: prefix]
-		raise: MessageNotUnderstood.! !
-
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'Agustin Frenkel 9/18/2021 17:50:35'!
-test08InvalidPrefixReturnsError
-
-	|sentences sentenceFinder prefix|
-	
-	sentences _ OOStack new.
-	sentenceFinder _ SentenceFinderByPrefix withSentences: sentences.
-
-	sentences push: 'haha joke funny'.
-	sentences push:	 'Wilkinson AYUDA'.
-	sentences push: 'makumbero'.
-	
-	prefix _ 9.
-	self
-		should: [ sentenceFinder find: prefix]
-		raise:  Error - MessageNotUnderstood.! !
+	prefix _ 'this is a prefix with spaces'.
+	self should: [sentenceFinder find: prefix]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: SentenceFinderByPrefix errorDescriptionPrefixWithSpaces ].! !
 
 
 !SentenceFinderByPrefixTest methodsFor: 'assertions' stamp: 'Agustin Frenkel 9/17/2021 21:00:47'!
@@ -380,7 +394,6 @@ OOStack class
 stackEmptyErrorDescription
 	
 	^ 'stack is empty!!!!!!'! !
-
 
 
 !classDefinition: #OOStackContentManager category: 'Stack-Exercise'!
@@ -532,49 +545,54 @@ Object subclass: #SentenceFinderByPrefix
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'Agustin Frenkel 9/17/2021 21:32:38'!
-do: aClosureWithASentence
+!SentenceFinderByPrefix methodsFor: 'assertions' stamp: 'MP 9/19/2021 16:27:55'!
+assertPrefixDoesntIncludeSpaces: aPrefix
 
-	
-	| backupStack |
-	backupStack _ OOStack new.	
-	 
-	[stackOfSenteces isEmpty not] whileTrue: [ 
-		|currentSentence |
-		currentSentence _ stackOfSenteces pop.
-		backupStack push: currentSentence.
-		aClosureWithASentence value: currentSentence.
-		].
-	
-	self transferFrom: backupStack to: stackOfSenteces.
-	! !
+	^ (aPrefix includesSubString: ' ') ifTrue: [self error: self class errorDescriptionPrefixWithSpaces]! !
 
-!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'Agustin Frenkel 9/17/2021 21:33:26'!
-find: aPrefix 
+!SentenceFinderByPrefix methodsFor: 'assertions' stamp: 'MP 9/19/2021 16:26:51'!
+assertPrefixIsNotEmpty: aPrefix
 
-	
-	|matchingSentences|
-	matchingSentences _ OrderedCollection new.
-	
-	self do: [:aSentence | (aSentence beginsWith: aPrefix) 
-			ifTrue: [matchingSentences add: aSentence].
-		].
-	
-	 ^matchingSentences.! !
+	^ (aPrefix isEmpty) ifTrue: [self error: self class errorDescriptionEmptyPrefix]! !
 
-!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'Agustin Frenkel 9/17/2021 19:55:37'!
+
+!SentenceFinderByPrefix methodsFor: 'initialization' stamp: 'Agustin Frenkel 9/17/2021 19:55:37'!
 initializeWithSenteces: aStackOfSenteces
 
 	stackOfSenteces _ aStackOfSenteces.! !
 
-!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'Agustin Frenkel 9/17/2021 21:15:03'!
-transferFrom: sourceStack to: destinationStack
 
-	^ [sourceStack isEmpty not] whileTrue: [ 
-		| currentSentence |
-		currentSentence _ sourceStack pop.
-		destinationStack push: currentSentence.
-		]! !
+!SentenceFinderByPrefix methodsFor: 'accessing' stamp: 'MP 9/19/2021 16:37:38'!
+find: aPrefix 	
+	self assertPrefixIsNotEmpty: aPrefix.	
+	self assertPrefixDoesntIncludeSpaces: aPrefix.
+
+	^self selectSentences: [:aSentence | aSentence beginsWith: aPrefix].! !
+
+
+!SentenceFinderByPrefix methodsFor: 'stack management - private' stamp: 'MP 9/19/2021 16:50:25'!
+restoreSentencesFrom: sourceStack
+
+	[sourceStack isEmpty not] whileTrue: [
+		stackOfSenteces push: sourceStack pop.
+	]! !
+
+!SentenceFinderByPrefix methodsFor: 'stack management - private' stamp: 'MP 9/19/2021 16:51:47'!
+selectSentences: aPredicateOverASentence
+	| backupStack selectedSentences |
+	backupStack _ OOStack new.	
+	selectedSentences _ OrderedCollection new.
+	 
+	[stackOfSenteces isEmpty not] whileTrue: [ 
+		|currentSentence|
+		currentSentence _ stackOfSenteces pop.
+		backupStack push: currentSentence.
+	
+		(aPredicateOverASentence value: currentSentence) ifTrue: [selectedSentences add: currentSentence].
+	].
+	
+	self restoreSentencesFrom: backupStack.
+	^selectedSentences.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -582,7 +600,16 @@ transferFrom: sourceStack to: destinationStack
 SentenceFinderByPrefix class
 	instanceVariableNames: ''!
 
-!SentenceFinderByPrefix class methodsFor: 'as yet unclassified' stamp: 'Agustin Frenkel 9/17/2021 19:59:43'!
+!SentenceFinderByPrefix class methodsFor: 'instance creation' stamp: 'Agustin Frenkel 9/17/2021 19:59:43'!
 withSentences: aStack
 
 	^self basicNew initializeWithSenteces: aStack.! !
+
+
+!SentenceFinderByPrefix class methodsFor: 'error descriptions' stamp: 'MP 9/19/2021 16:17:16'!
+errorDescriptionEmptyPrefix
+	^'prefix cannot be empty'! !
+
+!SentenceFinderByPrefix class methodsFor: 'error descriptions' stamp: 'MP 9/19/2021 16:18:27'!
+errorDescriptionPrefixWithSpaces
+	^'prefix cannot contain spaces'! !
