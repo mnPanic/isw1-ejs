@@ -198,25 +198,25 @@ CardinalDirection subclass: #East
 	poolDictionaries: ''
 	category: 'MarsRover'!
 
-!East methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:48:20'!
+!East methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 16:55:07'!
 moveBackward: aMarsRover
 
-	self subclassResponsibility! !
+	aMarsRover moveBackwardFacingEast.! !
 
 !East methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:44:50'!
 moveForward: aMarsRover
 
 	aMarsRover moveForwardFacingEast.! !
 
-!East methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:49:33'!
+!East methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:07:25'!
 rotateLeft: aMarsRover
 
-	self subclassResponsibility! !
+	aMarsRover rotateLeftFacingEast.! !
 
-!East methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:49:38'!
+!East methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:07:48'!
 rotateRight: aMarsRover
 
-	self subclassResponsibility! !
+	aMarsRover rotateRightFacingEast! !
 
 
 !classDefinition: #North category: 'MarsRover'!
@@ -226,25 +226,25 @@ CardinalDirection subclass: #North
 	poolDictionaries: ''
 	category: 'MarsRover'!
 
-!North methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:48:20'!
+!North methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 16:53:42'!
 moveBackward: aMarsRover
 
-	self subclassResponsibility! !
+	aMarsRover moveBackwardFacingNorth.! !
 
 !North methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:45:15'!
 moveForward: aMarsRover
 
 	aMarsRover moveForwardFacingNorth.! !
 
-!North methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:49:33'!
+!North methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:07:00'!
 rotateLeft: aMarsRover
 
-	self subclassResponsibility! !
+	aMarsRover rotateLeftFacingNorth.! !
 
-!North methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:49:38'!
+!North methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:05:33'!
 rotateRight: aMarsRover
 
-	self subclassResponsibility! !
+	aMarsRover rotateRightFacingNorth.! !
 
 
 !classDefinition: #South category: 'MarsRover'!
@@ -254,25 +254,25 @@ CardinalDirection subclass: #South
 	poolDictionaries: ''
 	category: 'MarsRover'!
 
-!South methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:48:20'!
+!South methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 16:57:14'!
 moveBackward: aMarsRover
 
-	self subclassResponsibility! !
+	aMarsRover moveBackwardFacingSouth! !
 
 !South methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:45:39'!
 moveForward: aMarsRover
 
 	aMarsRover moveForwardFacingSouth.! !
 
-!South methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:49:33'!
+!South methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:08:26'!
 rotateLeft: aMarsRover
 
-	self subclassResponsibility! !
+	aMarsRover rotateLeftFacingSouth.! !
 
-!South methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:49:38'!
+!South methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:08:35'!
 rotateRight: aMarsRover
 
-	self subclassResponsibility! !
+	aMarsRover rotateRightFacingSouth.! !
 
 
 !classDefinition: #West category: 'MarsRover'!
@@ -282,25 +282,25 @@ CardinalDirection subclass: #West
 	poolDictionaries: ''
 	category: 'MarsRover'!
 
-!West methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:48:20'!
+!West methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 16:57:31'!
 moveBackward: aMarsRover
 
-	self subclassResponsibility! !
+	aMarsRover moveBackwardFacingWest! !
 
 !West methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:45:53'!
 moveForward: aMarsRover
 
 	aMarsRover moveForwardFacingWest.! !
 
-!West methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:49:33'!
+!West methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:08:53'!
 rotateLeft: aMarsRover
 
-	self subclassResponsibility! !
+	aMarsRover rotateLeftFacingWest.! !
 
-!West methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:49:38'!
+!West methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:09:10'!
 rotateRight: aMarsRover
 
-	self subclassResponsibility! !
+	aMarsRover rotateRightFacingWest.! !
 
 
 !classDefinition: #MarsRover category: 'MarsRover'!
@@ -322,65 +322,79 @@ isAt: aPosition facing: aCardinalDirection
 	
 	^aPosition = position and: [ aCardinalDirection isKindOf: cardinalDirection class].! !
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 01:02:26'!
-process: aSequenceOfCommands
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 16:56:12'!
+moveBackwardFacingEast
+	position _ position - (1@0)! !
 
-	(aSequenceOfCommands = '') ifTrue: [ ^self ].
-	
-	(aSequenceOfCommands = 'f') ifTrue: [
-		cardinalDirection moveForward: self
-		].
-	
-	(aSequenceOfCommands = 'b') ifTrue: [
-		(cardinalDirection = #North)
-			ifTrue: [ ^position _ position - (0@1) ].
-		(cardinalDirection = #East)
-			ifTrue: [ ^position _ position - (1@0) ].
-		(cardinalDirection = #South)
-			ifTrue: [ ^position _ position + (0@1) ].
-		(cardinalDirection = #West)
-			ifTrue: [ ^position _ position + (1@0) ].
-		].
-	
-	(aSequenceOfCommands = 'r') ifTrue: [
-		(cardinalDirection = #North)
-			ifTrue: [ ^cardinalDirection _ #East ].
-		(cardinalDirection = #East)
-			ifTrue: [ ^cardinalDirection _ #South ].
-		(cardinalDirection = #South)
-			ifTrue: [ ^cardinalDirection _ #West ].
-		(cardinalDirection = #West)
-			ifTrue: [ ^cardinalDirection _ #North ].
-		].
-	
-	(aSequenceOfCommands = 'l') ifTrue: [
-		(cardinalDirection = #North)
-			ifTrue:	 [ ^cardinalDirection _ #West ].
-		(cardinalDirection = #East)
-			ifTrue:	 [ ^cardinalDirection _ #North ].
-		(cardinalDirection = #South)
-			ifTrue:	 [ ^cardinalDirection _ #East ].
-		(cardinalDirection = #West)
-			ifTrue: [ ^cardinalDirection _ #South ].
-		]! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 16:54:26'!
+moveBackwardFacingNorth
+	position _ position - (0@1)! !
 
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 16:58:17'!
+moveBackwardFacingSouth
+	position _ position + (0@1)! !
 
-!MarsRover methodsFor: 'xxxxxxxx' stamp: 'IAR 10/5/2021 01:00:18'!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 16:58:57'!
+moveBackwardFacingWest
+	position _ position + (1@0).! !
+
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 01:00:18'!
 moveForwardFacingEast
 	
 	position _ position + (1@0).! !
 
-!MarsRover methodsFor: 'xxxxxxxx' stamp: 'IAR 10/5/2021 00:59:15'!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:59:15'!
 moveForwardFacingNorth
 	position _ position + (0@1).! !
 
-!MarsRover methodsFor: 'xxxxxxxx' stamp: 'IAR 10/5/2021 01:02:15'!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 01:02:15'!
 moveForwardFacingSouth
 	position _ position - (0@1).! !
 
-!MarsRover methodsFor: 'xxxxxxxx' stamp: 'IAR 10/5/2021 01:02:21'!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 01:02:21'!
 moveForwardFacingWest
 	position _ position - (1@0).! !
+
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:16:34'!
+process: aSequenceOfCommands
+
+	(aSequenceOfCommands = '') ifTrue: [ ^self ].
+	(aSequenceOfCommands = 'f') ifTrue: [		cardinalDirection moveForward: self	 ].
+	(aSequenceOfCommands = 'b') ifTrue: [ cardinalDirection moveBackward: self ].
+	(aSequenceOfCommands = 'r') ifTrue: [ cardinalDirection rotateRight: self ].
+	(aSequenceOfCommands = 'l') ifTrue: [ cardinalDirection rotateLeft: self 	]! !
+
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:11:32'!
+rotateLeftFacingEast
+	cardinalDirection _ North new.! !
+
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:09:45'!
+rotateLeftFacingNorth
+	cardinalDirection _ West new.! !
+
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:13:48'!
+rotateLeftFacingSouth
+	cardinalDirection _ East new.! !
+
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:15:00'!
+rotateLeftFacingWest
+	cardinalDirection _	South new.! !
+
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:10:45'!
+rotateRightFacingEast
+	cardinalDirection _ South new.! !
+
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:06:06'!
+rotateRightFacingNorth
+	cardinalDirection _ East new.! !
+
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:13:06'!
+rotateRightFacingSouth
+	cardinalDirection _ West new.! !
+
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:14:25'!
+rotateRightFacingWest
+	cardinalDirection _ North new.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
