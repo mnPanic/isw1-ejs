@@ -5,157 +5,182 @@ TestCase subclass: #TestMarsRover
 	poolDictionaries: ''
 	category: 'MarsRover'!
 
-!TestMarsRover methodsFor: 'asdfasfsdafdsa' stamp: 'IAR 10/5/2021 00:56:30'!
+!TestMarsRover methodsFor: 'cardinal direction creation' stamp: 'IAR 10/5/2021 00:56:30'!
 east
 
 	^ East new! !
 
-!TestMarsRover methodsFor: 'asdfasfsdafdsa' stamp: 'IAR 10/5/2021 00:56:25'!
+!TestMarsRover methodsFor: 'cardinal direction creation' stamp: 'IAR 10/5/2021 00:56:25'!
 north
 
 	^ North new! !
 
-!TestMarsRover methodsFor: 'asdfasfsdafdsa' stamp: 'IAR 10/5/2021 00:56:45'!
+!TestMarsRover methodsFor: 'cardinal direction creation' stamp: 'IAR 10/5/2021 00:56:45'!
 south
 
 	^ South new! !
 
-!TestMarsRover methodsFor: 'asdfasfsdafdsa' stamp: 'IAR 10/5/2021 00:56:37'!
+!TestMarsRover methodsFor: 'cardinal direction creation' stamp: 'IAR 10/5/2021 00:56:37'!
 west
 
 	^ West new! !
 
 
-!TestMarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:53:25'!
-test01
+!TestMarsRover methodsFor: 'test process error conditions' stamp: 'AF 10/5/2021 18:33:59'!
+test19ProcessingShouldStopWithErrorAtInvalidCommand
+	
+	| rover north |
+	north _  self north.
+	rover _ MarsRover at: 0@0 facing: north.
+	self should: [rover process: 'fxf'.]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anException | 
+			self assert: MarsRover invalidCommandErrorDescription equals: anException messageText.
+			self assert: (rover isAt: 0@1 facing: north).
+		].
+	! !
+
+
+!TestMarsRover methodsFor: 'test process multiple commands' stamp: 'AF 10/5/2021 18:32:05'!
+test18ProcessingMoreThanOneCommandShouldProcessAll
+	
+	| rover north |
+	north _  self north.
+	rover _ MarsRover at: 0@0 facing: north.
+	rover process: 'ff'.
+	self assert: (rover isAt: 0@2 facing: north).! !
+
+
+!TestMarsRover methodsFor: 'test process single command' stamp: 'AF 10/5/2021 18:24:32'!
+test01ProcessEmptyCommandShouldStayInPlace
 	
 	| rover |
 	rover _ MarsRover at: 0@0 facing: self north.
 	rover process: ''.
 	self assert: (rover isAt: 0@0 facing: self north).! !
 
-!TestMarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:52:39'!
-test02
+!TestMarsRover methodsFor: 'test process single command' stamp: 'AF 10/5/2021 18:24:27'!
+test02ProcessMovementCommandShouldMove
 	
 	| rover |
 	rover _ MarsRover at: 0@0 facing: self north.
 	rover process: 'f'.
 	self deny: (rover isAt: 0@0 facing: self north).! !
 
-!TestMarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:53:35'!
-test03
+!TestMarsRover methodsFor: 'test process single command' stamp: 'AF 10/5/2021 18:24:11'!
+test03ProcessFowardFacingNorth
 	
 	| rover |
 	rover _ MarsRover at: 0@0 facing: self north.
 	rover process: 'f'.
 	self assert: (rover isAt: 0@1 facing: self north).! !
 
-!TestMarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:53:42'!
-test04
+!TestMarsRover methodsFor: 'test process single command' stamp: 'AF 10/5/2021 18:24:57'!
+test04ProcessBackwardFacingNorth
 	
 	| rover |
 	rover _ MarsRover at: 0@0 facing: self north.
 	rover process: 'b'.
 	self assert: (rover isAt: 0@-1 facing: self north).! !
 
-!TestMarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:53:53'!
-test05
+!TestMarsRover methodsFor: 'test process single command' stamp: 'AF 10/5/2021 18:25:17'!
+test05ProcessRightFacingNorth
 	
 	| rover |
 	rover _ MarsRover at: 0@0 facing: self north.
 	rover process: 'r'.
 	self assert: (rover isAt: 0@0 facing: self east).! !
 
-!TestMarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:54:06'!
-test06
+!TestMarsRover methodsFor: 'test process single command' stamp: 'AF 10/5/2021 18:25:39'!
+test06ProcessLeftFacingNorth
 	
 	| rover |
 	rover _ MarsRover at: 0@0 facing: self north.
 	rover process: 'l'.
 	self assert: (rover isAt: 0@0 facing: self west).! !
 
-!TestMarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:54:20'!
-test07
+!TestMarsRover methodsFor: 'test process single command' stamp: 'AF 10/5/2021 18:26:26'!
+test07ProcessFowardFacingEast
 	
 	| rover |
 	rover _ MarsRover at: 0@0 facing: self east.
 	rover process: 'f'.
 	self assert: (rover isAt: 1@0 facing: self east).! !
 
-!TestMarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:54:27'!
-test08
+!TestMarsRover methodsFor: 'test process single command' stamp: 'AF 10/5/2021 18:26:43'!
+test08ProcessBackwardFacingEast
 	
 	| rover |
 	rover _ MarsRover at: 0@0 facing: self east.
 	rover process: 'b'.
 	self assert: (rover isAt: -1@0 facing: self east).! !
 
-!TestMarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:54:39'!
-test09
+!TestMarsRover methodsFor: 'test process single command' stamp: 'AF 10/5/2021 18:27:01'!
+test09ProcessRightFacingEast
 	
 	| rover |
 	rover _ MarsRover at: 0@0 facing: self east.
 	rover process: 'r'.
 	self assert: (rover isAt: 0@0 facing: self south).! !
 
-!TestMarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:54:54'!
-test10
+!TestMarsRover methodsFor: 'test process single command' stamp: 'AF 10/5/2021 18:27:30'!
+test10ProcessLeftFacingEast
 	
 	| rover |
 	rover _ MarsRover at: 0@0 facing: self east.
 	rover process: 'l'.
 	self assert: (rover isAt: 0@0 facing: self north).! !
 
-!TestMarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:55:09'!
-test11
+!TestMarsRover methodsFor: 'test process single command' stamp: 'AF 10/5/2021 18:27:56'!
+test11ProcessFowardFacingSouth
 	
 	| rover |
 	rover _ MarsRover at: 0@0 facing: self south.
 	rover process: 'f'.
 	self assert: (rover isAt: 0@-1 facing: self south).! !
 
-!TestMarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:55:17'!
-test12
+!TestMarsRover methodsFor: 'test process single command' stamp: 'AF 10/5/2021 18:28:17'!
+test12ProcessBackwardFacingSouth
 	
 	| rover |
 	rover _ MarsRover at: 0@0 facing: self south.
 	rover process: 'b'.
 	self assert: (rover isAt: 0@1 facing: self south).! !
 
-!TestMarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:55:26'!
-test13
+!TestMarsRover methodsFor: 'test process single command' stamp: 'AF 10/5/2021 18:28:43'!
+test13ProcessRightFacingSouth
 	
 	| rover |
 	rover _ MarsRover at: 0@0 facing: self south.
 	rover process: 'r'.
 	self assert: (rover isAt: 0@0 facing: self west).! !
 
-!TestMarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:55:34'!
-test14
+!TestMarsRover methodsFor: 'test process single command' stamp: 'AF 10/5/2021 18:29:00'!
+test14ProcessLeftFacingSouth
 	
 	| rover |
 	rover _ MarsRover at: 0@0 facing: self south.
 	rover process: 'l'.
 	self assert: (rover isAt: 0@0 facing: self east).! !
 
-!TestMarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:55:45'!
-test15
+!TestMarsRover methodsFor: 'test process single command' stamp: 'AF 10/5/2021 18:29:21'!
+test15ProcessFowardFacingWest
 	
 	| rover |
 	rover _ MarsRover at: 0@0 facing: self west.
 	rover process: 'b'.
 	self assert: (rover isAt: 1@0 facing: self west).! !
 
-!TestMarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:55:54'!
-test16
+!TestMarsRover methodsFor: 'test process single command' stamp: 'AF 10/5/2021 18:29:56'!
+test16ProcessRightFacingWest
 	
 	| rover |
 	rover _ MarsRover at: 0@0 facing: self west.
 	rover process: 'r'.
 	self assert: (rover isAt: 0@0 facing: self north).! !
 
-!TestMarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:56:03'!
-test17
+!TestMarsRover methodsFor: 'test process single command' stamp: 'AF 10/5/2021 18:30:08'!
+test17ProcessLeftFacingWest
 	
 	| rover |
 	rover _ MarsRover at: 0@0 facing: self west.
@@ -170,23 +195,23 @@ Object subclass: #CardinalDirection
 	poolDictionaries: ''
 	category: 'MarsRover'!
 
-!CardinalDirection methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:48:28'!
-moveBackward: aMarsRover
+!CardinalDirection methodsFor: 'rover command processing - private' stamp: 'AF 10/5/2021 18:01:27'!
+moveRoverBackward: aMarsRover
 
 	self subclassResponsibility! !
 
-!CardinalDirection methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:44:23'!
-moveForward: aMarsRover
+!CardinalDirection methodsFor: 'rover command processing - private' stamp: 'AF 10/5/2021 18:02:11'!
+moveRoverForward: aMarsRover
 
 	self subclassResponsibility! !
 
-!CardinalDirection methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:49:43'!
-rotateLeft: aMarsRover
+!CardinalDirection methodsFor: 'rover command processing - private' stamp: 'AF 10/5/2021 18:02:34'!
+rotateRoverLeft: aMarsRover
 
 	self subclassResponsibility! !
 
-!CardinalDirection methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:49:47'!
-rotateRight: aMarsRover
+!CardinalDirection methodsFor: 'rover command processing - private' stamp: 'AF 10/5/2021 18:03:00'!
+rotateRoverRight: aMarsRover
 
 	self subclassResponsibility! !
 
@@ -198,23 +223,23 @@ CardinalDirection subclass: #East
 	poolDictionaries: ''
 	category: 'MarsRover'!
 
-!East methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 16:55:07'!
-moveBackward: aMarsRover
+!East methodsFor: 'rover command processing - private' stamp: 'AF 10/5/2021 18:01:27'!
+moveRoverBackward: aMarsRover
 
 	aMarsRover moveBackwardFacingEast.! !
 
-!East methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:44:50'!
-moveForward: aMarsRover
+!East methodsFor: 'rover command processing - private' stamp: 'AF 10/5/2021 18:02:11'!
+moveRoverForward: aMarsRover
 
 	aMarsRover moveForwardFacingEast.! !
 
-!East methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:07:25'!
-rotateLeft: aMarsRover
+!East methodsFor: 'rover command processing - private' stamp: 'AF 10/5/2021 18:02:34'!
+rotateRoverLeft: aMarsRover
 
 	aMarsRover rotateLeftFacingEast.! !
 
-!East methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:07:48'!
-rotateRight: aMarsRover
+!East methodsFor: 'rover command processing - private' stamp: 'AF 10/5/2021 18:03:00'!
+rotateRoverRight: aMarsRover
 
 	aMarsRover rotateRightFacingEast! !
 
@@ -226,23 +251,23 @@ CardinalDirection subclass: #North
 	poolDictionaries: ''
 	category: 'MarsRover'!
 
-!North methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 16:53:42'!
-moveBackward: aMarsRover
+!North methodsFor: 'rover command processing - private' stamp: 'AF 10/5/2021 18:01:27'!
+moveRoverBackward: aMarsRover
 
 	aMarsRover moveBackwardFacingNorth.! !
 
-!North methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:45:15'!
-moveForward: aMarsRover
+!North methodsFor: 'rover command processing - private' stamp: 'AF 10/5/2021 18:02:11'!
+moveRoverForward: aMarsRover
 
 	aMarsRover moveForwardFacingNorth.! !
 
-!North methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:07:00'!
-rotateLeft: aMarsRover
+!North methodsFor: 'rover command processing - private' stamp: 'AF 10/5/2021 18:02:34'!
+rotateRoverLeft: aMarsRover
 
 	aMarsRover rotateLeftFacingNorth.! !
 
-!North methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:05:33'!
-rotateRight: aMarsRover
+!North methodsFor: 'rover command processing - private' stamp: 'AF 10/5/2021 18:03:00'!
+rotateRoverRight: aMarsRover
 
 	aMarsRover rotateRightFacingNorth.! !
 
@@ -254,23 +279,23 @@ CardinalDirection subclass: #South
 	poolDictionaries: ''
 	category: 'MarsRover'!
 
-!South methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 16:57:14'!
-moveBackward: aMarsRover
+!South methodsFor: 'rover command processing - private' stamp: 'AF 10/5/2021 18:01:27'!
+moveRoverBackward: aMarsRover
 
 	aMarsRover moveBackwardFacingSouth! !
 
-!South methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:45:39'!
-moveForward: aMarsRover
+!South methodsFor: 'rover command processing - private' stamp: 'AF 10/5/2021 18:02:11'!
+moveRoverForward: aMarsRover
 
 	aMarsRover moveForwardFacingSouth.! !
 
-!South methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:08:26'!
-rotateLeft: aMarsRover
+!South methodsFor: 'rover command processing - private' stamp: 'AF 10/5/2021 18:02:34'!
+rotateRoverLeft: aMarsRover
 
 	aMarsRover rotateLeftFacingSouth.! !
 
-!South methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:08:35'!
-rotateRight: aMarsRover
+!South methodsFor: 'rover command processing - private' stamp: 'AF 10/5/2021 18:03:00'!
+rotateRoverRight: aMarsRover
 
 	aMarsRover rotateRightFacingSouth.! !
 
@@ -282,23 +307,23 @@ CardinalDirection subclass: #West
 	poolDictionaries: ''
 	category: 'MarsRover'!
 
-!West methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 16:57:31'!
-moveBackward: aMarsRover
+!West methodsFor: 'rover command processing - private' stamp: 'AF 10/5/2021 18:01:27'!
+moveRoverBackward: aMarsRover
 
 	aMarsRover moveBackwardFacingWest! !
 
-!West methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:45:53'!
-moveForward: aMarsRover
+!West methodsFor: 'rover command processing - private' stamp: 'AF 10/5/2021 18:02:11'!
+moveRoverForward: aMarsRover
 
 	aMarsRover moveForwardFacingWest.! !
 
-!West methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:08:53'!
-rotateLeft: aMarsRover
+!West methodsFor: 'rover command processing - private' stamp: 'AF 10/5/2021 18:02:34'!
+rotateRoverLeft: aMarsRover
 
 	aMarsRover rotateLeftFacingWest.! !
 
-!West methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:09:10'!
-rotateRight: aMarsRover
+!West methodsFor: 'rover command processing - private' stamp: 'AF 10/5/2021 18:03:00'!
+rotateRoverRight: aMarsRover
 
 	aMarsRover rotateRightFacingWest.! !
 
@@ -310,6 +335,104 @@ Object subclass: #MarsRover
 	poolDictionaries: ''
 	category: 'MarsRover'!
 
+!MarsRover methodsFor: 'command processing' stamp: 'AF 10/5/2021 17:36:17'!
+process: aSequenceOfCommands
+
+	aSequenceOfCommands do: [ :aCommand | self processCommand: aCommand. ]
+	! !
+
+
+!MarsRover methodsFor: 'command processing - private' stamp: 'AF 10/5/2021 18:09:38'!
+moveBackwardFacingEast
+
+	position _ position - (1@0)! !
+
+!MarsRover methodsFor: 'command processing - private' stamp: 'AF 10/5/2021 18:09:40'!
+moveBackwardFacingNorth
+
+	position _ position - (0@1)! !
+
+!MarsRover methodsFor: 'command processing - private' stamp: 'AF 10/5/2021 18:09:44'!
+moveBackwardFacingSouth
+
+	position _ position + (0@1)! !
+
+!MarsRover methodsFor: 'command processing - private' stamp: 'AF 10/5/2021 18:09:49'!
+moveBackwardFacingWest
+
+	position _ position + (1@0).! !
+
+!MarsRover methodsFor: 'command processing - private' stamp: 'IAR 10/5/2021 01:00:18'!
+moveForwardFacingEast
+	
+	position _ position + (1@0).! !
+
+!MarsRover methodsFor: 'command processing - private' stamp: 'AF 10/5/2021 18:09:57'!
+moveForwardFacingNorth
+
+	position _ position + (0@1).! !
+
+!MarsRover methodsFor: 'command processing - private' stamp: 'AF 10/5/2021 18:10:00'!
+moveForwardFacingSouth
+
+	position _ position - (0@1).! !
+
+!MarsRover methodsFor: 'command processing - private' stamp: 'AF 10/5/2021 18:10:04'!
+moveForwardFacingWest
+
+	position _ position - (1@0).! !
+
+!MarsRover methodsFor: 'command processing - private' stamp: 'AF 10/5/2021 18:03:00'!
+processCommand: aCommand
+
+	(aCommand = $f) ifTrue: [ ^	cardinalDirection moveRoverForward: self	 ].
+	(aCommand = $b) ifTrue: [ ^cardinalDirection moveRoverBackward: self ].
+	(aCommand = $r) ifTrue: [ ^cardinalDirection rotateRoverRight: self ].
+	(aCommand = $l) ifTrue: [ ^cardinalDirection rotateRoverLeft: self 	].
+	
+	self error: self class invalidCommandErrorDescription.! !
+
+!MarsRover methodsFor: 'command processing - private' stamp: 'AF 10/5/2021 18:10:11'!
+rotateLeftFacingEast
+
+	cardinalDirection _ North new.! !
+
+!MarsRover methodsFor: 'command processing - private' stamp: 'AF 10/5/2021 18:10:14'!
+rotateLeftFacingNorth
+
+	cardinalDirection _ West new.! !
+
+!MarsRover methodsFor: 'command processing - private' stamp: 'AF 10/5/2021 18:10:21'!
+rotateLeftFacingSouth
+
+	cardinalDirection _ East new.! !
+
+!MarsRover methodsFor: 'command processing - private' stamp: 'AF 10/5/2021 18:10:27'!
+rotateLeftFacingWest
+
+	cardinalDirection _	South new.! !
+
+!MarsRover methodsFor: 'command processing - private' stamp: 'AF 10/5/2021 18:10:31'!
+rotateRightFacingEast
+
+	cardinalDirection _ South new.! !
+
+!MarsRover methodsFor: 'command processing - private' stamp: 'AF 10/5/2021 18:10:36'!
+rotateRightFacingNorth
+
+	cardinalDirection _ East new.! !
+
+!MarsRover methodsFor: 'command processing - private' stamp: 'AF 10/5/2021 18:10:38'!
+rotateRightFacingSouth
+
+	cardinalDirection _ West new.! !
+
+!MarsRover methodsFor: 'command processing - private' stamp: 'AF 10/5/2021 18:10:43'!
+rotateRightFacingWest
+
+	cardinalDirection _ North new.! !
+
+
 !MarsRover methodsFor: 'initialization' stamp: 'IAR 10/4/2021 23:23:55'!
 initializeAt: aPosition facing: aCardinalDirection 
 	
@@ -317,90 +440,22 @@ initializeAt: aPosition facing: aCardinalDirection
 	cardinalDirection := aCardinalDirection.! !
 
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 01:04:22'!
+!MarsRover methodsFor: 'testing' stamp: 'IAR 10/5/2021 01:04:22'!
 isAt: aPosition facing: aCardinalDirection 
 	
 	^aPosition = position and: [ aCardinalDirection isKindOf: cardinalDirection class].! !
-
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 16:56:12'!
-moveBackwardFacingEast
-	position _ position - (1@0)! !
-
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 16:54:26'!
-moveBackwardFacingNorth
-	position _ position - (0@1)! !
-
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 16:58:17'!
-moveBackwardFacingSouth
-	position _ position + (0@1)! !
-
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 16:58:57'!
-moveBackwardFacingWest
-	position _ position + (1@0).! !
-
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 01:00:18'!
-moveForwardFacingEast
-	
-	position _ position + (1@0).! !
-
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 00:59:15'!
-moveForwardFacingNorth
-	position _ position + (0@1).! !
-
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 01:02:15'!
-moveForwardFacingSouth
-	position _ position - (0@1).! !
-
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'IAR 10/5/2021 01:02:21'!
-moveForwardFacingWest
-	position _ position - (1@0).! !
-
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:16:34'!
-process: aSequenceOfCommands
-
-	(aSequenceOfCommands = '') ifTrue: [ ^self ].
-	(aSequenceOfCommands = 'f') ifTrue: [		cardinalDirection moveForward: self	 ].
-	(aSequenceOfCommands = 'b') ifTrue: [ cardinalDirection moveBackward: self ].
-	(aSequenceOfCommands = 'r') ifTrue: [ cardinalDirection rotateRight: self ].
-	(aSequenceOfCommands = 'l') ifTrue: [ cardinalDirection rotateLeft: self 	]! !
-
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:11:32'!
-rotateLeftFacingEast
-	cardinalDirection _ North new.! !
-
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:09:45'!
-rotateLeftFacingNorth
-	cardinalDirection _ West new.! !
-
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:13:48'!
-rotateLeftFacingSouth
-	cardinalDirection _ East new.! !
-
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:15:00'!
-rotateLeftFacingWest
-	cardinalDirection _	South new.! !
-
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:10:45'!
-rotateRightFacingEast
-	cardinalDirection _ South new.! !
-
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:06:06'!
-rotateRightFacingNorth
-	cardinalDirection _ East new.! !
-
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:13:06'!
-rotateRightFacingSouth
-	cardinalDirection _ West new.! !
-
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'AF 10/5/2021 17:14:25'!
-rotateRightFacingWest
-	cardinalDirection _ North new.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'MarsRover class' category: 'MarsRover'!
 MarsRover class
 	instanceVariableNames: ''!
+
+!MarsRover class methodsFor: 'error descriptions' stamp: 'AF 10/5/2021 17:55:50'!
+invalidCommandErrorDescription
+	
+	^'invalid command'.! !
+
 
 !MarsRover class methodsFor: 'instance creation' stamp: 'IAR 10/4/2021 23:23:03'!
 at: aPosition facing: aCardinalDirection
