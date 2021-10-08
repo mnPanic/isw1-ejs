@@ -1,3 +1,105 @@
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 20:59:17'!
+test01
+
+	| portfolio |
+	portfolio _ Portfolio new.
+	
+	self assert: 0 equals: portfolio balance.! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 21:02:05'!
+test02
+
+	| portfolio account transaction |
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount new.
+	transaction _ Deposit register: 100 on: account. 
+	
+	self deny: (portfolio hasRegistered: transaction).! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 21:03:08'!
+test03
+
+	| portfolio |
+	portfolio _ Portfolio new.
+
+	self assert: portfolio transactions isEmpty.! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 21:13:40'!
+test04
+
+	| portfolio account |
+	account _ ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addAccount: account.
+
+	self assert: 100 equals: portfolio balance.! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 21:18:01'!
+test05
+
+	| portfolio account expectedTransactions transaction |
+	account _ ReceptiveAccount new.
+	transaction _ Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addAccount: account.
+
+	expectedTransactions _ OrderedCollection with: transaction.
+	self assert: expectedTransactions equals: portfolio transactions.! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 21:19:52'!
+test06
+
+	| portfolio account transaction |
+	account _ ReceptiveAccount new.
+	transaction _ Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addAccount: account.
+
+	self assert: (portfolio hasRegistered: transaction).! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 21:24:11'!
+test07
+
+	| portfolio account1 account2 |
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account2.
+
+	portfolio _ Portfolio new.
+	portfolio addAccount: account1.
+	portfolio addAccount: account2.
+
+	self assert: 150 equals: portfolio balance.! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 21:25:50'!
+test08
+
+	| portfolio account1 account2 expectedTransactions transaction1 transaction2 |
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	transaction1 _ Deposit register: 100 on: account1.
+	transaction2 _ Deposit register: 50 on: account2.
+
+	portfolio _ Portfolio new.
+	portfolio addAccount: account1.
+	portfolio addAccount: account2.
+
+	expectedTransactions _ OrderedCollection with: transaction1 with: transaction2.
+	self assert: expectedTransactions equals: portfolio transactions.! !
+
+
 !classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio'!
 TestCase subclass: #ReceptiveAccountTest
 	instanceVariableNames: ''
@@ -75,7 +177,7 @@ test06ReceptiveAccountDoNotKnowNotRegisteredTransactions
 	self deny: (account hasRegistered:withdraw).
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:14:01'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'MP 10/7/2021 20:55:58'!
 test07AccountKnowsItsTransactions 
 
 	| account1 deposit1 |
@@ -83,7 +185,7 @@ test07AccountKnowsItsTransactions
 	account1 := ReceptiveAccount new.
 	
 	deposit1 := Deposit register: 50 on: account1.
-		
+
 	self assert: 1 equals: account1 transactions size.
 	self assert: (account1 transactions includes: deposit1).
 ! !
@@ -98,6 +200,12 @@ Object subclass: #AccountTransaction
 
 !AccountTransaction methodsFor: 'value' stamp: 'HernanWilkinson 9/12/2011 12:25'!
 value 
+
+	self subclassResponsibility ! !
+
+
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 20:48:16'!
+applyToBalance: aBalance
 
 	self subclassResponsibility ! !
 
@@ -136,6 +244,12 @@ value
 
 	^ value! !
 
+
+!Deposit methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 20:49:19'!
+applyToBalance: aBalance
+
+	^ aBalance + value.! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Deposit class' category: 'Portfolio-Ejercicio'!
@@ -166,6 +280,12 @@ value
 
 	^ value! !
 
+
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 20:48:38'!
+applyToBalance: aBalance
+
+	^aBalance - value.! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Withdraw class' category: 'Portfolio-Ejercicio'!
@@ -176,6 +296,41 @@ Withdraw class
 for: aValue
 
 	^ self new initializeFor: aValue ! !
+
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 21:15:00'!
+addAccount: anAccount 
+	
+	accounts add: anAccount! !
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 21:23:46'!
+balance
+	
+	^accounts sum: [ :account | account balance ] ifEmpty: [ 0 ].! !
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 21:20:31'!
+hasRegistered: aTransaction
+	
+	accounts isEmpty ifTrue: [^false].
+	^accounts first hasRegistered: aTransaction.! !
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 21:15:24'!
+initialize
+
+	accounts _ OrderedCollection new.! !
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 21:27:46'!
+transactions
+	
+	accounts ifEmpty: [^OrderedCollection new].
+	^accounts first transactions.! !
 
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio'!
@@ -203,10 +358,13 @@ transactions
 	^ transactions copy! !
 
 
-!ReceptiveAccount methodsFor: 'balance' stamp: 'HAW 5/23/2019 15:19:32'!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'MP 10/7/2021 20:47:22'!
 balance
 
-	^transactions sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ]! !
+	| balance |
+	balance _ 0.
+	transactions do: [ :aTransaction | balance _ aTransaction applyToBalance: balance ].
+	^balance.! !
 
 
 !ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/17/2019 03:28:43'!
