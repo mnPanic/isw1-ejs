@@ -798,3 +798,1294 @@ transactions
 ----SNAPSHOT----(7 October 2021 22:25:28) CuisUniversity-4532.image priorSource: 16918525!
 
 ----QUIT----(7 October 2021 22:25:34) CuisUniversity-4532.image priorSource: 16918617!
+
+----STARTUP---- (9 October 2021 23:29:41) as /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/cuis-clean/CuisUniversity-4532.image!
+
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/cuis-clean/Portfolio-Ejercicio.st----!
+
+!testRun: #PortfolioTest #test08 stamp: 'IAR 10/9/2021 23:31:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test08 stamp: 'IAR 10/9/2021 23:31:26'!
+FAILURE!
+
+!methodRemoval: PortfolioTest #test08 stamp: 'IAR 10/9/2021 23:31:37'!
+test08
+
+	| portfolio account1 account2 expectedTransactions transaction1 transaction2 |
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	transaction1 _ Deposit register: 100 on: account1.
+	transaction2 _ Deposit register: 50 on: account2.
+
+	portfolio _ Portfolio new.
+	portfolio addAccount: account1.
+	portfolio addAccount: account2.
+
+	expectedTransactions _ OrderedCollection with: transaction1 with: transaction2.
+	self assert: expectedTransactions equals: portfolio transactions.!
+
+!testRun: #PortfolioTest #test01 stamp: 'IAR 10/9/2021 23:31:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'IAR 10/9/2021 23:31:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'IAR 10/9/2021 23:31:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'IAR 10/9/2021 23:31:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'IAR 10/9/2021 23:31:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'IAR 10/9/2021 23:31:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'IAR 10/9/2021 23:31:46'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:36:50'!
+test08
+
+	| portfolio1 account1 account2 account portfolio2 |
+	account _ ReceptiveAccount new.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio1 addAccount: account1.
+	portfolio2 addPortfolio: portfolio1
+	
+
+	self assert: 150 equals: portfolio2 balance.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:37:09' prior: 50859757!
+test08
+
+	| portfolio1 account portfolio2 |
+	account _ ReceptiveAccount new.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio1 addAccount: account.
+	portfolio2 addPortfolio: portfolio1
+	
+
+	self assert: 150 equals: portfolio2 balance.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:37:19' prior: 50859769!
+test08
+
+	| portfolio1 portfolio2 account |
+	account _ ReceptiveAccount new.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio1 addAccount: account.
+	portfolio2 addPortfolio: portfolio1
+	
+
+	self assert: 150 equals: portfolio2 balance.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:37:30' prior: 50859781!
+test08
+
+	| portfolio1 portfolio2 account |
+	account _ ReceptiveAccount new.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio1 addAccount: account.
+	portfolio2 addPortfolio: portfolio1
+	
+
+	self assert: 150 equals: portfolio2 balance.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:37:49' prior: 50859793!
+test08
+
+	| portfolio1 portfolio2 account |
+	account _ ReceptiveAccount new.
+	Deposit register: 100 on: account.
+
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio1 addAccount: account.
+	portfolio2 addPortfolio: portfolio1
+	
+
+	self assert: 150 equals: portfolio2 balance.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:37:52' prior: 50859805!
+test08
+
+	| portfolio1 portfolio2 account |
+	
+	account _ ReceptiveAccount new.
+	Deposit register: 100 on: account.
+
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio1 addAccount: account.
+	portfolio2 addPortfolio: portfolio1
+	
+
+	self assert: 150 equals: portfolio2 balance.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:38:01' prior: 50859818!
+test08
+
+	| portfolio1 portfolio2 account |
+	
+	account _ ReceptiveAccount new.
+	Deposit register: 100 on: account.
+
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio1 addAccount: account.
+	portfolio2 addPortfolio: portfolio1
+	
+
+	self assert: 10 equals: portfolio2 balance.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:38:11' prior: 50859831!
+test08
+
+	| portfolio1 portfolio2 account |
+	
+	account _ ReceptiveAccount new.
+	Deposit register: 100 on: account.
+
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio1 addAccount: account.
+	portfolio2 addPortfolio: portfolio1
+	
+
+	self assert: 100 equals: (portfolio2 balance).! !
+
+!testRun: #PortfolioTest #test08 stamp: 'IAR 10/9/2021 23:38:17'!
+ERROR!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:38:34' prior: 50859844!
+test08
+
+	| portfolio1 portfolio2 account |
+	
+	account _ ReceptiveAccount new.
+	Deposit register: 100 on: account.
+
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio1 addAccount: account.
+	portfolio2 addPortfolio: portfolio1.
+	
+
+	self assert: 100 equals: (portfolio2 balance).! !
+
+!testRun: #PortfolioTest #test08 stamp: 'IAR 10/9/2021 23:38:37'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:38:49'!
+addPortfolio: aPortfolio 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'IAR 10/9/2021 23:39:43'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:39:40' prior: 50859874!
+addPortfolio: aPortfolio 
+	
+	portfolios add: aPortfolio.! !
+
+!testRun: #PortfolioTest #test08 stamp: 'IAR 10/9/2021 23:39:48'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:40:05' prior: 50859665 overrides: 16896425!
+initialize
+
+	accounts _ OrderedCollection new.
+	portfolios _ OrderedCollection new.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:42:01' prior: 50859653!
+balance
+	
+	| accountsBalance portfoliosBalance |
+	accountsBalance _ accounts sum: [ :account | account balance ] ifEmpty: [ 0 ].
+	portfoliosBalance _ portfolios first balance.
+	
+	^ accountsBalance + portfoliosBalance.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:42:06' prior: 50859901!
+balance
+	
+	| accountsBalance portfoliosBalance |
+	
+	accountsBalance _ accounts sum: [ :account | account balance ] ifEmpty: [ 0 ].
+	portfoliosBalance _ portfolios first balance.
+	
+	^ accountsBalance + portfoliosBalance.! !
+
+!testRun: #PortfolioTest #test01 stamp: 'IAR 10/9/2021 23:42:08'!
+ERROR!
+
+!testRun: #PortfolioTest #test02 stamp: 'IAR 10/9/2021 23:42:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'IAR 10/9/2021 23:42:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'IAR 10/9/2021 23:42:08'!
+ERROR!
+
+!testRun: #PortfolioTest #test05 stamp: 'IAR 10/9/2021 23:42:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'IAR 10/9/2021 23:42:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'IAR 10/9/2021 23:42:08'!
+ERROR!
+
+!testRun: #PortfolioTest #test08 stamp: 'IAR 10/9/2021 23:42:08'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:43:51' prior: 50859911!
+balance
+	
+	| accountsBalance portfoliosBalance |
+	
+	accountsBalance _ accounts sum: [ :account | account balance ] ifEmpty: [ 0 ].
+	portfolios isEmpty ifTrue: [
+		portfoliosBalance _ 0.
+		] ifFalse: [
+		portfoliosBalance _ portfolios first balance.
+		].
+
+	
+	^ accountsBalance + portfoliosBalance.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:44:05' prior: 50859940!
+balance
+	
+	| accountsBalance portfoliosBalance |
+	
+	accountsBalance _ accounts sum: [ :account | account balance ] ifEmpty: [ 0 ].
+	portfolios isEmpty ifTrue: [
+		
+		
+		portfoliosBalance _ 0.
+						] ifFalse:
+					[
+		portfoliosBalance _ portfolios first balance.
+		].
+
+	
+	^ accountsBalance + portfoliosBalance.! !
+
+!testRun: #PortfolioTest #test01 stamp: 'IAR 10/9/2021 23:44:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'IAR 10/9/2021 23:44:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'IAR 10/9/2021 23:44:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'IAR 10/9/2021 23:44:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'IAR 10/9/2021 23:44:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'IAR 10/9/2021 23:44:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'IAR 10/9/2021 23:44:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'IAR 10/9/2021 23:44:06'!
+PASSED!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:44:50' prior: 50859953!
+balance
+	
+	| accountsBalance portfoliosBalance |
+	
+	accountsBalance _ accounts sum: [ :account | account balance ] ifEmpty: [ 0 ].
+	portfolios isEmpty
+		ifTrue: [ 	portfoliosBalance _ 0 ]
+		ifFalse: [ 	portfoliosBalance _ portfolios first balance ].
+			
+	^ accountsBalance + portfoliosBalance.! !
+
+!testRun: #PortfolioTest #test01 stamp: 'IAR 10/9/2021 23:44:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'IAR 10/9/2021 23:44:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'IAR 10/9/2021 23:44:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'IAR 10/9/2021 23:44:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'IAR 10/9/2021 23:44:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'IAR 10/9/2021 23:44:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'IAR 10/9/2021 23:44:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'IAR 10/9/2021 23:44:51'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:45:48'!
+test09
+
+	| portfolio1 portfolio2 portfolio3 account1 account2 |
+	
+	account1 _ ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio1 addAccount: account1.
+	portfolio2 addPortfolio: portfolio1.
+	
+
+	self assert: 100 equals: (portfolio2 balance).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:46:03' prior: 50860016!
+test09
+
+	| portfolio1 portfolio2 portfolio3 account1 account2 |
+	
+	account1 _ ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+
+	account2 _ ReceptiveAccount new.
+	Deposit register: 100 on: account2.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio1 addAccount: account1.
+	portfolio2 addPortfolio: portfolio1.
+	
+
+	self assert: 100 equals: (portfolio2 balance).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:46:49' prior: 50860030!
+test09
+
+	| portfolio1 portfolio2 portfolio3 account1 account2 |
+	
+	account1 _ ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+
+	account2 _ ReceptiveAccount new.
+	Deposit register: 100 on: account2.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	
+	portfolio1 addAccount: account1.
+	portfolio2 addAccount: account2.
+	portfolio3 addPortfolio: portfolio1.
+	portfolio3 addPortfolio: portfolio2.
+	
+
+	self assert: 100 equals: (portfolio2 balance).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:46:51' prior: 50860046!
+test09
+
+	| portfolio1 portfolio2 portfolio3 account1 account2 |
+	
+	account1 _ ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+
+	account2 _ ReceptiveAccount new.
+	Deposit register: 100 on: account2.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	
+	portfolio1 addAccount: account1.
+	portfolio2 addAccount: account2.
+	
+	portfolio3 addPortfolio: portfolio1.
+	portfolio3 addPortfolio: portfolio2.
+	
+
+	self assert: 100 equals: (portfolio2 balance).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:46:54' prior: 50860065!
+test09
+
+	| portfolio1 portfolio2 portfolio3 account1 account2 |
+	
+	account1 _ ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+
+	account2 _ ReceptiveAccount new.
+	Deposit register: 100 on: account2.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	
+	portfolio1 addAccount: account1.
+	portfolio2 addAccount: account2.
+	
+	portfolio3 addPortfolio: portfolio1.
+	portfolio3 addPortfolio: portfolio2.
+
+	self assert: 100 equals: (portfolio2 balance).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:46:58' prior: 50860084!
+test09
+
+	| portfolio1 portfolio2 portfolio3 account1 account2 |
+	
+	account1 _ ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+
+	account2 _ ReceptiveAccount new.
+	Deposit register: 100 on: account2.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	
+	portfolio1 addAccount: account1.
+	portfolio2 addAccount: account2.
+	
+	portfolio3 addPortfolio: portfolio1.
+	portfolio3 addPortfolio: portfolio2.
+
+	self assert: 100 equals: (portfolio3 balance).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:47:03' prior: 50860103!
+test09
+
+	| portfolio1 portfolio2 portfolio3 account1 account2 |
+	
+	account1 _ ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+
+	account2 _ ReceptiveAccount new.
+	Deposit register: 50 on: account2.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	
+	portfolio1 addAccount: account1.
+	portfolio2 addAccount: account2.
+	
+	portfolio3 addPortfolio: portfolio1.
+	portfolio3 addPortfolio: portfolio2.
+
+	self assert: 100 equals: (portfolio3 balance).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:47:06' prior: 50860122!
+test09
+
+	| portfolio1 portfolio2 portfolio3 account1 account2 |
+	
+	account1 _ ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+
+	account2 _ ReceptiveAccount new.
+	Deposit register: 50 on: account2.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	
+	portfolio1 addAccount: account1.
+	portfolio2 addAccount: account2.
+	
+	portfolio3 addPortfolio: portfolio1.
+	portfolio3 addPortfolio: portfolio2.
+
+	self assert: 150 equals: (portfolio3 balance).! !
+
+!testRun: #PortfolioTest #test09 stamp: 'IAR 10/9/2021 23:47:12'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:48:44' prior: 50859985!
+balance
+	
+	| accountsBalance portfoliosBalance |
+	
+	accountsBalance _ accounts sum: [ :account | account balance ] ifEmpty: [ 0 ].
+	portfoliosBalance _ portfolios sum: [ :portfolio | portfolio balance] ifEmpty: [ 0 ].
+			
+	^ accountsBalance + portfoliosBalance.! !
+
+!testRun: #PortfolioTest #test01 stamp: 'IAR 10/9/2021 23:48:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'IAR 10/9/2021 23:48:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'IAR 10/9/2021 23:48:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'IAR 10/9/2021 23:48:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'IAR 10/9/2021 23:48:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'IAR 10/9/2021 23:48:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'IAR 10/9/2021 23:48:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'IAR 10/9/2021 23:48:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'IAR 10/9/2021 23:48:46'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:57:51'!
+test021
+
+	| portfolio account transaction |
+	account _ ReceptiveAccount new.
+	transaction _ Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addAccount: account.
+
+	self assert: (portfolio hasRegistered: transaction).! !
+
+!methodRemoval: PortfolioTest #test06 stamp: 'IAR 10/9/2021 23:57:51'!
+test06
+
+	| portfolio account transaction |
+	account _ ReceptiveAccount new.
+	transaction _ Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addAccount: account.
+
+	self assert: (portfolio hasRegistered: transaction).!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:01:21'!
+test10
+
+	| portfolio transaction account1 account2 transaction1 transaction2 |
+	
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	transaction1 _ Deposit register: 100 on: account1.
+	transaction2 _ Deposit register: 50 on: account2.
+	
+	portfolio _ Portfolio new.
+	portfolio addAccount: account1.
+	portfolio addAccount: account2.
+
+	self assert: (portfolio hasRegistered: transaction).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:02:03' prior: 50860215!
+test10
+
+	| portfolio account1 account2 transaction1 transaction2 |
+	
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	transaction1 _ Deposit register: 100 on: account1.
+	transaction2 _ Deposit register: 50 on: account2.
+	
+	portfolio _ Portfolio new.
+	portfolio addAccount: account1.
+	portfolio addAccount: account2.
+
+	self assert: (portfolio hasRegistered: transaction2).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:02:21' prior: 50860231!
+test10
+
+	| portfolio account1 account2 transaction2 transaction |
+	
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	Deposit register: 100 on: account1.
+	transaction _ Deposit register: 50 on: account2.
+	
+	portfolio _ Portfolio new.
+	portfolio addAccount: account1.
+	portfolio addAccount: account2.
+
+	self assert: (portfolio hasRegistered: transaction2).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:02:30' prior: 50860247!
+test10
+
+	| portfolio account1 account2 transaction |
+	
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	Deposit register: 100 on: account1.
+	transaction _ Deposit register: 50 on: account2.
+	
+	portfolio _ Portfolio new.
+	portfolio addAccount: account1.
+	portfolio addAccount: account2.
+
+	self assert: (portfolio hasRegistered: transaction).! !
+
+!testRun: #PortfolioTest #test10 stamp: 'IAR 10/10/2021 00:02:38'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:03:33' prior: 50859658!
+hasRegistered: aTransaction
+	
+	^accounts anySatisfy: [ : account | account hasRegistered: aTransaction].! !
+
+!testRun: #PortfolioTest #test01 stamp: 'IAR 10/10/2021 00:03:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'IAR 10/10/2021 00:03:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test021 stamp: 'IAR 10/10/2021 00:03:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'IAR 10/10/2021 00:03:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'IAR 10/10/2021 00:03:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'IAR 10/10/2021 00:03:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'IAR 10/10/2021 00:03:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'IAR 10/10/2021 00:03:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'IAR 10/10/2021 00:03:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'IAR 10/10/2021 00:03:34'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:05:41'!
+test11
+
+	| account1 account2 transaction portfolio1 portfolio2 |
+	
+	account1 _ ReceptiveAccount new.
+	
+	
+	Deposit register: 100 on: account1.
+	transaction _ Deposit register: 50 on: account2.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	
+	portfolio1 addAccount: account1.
+	portfolio2 addPortfolio: portfolio1.
+
+	self assert: (portfolio1 hasRegistered: transaction).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:05:56' prior: 50860309!
+test11
+
+	| account1 transaction portfolio1 portfolio2 |
+	
+	account1 _ ReceptiveAccount new.
+	
+	
+	Deposit register: 100 on: account1.
+	transaction _ Deposit register: 50 on: account1.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	
+	portfolio1 addAccount: account1.
+	portfolio2 addPortfolio: portfolio1.
+
+	self assert: (portfolio1 hasRegistered: transaction).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:06:02' prior: 50860325!
+test11
+
+	| account transaction portfolio1 portfolio2 |
+	
+	account _ ReceptiveAccount new.
+	
+	
+	Deposit register: 100 on: account.
+	transaction _ Deposit register: 50 on: account.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	
+	portfolio1 addAccount: account.
+	portfolio2 addPortfolio: portfolio1.
+
+	self assert: (portfolio1 hasRegistered: transaction).! !
+
+!testRun: #PortfolioTest #test11 stamp: 'IAR 10/10/2021 00:06:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test01 stamp: 'IAR 10/10/2021 00:06:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'IAR 10/10/2021 00:06:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test021 stamp: 'IAR 10/10/2021 00:06:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'IAR 10/10/2021 00:06:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'IAR 10/10/2021 00:06:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'IAR 10/10/2021 00:06:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'IAR 10/10/2021 00:06:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'IAR 10/10/2021 00:06:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'IAR 10/10/2021 00:06:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'IAR 10/10/2021 00:06:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'IAR 10/10/2021 00:06:04'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:06:11' prior: 50860340!
+test11
+
+	| account transaction portfolio1 portfolio2 |
+	
+	account _ ReceptiveAccount new.
+	
+	
+	Deposit register: 100 on: account.
+	transaction _ Deposit register: 50 on: account.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	
+	portfolio1 addAccount: account.
+	portfolio2 addPortfolio: portfolio1.
+
+	self assert: (portfolio2 hasRegistered: transaction).! !
+
+!testRun: #PortfolioTest #test11 stamp: 'IAR 10/10/2021 00:06:12'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:07:41' prior: 50860279!
+hasRegistered: aTransaction
+	
+	^(accounts anySatisfy: [ : account | account hasRegistered: aTransaction])
+		or: [ portfolios anySatisfy: [ : portfolio | portfolio hasRegistered: aTransaction]].! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:07:47' prior: 50860401!
+hasRegistered: aTransaction
+	
+	^(accounts anySatisfy: [ : account | account hasRegistered: aTransaction])
+		or: [ portfolios anySatisfy: [ : portfolio | portfolio hasRegistered: aTransaction ]].! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:07:48' prior: 50860411!
+hasRegistered: aTransaction
+	
+	^(accounts anySatisfy: [ : account | account hasRegistered: aTransaction])
+		or: [ portfolios anySatisfy: [ : portfolio | portfolio hasRegistered: aTransaction ] ].! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:07:52' prior: 50860421!
+hasRegistered: aTransaction
+	
+	^(accounts anySatisfy: [ : account | account hasRegistered: aTransaction ])
+		or: [ portfolios anySatisfy: [ : portfolio | portfolio hasRegistered: aTransaction ] ].! !
+
+!testRun: #PortfolioTest #test01 stamp: 'IAR 10/10/2021 00:07:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'IAR 10/10/2021 00:07:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test021 stamp: 'IAR 10/10/2021 00:07:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'IAR 10/10/2021 00:07:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'IAR 10/10/2021 00:07:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'IAR 10/10/2021 00:07:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'IAR 10/10/2021 00:07:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'IAR 10/10/2021 00:07:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'IAR 10/10/2021 00:07:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'IAR 10/10/2021 00:07:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'IAR 10/10/2021 00:07:52'!
+PASSED!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/cuis-clean/Packages/TerseGuide.pck.st----!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:11:11'!
+test12
+
+	| portfolio account expectedTransactions transaction |
+	account _ ReceptiveAccount new.
+	transaction _ Deposit register: 100 on: account.
+	
+	
+	portfolio _ Portfolio new.
+	portfolio addAccount: account.
+
+	expectedTransactions _ OrderedCollection with: transaction.
+	self assert: expectedTransactions equals: portfolio transactions.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:11:16' prior: 50863393!
+test12
+
+	| portfolio account1 expectedTransactions transaction |
+	account1 _ ReceptiveAccount new.
+	transaction _ Deposit register: 100 on: account1.
+	
+	
+	portfolio _ Portfolio new.
+	portfolio addAccount: account1.
+
+	expectedTransactions _ OrderedCollection with: transaction.
+	self assert: expectedTransactions equals: portfolio transactions.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:11:50' prior: 50863407!
+test12
+
+	| portfolio account1 expectedTransactions transaction account2 |
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	transaction _ Deposit register: 100 on: account1.
+	
+	
+	portfolio _ Portfolio new.
+	portfolio addAccount: account1.
+
+	expectedTransactions _ OrderedCollection with: transaction.
+	self assert: expectedTransactions equals: portfolio transactions.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:12:03' prior: 50863421!
+test12
+
+	| portfolio account1 expectedTransactions transaction1 account2 |
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	transaction1 _ Deposit register: 100 on: account1.
+	
+	
+	portfolio _ Portfolio new.
+	portfolio addAccount: account1.
+
+	expectedTransactions _ OrderedCollection with: transaction1.
+	self assert: expectedTransactions equals: portfolio transactions.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:12:51' prior: 50863437!
+test12
+
+	| portfolio account1 expectedTransactions transaction1 account2 transaction2 |
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	transaction1 _ Deposit register: 100 on: account1.
+	transaction2 _ Deposit register: 100 on: account2.	
+	
+	portfolio _ Portfolio new.
+	portfolio addAccount: account1.
+	portfolio addAccount: account2.
+
+	expectedTransactions _ OrderedCollection with: transaction1.
+	self assert: expectedTransactions equals: portfolio transactions.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:13:06' prior: 50863453!
+test12
+
+	| portfolio account1 expectedTransactions transaction1 account2 transaction2 |
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	transaction1 _ Deposit register: 100 on: account1.
+	transaction2 _ Deposit register: 100 on: account2.	
+	
+	portfolio _ Portfolio new.
+	portfolio addAccount: account1.
+	portfolio addAccount: account2.
+
+	expectedTransactions _ OrderedCollection with: transaction1 with: transaction2.
+	self assert: expectedTransactions equals: portfolio transactions.! !
+
+!testRun: #PortfolioTest #test12 stamp: 'IAR 10/10/2021 00:13:09'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:19:37' prior: 50859669!
+transactions
+	
+	accounts ifEmpty: [^OrderedCollection new].
+	^accounts do: [ : account | | allTransactions |  allTransactions addAll: account transactions ].! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:20:32' prior: 50863494!
+transactions
+	
+	| allTransactions |
+	
+	allTransactions _ OrderedCollection new.
+	accounts do: [ : account |  allTransactions addAll: account transactions ].
+	^ allTransactions.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:20:39' prior: 50863502!
+transactions
+	
+	| allTransactions |
+	
+	allTransactions _ OrderedCollection new.
+	accounts do: [ : account |  allTransactions addAll: account transactions ].
+	
+	^ allTransactions.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:20:42' prior: 50863511!
+transactions
+	
+	| allTransactions |
+	
+	allTransactions _ OrderedCollection new.
+	
+	
+	accounts do: [ : account |  allTransactions addAll: account transactions ].
+	
+	^ allTransactions.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:20:46' prior: 50863520!
+transactions
+	
+	| allTransactions |
+	
+	
+	allTransactions _ OrderedCollection new.
+	
+	
+	
+	accounts do: [ : account |  allTransactions addAll: account transactions ].
+	
+	^ allTransactions.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:20:49' prior: 50863529!
+transactions
+	
+	| allTransactions |
+	
+	
+	allTransactions _ OrderedCollection new.
+	accounts do: [ : account |  allTransactions addAll: account transactions ].
+	
+	^ allTransactions.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:20:51' prior: 50863538!
+transactions
+	
+	| allTransactions |
+	
+	allTransactions _ OrderedCollection new.
+	accounts do: [ : account |  allTransactions addAll: account transactions ].
+	
+	^ allTransactions.! !
+
+!testRun: #PortfolioTest #test01 stamp: 'IAR 10/10/2021 00:20:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'IAR 10/10/2021 00:20:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test021 stamp: 'IAR 10/10/2021 00:20:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'IAR 10/10/2021 00:20:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'IAR 10/10/2021 00:20:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'IAR 10/10/2021 00:20:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'IAR 10/10/2021 00:20:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'IAR 10/10/2021 00:20:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'IAR 10/10/2021 00:20:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'IAR 10/10/2021 00:20:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'IAR 10/10/2021 00:20:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'IAR 10/10/2021 00:20:54'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:22:31'!
+test13
+
+	| portfolio1 account1 expectedTransactions transaction1 account2 transaction2 portfolio2 |
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	transaction1 _ Deposit register: 100 on: account1.
+	transaction2 _ Deposit register: 100 on: account2.	
+	
+	portfolio1 _ Portfolio new.
+	portfolio1 addAccount: account1.
+	portfolio2 addAccount: account2.
+
+	expectedTransactions _ OrderedCollection with: transaction1 with: transaction2.
+	self assert: expectedTransactions equals: portfolio1 transactions.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:23:09' prior: 50863584!
+test13
+
+	| portfolio1 account1 expectedTransactions transaction1 account2 transaction2 portfolio2 |
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	transaction1 _ Deposit register: 100 on: account1.
+	transaction2 _ Deposit register: 100 on: account2.	
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	
+	portfolio1 addAccount: account1.
+	portfolio2 addAccount: account2.
+	
+	portfolio1 addPortfolio: portfolio2.
+
+	expectedTransactions _ OrderedCollection with: transaction1 with: transaction2.
+	self assert: expectedTransactions equals: portfolio1 transactions.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:23:38' prior: 50863604!
+test13
+
+	| portfolio1 account1 expectedTransactions transaction1 account2 transaction2 portfolio2 |
+	
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	transaction1 _ Deposit register: 100 on: account1.
+	transaction2 _ Deposit register: 100 on: account2.	
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	
+	portfolio1 addAccount: account1.
+	portfolio2 addAccount: account2.
+	
+	portfolio1 addPortfolio: portfolio2.
+
+	expectedTransactions _ OrderedCollection with: transaction1 with: transaction2.
+	self assert: expectedTransactions equals: portfolio1 transactions.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:24:07' prior: 50863626!
+test13
+
+	| portfolio1 account1 expectedTransactions transaction1 account2 transaction2 portfolio2 |
+	
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	transaction1 _ Deposit register: 100 on: account1.
+	transaction2 _ Deposit register: 100 on: account2.	
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	
+	portfolio1 addAccount: account1.
+	portfolio2 addAccount: account2.
+	
+	portfolio2 addPortfolio: portfolio1.
+
+	expectedTransactions _ OrderedCollection with: transaction1 with: transaction2.
+	self assert: expectedTransactions equals: portfolio1 transactions.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:24:26' prior: 50863648!
+test13
+
+	| portfolio1 account1 expectedTransactions transaction1 account2 transaction2 portfolio2 |
+	
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	transaction1 _ Deposit register: 100 on: account1.
+	transaction2 _ Deposit register: 100 on: account2.	
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	
+	portfolio1 addAccount: account1.
+	portfolio2 addAccount: account2.
+	
+	portfolio2 addPortfolio: portfolio1.
+
+	expectedTransactions _ OrderedCollection with: transaction1 with: transaction2.
+	self assert: expectedTransactions equals: portfolio2 transactions.! !
+
+!testRun: #PortfolioTest #test13 stamp: 'IAR 10/10/2021 00:24:28'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:25:19' prior: 50863547!
+transactions
+	
+	| allTransactions |
+	
+	allTransactions _ OrderedCollection new.
+	accounts do: [ :account |  allTransactions addAll: account transactions ].
+	portfolios do: [ :portfolio |  allTransactions addAll: portfolio transactions ].
+	^ allTransactions.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:25:21' prior: 50863695!
+transactions
+	
+	| allTransactions |
+	
+	allTransactions _ OrderedCollection new.
+	accounts do: [ :account |  allTransactions addAll: account transactions ].
+	
+	portfolios do: [ :portfolio |  allTransactions addAll: portfolio transactions ].
+	^ allTransactions.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:25:22' prior: 50863707!
+transactions
+	
+	| allTransactions |
+	
+	allTransactions _ OrderedCollection new.
+	accounts do: [ :account |  allTransactions addAll: account transactions ].
+	
+	portfolios do: [ :portfolio |  allTransactions addAll: portfolio transactions ].
+	
+	^ allTransactions.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:25:27' prior: 50863719!
+transactions
+	
+	| allTransactions |
+	
+	allTransactions _ OrderedCollection new.
+	
+	accounts do: [ :account |  allTransactions addAll: account transactions ].
+	portfolios do: [ :portfolio |  allTransactions addAll: portfolio transactions ].
+	
+	^ allTransactions.! !
+
+!testRun: #PortfolioTest #test01 stamp: 'IAR 10/10/2021 00:25:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'IAR 10/10/2021 00:25:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test021 stamp: 'IAR 10/10/2021 00:25:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'IAR 10/10/2021 00:25:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'IAR 10/10/2021 00:25:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'IAR 10/10/2021 00:25:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'IAR 10/10/2021 00:25:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'IAR 10/10/2021 00:25:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'IAR 10/10/2021 00:25:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'IAR 10/10/2021 00:25:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'IAR 10/10/2021 00:25:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'IAR 10/10/2021 00:25:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'IAR 10/10/2021 00:25:33'!
+FAILURE!
+
+!testRun: #PortfolioTest #test13 stamp: 'IAR 10/10/2021 00:25:33'!
+FAILURE!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:26:21' prior: 50863670!
+test13
+
+	| portfolio1 account1 expectedTransactions transaction1 account2 transaction2 portfolio2 |
+	
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	transaction1 _ Deposit register: 100 on: account1.
+	transaction2 _ Deposit register: 100 on: account2.	
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	
+	portfolio1 addAccount: account1.
+	portfolio2 addAccount: account2.
+	
+	portfolio2 addPortfolio: portfolio1.
+
+	expectedTransactions _ OrderedCollection with: transaction2 with: transaction1.
+	self assert: expectedTransactions equals: portfolio2 transactions.! !
+
+!testRun: #PortfolioTest #test13 stamp: 'IAR 10/10/2021 00:26:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test01 stamp: 'IAR 10/10/2021 00:26:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'IAR 10/10/2021 00:26:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test021 stamp: 'IAR 10/10/2021 00:26:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'IAR 10/10/2021 00:26:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'IAR 10/10/2021 00:26:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'IAR 10/10/2021 00:26:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'IAR 10/10/2021 00:26:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'IAR 10/10/2021 00:26:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'IAR 10/10/2021 00:26:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'IAR 10/10/2021 00:26:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'IAR 10/10/2021 00:26:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'IAR 10/10/2021 00:26:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'IAR 10/10/2021 00:26:22'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:26:32'!
+test06
+
+	| portfolio account transaction |
+	account _ ReceptiveAccount new.
+	transaction _ Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addAccount: account.
+
+	self assert: (portfolio hasRegistered: transaction).! !
+
+!methodRemoval: PortfolioTest #test021 stamp: 'IAR 10/10/2021 00:26:32'!
+test021
+
+	| portfolio account transaction |
+	account _ ReceptiveAccount new.
+	transaction _ Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addAccount: account.
+
+	self assert: (portfolio hasRegistered: transaction).!
+
+----SNAPSHOT----(10 October 2021 00:27:10) CuisUniversity-4532.image priorSource: 16885703!

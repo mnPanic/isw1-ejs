@@ -56,7 +56,7 @@ test05
 	expectedTransactions _ OrderedCollection with: transaction.
 	self assert: expectedTransactions equals: portfolio transactions.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 21:19:52'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:26:32'!
 test06
 
 	| portfolio account transaction |
@@ -83,21 +83,119 @@ test07
 
 	self assert: 150 equals: portfolio balance.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 21:25:50'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:38:34'!
 test08
 
-	| portfolio account1 account2 expectedTransactions transaction1 transaction2 |
+	| portfolio1 portfolio2 account |
+	
+	account _ ReceptiveAccount new.
+	Deposit register: 100 on: account.
+
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio1 addAccount: account.
+	portfolio2 addPortfolio: portfolio1.
+	
+
+	self assert: 100 equals: (portfolio2 balance).! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:47:06'!
+test09
+
+	| portfolio1 portfolio2 portfolio3 account1 account2 |
+	
+	account1 _ ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+
+	account2 _ ReceptiveAccount new.
+	Deposit register: 50 on: account2.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	
+	portfolio1 addAccount: account1.
+	portfolio2 addAccount: account2.
+	
+	portfolio3 addPortfolio: portfolio1.
+	portfolio3 addPortfolio: portfolio2.
+
+	self assert: 150 equals: (portfolio3 balance).! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:02:30'!
+test10
+
+	| portfolio account1 account2 transaction |
+	
 	account1 _ ReceptiveAccount new.
 	account2 _ ReceptiveAccount new.
-	transaction1 _ Deposit register: 100 on: account1.
-	transaction2 _ Deposit register: 50 on: account2.
+	
+	Deposit register: 100 on: account1.
+	transaction _ Deposit register: 50 on: account2.
+	
+	portfolio _ Portfolio new.
+	portfolio addAccount: account1.
+	portfolio addAccount: account2.
 
+	self assert: (portfolio hasRegistered: transaction).! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:06:11'!
+test11
+
+	| account transaction portfolio1 portfolio2 |
+	
+	account _ ReceptiveAccount new.
+	
+	
+	Deposit register: 100 on: account.
+	transaction _ Deposit register: 50 on: account.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	
+	portfolio1 addAccount: account.
+	portfolio2 addPortfolio: portfolio1.
+
+	self assert: (portfolio2 hasRegistered: transaction).! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:13:06'!
+test12
+
+	| portfolio account1 expectedTransactions transaction1 account2 transaction2 |
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	transaction1 _ Deposit register: 100 on: account1.
+	transaction2 _ Deposit register: 100 on: account2.	
+	
 	portfolio _ Portfolio new.
 	portfolio addAccount: account1.
 	portfolio addAccount: account2.
 
 	expectedTransactions _ OrderedCollection with: transaction1 with: transaction2.
 	self assert: expectedTransactions equals: portfolio transactions.! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:26:21'!
+test13
+
+	| portfolio1 account1 expectedTransactions transaction1 account2 transaction2 portfolio2 |
+	
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	transaction1 _ Deposit register: 100 on: account1.
+	transaction2 _ Deposit register: 100 on: account2.	
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	
+	portfolio1 addAccount: account1.
+	portfolio2 addAccount: account2.
+	
+	portfolio2 addPortfolio: portfolio1.
+
+	expectedTransactions _ OrderedCollection with: transaction2 with: transaction1.
+	self assert: expectedTransactions equals: portfolio2 transactions.! !
 
 
 !classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio'!
@@ -300,7 +398,7 @@ for: aValue
 
 !classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
 Object subclass: #Portfolio
-	instanceVariableNames: 'accounts'
+	instanceVariableNames: 'accounts portfolios'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
@@ -310,27 +408,44 @@ addAccount: anAccount
 	
 	accounts add: anAccount! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 21:23:46'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:39:40'!
+addPortfolio: aPortfolio 
+	
+	portfolios add: aPortfolio.! !
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:48:44'!
 balance
 	
-	^accounts sum: [ :account | account balance ] ifEmpty: [ 0 ].! !
+	| accountsBalance portfoliosBalance |
+	
+	accountsBalance _ accounts sum: [ :account | account balance ] ifEmpty: [ 0 ].
+	portfoliosBalance _ portfolios sum: [ :portfolio | portfolio balance] ifEmpty: [ 0 ].
+			
+	^ accountsBalance + portfoliosBalance.! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 21:20:31'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:07:52'!
 hasRegistered: aTransaction
 	
-	accounts isEmpty ifTrue: [^false].
-	^accounts first hasRegistered: aTransaction.! !
+	^(accounts anySatisfy: [ : account | account hasRegistered: aTransaction ])
+		or: [ portfolios anySatisfy: [ : portfolio | portfolio hasRegistered: aTransaction ] ].! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 21:15:24'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:40:05'!
 initialize
 
-	accounts _ OrderedCollection new.! !
+	accounts _ OrderedCollection new.
+	portfolios _ OrderedCollection new.! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 21:27:46'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:25:27'!
 transactions
 	
-	accounts ifEmpty: [^OrderedCollection new].
-	^accounts first transactions.! !
+	| allTransactions |
+	
+	allTransactions _ OrderedCollection new.
+	
+	accounts do: [ :account |  allTransactions addAll: account transactions ].
+	portfolios do: [ :portfolio |  allTransactions addAll: portfolio transactions ].
+	
+	^ allTransactions.! !
 
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio'!
