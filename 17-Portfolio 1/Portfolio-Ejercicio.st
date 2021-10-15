@@ -31,7 +31,7 @@ test03
 
 	self assert: portfolio transactions isEmpty.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 21:13:40'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:36:44'!
 test04
 
 	| portfolio account |
@@ -39,11 +39,11 @@ test04
 	Deposit register: 100 on: account.
 	
 	portfolio _ Portfolio new.
-	portfolio addAccount: account.
+	portfolio addFinancialService: account.
 
 	self assert: 100 equals: portfolio balance.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 21:18:01'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:35:57'!
 test05
 
 	| portfolio account expectedTransactions transaction |
@@ -51,12 +51,12 @@ test05
 	transaction _ Deposit register: 100 on: account.
 	
 	portfolio _ Portfolio new.
-	portfolio addAccount: account.
+	portfolio addFinancialService: account.
 
 	expectedTransactions _ OrderedCollection with: transaction.
 	self assert: expectedTransactions equals: portfolio transactions.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:26:32'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:36:01'!
 test06
 
 	| portfolio account transaction |
@@ -64,11 +64,11 @@ test06
 	transaction _ Deposit register: 100 on: account.
 	
 	portfolio _ Portfolio new.
-	portfolio addAccount: account.
+	portfolio addFinancialService: account.
 
 	self assert: (portfolio hasRegistered: transaction).! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 21:24:11'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:36:08'!
 test07
 
 	| portfolio account1 account2 |
@@ -78,12 +78,12 @@ test07
 	Deposit register: 50 on: account2.
 
 	portfolio _ Portfolio new.
-	portfolio addAccount: account1.
-	portfolio addAccount: account2.
+	portfolio addFinancialService: account1.
+	portfolio addFinancialService: account2.
 
 	self assert: 150 equals: portfolio balance.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:38:34'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:36:12'!
 test08
 
 	| portfolio1 portfolio2 account |
@@ -93,13 +93,13 @@ test08
 
 	portfolio1 _ Portfolio new.
 	portfolio2 _ Portfolio new.
-	portfolio1 addAccount: account.
-	portfolio2 addPortfolio: portfolio1.
+	portfolio1 addFinancialService: account.
+	portfolio2 addFinancialService: portfolio1.
 	
 
 	self assert: 100 equals: (portfolio2 balance).! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:47:06'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:36:17'!
 test09
 
 	| portfolio1 portfolio2 portfolio3 account1 account2 |
@@ -114,15 +114,15 @@ test09
 	portfolio2 _ Portfolio new.
 	portfolio3 _ Portfolio new.
 	
-	portfolio1 addAccount: account1.
-	portfolio2 addAccount: account2.
+	portfolio1 addFinancialService: account1.
+	portfolio2 addFinancialService: account2.
 	
-	portfolio3 addPortfolio: portfolio1.
-	portfolio3 addPortfolio: portfolio2.
+	portfolio3 addFinancialService: portfolio1.
+	portfolio3 addFinancialService: portfolio2.
 
 	self assert: 150 equals: (portfolio3 balance).! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:02:30'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:36:20'!
 test10
 
 	| portfolio account1 account2 transaction |
@@ -134,12 +134,12 @@ test10
 	transaction _ Deposit register: 50 on: account2.
 	
 	portfolio _ Portfolio new.
-	portfolio addAccount: account1.
-	portfolio addAccount: account2.
+	portfolio addFinancialService: account1.
+	portfolio addFinancialService: account2.
 
 	self assert: (portfolio hasRegistered: transaction).! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:06:11'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:36:26'!
 test11
 
 	| account transaction portfolio1 portfolio2 |
@@ -153,12 +153,12 @@ test11
 	portfolio1 _ Portfolio new.
 	portfolio2 _ Portfolio new.
 	
-	portfolio1 addAccount: account.
-	portfolio2 addPortfolio: portfolio1.
+	portfolio1 addFinancialService: account.
+	portfolio2 addFinancialService: portfolio1.
 
 	self assert: (portfolio2 hasRegistered: transaction).! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:13:06'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:36:30'!
 test12
 
 	| portfolio account1 expectedTransactions transaction1 account2 transaction2 |
@@ -169,13 +169,13 @@ test12
 	transaction2 _ Deposit register: 100 on: account2.	
 	
 	portfolio _ Portfolio new.
-	portfolio addAccount: account1.
-	portfolio addAccount: account2.
+	portfolio addFinancialService: account1.
+	portfolio addFinancialService: account2.
 
 	expectedTransactions _ OrderedCollection with: transaction1 with: transaction2.
 	self assert: expectedTransactions equals: portfolio transactions.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:26:21'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:36:35'!
 test13
 
 	| portfolio1 account1 expectedTransactions transaction1 account2 transaction2 portfolio2 |
@@ -189,10 +189,10 @@ test13
 	portfolio1 _ Portfolio new.
 	portfolio2 _ Portfolio new.
 	
-	portfolio1 addAccount: account1.
-	portfolio2 addAccount: account2.
+	portfolio1 addFinancialService: account1.
+	portfolio2 addFinancialService: account2.
 	
-	portfolio2 addPortfolio: portfolio1.
+	portfolio2 addFinancialService: portfolio1.
 
 	expectedTransactions _ OrderedCollection with: transaction2 with: transaction1.
 	self assert: expectedTransactions equals: portfolio2 transactions.! !
@@ -302,7 +302,7 @@ value
 	self subclassResponsibility ! !
 
 
-!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 20:48:16'!
+!AccountTransaction methodsFor: 'balance - private' stamp: 'MP 10/7/2021 20:48:16'!
 applyToBalance: aBalance
 
 	self subclassResponsibility ! !
@@ -343,7 +343,7 @@ value
 	^ value! !
 
 
-!Deposit methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 20:49:19'!
+!Deposit methodsFor: 'balance - private' stamp: 'MP 10/7/2021 20:49:19'!
 applyToBalance: aBalance
 
 	^ aBalance + value.! !
@@ -379,7 +379,7 @@ value
 	^ value! !
 
 
-!Withdraw methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 20:48:38'!
+!Withdraw methodsFor: 'balance - private' stamp: 'MP 10/7/2021 20:48:38'!
 applyToBalance: aBalance
 
 	^aBalance - value.! !
@@ -396,60 +396,76 @@ for: aValue
 	^ self new initializeFor: aValue ! !
 
 
-!classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
-Object subclass: #Portfolio
-	instanceVariableNames: 'accounts portfolios'
+!classDefinition: #FinancialService category: 'Portfolio-Ejercicio'!
+Object subclass: #FinancialService
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MP 10/7/2021 21:15:00'!
-addAccount: anAccount 
-	
-	accounts add: anAccount! !
+!FinancialService methodsFor: 'balance' stamp: 'MP 10/14/2021 21:33:26'!
+balance
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:39:40'!
-addPortfolio: aPortfolio 
-	
-	portfolios add: aPortfolio.! !
+	self subclassResponsibility ! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:48:44'!
+
+!FinancialService methodsFor: 'transactions' stamp: 'MP 10/14/2021 21:34:09'!
+transactions
+
+	self subclassResponsibility ! !
+
+
+!FinancialService methodsFor: 'testing' stamp: 'MP 10/14/2021 21:33:57'!
+hasRegistered: aTransaction
+
+	self subclassResponsibility ! !
+
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
+FinancialService subclass: #Portfolio
+	instanceVariableNames: 'financialServices'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!Portfolio methodsFor: 'balance' stamp: 'MP 10/14/2021 21:37:43'!
 balance
 	
-	| accountsBalance portfoliosBalance |
-	
-	accountsBalance _ accounts sum: [ :account | account balance ] ifEmpty: [ 0 ].
-	portfoliosBalance _ portfolios sum: [ :portfolio | portfolio balance] ifEmpty: [ 0 ].
-			
-	^ accountsBalance + portfoliosBalance.! !
+	^financialServices sum: [ :financialService | financialService balance ] ifEmpty: [ 0 ].! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:07:52'!
-hasRegistered: aTransaction
-	
-	^(accounts anySatisfy: [ : account | account hasRegistered: aTransaction ])
-		or: [ portfolios anySatisfy: [ : portfolio | portfolio hasRegistered: aTransaction ] ].! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/9/2021 23:40:05'!
-initialize
-
-	accounts _ OrderedCollection new.
-	portfolios _ OrderedCollection new.! !
-
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'IAR 10/10/2021 00:25:27'!
+!Portfolio methodsFor: 'transactions' stamp: 'MP 10/14/2021 21:38:20'!
 transactions
 	
 	| allTransactions |
 	
 	allTransactions _ OrderedCollection new.
-	
-	accounts do: [ :account |  allTransactions addAll: account transactions ].
-	portfolios do: [ :portfolio |  allTransactions addAll: portfolio transactions ].
+
+	financialServices do: [ :financialService |  allTransactions addAll: financialService transactions ].
 	
 	^ allTransactions.! !
 
+
+!Portfolio methodsFor: 'accessing' stamp: 'MP 10/14/2021 21:34:56'!
+addFinancialService: aFinancialService 
+	
+	financialServices add: aFinancialService! !
+
+
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/14/2021 21:38:03'!
+hasRegistered: aTransaction
+	
+	^financialServices anySatisfy: [ :financialService | financialService hasRegistered: aTransaction ]! !
+
+
+!Portfolio methodsFor: 'initialization' stamp: 'MP 10/14/2021 21:35:17'!
+initialize
+
+	financialServices _ OrderedCollection new.! !
+
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio'!
-Object subclass: #ReceptiveAccount
+FinancialService subclass: #ReceptiveAccount
 	instanceVariableNames: 'transactions'
 	classVariableNames: ''
 	poolDictionaries: ''

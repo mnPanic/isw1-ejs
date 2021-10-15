@@ -2089,3 +2089,611 @@ test021
 	self assert: (portfolio hasRegistered: transaction).!
 
 ----SNAPSHOT----(10 October 2021 00:27:10) CuisUniversity-4532.image priorSource: 16885703!
+
+----STARTUP---- (14 October 2021 21:31:23) as /home/mnpanic/Documents/dc/ing1/cuis/cuis-portfolio-1/CuisUniversity-4532.image!
+
+
+Object subclass: #FinancialService
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #FinancialService category: 'Portfolio-Ejercicio' stamp: 'MP 10/14/2021 21:31:49'!
+Object subclass: #FinancialService
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+FinancialService subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'MP 10/14/2021 21:31:58'!
+FinancialService subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+FinancialService subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'MP 10/14/2021 21:32:04'!
+FinancialService subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!FinancialService methodsFor: 'no messages' stamp: 'MP 10/14/2021 21:33:26'!
+balance
+
+	self subclassResponsibility ! !
+!FinancialService methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:33:34'!
+hasRegistered
+
+	self subclassResponsibility ! !
+!FinancialService methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:33:57'!
+hasRegistered: aTransaction
+
+	self subclassResponsibility ! !
+
+!methodRemoval: FinancialService #hasRegistered stamp: 'MP 10/14/2021 21:33:58'!
+hasRegistered
+
+	self subclassResponsibility !
+!FinancialService methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:34:09'!
+transactions
+
+	self subclassResponsibility ! !
+
+!testRun: #PortfolioTest #test01 stamp: 'MP 10/14/2021 21:34:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'MP 10/14/2021 21:34:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'MP 10/14/2021 21:34:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'MP 10/14/2021 21:34:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'MP 10/14/2021 21:34:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'MP 10/14/2021 21:34:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'MP 10/14/2021 21:34:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'MP 10/14/2021 21:34:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'MP 10/14/2021 21:34:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'MP 10/14/2021 21:34:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'MP 10/14/2021 21:34:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'MP 10/14/2021 21:34:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'MP 10/14/2021 21:34:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/14/2021 21:34:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/14/2021 21:34:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/14/2021 21:34:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/14/2021 21:34:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/14/2021 21:34:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/14/2021 21:34:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/14/2021 21:34:23'!
+PASSED!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'MP 10/14/2021 21:34:57'!
+FinancialService subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios financialServices'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:34:56'!
+addFinancialService: aFinancialService 
+	
+	financialServices add: aFinancialService! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:35:15' prior: 50860841 overrides: 16896425!
+initialize
+
+	accounts _ OrderedCollection new.
+	portfolios _ OrderedCollection new.
+	financialServices _ OrderedCollection new.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:35:17' prior: 50861045 overrides: 16896425!
+initialize
+
+	financialServices _ OrderedCollection new.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:35:41' prior: 50860448!
+test04
+
+	| portfolio account |
+	account _ ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addAccount: account.
+
+	self assert: 100 equals: portfolio balance.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:35:57' prior: 50860458!
+test05
+
+	| portfolio account expectedTransactions transaction |
+	account _ ReceptiveAccount new.
+	transaction _ Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account.
+
+	expectedTransactions _ OrderedCollection with: transaction.
+	self assert: expectedTransactions equals: portfolio transactions.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:36:01' prior: 50860472!
+test06
+
+	| portfolio account transaction |
+	account _ ReceptiveAccount new.
+	transaction _ Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account.
+
+	self assert: (portfolio hasRegistered: transaction).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:36:08' prior: 50860483!
+test07
+
+	| portfolio account1 account2 |
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account2.
+
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account1.
+	portfolio addFinancialService: account2.
+
+	self assert: 150 equals: portfolio balance.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:36:12' prior: 50860496!
+test08
+
+	| portfolio1 portfolio2 account |
+	
+	account _ ReceptiveAccount new.
+	Deposit register: 100 on: account.
+
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio1 addFinancialService: account.
+	portfolio2 addFinancialService: portfolio1.
+	
+
+	self assert: 100 equals: (portfolio2 balance).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:36:17' prior: 50860508!
+test09
+
+	| portfolio1 portfolio2 portfolio3 account1 account2 |
+	
+	account1 _ ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+
+	account2 _ ReceptiveAccount new.
+	Deposit register: 50 on: account2.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	
+	portfolio1 addFinancialService: account1.
+	portfolio2 addFinancialService: account2.
+	
+	portfolio3 addFinancialService: portfolio1.
+	portfolio3 addFinancialService: portfolio2.
+
+	self assert: 150 equals: (portfolio3 balance).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:36:20' prior: 50860527!
+test10
+
+	| portfolio account1 account2 transaction |
+	
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	Deposit register: 100 on: account1.
+	transaction _ Deposit register: 50 on: account2.
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account1.
+	portfolio addFinancialService: account2.
+
+	self assert: (portfolio hasRegistered: transaction).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:36:26' prior: 50860542!
+test11
+
+	| account transaction portfolio1 portfolio2 |
+	
+	account _ ReceptiveAccount new.
+	
+	
+	Deposit register: 100 on: account.
+	transaction _ Deposit register: 50 on: account.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	
+	portfolio1 addFinancialService: account.
+	portfolio2 addFinancialService: portfolio1.
+
+	self assert: (portfolio2 hasRegistered: transaction).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:36:30' prior: 50860557!
+test12
+
+	| portfolio account1 expectedTransactions transaction1 account2 transaction2 |
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	transaction1 _ Deposit register: 100 on: account1.
+	transaction2 _ Deposit register: 100 on: account2.	
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account1.
+	portfolio addFinancialService: account2.
+
+	expectedTransactions _ OrderedCollection with: transaction1 with: transaction2.
+	self assert: expectedTransactions equals: portfolio transactions.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:36:35' prior: 50860576!
+test13
+
+	| portfolio1 account1 expectedTransactions transaction1 account2 transaction2 portfolio2 |
+	
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	transaction1 _ Deposit register: 100 on: account1.
+	transaction2 _ Deposit register: 100 on: account2.	
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	
+	portfolio1 addFinancialService: account1.
+	portfolio2 addFinancialService: account2.
+	
+	portfolio2 addFinancialService: portfolio1.
+
+	expectedTransactions _ OrderedCollection with: transaction2 with: transaction1.
+	self assert: expectedTransactions equals: portfolio2 transactions.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:36:44' prior: 50861058!
+test04
+
+	| portfolio account |
+	account _ ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account.
+
+	self assert: 100 equals: portfolio balance.! !
+
+!methodRemoval: Portfolio #addPortfolio: stamp: 'MP 10/14/2021 21:36:54'!
+addPortfolio: aPortfolio 
+	
+	portfolios add: aPortfolio.!
+
+!methodRemoval: Portfolio #addAccount: stamp: 'MP 10/14/2021 21:36:55'!
+addAccount: anAccount 
+	
+	accounts add: anAccount!
+
+!testRun: #PortfolioTest #test01 stamp: 'MP 10/14/2021 21:37:04'!
+ERROR!
+
+!testRun: #PortfolioTest #test02 stamp: 'MP 10/14/2021 21:37:04'!
+ERROR!
+
+!testRun: #PortfolioTest #test03 stamp: 'MP 10/14/2021 21:37:04'!
+ERROR!
+
+!testRun: #PortfolioTest #test04 stamp: 'MP 10/14/2021 21:37:04'!
+ERROR!
+
+!testRun: #PortfolioTest #test05 stamp: 'MP 10/14/2021 21:37:04'!
+ERROR!
+
+!testRun: #PortfolioTest #test06 stamp: 'MP 10/14/2021 21:37:04'!
+ERROR!
+
+!testRun: #PortfolioTest #test07 stamp: 'MP 10/14/2021 21:37:04'!
+ERROR!
+
+!testRun: #PortfolioTest #test08 stamp: 'MP 10/14/2021 21:37:04'!
+ERROR!
+
+!testRun: #PortfolioTest #test09 stamp: 'MP 10/14/2021 21:37:04'!
+ERROR!
+
+!testRun: #PortfolioTest #test10 stamp: 'MP 10/14/2021 21:37:04'!
+ERROR!
+
+!testRun: #PortfolioTest #test11 stamp: 'MP 10/14/2021 21:37:04'!
+ERROR!
+
+!testRun: #PortfolioTest #test12 stamp: 'MP 10/14/2021 21:37:04'!
+ERROR!
+
+!testRun: #PortfolioTest #test13 stamp: 'MP 10/14/2021 21:37:04'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:37:43' prior: 50860820 overrides: 50860950!
+balance
+	
+	^financialServices sum: [ :financialService | financialService balance ] ifEmpty: [ 0 ].! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:37:49' prior: 50860831 overrides: 50860959!
+hasRegistered: aTransaction
+	
+	^(financialServices anySatisfy: [ : account | account hasRegistered: aTransaction ])
+		or: [ portfolios anySatisfy: [ : portfolio | portfolio hasRegistered: aTransaction ] ].! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:38:03' prior: 50861272 overrides: 50860959!
+hasRegistered: aTransaction
+	
+	^financialServices anySatisfy: [ :financialService | financialService hasRegistered: aTransaction ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MP 10/14/2021 21:38:20' prior: 50860847 overrides: 50860968!
+transactions
+	
+	| allTransactions |
+	
+	allTransactions _ OrderedCollection new.
+
+	financialServices do: [ :financialService |  allTransactions addAll: financialService transactions ].
+	
+	^ allTransactions.! !
+
+!testRun: #PortfolioTest #test01 stamp: 'MP 10/14/2021 21:38:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'MP 10/14/2021 21:38:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'MP 10/14/2021 21:38:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'MP 10/14/2021 21:38:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'MP 10/14/2021 21:38:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'MP 10/14/2021 21:38:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'MP 10/14/2021 21:38:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'MP 10/14/2021 21:38:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'MP 10/14/2021 21:38:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'MP 10/14/2021 21:38:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'MP 10/14/2021 21:38:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'MP 10/14/2021 21:38:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'MP 10/14/2021 21:38:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test01 stamp: 'MP 10/14/2021 21:38:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'MP 10/14/2021 21:38:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'MP 10/14/2021 21:38:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'MP 10/14/2021 21:38:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'MP 10/14/2021 21:38:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'MP 10/14/2021 21:38:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'MP 10/14/2021 21:38:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'MP 10/14/2021 21:38:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'MP 10/14/2021 21:38:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'MP 10/14/2021 21:38:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'MP 10/14/2021 21:38:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'MP 10/14/2021 21:38:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'MP 10/14/2021 21:38:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/14/2021 21:38:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/14/2021 21:38:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/14/2021 21:38:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/14/2021 21:38:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/14/2021 21:38:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/14/2021 21:38:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/14/2021 21:38:42'!
+PASSED!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'MP 10/14/2021 21:38:46'!
+FinancialService subclass: #Portfolio
+	instanceVariableNames: 'portfolios financialServices'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'MP 10/14/2021 21:38:46'!
+FinancialService subclass: #Portfolio
+	instanceVariableNames: 'financialServices'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+----SNAPSHOT----(14 October 2021 21:38:49) CuisUniversity-4532.image priorSource: 16936111!
+
+!testRun: #PortfolioTest #test01 stamp: 'MP 10/14/2021 21:38:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'MP 10/14/2021 21:38:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'MP 10/14/2021 21:38:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'MP 10/14/2021 21:38:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'MP 10/14/2021 21:38:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'MP 10/14/2021 21:38:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'MP 10/14/2021 21:38:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'MP 10/14/2021 21:38:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'MP 10/14/2021 21:38:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'MP 10/14/2021 21:38:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'MP 10/14/2021 21:38:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'MP 10/14/2021 21:38:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'MP 10/14/2021 21:38:51'!
+PASSED!
+!Portfolio methodsFor: 'initialization' stamp: 'MP 10/14/2021 21:40:54'!
+pepe
+! !
+
+!methodRemoval: Portfolio #pepe stamp: 'MP 10/14/2021 21:41:06'!
+pepe
+!
+
+!testRun: #PortfolioTest #test01 stamp: 'MP 10/14/2021 21:41:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'MP 10/14/2021 21:41:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'MP 10/14/2021 21:41:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'MP 10/14/2021 21:41:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'MP 10/14/2021 21:41:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'MP 10/14/2021 21:41:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'MP 10/14/2021 21:41:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'MP 10/14/2021 21:41:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'MP 10/14/2021 21:41:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'MP 10/14/2021 21:41:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'MP 10/14/2021 21:41:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'MP 10/14/2021 21:41:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'MP 10/14/2021 21:41:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/14/2021 21:41:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/14/2021 21:41:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/14/2021 21:41:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/14/2021 21:41:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/14/2021 21:41:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/14/2021 21:41:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/14/2021 21:41:46'!
+PASSED!
+
+----SNAPSHOT----(14 October 2021 21:41:50) CuisUniversity-4532.image priorSource: 16952107!
+
+----SNAPSHOT----(14 October 2021 21:42:57) CuisUniversity-4532.image priorSource: 16955184!
