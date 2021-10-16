@@ -304,6 +304,164 @@ test18AddingAccountIncludedInAnAncestorShouldFail
 
 ! !
 
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'AF 10/16/2021 18:23:11'!
+test19AddingDuplicatePortfolioToPortfolioShouldFail
+	| portfolioA portfolioB |
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	
+	portfolioA addFinancialService: portfolioB.
+		
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'AF 10/16/2021 18:28:15'!
+test20
+	| portfolioA |
+	portfolioA _ Portfolio new.	
+	
+	self should: [ portfolioA addFinancialService: portfolioA ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'AF 10/16/2021 18:37:15'!
+test21
+	| portfolioA portfolioB portfolioC |
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: portfolioB.
+	portfolioB addFinancialService: portfolioC.
+	
+	self should: [ portfolioA addFinancialService: portfolioC ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'AF 10/16/2021 18:53:55'!
+test22
+	| portfolioA portfolioB |
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	
+	portfolioB addFinancialService: portfolioA.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'AF 10/16/2021 19:40:00'!
+test23
+	| portfolioA portfolioB portfolioC |
+	
+	"paso de una"
+	
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: portfolioC.
+	portfolioB addFinancialService: portfolioC.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'AF 10/16/2021 19:28:06'!
+test24
+	| portfolioA portfolioB portfolioC portfolioR |
+	portfolioR _ Portfolio new.
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioR addFinancialService: portfolioC.
+	portfolioR addFinancialService: portfolioA.
+	portfolioB addFinancialService: portfolioC.
+	
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'AF 10/16/2021 19:34:22'!
+test25
+	| portfolioA portfolioB account |
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	account _ ReceptiveAccount new.
+	
+	portfolioA addFinancialService: account.
+	portfolioB addFinancialService: account.
+	
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'AF 10/16/2021 19:39:50'!
+test26
+	| portfolioA portfolioB account portfolioV portfolioW |
+	
+	"paso de una"
+	portfolioW _ Portfolio new.
+	portfolioV _ Portfolio new.
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	
+	account _ ReceptiveAccount new.
+	
+	portfolioW addFinancialService: account.
+	portfolioW addFinancialService: portfolioA.
+	portfolioV addFinancialService: portfolioA.
+	
+	portfolioB addFinancialService: account.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
 
 !classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio'!
 TestCase subclass: #ReceptiveAccountTest
@@ -531,6 +689,12 @@ hasRegistered: aTransaction
 
 	self subclassResponsibility ! !
 
+
+!FinancialService methodsFor: 'category-name' stamp: 'AF 10/16/2021 18:46:31'!
+containsPortfolio: aPortfolio
+ 
+	self subclassResponsibility.! !
+
 
 !classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
 FinancialService subclass: #Portfolio
@@ -557,20 +721,20 @@ transactions
 	^ allTransactions.! !
 
 
-!Portfolio methodsFor: 'accessing' stamp: 'AF 10/16/2021 16:50:34'!
+!Portfolio methodsFor: 'accessing' stamp: 'AF 10/16/2021 19:31:55'!
 addFinancialService: aFinancialService 
 	
-	(financialServices includes: aFinancialService) 
-		ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ].
+	(aFinancialService isKindOf: ReceptiveAccount ) ifTrue:[
+		(self roots anySatisfy: [ :root | root containsAccount: aFinancialService ])
+			ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ].
+	].
 		
-	(financialServices anySatisfy: [ :financialService | financialService containsAccount: aFinancialService]) 
-		ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ].
-	
-	(self roots anySatisfy: [ :root | root containsAccount: aFinancialService ])
-		ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ].
-	
-		
-	(aFinancialService isKindOf: Portfolio) ifTrue: [ aFinancialService yyy: self ].
+	(aFinancialService isKindOf: Portfolio) ifTrue:[
+		(self roots anySatisfy: [ :root | aFinancialService cannotBeAddedTo: root])
+			ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ].
+			
+		aFinancialService yyy: self
+ 	].
 	
 	financialServices add: aFinancialService.! !
 
@@ -592,6 +756,16 @@ initialize
 	financialServices _ OrderedCollection new.
 	parents _ OrderedCollection new. ! !
 
+
+!Portfolio methodsFor: 'category-name' stamp: 'AF 10/16/2021 19:20:06'!
+cannotBeAddedTo: aPortfolio 
+	^(aPortfolio containsPortfolio: self) or: [financialServices anySatisfy: [ :financialService | financialService cannotBeAddedTo: aPortfolio]].! !
+
+!Portfolio methodsFor: 'category-name' stamp: 'AF 10/16/2021 18:49:34'!
+containsPortfolio: aPortfolio
+
+	^(aPortfolio = self) 
+		or: [financialServices anySatisfy: [ :aFinancialService | aFinancialService containsPortfolio: aPortfolio]].! !
 
 !Portfolio methodsFor: 'category-name' stamp: 'AF 10/16/2021 17:00:18'!
 roots
@@ -658,8 +832,19 @@ containsAccount: aReceptiveAccount
 
 	^aReceptiveAccount = self.! !
 
+!ReceptiveAccount methodsFor: 'testing' stamp: 'AF 10/16/2021 18:51:39'!
+containsPortfolio: aPortfolio
+
+	^false.! !
+
 !ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/17/2019 03:28:43'!
 hasRegistered: aTransaction
 
 	^ transactions includes: aTransaction 
 ! !
+
+
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'AF 10/16/2021 19:34:50'!
+cannotBeAddedTo: aPortfolio
+	
+	^aPortfolio containsAccount: self.! !
