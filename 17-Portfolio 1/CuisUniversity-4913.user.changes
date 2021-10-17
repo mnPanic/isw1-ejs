@@ -8246,3 +8246,4232 @@ PASSED!
 
 !testRun: #PortfolioTest #test26 stamp: 'AF 10/16/2021 19:40:06'!
 PASSED!
+
+----STARTUP---- (17 October 2021 00:34:43) as /home/mnpanic/Documents/dc/ing1/cuis/cuis-portfolio-1/CuisUniversity-4913.image!
+
+
+----End fileIn of /home/mnpanic/repos/uba/ing1-repos/isw1-ejs/17-Portfolio 1/Portfolio-Ejercicio.st----!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioShouldHaveZeroBalance stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test02EmptyPortfolioHasNoRegisteredTransactions stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test03EmptyPortfolioShouldHaveNoTransactions stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithSingleAccountShouldHaveItsBalance stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithSingleAccountShouldHaveItsTransacitions stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithSingleAccountHasRegisteredItsTransactions stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithMultipleAccountsShouldHaveTheirBalances stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test14AddingDuplicateAccountToPortfolioShouldFail stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test15AddingAccountIncludedInChildPortfolioShouldFail stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test16AddingAccountIncludedInTheParentPorfolioShouldFail stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test17AddingAccountIncludedInAParentShouldFail stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test18AddingAccountIncludedInAnAncestorShouldFail stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test19AddingDuplicatePortfolioToPortfolioShouldFail stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test20 stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test21 stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test22 stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test23 stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test24 stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test25 stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test26 stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/17/2021 00:35:18'!
+PASSED!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 00:53:27' prior: 50915043!
+test14AddingDuplicateAccountToPortfolioShouldFail
+	"
+	    A   
+	  / \  
+	 1   1 
+	"
+	| portfolio account |
+	
+	account _ ReceptiveAccount new.
+	portfolio _ Portfolio new.
+	
+	portfolio addFinancialService: account.
+	
+	self should: [ portfolio addFinancialService: account ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 00:55:11' prior: 50915059!
+test15AddingAccountIncludedInChildPortfolioShouldFail
+	"
+	     A         
+	    / \        
+	   /  \       
+	  B     1      
+	  |            
+	  |            
+	  1            
+	"
+	| portfolioA portfolioB account |
+	
+	account _ ReceptiveAccount new.
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	
+	portfolioB addFinancialService: account.
+	portfolioA addFinancialService: portfolioB.
+	
+	self should: [ portfolioA addFinancialService: account ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 00:55:14' prior: 50915819!
+test15AddingAccountIncludedInChildPortfolioShouldFail
+	"
+	     A         
+	    / \        
+	   /  \       
+	  B    1      
+	  |            
+	  |            
+	  1            
+	"
+	| portfolioA portfolioB account |
+	
+	account _ ReceptiveAccount new.
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	
+	portfolioB addFinancialService: account.
+	portfolioA addFinancialService: portfolioB.
+	
+	self should: [ portfolioA addFinancialService: account ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 00:55:18' prior: 50915842!
+test15AddingAccountIncludedInChildPortfolioShouldFail
+	| portfolioA portfolioB account |
+	
+	account _ ReceptiveAccount new.
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	
+	portfolioB addFinancialService: account.
+	portfolioA addFinancialService: portfolioB.
+	
+	self should: [ portfolioA addFinancialService: account ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 00:55:22' prior: 50915801!
+test14AddingDuplicateAccountToPortfolioShouldFail
+	| portfolio account |
+	
+	account _ ReceptiveAccount new.
+	portfolio _ Portfolio new.
+	
+	portfolio addFinancialService: account.
+	
+	self should: [ portfolio addFinancialService: account ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 00:57:50'!
+test20AddingPortfolioContainedIn
+	| portfolioA |
+	portfolioA _ Portfolio new.	
+	
+	self should: [ portfolioA addFinancialService: portfolioA ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test20 stamp: 'MP 10/17/2021 00:57:50'!
+test20
+	| portfolioA |
+	portfolioA _ Portfolio new.	
+	
+	self should: [ portfolioA addFinancialService: portfolioA ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 00:58:41'!
+test20CantAddPortfolioToItself
+	| portfolioA |
+	portfolioA _ Portfolio new.	
+	
+	self should: [ portfolioA addFinancialService: portfolioA ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test20AddingPortfolioContainedIn stamp: 'MP 10/17/2021 00:58:41'!
+test20AddingPortfolioContainedIn
+	| portfolioA |
+	portfolioA _ Portfolio new.	
+	
+	self should: [ portfolioA addFinancialService: portfolioA ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 00:59:34'!
+test14CantAddDuplicateAccount
+	| portfolio account |
+	
+	account _ ReceptiveAccount new.
+	portfolio _ Portfolio new.
+	
+	portfolio addFinancialService: account.
+	
+	self should: [ portfolio addFinancialService: account ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test14AddingDuplicateAccountToPortfolioShouldFail stamp: 'MP 10/17/2021 00:59:34'!
+test14AddingDuplicateAccountToPortfolioShouldFail
+	| portfolio account |
+	
+	account _ ReceptiveAccount new.
+	portfolio _ Portfolio new.
+	
+	portfolio addFinancialService: account.
+	
+	self should: [ portfolio addFinancialService: account ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 00:59:47'!
+test15CantAddAccountIncludedInChildPortfolio
+	| portfolioA portfolioB account |
+	
+	account _ ReceptiveAccount new.
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	
+	portfolioB addFinancialService: account.
+	portfolioA addFinancialService: portfolioB.
+	
+	self should: [ portfolioA addFinancialService: account ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test15AddingAccountIncludedInChildPortfolioShouldFail stamp: 'MP 10/17/2021 00:59:47'!
+test15AddingAccountIncludedInChildPortfolioShouldFail
+	| portfolioA portfolioB account |
+	
+	account _ ReceptiveAccount new.
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	
+	portfolioB addFinancialService: account.
+	portfolioA addFinancialService: portfolioB.
+	
+	self should: [ portfolioA addFinancialService: account ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:00:01'!
+test16CantAddAccountIncludedInParentPortfolio
+
+	| portfolioA portfolioB account |
+	
+	account _ ReceptiveAccount new.
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	
+	portfolioA addFinancialService: account.
+	portfolioA addFinancialService: portfolioB.
+	
+	self should: [ portfolioB addFinancialService: account ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test16AddingAccountIncludedInTheParentPorfolioShouldFail stamp: 'MP 10/17/2021 01:00:01'!
+test16AddingAccountIncludedInTheParentPorfolioShouldFail
+
+	| portfolioA portfolioB account |
+	
+	account _ ReceptiveAccount new.
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	
+	portfolioA addFinancialService: account.
+	portfolioA addFinancialService: portfolioB.
+	
+	self should: [ portfolioB addFinancialService: account ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:00:36'!
+test17CantAddAccountIncludedInAParentAddingAccountIncludedInAParentShouldFail 
+
+	| account portfolioA portfolioB portfolioC |
+	
+	account _ ReceptiveAccount new.
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: account.
+	portfolioA addFinancialService: portfolioC.
+	portfolioB addFinancialService: portfolioC.
+	
+	self should: [ portfolioC addFinancialService: account ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test17AddingAccountIncludedInAParentShouldFail stamp: 'MP 10/17/2021 01:00:36'!
+test17AddingAccountIncludedInAParentShouldFail 
+
+	| account portfolioA portfolioB portfolioC |
+	
+	account _ ReceptiveAccount new.
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: account.
+	portfolioA addFinancialService: portfolioC.
+	portfolioB addFinancialService: portfolioC.
+	
+	self should: [ portfolioC addFinancialService: account ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:00:40'!
+test17CantAddAccountIncludedInAParent 
+
+	| account portfolioA portfolioB portfolioC |
+	
+	account _ ReceptiveAccount new.
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: account.
+	portfolioA addFinancialService: portfolioC.
+	portfolioB addFinancialService: portfolioC.
+	
+	self should: [ portfolioC addFinancialService: account ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test17CantAddAccountIncludedInAParentAddingAccountIncludedInAParentShouldFail stamp: 'MP 10/17/2021 01:00:41'!
+test17CantAddAccountIncludedInAParentAddingAccountIncludedInAParentShouldFail 
+
+	| account portfolioA portfolioB portfolioC |
+	
+	account _ ReceptiveAccount new.
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: account.
+	portfolioA addFinancialService: portfolioC.
+	portfolioB addFinancialService: portfolioC.
+	
+	self should: [ portfolioC addFinancialService: account ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:00:48'!
+test16CantAddAccountIncludedInTheParentPortfolio
+
+	| portfolioA portfolioB account |
+	
+	account _ ReceptiveAccount new.
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	
+	portfolioA addFinancialService: account.
+	portfolioA addFinancialService: portfolioB.
+	
+	self should: [ portfolioB addFinancialService: account ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test16CantAddAccountIncludedInParentPortfolio stamp: 'MP 10/17/2021 01:00:48'!
+test16CantAddAccountIncludedInParentPortfolio
+
+	| portfolioA portfolioB account |
+	
+	account _ ReceptiveAccount new.
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	
+	portfolioA addFinancialService: account.
+	portfolioA addFinancialService: portfolioB.
+	
+	self should: [ portfolioB addFinancialService: account ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:01:13'!
+test18CantAddAccountIncludedInAnAncestor
+
+	| account portfolioA portfolioB portfolioC |
+	
+	account _ ReceptiveAccount new.
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: account.
+	portfolioA addFinancialService: portfolioB.
+	portfolioB addFinancialService: portfolioC.
+	
+	self should: [ portfolioC addFinancialService: account ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test18AddingAccountIncludedInAnAncestorShouldFail stamp: 'MP 10/17/2021 01:01:13'!
+test18AddingAccountIncludedInAnAncestorShouldFail
+
+	| account portfolioA portfolioB portfolioC |
+	
+	account _ ReceptiveAccount new.
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: account.
+	portfolioA addFinancialService: portfolioB.
+	portfolioB addFinancialService: portfolioC.
+	
+	self should: [ portfolioC addFinancialService: account ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:01:23'!
+test19CantAddDuplicatePortfolio
+	| portfolioA portfolioB |
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	
+	portfolioA addFinancialService: portfolioB.
+		
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test19AddingDuplicatePortfolioToPortfolioShouldFail stamp: 'MP 10/17/2021 01:01:23'!
+test19AddingDuplicatePortfolioToPortfolioShouldFail
+	| portfolioA portfolioB |
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	
+	portfolioA addFinancialService: portfolioB.
+		
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:01:46'!
+test21CantAddPortfolioContainedInChildPortfolio
+	| portfolioA portfolioB portfolioC |
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: portfolioB.
+	portfolioB addFinancialService: portfolioC.
+	
+	self should: [ portfolioA addFinancialService: portfolioC ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test21 stamp: 'MP 10/17/2021 01:01:46'!
+test21
+	| portfolioA portfolioB portfolioC |
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: portfolioB.
+	portfolioB addFinancialService: portfolioC.
+	
+	self should: [ portfolioA addFinancialService: portfolioC ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:03:09'!
+test22CantAddItselfAsChildOfAnotherPortfolio
+	| portfolioA portfolioB |
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	
+	portfolioB addFinancialService: portfolioA.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test22 stamp: 'MP 10/17/2021 01:03:09'!
+test22
+	| portfolioA portfolioB |
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	
+	portfolioB addFinancialService: portfolioA.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:04:17'!
+test22CantAddPortfolioWithMeAsChild
+	| portfolioA portfolioB |
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	
+	portfolioB addFinancialService: portfolioA.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test22CantAddItselfAsChildOfAnotherPortfolio stamp: 'MP 10/17/2021 01:04:17'!
+test22CantAddItselfAsChildOfAnotherPortfolio
+	| portfolioA portfolioB |
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	
+	portfolioB addFinancialService: portfolioA.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:04:26'!
+test22CantAddPortfolioWithIMeAsChild
+	| portfolioA portfolioB |
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	
+	portfolioB addFinancialService: portfolioA.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test22CantAddPortfolioWithMeAsChild stamp: 'MP 10/17/2021 01:04:26'!
+test22CantAddPortfolioWithMeAsChild
+	| portfolioA portfolioB |
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	
+	portfolioB addFinancialService: portfolioA.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:04:31'!
+test22CantAddPortfolioWithMeAsChild
+	| portfolioA portfolioB |
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	
+	portfolioB addFinancialService: portfolioA.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test22CantAddPortfolioWithIMeAsChild stamp: 'MP 10/17/2021 01:04:31'!
+test22CantAddPortfolioWithIMeAsChild
+	| portfolioA portfolioB |
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	
+	portfolioB addFinancialService: portfolioA.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:04:37'!
+test22CantAddPortfolioWithSelfAsChild
+	| portfolioA portfolioB |
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	
+	portfolioB addFinancialService: portfolioA.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test22CantAddPortfolioWithMeAsChild stamp: 'MP 10/17/2021 01:04:37'!
+test22CantAddPortfolioWithMeAsChild
+	| portfolioA portfolioB |
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	
+	portfolioB addFinancialService: portfolioA.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:05:07' prior: 50915202!
+test23
+	| portfolioA portfolioB portfolioC |
+	
+	"Pasó de una, pero lo hicimos para confirmar no dejar casos afuera y lo dejamos
+	para que se vea el proceso completo."
+	
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: portfolioC.
+	portfolioB addFinancialService: portfolioC.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:05:47'!
+test23CantAddPortfolioThatContainsAnExistentPortfolio
+	| portfolioA portfolioB portfolioC |
+	
+	"Pasó de una, pero lo hicimos para confirmar no dejar casos afuera y lo dejamos
+	para que se vea el proceso completo."
+	
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: portfolioC.
+	portfolioB addFinancialService: portfolioC.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test23 stamp: 'MP 10/17/2021 01:05:47'!
+test23
+	| portfolioA portfolioB portfolioC |
+	
+	"Pasó de una, pero lo hicimos para confirmar no dejar casos afuera y lo dejamos
+	para que se vea el proceso completo."
+	
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: portfolioC.
+	portfolioB addFinancialService: portfolioC.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:07:16'!
+test23CantAddPortfolioThatContainsAPortfolioAsDescendantOfSelf
+	| portfolioA portfolioB portfolioC |
+	
+	"Pasó de una, pero lo hicimos para confirmar no dejar casos afuera y lo dejamos
+	para que se vea el proceso completo."
+	
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: portfolioC.
+	portfolioB addFinancialService: portfolioC.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test23CantAddPortfolioThatContainsAnExistentPortfolio stamp: 'MP 10/17/2021 01:07:16'!
+test23CantAddPortfolioThatContainsAnExistentPortfolio
+	| portfolioA portfolioB portfolioC |
+	
+	"Pasó de una, pero lo hicimos para confirmar no dejar casos afuera y lo dejamos
+	para que se vea el proceso completo."
+	
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: portfolioC.
+	portfolioB addFinancialService: portfolioC.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:07:26'!
+test23CantAddPortfolioThatContainsAPortfolioThatIsDescendantOfSelf
+	| portfolioA portfolioB portfolioC |
+	
+	"Pasó de una, pero lo hicimos para confirmar no dejar casos afuera y lo dejamos
+	para que se vea el proceso completo."
+	
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: portfolioC.
+	portfolioB addFinancialService: portfolioC.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test23CantAddPortfolioThatContainsAPortfolioAsDescendantOfSelf stamp: 'MP 10/17/2021 01:07:26'!
+test23CantAddPortfolioThatContainsAPortfolioAsDescendantOfSelf
+	| portfolioA portfolioB portfolioC |
+	
+	"Pasó de una, pero lo hicimos para confirmar no dejar casos afuera y lo dejamos
+	para que se vea el proceso completo."
+	
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: portfolioC.
+	portfolioB addFinancialService: portfolioC.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:08:10'!
+test24CantAddPortfolioContainingAChildOfMyParent
+	| portfolioA portfolioB portfolioC portfolioR |
+	portfolioR _ Portfolio new.
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioR addFinancialService: portfolioC.
+	portfolioR addFinancialService: portfolioA.
+	portfolioB addFinancialService: portfolioC.
+	
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test24 stamp: 'MP 10/17/2021 01:08:10'!
+test24
+	| portfolioA portfolioB portfolioC portfolioR |
+	portfolioR _ Portfolio new.
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioR addFinancialService: portfolioC.
+	portfolioR addFinancialService: portfolioA.
+	portfolioB addFinancialService: portfolioC.
+	
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:08:28'!
+test24CantAddPortfolioContainingADescendantOfMyAncestor
+	| portfolioA portfolioB portfolioC portfolioR |
+	portfolioR _ Portfolio new.
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioR addFinancialService: portfolioC.
+	portfolioR addFinancialService: portfolioA.
+	portfolioB addFinancialService: portfolioC.
+	
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test24CantAddPortfolioContainingAChildOfMyParent stamp: 'MP 10/17/2021 01:08:28'!
+test24CantAddPortfolioContainingAChildOfMyParent
+	| portfolioA portfolioB portfolioC portfolioR |
+	portfolioR _ Portfolio new.
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioR addFinancialService: portfolioC.
+	portfolioR addFinancialService: portfolioA.
+	portfolioB addFinancialService: portfolioC.
+	
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:08:36'!
+test24CantAddPortfolioContainingADescendantOfMyRoots
+	| portfolioA portfolioB portfolioC portfolioR |
+	portfolioR _ Portfolio new.
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioR addFinancialService: portfolioC.
+	portfolioR addFinancialService: portfolioA.
+	portfolioB addFinancialService: portfolioC.
+	
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test24CantAddPortfolioContainingADescendantOfMyAncestor stamp: 'MP 10/17/2021 01:08:36'!
+test24CantAddPortfolioContainingADescendantOfMyAncestor
+	| portfolioA portfolioB portfolioC portfolioR |
+	portfolioR _ Portfolio new.
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioR addFinancialService: portfolioC.
+	portfolioR addFinancialService: portfolioA.
+	portfolioB addFinancialService: portfolioC.
+	
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:09:06'!
+test23CantAddPortfolioContainingADescendantOfSelf
+	| portfolioA portfolioB portfolioC |
+	
+	"Pasó de una, pero lo hicimos para confirmar no dejar casos afuera y lo dejamos
+	para que se vea el proceso completo."
+	
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: portfolioC.
+	portfolioB addFinancialService: portfolioC.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test23CantAddPortfolioThatContainsAPortfolioThatIsDescendantOfSelf stamp: 'MP 10/17/2021 01:09:06'!
+test23CantAddPortfolioThatContainsAPortfolioThatIsDescendantOfSelf
+	| portfolioA portfolioB portfolioC |
+	
+	"Pasó de una, pero lo hicimos para confirmar no dejar casos afuera y lo dejamos
+	para que se vea el proceso completo."
+	
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: portfolioC.
+	portfolioB addFinancialService: portfolioC.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:09:36'!
+test25CantAddAPortfolioContainingAnAccountDescendantOfSelf
+	| portfolioA portfolioB account |
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	account _ ReceptiveAccount new.
+	
+	portfolioA addFinancialService: account.
+	portfolioB addFinancialService: account.
+	
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test25 stamp: 'MP 10/17/2021 01:09:36'!
+test25
+	| portfolioA portfolioB account |
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	account _ ReceptiveAccount new.
+	
+	portfolioA addFinancialService: account.
+	portfolioB addFinancialService: account.
+	
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:09:50'!
+test26CantAddAPortfolioContainingAnAccountDescendantOfMyRoots
+	| portfolioA portfolioB account portfolioV portfolioW |
+	
+	"paso de una"
+	portfolioW _ Portfolio new.
+	portfolioV _ Portfolio new.
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	
+	account _ ReceptiveAccount new.
+	
+	portfolioW addFinancialService: account.
+	portfolioW addFinancialService: portfolioA.
+	portfolioV addFinancialService: portfolioA.
+	
+	portfolioB addFinancialService: account.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+
+!methodRemoval: PortfolioTest #test26 stamp: 'MP 10/17/2021 01:09:50'!
+test26
+	| portfolioA portfolioB account portfolioV portfolioW |
+	
+	"paso de una"
+	portfolioW _ Portfolio new.
+	portfolioV _ Portfolio new.
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	
+	account _ ReceptiveAccount new.
+	
+	portfolioW addFinancialService: account.
+	portfolioW addFinancialService: portfolioA.
+	portfolioV addFinancialService: portfolioA.
+	
+	portfolioB addFinancialService: account.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:10:10' prior: 50916745!
+test23CantAddPortfolioContainingADescendantOfSelf
+	| portfolioA portfolioB portfolioC |
+	
+	"Pasó de una, pero lo hicimos para confirmar no estar dejando casos afuera y lo dejamos
+	para que se vea el proceso completo."
+	
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: portfolioC.
+	portfolioB addFinancialService: portfolioC.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:10:21' prior: 50916876!
+test23CantAddPortfolioContainingADescendantOfSelf
+	| portfolioA portfolioB portfolioC |
+	
+	"Pasó de una, pero lo hicimos para confirmar que esté completa la implementación y lo dejamos
+	para que se vea el proceso completo."
+	
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: portfolioC.
+	portfolioB addFinancialService: portfolioC.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:10:24' prior: 50916900!
+test23CantAddPortfolioContainingADescendantOfSelf
+	| portfolioA portfolioB portfolioC |
+	
+	"Pasó de una, pero lo hicimos para confirmar que esté completa la implementación y lo dejamos
+	para que se vea el proceso completo de TDD."
+	
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: portfolioC.
+	portfolioB addFinancialService: portfolioC.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:10:30' prior: 50916828!
+test26CantAddAPortfolioContainingAnAccountDescendantOfMyRoots
+	| portfolioA portfolioB account portfolioV portfolioW |
+	
+		"Pasó de una, pero lo hicimos para confirmar que esté completa la implementación y lo dejamos
+	para que se vea el proceso completo de TDD."
+	portfolioW _ Portfolio new.
+	portfolioV _ Portfolio new.
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	
+	account _ ReceptiveAccount new.
+	
+	portfolioW addFinancialService: account.
+	portfolioW addFinancialService: portfolioA.
+	portfolioV addFinancialService: portfolioA.
+	
+	portfolioB addFinancialService: account.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:10:31' prior: 50916948!
+test26CantAddAPortfolioContainingAnAccountDescendantOfMyRoots
+	| portfolioA portfolioB account portfolioV portfolioW |
+	
+		"Pasó de una, pero lo hicimos para confirmar que esté completa la implementación y lo dejamos
+	para que se vea el proceso completo de TDD."
+
+	portfolioW _ Portfolio new.
+	portfolioV _ Portfolio new.
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	
+	account _ ReceptiveAccount new.
+	
+	portfolioW addFinancialService: account.
+	portfolioW addFinancialService: portfolioA.
+	portfolioV addFinancialService: portfolioA.
+	
+	portfolioB addFinancialService: account.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:10:32' prior: 50916978!
+test26CantAddAPortfolioContainingAnAccountDescendantOfMyRoots
+	| portfolioA portfolioB account portfolioV portfolioW |
+	
+	"Pasó de una, pero lo hicimos para confirmar que esté completa la implementación y lo dejamos
+	para que se vea el proceso completo de TDD."
+
+	portfolioW _ Portfolio new.
+	portfolioV _ Portfolio new.
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	
+	account _ ReceptiveAccount new.
+	
+	portfolioW addFinancialService: account.
+	portfolioW addFinancialService: portfolioA.
+	portfolioV addFinancialService: portfolioA.
+	
+	portfolioB addFinancialService: account.
+	
+	self should: [ portfolioA addFinancialService: portfolioB ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 01:10:59'!
+test01EmptyPortfolioHasZeroBalance
+
+	| portfolio |
+	portfolio _ Portfolio new.
+	
+	self assert: 0 equals: portfolio balance.! !
+
+!methodRemoval: PortfolioTest #test01EmptyPortfolioShouldHaveZeroBalance stamp: 'MP 10/17/2021 01:10:59'!
+test01EmptyPortfolioShouldHaveZeroBalance
+
+	| portfolio |
+	portfolio _ Portfolio new.
+	
+	self assert: 0 equals: portfolio balance.!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 01:11:07'!
+test03EmptyPortfolioHasNoTransactions
+
+	| portfolio |
+	portfolio _ Portfolio new.
+
+	self assert: portfolio transactions isEmpty.! !
+
+!methodRemoval: PortfolioTest #test03EmptyPortfolioShouldHaveNoTransactions stamp: 'MP 10/17/2021 01:11:07'!
+test03EmptyPortfolioShouldHaveNoTransactions
+
+	| portfolio |
+	portfolio _ Portfolio new.
+
+	self assert: portfolio transactions isEmpty.!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 01:11:17'!
+test04PortfolioWithSingleAccountHasItsBalance
+
+	| portfolio account |
+	account _ ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account.
+
+	self assert: 100 equals: portfolio balance.! !
+
+!methodRemoval: PortfolioTest #test04PortfolioWithSingleAccountShouldHaveItsBalance stamp: 'MP 10/17/2021 01:11:17'!
+test04PortfolioWithSingleAccountShouldHaveItsBalance
+
+	| portfolio account |
+	account _ ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account.
+
+	self assert: 100 equals: portfolio balance.!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 01:11:24'!
+test05PortfolioWithSingleAccountHasItsTransacitions
+
+	| portfolio account expectedTransactions transaction |
+	account _ ReceptiveAccount new.
+	transaction _ Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account.
+
+	expectedTransactions _ OrderedCollection with: transaction.
+	self assert: expectedTransactions equals: portfolio transactions.! !
+
+!methodRemoval: PortfolioTest #test05PortfolioWithSingleAccountShouldHaveItsTransacitions stamp: 'MP 10/17/2021 01:11:24'!
+test05PortfolioWithSingleAccountShouldHaveItsTransacitions
+
+	| portfolio account expectedTransactions transaction |
+	account _ ReceptiveAccount new.
+	transaction _ Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account.
+
+	expectedTransactions _ OrderedCollection with: transaction.
+	self assert: expectedTransactions equals: portfolio transactions.!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 01:11:42'!
+test07PortfolioWithMultipleAccountsHasTheirBalances
+
+	| portfolio account1 account2 |
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account2.
+
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account1.
+	portfolio addFinancialService: account2.
+
+	self assert: 150 equals: portfolio balance.! !
+
+!methodRemoval: PortfolioTest #test07PortfolioWithMultipleAccountsShouldHaveTheirBalances stamp: 'MP 10/17/2021 01:11:42'!
+test07PortfolioWithMultipleAccountsShouldHaveTheirBalances
+
+	| portfolio account1 account2 |
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account2.
+
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account1.
+	portfolio addFinancialService: account2.
+
+	self assert: 150 equals: portfolio balance.!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 01:12:52'!
+test08PortfolioWithPortfolioHasItsBalance
+
+	| portfolio1 portfolio2 account |
+	
+	account _ ReceptiveAccount new.
+	Deposit register: 100 on: account.
+
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio1 addFinancialService: account.
+	portfolio2 addFinancialService: portfolio1.
+	
+
+	self assert: 100 equals: (portfolio2 balance).! !
+
+!methodRemoval: PortfolioTest #test08 stamp: 'MP 10/17/2021 01:12:52'!
+test08
+
+	| portfolio1 portfolio2 account |
+	
+	account _ ReceptiveAccount new.
+	Deposit register: 100 on: account.
+
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio1 addFinancialService: account.
+	portfolio2 addFinancialService: portfolio1.
+	
+
+	self assert: 100 equals: (portfolio2 balance).!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 01:13:01'!
+test08PortfolioWithSinglePortfolioHasItsBalance
+
+	| portfolio1 portfolio2 account |
+	
+	account _ ReceptiveAccount new.
+	Deposit register: 100 on: account.
+
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio1 addFinancialService: account.
+	portfolio2 addFinancialService: portfolio1.
+	
+
+	self assert: 100 equals: (portfolio2 balance).! !
+
+!methodRemoval: PortfolioTest #test08PortfolioWithPortfolioHasItsBalance stamp: 'MP 10/17/2021 01:13:01'!
+test08PortfolioWithPortfolioHasItsBalance
+
+	| portfolio1 portfolio2 account |
+	
+	account _ ReceptiveAccount new.
+	Deposit register: 100 on: account.
+
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio1 addFinancialService: account.
+	portfolio2 addFinancialService: portfolio1.
+	
+
+	self assert: 100 equals: (portfolio2 balance).!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 01:13:13'!
+test09PortfolioWithMultiplePortfoliosHasTheirBalance
+
+	| portfolio1 portfolio2 portfolio3 account1 account2 |
+	
+	account1 _ ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+
+	account2 _ ReceptiveAccount new.
+	Deposit register: 50 on: account2.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	
+	portfolio1 addFinancialService: account1.
+	portfolio2 addFinancialService: account2.
+	
+	portfolio3 addFinancialService: portfolio1.
+	portfolio3 addFinancialService: portfolio2.
+
+	self assert: 150 equals: (portfolio3 balance).! !
+
+!methodRemoval: PortfolioTest #test09 stamp: 'MP 10/17/2021 01:13:13'!
+test09
+
+	| portfolio1 portfolio2 portfolio3 account1 account2 |
+	
+	account1 _ ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+
+	account2 _ ReceptiveAccount new.
+	Deposit register: 50 on: account2.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	
+	portfolio1 addFinancialService: account1.
+	portfolio2 addFinancialService: account2.
+	
+	portfolio3 addFinancialService: portfolio1.
+	portfolio3 addFinancialService: portfolio2.
+
+	self assert: 150 equals: (portfolio3 balance).!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 01:13:31'!
+test09PortfolioWithMultiplePortfoliosSumsTheirBalances
+
+	| portfolio1 portfolio2 portfolio3 account1 account2 |
+	
+	account1 _ ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+
+	account2 _ ReceptiveAccount new.
+	Deposit register: 50 on: account2.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	
+	portfolio1 addFinancialService: account1.
+	portfolio2 addFinancialService: account2.
+	
+	portfolio3 addFinancialService: portfolio1.
+	portfolio3 addFinancialService: portfolio2.
+
+	self assert: 150 equals: (portfolio3 balance).! !
+
+!methodRemoval: PortfolioTest #test09PortfolioWithMultiplePortfoliosHasTheirBalance stamp: 'MP 10/17/2021 01:13:31'!
+test09PortfolioWithMultiplePortfoliosHasTheirBalance
+
+	| portfolio1 portfolio2 portfolio3 account1 account2 |
+	
+	account1 _ ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+
+	account2 _ ReceptiveAccount new.
+	Deposit register: 50 on: account2.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	
+	portfolio1 addFinancialService: account1.
+	portfolio2 addFinancialService: account2.
+	
+	portfolio3 addFinancialService: portfolio1.
+	portfolio3 addFinancialService: portfolio2.
+
+	self assert: 150 equals: (portfolio3 balance).!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 01:13:38'!
+test07PortfolioWithMultipleAccountsSumsTheirBalances
+
+	| portfolio account1 account2 |
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account2.
+
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account1.
+	portfolio addFinancialService: account2.
+
+	self assert: 150 equals: portfolio balance.! !
+
+!methodRemoval: PortfolioTest #test07PortfolioWithMultipleAccountsHasTheirBalances stamp: 'MP 10/17/2021 01:13:38'!
+test07PortfolioWithMultipleAccountsHasTheirBalances
+
+	| portfolio account1 account2 |
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account2.
+
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account1.
+	portfolio addFinancialService: account2.
+
+	self assert: 150 equals: portfolio balance.!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 01:14:00'!
+test04PortfolioWithSingleAccountHasItsValue
+
+	| portfolio account |
+	account _ ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account.
+
+	self assert: 100 equals: portfolio balance.! !
+
+!methodRemoval: PortfolioTest #test04PortfolioWithSingleAccountHasItsBalance stamp: 'MP 10/17/2021 01:14:00'!
+test04PortfolioWithSingleAccountHasItsBalance
+
+	| portfolio account |
+	account _ ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account.
+
+	self assert: 100 equals: portfolio balance.!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 01:14:04'!
+test04PortfolioWithSingleAccountHasItsValueAsBalance
+
+	| portfolio account |
+	account _ ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account.
+
+	self assert: 100 equals: portfolio balance.! !
+
+!methodRemoval: PortfolioTest #test04PortfolioWithSingleAccountHasItsValue stamp: 'MP 10/17/2021 01:14:04'!
+test04PortfolioWithSingleAccountHasItsValue
+
+	| portfolio account |
+	account _ ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account.
+
+	self assert: 100 equals: portfolio balance.!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 01:14:11'!
+test07PortfolioWithMultipleAccountsSumsTheirValuesAsBalance
+
+	| portfolio account1 account2 |
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account2.
+
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account1.
+	portfolio addFinancialService: account2.
+
+	self assert: 150 equals: portfolio balance.! !
+
+!methodRemoval: PortfolioTest #test07PortfolioWithMultipleAccountsSumsTheirBalances stamp: 'MP 10/17/2021 01:14:11'!
+test07PortfolioWithMultipleAccountsSumsTheirBalances
+
+	| portfolio account1 account2 |
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account2.
+
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account1.
+	portfolio addFinancialService: account2.
+
+	self assert: 150 equals: portfolio balance.!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 01:14:33'!
+test10PortfolioWithSinglePortfolioHasItsTransactionsRegistered
+
+	| portfolio account1 account2 transaction |
+	
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	Deposit register: 100 on: account1.
+	transaction _ Deposit register: 50 on: account2.
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account1.
+	portfolio addFinancialService: account2.
+
+	self assert: (portfolio hasRegistered: transaction).! !
+
+!methodRemoval: PortfolioTest #test10 stamp: 'MP 10/17/2021 01:14:33'!
+test10
+
+	| portfolio account1 account2 transaction |
+	
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	Deposit register: 100 on: account1.
+	transaction _ Deposit register: 50 on: account2.
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account1.
+	portfolio addFinancialService: account2.
+
+	self assert: (portfolio hasRegistered: transaction).!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 01:14:58'!
+test11PortfolioWithMultiplePortfoliosHasTheirTransactionsRegistered
+
+	| account transaction portfolio1 portfolio2 |
+	
+	account _ ReceptiveAccount new.
+	
+	
+	Deposit register: 100 on: account.
+	transaction _ Deposit register: 50 on: account.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	
+	portfolio1 addFinancialService: account.
+	portfolio2 addFinancialService: portfolio1.
+
+	self assert: (portfolio2 hasRegistered: transaction).! !
+
+!methodRemoval: PortfolioTest #test11 stamp: 'MP 10/17/2021 01:14:58'!
+test11
+
+	| account transaction portfolio1 portfolio2 |
+	
+	account _ ReceptiveAccount new.
+	
+	
+	Deposit register: 100 on: account.
+	transaction _ Deposit register: 50 on: account.
+	
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	
+	portfolio1 addFinancialService: account.
+	portfolio2 addFinancialService: portfolio1.
+
+	self assert: (portfolio2 hasRegistered: transaction).!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 01:15:16'!
+test12PortfolioWithSInglePortfolioHasItsTransactions
+
+	| portfolio account1 expectedTransactions transaction1 account2 transaction2 |
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	transaction1 _ Deposit register: 100 on: account1.
+	transaction2 _ Deposit register: 100 on: account2.	
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account1.
+	portfolio addFinancialService: account2.
+
+	expectedTransactions _ OrderedCollection with: transaction1 with: transaction2.
+	self assert: expectedTransactions equals: portfolio transactions.! !
+
+!methodRemoval: PortfolioTest #test12 stamp: 'MP 10/17/2021 01:15:16'!
+test12
+
+	| portfolio account1 expectedTransactions transaction1 account2 transaction2 |
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	transaction1 _ Deposit register: 100 on: account1.
+	transaction2 _ Deposit register: 100 on: account2.	
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account1.
+	portfolio addFinancialService: account2.
+
+	expectedTransactions _ OrderedCollection with: transaction1 with: transaction2.
+	self assert: expectedTransactions equals: portfolio transactions.!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 01:15:23'!
+test12PortfolioWithSinglePortfolioHasItsTransactions
+
+	| portfolio account1 expectedTransactions transaction1 account2 transaction2 |
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	transaction1 _ Deposit register: 100 on: account1.
+	transaction2 _ Deposit register: 100 on: account2.	
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account1.
+	portfolio addFinancialService: account2.
+
+	expectedTransactions _ OrderedCollection with: transaction1 with: transaction2.
+	self assert: expectedTransactions equals: portfolio transactions.! !
+
+!methodRemoval: PortfolioTest #test12PortfolioWithSInglePortfolioHasItsTransactions stamp: 'MP 10/17/2021 01:15:23'!
+test12PortfolioWithSInglePortfolioHasItsTransactions
+
+	| portfolio account1 expectedTransactions transaction1 account2 transaction2 |
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	transaction1 _ Deposit register: 100 on: account1.
+	transaction2 _ Deposit register: 100 on: account2.	
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account1.
+	portfolio addFinancialService: account2.
+
+	expectedTransactions _ OrderedCollection with: transaction1 with: transaction2.
+	self assert: expectedTransactions equals: portfolio transactions.!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 01:15:37'!
+test13PortfolioWithMultiplePortfoliosHasTheirTransactions
+
+	| portfolioA portfolioB account1 account2 expectedTransactions transaction1 transaction2 |
+	
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	transaction1 _ Deposit register: 100 on: account1.
+	transaction2 _ Deposit register: 100 on: account2.	
+	
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	
+	portfolioA addFinancialService: account1.
+	portfolioB addFinancialService: account2.
+	
+	portfolioB addFinancialService: portfolioA.
+
+	expectedTransactions _ OrderedCollection with: transaction2 with: transaction1.
+	self assert: expectedTransactions equals: portfolioB transactions.! !
+
+!methodRemoval: PortfolioTest #test13 stamp: 'MP 10/17/2021 01:15:37'!
+test13
+
+	| portfolioA portfolioB account1 account2 expectedTransactions transaction1 transaction2 |
+	
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	transaction1 _ Deposit register: 100 on: account1.
+	transaction2 _ Deposit register: 100 on: account2.	
+	
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	
+	portfolioA addFinancialService: account1.
+	portfolioB addFinancialService: account2.
+	
+	portfolioB addFinancialService: portfolioA.
+
+	expectedTransactions _ OrderedCollection with: transaction2 with: transaction1.
+	self assert: expectedTransactions equals: portfolioB transactions.!
+
+----SNAPSHOT----(17 October 2021 01:16:17) CuisUniversity-4913.image priorSource: 18661997!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 01:17:25'!
+test05PortfolioWithMultipleAccountsHasItsTransacitions
+
+	| portfolio account expectedTransactions transaction |
+	account _ ReceptiveAccount new.
+	transaction _ Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account.
+
+	expectedTransactions _ OrderedCollection with: transaction.
+	self assert: expectedTransactions equals: portfolio transactions.! !
+
+!methodRemoval: PortfolioTest #test05PortfolioWithSingleAccountHasItsTransacitions stamp: 'MP 10/17/2021 01:17:25'!
+test05PortfolioWithSingleAccountHasItsTransacitions
+
+	| portfolio account expectedTransactions transaction |
+	account _ ReceptiveAccount new.
+	transaction _ Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account.
+
+	expectedTransactions _ OrderedCollection with: transaction.
+	self assert: expectedTransactions equals: portfolio transactions.!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 01:17:47'!
+test05PortfolioWithAccountsHasItsTransacitions
+
+	| portfolio account expectedTransactions transaction |
+	account _ ReceptiveAccount new.
+	transaction _ Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account.
+
+	expectedTransactions _ OrderedCollection with: transaction.
+	self assert: expectedTransactions equals: portfolio transactions.! !
+
+!methodRemoval: PortfolioTest #test05PortfolioWithMultipleAccountsHasItsTransacitions stamp: 'MP 10/17/2021 01:17:47'!
+test05PortfolioWithMultipleAccountsHasItsTransacitions
+
+	| portfolio account expectedTransactions transaction |
+	account _ ReceptiveAccount new.
+	transaction _ Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account.
+
+	expectedTransactions _ OrderedCollection with: transaction.
+	self assert: expectedTransactions equals: portfolio transactions.!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 01:17:56'!
+test06PortfolioWithAccountsHasRegisteredItsTransactions
+
+	| portfolio account transaction |
+	account _ ReceptiveAccount new.
+	transaction _ Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account.
+
+	self assert: (portfolio hasRegistered: transaction).! !
+
+!methodRemoval: PortfolioTest #test06PortfolioWithSingleAccountHasRegisteredItsTransactions stamp: 'MP 10/17/2021 01:17:56'!
+test06PortfolioWithSingleAccountHasRegisteredItsTransactions
+
+	| portfolio account transaction |
+	account _ ReceptiveAccount new.
+	transaction _ Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account.
+
+	self assert: (portfolio hasRegistered: transaction).!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 01:18:01'!
+test06PortfolioWithAccountsHasItsTransactionsRegistered
+
+	| portfolio account transaction |
+	account _ ReceptiveAccount new.
+	transaction _ Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account.
+
+	self assert: (portfolio hasRegistered: transaction).! !
+
+!methodRemoval: PortfolioTest #test06PortfolioWithAccountsHasRegisteredItsTransactions stamp: 'MP 10/17/2021 01:18:01'!
+test06PortfolioWithAccountsHasRegisteredItsTransactions
+
+	| portfolio account transaction |
+	account _ ReceptiveAccount new.
+	transaction _ Deposit register: 100 on: account.
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account.
+
+	self assert: (portfolio hasRegistered: transaction).!
+
+----SNAPSHOT----(17 October 2021 01:18:49) CuisUniversity-4913.image priorSource: 18749978!
+
+----SNAPSHOT----(17 October 2021 01:23:37) CuisUniversity-4913.image priorSource: 18753718!
+
+----SNAPSHOT----(17 October 2021 01:24:29) CuisUniversity-4913.image priorSource: 18753811!
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 01:25:02'!
+registerParent: aPortfolio 
+	parents add: aPortfolio.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 01:25:02' prior: 50915546!
+addFinancialService: aFinancialService 
+	
+	(aFinancialService isKindOf: ReceptiveAccount ) ifTrue:[
+		(self roots anySatisfy: [ :root | root containsAccount: aFinancialService ])
+			ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ].
+	].
+		
+	(aFinancialService isKindOf: Portfolio) ifTrue:[
+		(self roots anySatisfy: [ :root | aFinancialService cannotBeAddedTo: root])
+			ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ].
+			
+		aFinancialService registerParent: self
+ 	].
+	
+	financialServices add: aFinancialService.! !
+
+!methodRemoval: Portfolio #yyy: stamp: 'MP 10/17/2021 01:25:02'!
+yyy: aPortfolio 
+	parents add: aPortfolio.!
+!Portfolio methodsFor: 'adding' stamp: 'MP 10/17/2021 01:25:05' prior: 50917718!
+addFinancialService: aFinancialService 
+	
+	(aFinancialService isKindOf: ReceptiveAccount ) ifTrue:[
+		(self roots anySatisfy: [ :root | root containsAccount: aFinancialService ])
+			ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ].
+	].
+		
+	(aFinancialService isKindOf: Portfolio) ifTrue:[
+		(self roots anySatisfy: [ :root | aFinancialService cannotBeAddedTo: root])
+			ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ].
+		
+		aFinancialService registerParent: self
+ 	].
+	
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'adding' stamp: 'MP 10/17/2021 01:25:06' prior: 50917742!
+addFinancialService: aFinancialService 
+	
+	(aFinancialService isKindOf: ReceptiveAccount ) ifTrue:[
+		(self roots anySatisfy: [ :root | root containsAccount: aFinancialService ])
+			ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ].
+	].
+		
+	(aFinancialService isKindOf: Portfolio) ifTrue:[
+		(self roots anySatisfy: [ :root | aFinancialService cannotBeAddedTo: root])
+			ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ].
+
+		aFinancialService registerParent: self
+ 	].
+	
+	financialServices add: aFinancialService.! !
+
+----SNAPSHOT----(17 October 2021 01:25:09) CuisUniversity-4913.image priorSource: 18753904!
+!ReceptiveAccount methodsFor: 'testing' stamp: 'MP 10/17/2021 01:26:10' prior: 50915681 overrides: 50915506!
+hasRegistered: aTransaction
+
+	^transactions includes: aTransaction 
+! !
+!ReceptiveAccount methodsFor: 'accessing' stamp: 'MP 10/17/2021 01:26:19' prior: 50915658 overrides: 50915497!
+transactions 
+
+	^transactions copy! !
+!Portfolio methodsFor: 'accessing' stamp: 'MP 10/17/2021 01:26:25' prior: 50915537 overrides: 50915497!
+transactions
+	
+	| allTransactions |
+	
+	allTransactions _ OrderedCollection new.
+
+	financialServices do: [ :financialService |  allTransactions addAll: financialService transactions ].
+	
+	^allTransactions.! !
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 01:26:37' prior: 50915589!
+cannotBeAddedTo: aPortfolio 
+
+	^(aPortfolio containsPortfolio: self) or: 
+		[financialServices anySatisfy: [ :financialService | financialService cannotBeAddedTo: aPortfolio]].! !
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 01:26:44' prior: 50917713!
+registerParent: aPortfolio
+
+	parents add: aPortfolio.! !
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 01:26:50' prior: 50915606!
+roots
+
+	| listOfRoots |
+	
+	parents ifEmpty: [^OrderedCollection with: self ].
+	
+	listOfRoots _ OrderedCollection new.
+	parents do: [ :parent | listOfRoots addAll: parent roots].
+	^listOfRoots.! !
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 01:26:51' prior: 50917823!
+roots
+
+	| listOfRoots |
+	
+	parents ifEmpty: [ ^OrderedCollection with: self ].
+	
+	listOfRoots _ OrderedCollection new.
+	parents do: [ :parent | listOfRoots addAll: parent roots].
+	^listOfRoots.! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:27:28' prior: 50915567 overrides: 50915501!
+containsAccount: aReceptiveAccount 
+	
+	^financialServices anySatisfy: [ :financialService | financialService containsAccount: aReceptiveAccount].! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:27:34' prior: 50917842 overrides: 50915501!
+containsAccount: aReceptiveAccount 
+	
+	^financialServices anySatisfy: [ :financialService |
+		financialService containsAccount: aReceptiveAccount ].! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:27:43' prior: 50917850 overrides: 50915501!
+containsAccount: aReceptiveAccount 
+	
+	^financialServices anySatisfy: [ :financialService | financialService containsAccount: aReceptiveAccount ].! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:27:46' prior: 50917858 overrides: 50915501!
+containsAccount: aReceptiveAccount 
+	
+	^financialServices anySatisfy: [ :financialService | 
+		financialService containsAccount: aReceptiveAccount ].! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:27:55' prior: 50915598 overrides: 50915511!
+containsPortfolio: aPortfolio
+
+	^(aPortfolio = self) 
+		or: [financialServices anySatisfy: [ :aFinancialService | 
+				aFinancialService containsPortfolio: aPortfolio ] ].! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:27:59' prior: 50917874 overrides: 50915511!
+containsPortfolio: aPortfolio
+
+	^(aPortfolio = self) 
+		or: [financialServices anySatisfy: [ :aFinancialService | 
+				aFinancialService containsPortfolio: aPortfolio ] 
+		].! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:28:04' prior: 50917883 overrides: 50915511!
+containsPortfolio: aPortfolio
+
+	^(aPortfolio = self) 
+		or: [financialServices anySatisfy: [ :aFinancialService | 
+				aFinancialService containsPortfolio: aPortfolio ] ].! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:28:11' prior: 50917892 overrides: 50915511!
+containsPortfolio: aPortfolio
+
+	^(aPortfolio = self) or: 
+		[financialServices anySatisfy: [ :aFinancialService | 
+			aFinancialService containsPortfolio: aPortfolio ] ].! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:28:13' prior: 50917901 overrides: 50915511!
+containsPortfolio: aPortfolio
+
+	^(aPortfolio = self) or: 
+		[ financialServices anySatisfy: [ :aFinancialService | 
+			aFinancialService containsPortfolio: aPortfolio ] ].! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:28:20' prior: 50917910 overrides: 50915511!
+containsPortfolio: aPortfolio
+
+	^(aPortfolio = self) or: [ financialServices anySatisfy: [ :aFinancialService | aFinancialService containsPortfolio: aPortfolio ] ].! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:28:22' prior: 50917919 overrides: 50915511!
+containsPortfolio: aPortfolio
+
+	^(aPortfolio = self) 
+		or: [ financialServices anySatisfy: [ :aFinancialService | aFinancialService containsPortfolio: aPortfolio ] ].! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:28:33' prior: 50917928 overrides: 50915511!
+containsPortfolio: aPortfolio
+
+	^(aPortfolio = self) 
+		or: [ financialServices anySatisfy: [ 
+				:aFinancialService | aFinancialService containsPortfolio: aPortfolio ] ].! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:29:34' prior: 50915575 overrides: 50915506!
+hasRegistered: aTransaction
+	
+	^financialServices anySatisfy: [ 
+		:financialService | financialService hasRegistered: aTransaction ]! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:29:43' prior: 50917946 overrides: 50915506!
+hasRegistered: aTransaction
+	
+	^financialServices anySatisfy: [ 
+		:financialService | financialService hasRegistered: aTransaction ]! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:29:51' prior: 50917954 overrides: 50915506!
+hasRegistered: aTransaction
+	
+	^financialServices anySatisfy: [ 
+:financialService | financialService hasRegistered: aTransaction ]! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:29:52' prior: 50917962 overrides: 50915506!
+hasRegistered: aTransaction
+	
+	^financialServices anySatisfy: [ :financialService | financialService hasRegistered: aTransaction ]! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:29:55' prior: 50917970 overrides: 50915506!
+hasRegistered: aTransaction
+	
+	^financialServices anySatisfy: 
+		[ :financialService | financialService hasRegistered: aTransaction ]! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:30:06' prior: 50917978 overrides: 50915506!
+hasRegistered: aTransaction
+	
+	^financialServices anySatisfy: 
+[ :financialService | financialService hasRegistered: aTransaction ]! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:30:06' prior: 50917986 overrides: 50915506!
+hasRegistered: aTransaction
+	
+	^financialServices anySatisfy: [ :financialService | financialService hasRegistered: aTransaction ]! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:30:07' prior: 50917994 overrides: 50915506!
+hasRegistered: aTransaction
+	
+	^financialServices anySatisfy: [
+		:financialService | financialService hasRegistered: aTransaction ]! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:30:17' prior: 50918002 overrides: 50915506!
+hasRegistered: aTransaction
+	
+	^financialServices anySatisfy: [
+		:financialService | financialService hasRegistered: aTransaction ]! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:30:22' prior: 50918010 overrides: 50915506!
+hasRegistered: aTransaction
+	
+	^financialServices anySatisfy: [
+		:financialService | financialService hasRegistered: aTransaction ].! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:31:07' prior: 50917937 overrides: 50915511!
+containsPortfolio: aPortfolio
+
+	^(aPortfolio = self) or: [ financialServices anySatisfy: [ 
+				:aFinancialService | aFinancialService containsPortfolio: aPortfolio ] ].! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:31:09' prior: 50918026 overrides: 50915511!
+containsPortfolio: aPortfolio
+
+	^(aPortfolio = self) 
+		or: [ financialServices anySatisfy: [ 
+				:aFinancialService | aFinancialService containsPortfolio: aPortfolio ] ].! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:32:16' prior: 50918035 overrides: 50915511!
+containsPortfolio: aPortfolio
+
+	^(aPortfolio = self) 
+		or: [ financialServices anySatisfy: [ 
+				:aFinancialService | aFinancialService containsPortfolio: aPortfolio ] ].! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:32:23'!
+anyChildContainsPortfolio: aPortfolio
+
+	^ financialServices anySatisfy: [ 
+				:aFinancialService | aFinancialService containsPortfolio: aPortfolio ]! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:32:23' prior: 50918044 overrides: 50915511!
+containsPortfolio: aPortfolio
+
+	^(aPortfolio = self) 
+		or: [ self anyChildContainsPortfolio: aPortfolio ].! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:32:27' prior: 50918060 overrides: 50915511!
+containsPortfolio: aPortfolio
+
+	^(aPortfolio = self) or: [ self anyChildContainsPortfolio: aPortfolio ].! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:33:53' prior: 50918018 overrides: 50915506!
+hasRegistered: aTransaction
+
+	^financialServices anySatisfy: [
+		:financialService | financialService hasRegistered: aTransaction ].! !
+!Portfolio methodsFor: 'testing' stamp: 'MP 10/17/2021 01:33:59' prior: 50918074 overrides: 50915506!
+hasRegistered: aTransaction
+
+	^financialServices anySatisfy: [
+		:financialService | financialService hasRegistered: aTransaction ].
+! !
+
+----SNAPSHOT----(17 October 2021 01:37:55) CuisUniversity-4913.image priorSource: 18756246!
+!Portfolio methodsFor: 'adding' stamp: 'MP 10/17/2021 01:38:17' prior: 50917763!
+addFinancialService: aFinancialService
+
+	aFinancialService addToPortfolio: self.
+	
+	(aFinancialService isKindOf: ReceptiveAccount ) ifTrue:[
+		(self roots anySatisfy: [ :root | root containsAccount: aFinancialService ])
+			ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ].
+	].
+		
+	(aFinancialService isKindOf: Portfolio) ifTrue:[
+		(self roots anySatisfy: [ :root | aFinancialService cannotBeAddedTo: root])
+			ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ].
+
+		aFinancialService registerParent: self
+ 	].
+	
+	financialServices add: aFinancialService.! !
+!FinancialService methodsFor: 'adding - private' stamp: 'MP 10/17/2021 01:38:39'!
+addToPortfolio: aPortfolio
+
+	self subclassResponsibility.! !
+!Portfolio methodsFor: 'nil' stamp: 'MP 10/17/2021 01:38:48' overrides: 50918114!
+addToPortfolio: aPortfolio
+
+	self subclassResponsibility.! !
+!ReceptiveAccount methodsFor: 'adding - private' stamp: 'MP 10/17/2021 01:38:50' overrides: 50918114!
+addToPortfolio: aPortfolio
+
+	self subclassResponsibility.! !
+!Portfolio methodsFor: 'adding' stamp: 'MP 10/17/2021 01:39:13' prior: 50918092!
+addFinancialService: aFinancialService
+
+	aFinancialService addToPortfolio: self.
+	
+	(aFinancialService isKindOf: ReceptiveAccount ) ifTrue:[
+		
+	].
+		
+	(aFinancialService isKindOf: Portfolio) ifTrue:[
+		(self roots anySatisfy: [ :root | aFinancialService cannotBeAddedTo: root])
+			ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ].
+
+		aFinancialService registerParent: self
+ 	].
+	
+	financialServices add: aFinancialService.! !
+!ReceptiveAccount methodsFor: 'adding - private' stamp: 'MP 10/17/2021 01:39:29' prior: 50918125 overrides: 50918114!
+addToPortfolio: aPortfolio
+
+	(self roots anySatisfy: [ :root | root containsAccount: self ])
+			ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ].! !
+!ReceptiveAccount methodsFor: 'adding - private' stamp: 'MP 10/17/2021 01:39:49' prior: 50918148 overrides: 50918114!
+addToPortfolio: aPortfolio
+
+	self subclassResponsibility.! !
+!Portfolio methodsFor: 'adding' stamp: 'MP 10/17/2021 01:25:06' prior: 50918130!
+addFinancialService: aFinancialService 
+	
+	(aFinancialService isKindOf: ReceptiveAccount ) ifTrue:[
+		(self roots anySatisfy: [ :root | root containsAccount: aFinancialService ])
+			ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ].
+	].
+		
+	(aFinancialService isKindOf: Portfolio) ifTrue:[
+		(self roots anySatisfy: [ :root | aFinancialService cannotBeAddedTo: root])
+			ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ].
+
+		aFinancialService registerParent: self
+ 	].
+	
+	financialServices add: aFinancialService.! !
+!PortfolioTest methodsFor: 'assertions' stamp: 'MP 10/17/2021 01:43:40'!
+assertAddingRaisesCannotAddError: aFinancialService to: aPortfolio! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:43:55' prior: 50915950!
+test14CantAddDuplicateAccount
+	| portfolio account |
+	
+	account _ ReceptiveAccount new.
+	portfolio _ Portfolio new.
+	
+	portfolio addFinancialService: account.
+	
+	self should: [ portfolio addFinancialService: account ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:44:28' prior: 50918189!
+test14CantAddDuplicateAccount
+	| portfolio account |
+	
+	account _ ReceptiveAccount new.
+	portfolio _ Portfolio new.
+	
+	portfolio addFinancialService: account.
+	
+	self shouldRaiseErrorWhenAdding: account to: portfolio.
+	
+	self should: [ portfolio addFinancialService: account ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].
+
+! !
+!PortfolioTest methodsFor: 'assertions' stamp: 'MP 10/17/2021 01:44:36'!
+shouldRaiseErrorWhenAdding: aFinancialService to: aPortfolio! !
+
+!methodRemoval: PortfolioTest #assertAddingRaisesCannotAddError:to: stamp: 'MP 10/17/2021 01:44:36'!
+assertAddingRaisesCannotAddError: aFinancialService to: aPortfolio!
+!PortfolioTest methodsFor: 'assertions' stamp: 'MP 10/17/2021 01:45:07' prior: 50918222!
+shouldRaiseErrorWhenAdding: financialService to: portfolio
+
+	self should: [ portfolio addFinancialService: financialService ]  
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :error | 
+			self assert: Portfolio cantAddFinancialServiceErrorDescription 
+				equals: error messageText 
+		].! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:45:21' prior: 50918205!
+test14CantAddDuplicateAccount
+	| portfolio account |
+	
+	account _ ReceptiveAccount new.
+	portfolio _ Portfolio new.
+	
+	portfolio addFinancialService: account.
+	
+	self shouldRaiseErrorWhenAdding: account to: portfolio.
+
+! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:45:40' prior: 50915982!
+test15CantAddAccountIncludedInChildPortfolio
+	| portfolioA portfolioB account |
+	
+	account _ ReceptiveAccount new.
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	
+	portfolioB addFinancialService: account.
+	portfolioA addFinancialService: portfolioB.
+	
+	self shouldRaiseErrorWhenAdding: account to: portfolioA
+
+! !
+
+!testRun: #PortfolioTest #test15CantAddAccountIncludedInChildPortfolio stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasZeroBalance stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test02EmptyPortfolioHasNoRegisteredTransactions stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test03EmptyPortfolioHasNoTransactions stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithSingleAccountHasItsValueAsBalance stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithAccountsHasItsTransacitions stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsHasItsTransactionsRegistered stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithMultipleAccountsSumsTheirValuesAsBalance stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithSinglePortfolioHasItsBalance stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithMultiplePortfoliosSumsTheirBalances stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioWithSinglePortfolioHasItsTransactionsRegistered stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiplePortfoliosHasTheirTransactionsRegistered stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioWithSinglePortfolioHasItsTransactions stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithMultiplePortfoliosHasTheirTransactions stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddDuplicateAccount stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddAccountIncludedInChildPortfolio stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddAccountIncludedInTheParentPortfolio stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CantAddAccountIncludedInAParent stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CantAddAccountIncludedInAnAncestor stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CantAddDuplicatePortfolio stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test20CantAddPortfolioToItself stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test21CantAddPortfolioContainedInChildPortfolio stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test22CantAddPortfolioWithSelfAsChild stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test23CantAddPortfolioContainingADescendantOfSelf stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test24CantAddPortfolioContainingADescendantOfMyRoots stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test25CantAddAPortfolioContainingAnAccountDescendantOfSelf stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test26CantAddAPortfolioContainingAnAccountDescendantOfMyRoots stamp: 'MP 10/17/2021 01:45:41'!
+PASSED!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:45:58' prior: 50916148!
+test16CantAddAccountIncludedInTheParentPortfolio
+
+	| portfolioA portfolioB account |
+	
+	account _ ReceptiveAccount new.
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	
+	portfolioA addFinancialService: account.
+	portfolioA addFinancialService: portfolioB.
+	
+	self shouldRaiseErrorWhenAdding: portfolioB to: account.! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:46:04' prior: 50918368!
+test16CantAddAccountIncludedInTheParentPortfolio
+
+	| portfolioA portfolioB account |
+	
+	account _ ReceptiveAccount new.
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	
+	portfolioA addFinancialService: account.
+	portfolioA addFinancialService: portfolioB.
+	
+	self shouldRaiseErrorWhenAdding: account to: portfolioB.! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:46:16' prior: 50916103!
+test17CantAddAccountIncludedInAParent 
+
+	| account portfolioA portfolioB portfolioC |
+	
+	account _ ReceptiveAccount new.
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: account.
+	portfolioA addFinancialService: portfolioC.
+	portfolioB addFinancialService: portfolioC.
+	
+	self shouldRaiseErrorWhenAdding: account to: portfolioC.! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:46:31' prior: 50916186!
+test18CantAddAccountIncludedInAnAncestor
+
+	| account portfolioA portfolioB portfolioC |
+	
+	account _ ReceptiveAccount new.
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: account.
+	portfolioA addFinancialService: portfolioB.
+	portfolioB addFinancialService: portfolioC.
+	
+	self shouldRaiseErrorWhenAdding: account to: portfolioC.! !
+
+!testRun: #PortfolioTest #test18CantAddAccountIncludedInAnAncestor stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasZeroBalance stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test02EmptyPortfolioHasNoRegisteredTransactions stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test03EmptyPortfolioHasNoTransactions stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithSingleAccountHasItsValueAsBalance stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithAccountsHasItsTransacitions stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsHasItsTransactionsRegistered stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithMultipleAccountsSumsTheirValuesAsBalance stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithSinglePortfolioHasItsBalance stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithMultiplePortfoliosSumsTheirBalances stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioWithSinglePortfolioHasItsTransactionsRegistered stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiplePortfoliosHasTheirTransactionsRegistered stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioWithSinglePortfolioHasItsTransactions stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithMultiplePortfoliosHasTheirTransactions stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddDuplicateAccount stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddAccountIncludedInChildPortfolio stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddAccountIncludedInTheParentPortfolio stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CantAddAccountIncludedInAParent stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CantAddAccountIncludedInAnAncestor stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CantAddDuplicatePortfolio stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test20CantAddPortfolioToItself stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test21CantAddPortfolioContainedInChildPortfolio stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test22CantAddPortfolioWithSelfAsChild stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test23CantAddPortfolioContainingADescendantOfSelf stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test24CantAddPortfolioContainingADescendantOfMyRoots stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test25CantAddAPortfolioContainingAnAccountDescendantOfSelf stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test26CantAddAPortfolioContainingAnAccountDescendantOfMyRoots stamp: 'MP 10/17/2021 01:46:34'!
+PASSED!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:46:48' prior: 50916229!
+test19CantAddDuplicatePortfolio
+	| portfolioA portfolioB |
+	portfolioA _ Portfolio new.
+	portfolioB _ Portfolio new.
+	
+	portfolioA addFinancialService: portfolioB.
+		
+	self shouldRaiseErrorWhenAdding: portfolioB to: portfolioA.! !
+
+!testRun: #PortfolioTest #test19CantAddDuplicatePortfolio stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasZeroBalance stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test02EmptyPortfolioHasNoRegisteredTransactions stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test03EmptyPortfolioHasNoTransactions stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithSingleAccountHasItsValueAsBalance stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithAccountsHasItsTransacitions stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsHasItsTransactionsRegistered stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithMultipleAccountsSumsTheirValuesAsBalance stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithSinglePortfolioHasItsBalance stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithMultiplePortfoliosSumsTheirBalances stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioWithSinglePortfolioHasItsTransactionsRegistered stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiplePortfoliosHasTheirTransactionsRegistered stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioWithSinglePortfolioHasItsTransactions stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithMultiplePortfoliosHasTheirTransactions stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddDuplicateAccount stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddAccountIncludedInChildPortfolio stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddAccountIncludedInTheParentPortfolio stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CantAddAccountIncludedInAParent stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CantAddAccountIncludedInAnAncestor stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CantAddDuplicatePortfolio stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test20CantAddPortfolioToItself stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test21CantAddPortfolioContainedInChildPortfolio stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test22CantAddPortfolioWithSelfAsChild stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test23CantAddPortfolioContainingADescendantOfSelf stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test24CantAddPortfolioContainingADescendantOfMyRoots stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test25CantAddAPortfolioContainingAnAccountDescendantOfSelf stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test26CantAddAPortfolioContainingAnAccountDescendantOfMyRoots stamp: 'MP 10/17/2021 01:46:49'!
+PASSED!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:47:02' prior: 50915924!
+test20CantAddPortfolioToItself
+	| portfolioA |
+	portfolioA _ Portfolio new.	
+	
+	self shouldRaiseErrorWhenAdding: portfolioA to: portfolioA! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:47:03' prior: 50918634!
+test20CantAddPortfolioToItself
+	| portfolioA |
+	portfolioA _ Portfolio new.	
+	
+	self shouldRaiseErrorWhenAdding: portfolioA to: portfolioA.! !
+
+!testRun: #PortfolioTest #test20CantAddPortfolioToItself stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasZeroBalance stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test02EmptyPortfolioHasNoRegisteredTransactions stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test03EmptyPortfolioHasNoTransactions stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithSingleAccountHasItsValueAsBalance stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithAccountsHasItsTransacitions stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsHasItsTransactionsRegistered stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithMultipleAccountsSumsTheirValuesAsBalance stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithSinglePortfolioHasItsBalance stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithMultiplePortfoliosSumsTheirBalances stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioWithSinglePortfolioHasItsTransactionsRegistered stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiplePortfoliosHasTheirTransactionsRegistered stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioWithSinglePortfolioHasItsTransactions stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithMultiplePortfoliosHasTheirTransactions stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddDuplicateAccount stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddAccountIncludedInChildPortfolio stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddAccountIncludedInTheParentPortfolio stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CantAddAccountIncludedInAParent stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CantAddAccountIncludedInAnAncestor stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CantAddDuplicatePortfolio stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test20CantAddPortfolioToItself stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test21CantAddPortfolioContainedInChildPortfolio stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test22CantAddPortfolioWithSelfAsChild stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test23CantAddPortfolioContainingADescendantOfSelf stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test24CantAddPortfolioContainingADescendantOfMyRoots stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test25CantAddAPortfolioContainingAnAccountDescendantOfSelf stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test26CantAddAPortfolioContainingAnAccountDescendantOfMyRoots stamp: 'MP 10/17/2021 01:47:04'!
+PASSED!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:47:22' prior: 50916262!
+test21CantAddPortfolioContainedInChildPortfolio
+	| portfolioA portfolioB portfolioC |
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: portfolioB.
+	portfolioB addFinancialService: portfolioC.
+	
+	self shouldRaiseErrorWhenAdding: portfolioC to: portfolioA! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:47:23' prior: 50918748!
+test21CantAddPortfolioContainedInChildPortfolio
+	| portfolioA portfolioB portfolioC |
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: portfolioB.
+	portfolioB addFinancialService: portfolioC.
+	
+	self shouldRaiseErrorWhenAdding: portfolioC to: portfolioA.! !
+
+!testRun: #PortfolioTest #test21CantAddPortfolioContainedInChildPortfolio stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasZeroBalance stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test02EmptyPortfolioHasNoRegisteredTransactions stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test03EmptyPortfolioHasNoTransactions stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithSingleAccountHasItsValueAsBalance stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithAccountsHasItsTransacitions stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsHasItsTransactionsRegistered stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithMultipleAccountsSumsTheirValuesAsBalance stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithSinglePortfolioHasItsBalance stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithMultiplePortfoliosSumsTheirBalances stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioWithSinglePortfolioHasItsTransactionsRegistered stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiplePortfoliosHasTheirTransactionsRegistered stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioWithSinglePortfolioHasItsTransactions stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithMultiplePortfoliosHasTheirTransactions stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddDuplicateAccount stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddAccountIncludedInChildPortfolio stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddAccountIncludedInTheParentPortfolio stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CantAddAccountIncludedInAParent stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CantAddAccountIncludedInAnAncestor stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CantAddDuplicatePortfolio stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test20CantAddPortfolioToItself stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test21CantAddPortfolioContainedInChildPortfolio stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test22CantAddPortfolioWithSelfAsChild stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test23CantAddPortfolioContainingADescendantOfSelf stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test24CantAddPortfolioContainingADescendantOfMyRoots stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test25CantAddAPortfolioContainingAnAccountDescendantOfSelf stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test26CantAddAPortfolioContainingAnAccountDescendantOfMyRoots stamp: 'MP 10/17/2021 01:47:23'!
+PASSED!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:47:35' prior: 50916424!
+test22CantAddPortfolioWithSelfAsChild
+	| portfolioA portfolioB |
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	
+	portfolioB addFinancialService: portfolioA.
+	
+	self shouldRaiseErrorWhenAdding: portfolioB to: portfolioA.! !
+
+!testRun: #PortfolioTest #test22CantAddPortfolioWithSelfAsChild stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasZeroBalance stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test02EmptyPortfolioHasNoRegisteredTransactions stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test03EmptyPortfolioHasNoTransactions stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithSingleAccountHasItsValueAsBalance stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithAccountsHasItsTransacitions stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsHasItsTransactionsRegistered stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithMultipleAccountsSumsTheirValuesAsBalance stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithSinglePortfolioHasItsBalance stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithMultiplePortfoliosSumsTheirBalances stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioWithSinglePortfolioHasItsTransactionsRegistered stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiplePortfoliosHasTheirTransactionsRegistered stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioWithSinglePortfolioHasItsTransactions stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithMultiplePortfoliosHasTheirTransactions stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddDuplicateAccount stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddAccountIncludedInChildPortfolio stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddAccountIncludedInTheParentPortfolio stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CantAddAccountIncludedInAParent stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CantAddAccountIncludedInAnAncestor stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CantAddDuplicatePortfolio stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test20CantAddPortfolioToItself stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test21CantAddPortfolioContainedInChildPortfolio stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test22CantAddPortfolioWithSelfAsChild stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test23CantAddPortfolioContainingADescendantOfSelf stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test24CantAddPortfolioContainingADescendantOfMyRoots stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test25CantAddAPortfolioContainingAnAccountDescendantOfSelf stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test26CantAddAPortfolioContainingAnAccountDescendantOfMyRoots stamp: 'MP 10/17/2021 01:47:35'!
+PASSED!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:47:37' prior: 50918874!
+test22CantAddPortfolioWithSelfAsChild
+	| portfolioA portfolioB |
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	
+	portfolioB addFinancialService: portfolioA.
+	
+	self shouldRaiseErrorWhenAdding: portfolioB to: portfolioA.! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:47:53' prior: 50916924!
+test23CantAddPortfolioContainingADescendantOfSelf
+	| portfolioA portfolioB portfolioC |
+	
+	"Pasó de una, pero lo hicimos para confirmar que esté completa la implementación y lo dejamos
+	para que se vea el proceso completo de TDD."
+	
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioA addFinancialService: portfolioC.
+	portfolioB addFinancialService: portfolioC.
+	
+	self shouldRaiseErrorWhenAdding: portfolioB to: portfolioA.! !
+
+!testRun: #PortfolioTest #test23CantAddPortfolioContainingADescendantOfSelf stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasZeroBalance stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test02EmptyPortfolioHasNoRegisteredTransactions stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test03EmptyPortfolioHasNoTransactions stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithSingleAccountHasItsValueAsBalance stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithAccountsHasItsTransacitions stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsHasItsTransactionsRegistered stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithMultipleAccountsSumsTheirValuesAsBalance stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithSinglePortfolioHasItsBalance stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithMultiplePortfoliosSumsTheirBalances stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioWithSinglePortfolioHasItsTransactionsRegistered stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiplePortfoliosHasTheirTransactionsRegistered stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioWithSinglePortfolioHasItsTransactions stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithMultiplePortfoliosHasTheirTransactions stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddDuplicateAccount stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddAccountIncludedInChildPortfolio stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddAccountIncludedInTheParentPortfolio stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CantAddAccountIncludedInAParent stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CantAddAccountIncludedInAnAncestor stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CantAddDuplicatePortfolio stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test20CantAddPortfolioToItself stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test21CantAddPortfolioContainedInChildPortfolio stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test22CantAddPortfolioWithSelfAsChild stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test23CantAddPortfolioContainingADescendantOfSelf stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test24CantAddPortfolioContainingADescendantOfMyRoots stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test25CantAddAPortfolioContainingAnAccountDescendantOfSelf stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test26CantAddAPortfolioContainingAnAccountDescendantOfMyRoots stamp: 'MP 10/17/2021 01:47:53'!
+PASSED!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:48:11' prior: 50916701!
+test24CantAddPortfolioContainingADescendantOfMyRoots
+	| portfolioA portfolioB portfolioC portfolioR |
+	portfolioR _ Portfolio new.
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	portfolioC _ Portfolio new.
+	
+	portfolioR addFinancialService: portfolioC.
+	portfolioR addFinancialService: portfolioA.
+	portfolioB addFinancialService: portfolioC.
+	
+	
+	self shouldRaiseErrorWhenAdding: portfolioB to: portfolioA.! !
+
+!testRun: #PortfolioTest #test24CantAddPortfolioContainingADescendantOfMyRoots stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasZeroBalance stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test02EmptyPortfolioHasNoRegisteredTransactions stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test03EmptyPortfolioHasNoTransactions stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithSingleAccountHasItsValueAsBalance stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithAccountsHasItsTransacitions stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsHasItsTransactionsRegistered stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithMultipleAccountsSumsTheirValuesAsBalance stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithSinglePortfolioHasItsBalance stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithMultiplePortfoliosSumsTheirBalances stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioWithSinglePortfolioHasItsTransactionsRegistered stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiplePortfoliosHasTheirTransactionsRegistered stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioWithSinglePortfolioHasItsTransactions stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithMultiplePortfoliosHasTheirTransactions stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddDuplicateAccount stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddAccountIncludedInChildPortfolio stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddAccountIncludedInTheParentPortfolio stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CantAddAccountIncludedInAParent stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CantAddAccountIncludedInAnAncestor stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CantAddDuplicatePortfolio stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test20CantAddPortfolioToItself stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test21CantAddPortfolioContainedInChildPortfolio stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test22CantAddPortfolioWithSelfAsChild stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test23CantAddPortfolioContainingADescendantOfSelf stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test24CantAddPortfolioContainingADescendantOfMyRoots stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test25CantAddAPortfolioContainingAnAccountDescendantOfSelf stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test26CantAddAPortfolioContainingAnAccountDescendantOfMyRoots stamp: 'MP 10/17/2021 01:48:11'!
+PASSED!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:48:34' prior: 50916792!
+test25CantAddAPortfolioContainingAnAccountDescendantOfSelf
+	| portfolioA portfolioB account |
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	account _ ReceptiveAccount new.
+	
+	portfolioA addFinancialService: account.
+	portfolioB addFinancialService: account.
+	
+	
+	self shouldRaiseErrorWhenAdding: portfolioB to: portfolioA! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 01:49:01' prior: 50917008!
+test26CantAddAPortfolioContainingAnAccountDescendantOfMyRoots
+	| portfolioA portfolioB account portfolioV portfolioW |
+	
+	"Pasó de una, pero lo hicimos para confirmar que esté completa la implementación y lo dejamos
+	para que se vea el proceso completo de TDD."
+
+	portfolioW _ Portfolio new.
+	portfolioV _ Portfolio new.
+	portfolioA _ Portfolio new.	
+	portfolioB _ Portfolio new.
+	
+	account _ ReceptiveAccount new.
+	
+	portfolioW addFinancialService: account.
+	portfolioW addFinancialService: portfolioA.
+	portfolioV addFinancialService: portfolioA.
+	
+	portfolioB addFinancialService: account.
+	
+	self shouldRaiseErrorWhenAdding: portfolioB to: portfolioA
+! !
+
+----SNAPSHOT----(17 October 2021 01:49:24) CuisUniversity-4913.image priorSource: 18766024!
+!PortfolioTest methodsFor: 'portfolio operations' stamp: 'MP 10/17/2021 01:49:59' prior: 50917499!
+test12PortfolioWithSinglePortfolioHasItsTransactions
+
+	| portfolio account1 expectedTransactions transaction1 account2 transaction2 |
+
+	account1 _ ReceptiveAccount new.
+	account2 _ ReceptiveAccount new.
+	
+	transaction1 _ Deposit register: 100 on: account1.
+	transaction2 _ Deposit register: 100 on: account2.	
+	
+	portfolio _ Portfolio new.
+	portfolio addFinancialService: account1.
+	portfolio addFinancialService: account2.
+
+	expectedTransactions _ OrderedCollection with: transaction1 with: transaction2.
+	self assert: expectedTransactions equals: portfolio transactions.! !
+!PortfolioTest methodsFor: 'portfolio operations' stamp: 'MP 10/17/2021 01:50:07' prior: 50917037!
+test01EmptyPortfolioHasZeroBalance
+
+	| portfolio |
+
+	portfolio _ Portfolio new.
+	
+	self assert: 0 equals: portfolio balance.! !
+!PortfolioTest methodsFor: 'portfolio operations' stamp: 'MP 10/17/2021 01:50:14' prior: 50919289!
+test01EmptyPortfolioHasZeroBalance
+
+	| portfolio |
+	portfolio _ Portfolio new.
+	
+	self assert: 0 equals: portfolio balance.! !
+!ReceptiveAccount methodsFor: 'adding - private' stamp: 'MP 10/17/2021 01:51:40' prior: 50918158 overrides: 50918114!
+addToPortfolio: aPortfolio
+
+	aPortfolio addReceptiveAccount: self.! !
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 01:52:01' prior: 50918119 overrides: 50918114!
+addToPortfolio: aPortfolio
+
+	aPortfolio addPortfolio: self.! !
+!Portfolio methodsFor: 'adding' stamp: 'MP 10/17/2021 01:52:29'!
+addReceptiveAccount: aFinancialService
+
+	^ (self roots anySatisfy: [ :root | root containsAccount: aFinancialService ])
+			ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ]! !
+!Portfolio methodsFor: 'adding' stamp: 'MP 10/17/2021 01:52:29' prior: 50918163!
+addFinancialService: aFinancialService 
+	
+	(aFinancialService isKindOf: ReceptiveAccount ) ifTrue:[
+		self addReceptiveAccount: aFinancialService.
+	].
+		
+	(aFinancialService isKindOf: Portfolio) ifTrue:[
+		(self roots anySatisfy: [ :root | aFinancialService cannotBeAddedTo: root])
+			ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ].
+
+		aFinancialService registerParent: self
+ 	].
+	
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'adding' stamp: 'MP 10/17/2021 01:53:41'!
+addPortfolio: aPortfolio
+
+	(self roots anySatisfy: [ :root | aPortfolio cannotBeAddedTo: root])
+		ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ].
+
+	aPortfolio registerParent: self.
+	financialServices add: aPortfolio.! !
+!Portfolio methodsFor: 'adding' stamp: 'MP 10/17/2021 01:53:51' prior: 50919324!
+addFinancialService: aFinancialService 
+
+	aFinancialService addToPortfolio: self.
+	
+	(aFinancialService isKindOf: ReceptiveAccount ) ifTrue:[
+		self addReceptiveAccount: aFinancialService.
+	].
+		
+	(aFinancialService isKindOf: Portfolio) ifTrue:[
+		(self roots anySatisfy: [ :root | aFinancialService cannotBeAddedTo: root])
+			ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ].
+
+		aFinancialService registerParent: self
+ 	].
+	
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'adding' stamp: 'MP 10/17/2021 01:53:53' prior: 50919352!
+addFinancialService: aFinancialService 
+
+	aFinancialService addToPortfolio: self.! !
+!Portfolio methodsFor: 'adding' stamp: 'MP 10/17/2021 01:54:21' prior: 50919315!
+addReceptiveAccount: aReceptiveAccount
+
+	(self roots anySatisfy: [ :root | root containsAccount: aReceptiveAccount ])
+			ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ].
+	
+	financialServices add: aReceptiveAccount.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasZeroBalance stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test02EmptyPortfolioHasNoRegisteredTransactions stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test03EmptyPortfolioHasNoTransactions stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithSingleAccountHasItsValueAsBalance stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithAccountsHasItsTransacitions stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsHasItsTransactionsRegistered stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithMultipleAccountsSumsTheirValuesAsBalance stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithSinglePortfolioHasItsBalance stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithMultiplePortfoliosSumsTheirBalances stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioWithSinglePortfolioHasItsTransactionsRegistered stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiplePortfoliosHasTheirTransactionsRegistered stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioWithSinglePortfolioHasItsTransactions stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithMultiplePortfoliosHasTheirTransactions stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddDuplicateAccount stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddAccountIncludedInChildPortfolio stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddAccountIncludedInTheParentPortfolio stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CantAddAccountIncludedInAParent stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CantAddAccountIncludedInAnAncestor stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CantAddDuplicatePortfolio stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test20CantAddPortfolioToItself stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test21CantAddPortfolioContainedInChildPortfolio stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test22CantAddPortfolioWithSelfAsChild stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test23CantAddPortfolioContainingADescendantOfSelf stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test24CantAddPortfolioContainingADescendantOfMyRoots stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test25CantAddAPortfolioContainingAnAccountDescendantOfSelf stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test26CantAddAPortfolioContainingAnAccountDescendantOfMyRoots stamp: 'MP 10/17/2021 01:55:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasZeroBalance stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test02EmptyPortfolioHasNoRegisteredTransactions stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test03EmptyPortfolioHasNoTransactions stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithSingleAccountHasItsValueAsBalance stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithAccountsHasItsTransacitions stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsHasItsTransactionsRegistered stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithMultipleAccountsSumsTheirValuesAsBalance stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithSinglePortfolioHasItsBalance stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithMultiplePortfoliosSumsTheirBalances stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioWithSinglePortfolioHasItsTransactionsRegistered stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiplePortfoliosHasTheirTransactionsRegistered stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioWithSinglePortfolioHasItsTransactions stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithMultiplePortfoliosHasTheirTransactions stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddDuplicateAccount stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddAccountIncludedInChildPortfolio stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddAccountIncludedInTheParentPortfolio stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CantAddAccountIncludedInAParent stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CantAddAccountIncludedInAnAncestor stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CantAddDuplicatePortfolio stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test20CantAddPortfolioToItself stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test21CantAddPortfolioContainedInChildPortfolio stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test22CantAddPortfolioWithSelfAsChild stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test23CantAddPortfolioContainingADescendantOfSelf stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test24CantAddPortfolioContainingADescendantOfMyRoots stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test25CantAddAPortfolioContainingAnAccountDescendantOfSelf stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test26CantAddAPortfolioContainingAnAccountDescendantOfMyRoots stamp: 'MP 10/17/2021 01:55:46'!
+PASSED!
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 01:56:26'!
+assertRootsDontContainAccount: aReceptiveAccount
+
+	^ (self roots anySatisfy: [ :root | root containsAccount: aReceptiveAccount ])
+			ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ]! !
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 01:56:26' prior: 50919377!
+addReceptiveAccount: aReceptiveAccount
+
+	self assertRootsDontContainAccount: aReceptiveAccount.
+	
+	financialServices add: aReceptiveAccount.! !
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 01:56:30' prior: 50919587!
+addReceptiveAccount: aReceptiveAccount
+
+	self assertRootsDontContainAccount: aReceptiveAccount.
+	financialServices add: aReceptiveAccount.! !
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 01:56:35' prior: 50919577!
+assertRootsDontContainAccount: aReceptiveAccount
+
+	^(self roots anySatisfy: [ :root | root containsAccount: aReceptiveAccount ])
+			ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ]! !
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 01:56:56' prior: 50919603!
+assertRootsDontContainAccount: aReceptiveAccount
+
+	(self roots anySatisfy: [ :root | root containsAccount: aReceptiveAccount ])
+		ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ]! !
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 01:59:58' prior: 50919595!
+addReceptiveAccount: aReceptiveAccount
+
+	self assertRootsDontContainAccount: aReceptiveAccount.
+	financialServices add: aReceptiveAccount.! !
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 02:00:31'!
+assertAccountIsntDuplicated: aReceptiveAccount
+
+	(self roots anySatisfy: [ :root | root containsAccount: aReceptiveAccount ])
+		ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 02:00:31' prior: 50919623!
+addReceptiveAccount: aReceptiveAccount
+
+	self assertAccountIsntDuplicated: aReceptiveAccount.
+	financialServices add: aReceptiveAccount.! !
+
+!methodRemoval: Portfolio #assertRootsDontContainAccount: stamp: 'MP 10/17/2021 02:00:31'!
+assertRootsDontContainAccount: aReceptiveAccount
+
+	(self roots anySatisfy: [ :root | root containsAccount: aReceptiveAccount ])
+		ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ]!
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 02:00:54' prior: 50919640!
+addReceptiveAccount: aReceptiveAccount
+
+	self assertAccountIsntDuplicated: aReceptiveAccount.
+
+	financialServices add: aReceptiveAccount.! !
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 02:01:25'!
+assertAccountIsntContained: aReceptiveAccount
+
+	(self roots anySatisfy: [ :root | root containsAccount: aReceptiveAccount ])
+		ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MP 10/17/2021 02:01:25' prior: 50919657!
+addReceptiveAccount: aReceptiveAccount
+
+	self assertAccountIsntContained: aReceptiveAccount.
+
+	financialServices add: aReceptiveAccount.! !
+
+!methodRemoval: Portfolio #assertAccountIsntDuplicated: stamp: 'MP 10/17/2021 02:01:25'!
+assertAccountIsntDuplicated: aReceptiveAccount
+
+	(self roots anySatisfy: [ :root | root containsAccount: aReceptiveAccount ])
+		ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ]!
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 02:01:48'!
+anyRootContainsAccount: aReceptiveAccount
+
+	^ self roots anySatisfy: [ :root | root containsAccount: aReceptiveAccount ]! !
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 02:01:48' prior: 50919664!
+assertAccountIsntContained: aReceptiveAccount
+
+	(self anyRootContainsAccount: aReceptiveAccount)
+		ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ]! !
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 02:04:04' prior: 50919690!
+anyRootContainsAccount: aReceptiveAccount
+
+	^ nil! !
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 02:04:15' prior: 50919697!
+assertAccountIsntContained: aReceptiveAccount
+
+	(self roots anySatisfy: [ :root | root containsAccount: aReceptiveAccount ])
+		ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ]! !
+
+!methodRemoval: Portfolio #anyRootContainsAccount: stamp: 'MP 10/17/2021 02:04:17'!
+anyRootContainsAccount: aReceptiveAccount
+
+	^ nil!
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 02:05:27'!
+assertPortfolioCanBeAdded: aPortfolio
+
+	^ (self roots anySatisfy: [ :root | aPortfolio cannotBeAddedTo: root])
+		ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ]! !
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 02:05:27' prior: 50919341!
+addPortfolio: aPortfolio
+
+	self assertPortfolioCanBeAdded: aPortfolio.
+
+	aPortfolio registerParent: self.
+	financialServices add: aPortfolio.! !
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 02:05:47' prior: 50919724!
+assertPortfolioCanBeAdded: aPortfolio
+
+	(self roots anySatisfy: [ :root | aPortfolio cannotBeAddedTo: root])
+		ifTrue: [ self error: self class cantAddFinancialServiceErrorDescription ]! !
+
+----SNAPSHOT----(17 October 2021 02:06:28) CuisUniversity-4913.image priorSource: 18803602!
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 02:06:36' prior: 50917809!
+cannotBeAddedTo: aPortfolio 
+
+	^(aPortfolio containsPortfolio: self) or: 
+		[ financialServices anySatisfy: [ :financialService | financialService cannotBeAddedTo: aPortfolio] ].! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasZeroBalance stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test02EmptyPortfolioHasNoRegisteredTransactions stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test03EmptyPortfolioHasNoTransactions stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithSingleAccountHasItsValueAsBalance stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithAccountsHasItsTransacitions stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsHasItsTransactionsRegistered stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithMultipleAccountsSumsTheirValuesAsBalance stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithSinglePortfolioHasItsBalance stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithMultiplePortfoliosSumsTheirBalances stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioWithSinglePortfolioHasItsTransactionsRegistered stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiplePortfoliosHasTheirTransactionsRegistered stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioWithSinglePortfolioHasItsTransactions stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithMultiplePortfoliosHasTheirTransactions stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddDuplicateAccount stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddAccountIncludedInChildPortfolio stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddAccountIncludedInTheParentPortfolio stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CantAddAccountIncludedInAParent stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CantAddAccountIncludedInAnAncestor stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CantAddDuplicatePortfolio stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test20CantAddPortfolioToItself stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test21CantAddPortfolioContainedInChildPortfolio stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test22CantAddPortfolioWithSelfAsChild stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test23CantAddPortfolioContainingADescendantOfSelf stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test24CantAddPortfolioContainingADescendantOfMyRoots stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test25CantAddAPortfolioContainingAnAccountDescendantOfSelf stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test26CantAddAPortfolioContainingAnAccountDescendantOfMyRoots stamp: 'MP 10/17/2021 02:07:23'!
+PASSED!
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 02:07:26' prior: 50917832!
+roots
+
+	| listOfRoots |
+	
+	listOfRoots _ OrderedCollection new.
+	parents do: [ :parent | listOfRoots addAll: parent roots].
+	^listOfRoots.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasZeroBalance stamp: 'MP 10/17/2021 02:07:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test02EmptyPortfolioHasNoRegisteredTransactions stamp: 'MP 10/17/2021 02:07:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test03EmptyPortfolioHasNoTransactions stamp: 'MP 10/17/2021 02:07:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithSingleAccountHasItsValueAsBalance stamp: 'MP 10/17/2021 02:07:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithAccountsHasItsTransacitions stamp: 'MP 10/17/2021 02:07:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsHasItsTransactionsRegistered stamp: 'MP 10/17/2021 02:07:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithMultipleAccountsSumsTheirValuesAsBalance stamp: 'MP 10/17/2021 02:07:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithSinglePortfolioHasItsBalance stamp: 'MP 10/17/2021 02:07:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithMultiplePortfoliosSumsTheirBalances stamp: 'MP 10/17/2021 02:07:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioWithSinglePortfolioHasItsTransactionsRegistered stamp: 'MP 10/17/2021 02:07:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiplePortfoliosHasTheirTransactionsRegistered stamp: 'MP 10/17/2021 02:07:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioWithSinglePortfolioHasItsTransactions stamp: 'MP 10/17/2021 02:07:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithMultiplePortfoliosHasTheirTransactions stamp: 'MP 10/17/2021 02:07:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddDuplicateAccount stamp: 'MP 10/17/2021 02:07:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test15CantAddAccountIncludedInChildPortfolio stamp: 'MP 10/17/2021 02:07:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test16CantAddAccountIncludedInTheParentPortfolio stamp: 'MP 10/17/2021 02:07:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test17CantAddAccountIncludedInAParent stamp: 'MP 10/17/2021 02:07:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test18CantAddAccountIncludedInAnAncestor stamp: 'MP 10/17/2021 02:07:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test19CantAddDuplicatePortfolio stamp: 'MP 10/17/2021 02:07:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test20CantAddPortfolioToItself stamp: 'MP 10/17/2021 02:07:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test21CantAddPortfolioContainedInChildPortfolio stamp: 'MP 10/17/2021 02:07:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test22CantAddPortfolioWithSelfAsChild stamp: 'MP 10/17/2021 02:07:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test23CantAddPortfolioContainingADescendantOfSelf stamp: 'MP 10/17/2021 02:07:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test24CantAddPortfolioContainingADescendantOfMyRoots stamp: 'MP 10/17/2021 02:07:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test25CantAddAPortfolioContainingAnAccountDescendantOfSelf stamp: 'MP 10/17/2021 02:07:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test26CantAddAPortfolioContainingAnAccountDescendantOfMyRoots stamp: 'MP 10/17/2021 02:07:26'!
+FAILURE!
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 02:07:30' prior: 50919857!
+roots
+
+	| listOfRoots |
+	
+	parents ifEmpty: [ ^OrderedCollection with: self ].
+	
+	listOfRoots _ OrderedCollection new.
+	parents do: [ :parent | listOfRoots addAll: parent roots].
+	^listOfRoots.! !
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 02:08:32'!
+isRoot
+
+	^parents isEmpty ! !
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 02:08:33' prior: 50919969!
+isRoot
+
+	^parents isEmpty.! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasZeroBalance stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test02EmptyPortfolioHasNoRegisteredTransactions stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test03EmptyPortfolioHasNoTransactions stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithSingleAccountHasItsValueAsBalance stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithAccountsHasItsTransacitions stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsHasItsTransactionsRegistered stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithMultipleAccountsSumsTheirValuesAsBalance stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithSinglePortfolioHasItsBalance stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithMultiplePortfoliosSumsTheirBalances stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioWithSinglePortfolioHasItsTransactionsRegistered stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiplePortfoliosHasTheirTransactionsRegistered stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioWithSinglePortfolioHasItsTransactions stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithMultiplePortfoliosHasTheirTransactions stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddDuplicateAccount stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddAccountIncludedInChildPortfolio stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddAccountIncludedInTheParentPortfolio stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CantAddAccountIncludedInAParent stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CantAddAccountIncludedInAnAncestor stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CantAddDuplicatePortfolio stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test20CantAddPortfolioToItself stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test21CantAddPortfolioContainedInChildPortfolio stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test22CantAddPortfolioWithSelfAsChild stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test23CantAddPortfolioContainingADescendantOfSelf stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test24CantAddPortfolioContainingADescendantOfMyRoots stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test25CantAddAPortfolioContainingAnAccountDescendantOfSelf stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test26CantAddAPortfolioContainingAnAccountDescendantOfMyRoots stamp: 'MP 10/17/2021 02:08:35'!
+PASSED!
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 02:08:57' prior: 50919960!
+roots
+
+	| listOfRoots |
+	
+	self isRoot ifTrue: [ ^OrderedCollection with: self ].
+	
+	listOfRoots _ OrderedCollection new.
+	parents do: [ :parent | listOfRoots addAll: parent roots].
+	^listOfRoots.! !
+!Portfolio methodsFor: 'adding - private' stamp: 'MP 10/17/2021 02:10:10' prior: 50919753!
+cannotBeAddedTo: aPortfolio 
+
+	^(aPortfolio containsPortfolio: self) or: 
+		[ financialServices anySatisfy: [ :financialService | financialService cannotBeAddedTo: aPortfolio ] ].! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 02:13:11'!
+test27
+	| portfolioA portfolioB portfolioW portfolioC portfolioD portfolioR |
+
+	portfolioA _ Portfolio new.
+	portfolioD _ Portfolio new.
+	portfolioC _ Portfolio new.	
+	portfolioR _ Portfolio new.
+	
+	portfolioC addFinancialService: portfolioA.
+	portfolioD addFinancialService: portfolioA.
+	portfolioW addFinancialService: portfolioC.
+	
+	self shouldRaiseErrorWhenAdding: portfolioB to: portfolioW
+! !
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 02:13:27' prior: 50920091!
+test27
+	| portfolioA portfolioW portfolioC portfolioD portfolioR |
+
+	portfolioA _ Portfolio new.
+	portfolioD _ Portfolio new.
+	portfolioC _ Portfolio new.	
+	portfolioR _ Portfolio new.
+	
+	portfolioC addFinancialService: portfolioA.
+	portfolioD addFinancialService: portfolioA.
+	portfolioW addFinancialService: portfolioC.
+	
+	self shouldRaiseErrorWhenAdding: portfolioD to: portfolioW
+! !
+
+!testRun: #PortfolioTest #test27 stamp: 'MP 10/17/2021 02:13:33'!
+ERROR!
+
+!testRun: #PortfolioTest #test27 stamp: 'MP 10/17/2021 02:13:43'!
+ERROR!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 02:13:56' prior: 50920107!
+test27
+	| portfolioA portfolioC portfolioD portfolioR |
+
+	portfolioA _ Portfolio new.
+	portfolioD _ Portfolio new.
+	portfolioC _ Portfolio new.	
+	portfolioR _ Portfolio new.
+	
+	portfolioC addFinancialService: portfolioA.
+	portfolioD addFinancialService: portfolioA.
+	portfolioR addFinancialService: portfolioC.
+	
+	self shouldRaiseErrorWhenAdding: portfolioD to: portfolioR
+! !
+
+!testRun: #PortfolioTest #test27 stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasZeroBalance stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test02EmptyPortfolioHasNoRegisteredTransactions stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test03EmptyPortfolioHasNoTransactions stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithSingleAccountHasItsValueAsBalance stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithAccountsHasItsTransacitions stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsHasItsTransactionsRegistered stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithMultipleAccountsSumsTheirValuesAsBalance stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithSinglePortfolioHasItsBalance stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithMultiplePortfoliosSumsTheirBalances stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioWithSinglePortfolioHasItsTransactionsRegistered stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiplePortfoliosHasTheirTransactionsRegistered stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioWithSinglePortfolioHasItsTransactions stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithMultiplePortfoliosHasTheirTransactions stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddDuplicateAccount stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddAccountIncludedInChildPortfolio stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddAccountIncludedInTheParentPortfolio stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CantAddAccountIncludedInAParent stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CantAddAccountIncludedInAnAncestor stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CantAddDuplicatePortfolio stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test20CantAddPortfolioToItself stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test21CantAddPortfolioContainedInChildPortfolio stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test22CantAddPortfolioWithSelfAsChild stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test23CantAddPortfolioContainingADescendantOfSelf stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test24CantAddPortfolioContainingADescendantOfMyRoots stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test25CantAddAPortfolioContainingAnAccountDescendantOfSelf stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test26CantAddAPortfolioContainingAnAccountDescendantOfMyRoots stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test27 stamp: 'MP 10/17/2021 02:13:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test27 stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasZeroBalance stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test02EmptyPortfolioHasNoRegisteredTransactions stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test03EmptyPortfolioHasNoTransactions stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithSingleAccountHasItsValueAsBalance stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithAccountsHasItsTransacitions stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithAccountsHasItsTransactionsRegistered stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWithMultipleAccountsSumsTheirValuesAsBalance stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithSinglePortfolioHasItsBalance stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithMultiplePortfoliosSumsTheirBalances stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioWithSinglePortfolioHasItsTransactionsRegistered stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiplePortfoliosHasTheirTransactionsRegistered stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioWithSinglePortfolioHasItsTransactions stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioWithMultiplePortfoliosHasTheirTransactions stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test14CantAddDuplicateAccount stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test15CantAddAccountIncludedInChildPortfolio stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test16CantAddAccountIncludedInTheParentPortfolio stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test17CantAddAccountIncludedInAParent stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test18CantAddAccountIncludedInAnAncestor stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test19CantAddDuplicatePortfolio stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test20CantAddPortfolioToItself stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test21CantAddPortfolioContainedInChildPortfolio stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test22CantAddPortfolioWithSelfAsChild stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test23CantAddPortfolioContainingADescendantOfSelf stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test24CantAddPortfolioContainingADescendantOfMyRoots stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test25CantAddAPortfolioContainingAnAccountDescendantOfSelf stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test26CantAddAPortfolioContainingAnAccountDescendantOfMyRoots stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test27 stamp: 'MP 10/17/2021 02:14:01'!
+PASSED!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 02:15:40'!
+test27CantAddPortfolioFormingRomboid
+	| portfolioA portfolioC portfolioD portfolioR |
+
+	portfolioA _ Portfolio new.
+	portfolioD _ Portfolio new.
+	portfolioC _ Portfolio new.	
+	portfolioR _ Portfolio new.
+	
+	portfolioC addFinancialService: portfolioA.
+	portfolioD addFinancialService: portfolioA.
+	portfolioR addFinancialService: portfolioC.
+	
+	self shouldRaiseErrorWhenAdding: portfolioD to: portfolioR
+! !
+
+!methodRemoval: PortfolioTest #test27 stamp: 'MP 10/17/2021 02:15:40'!
+test27
+	| portfolioA portfolioC portfolioD portfolioR |
+
+	portfolioA _ Portfolio new.
+	portfolioD _ Portfolio new.
+	portfolioC _ Portfolio new.	
+	portfolioR _ Portfolio new.
+	
+	portfolioC addFinancialService: portfolioA.
+	portfolioD addFinancialService: portfolioA.
+	portfolioR addFinancialService: portfolioC.
+	
+	self shouldRaiseErrorWhenAdding: portfolioD to: portfolioR
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 02:15:59'!
+test27CantAddPortfolioFormingRombo
+	| portfolioA portfolioC portfolioD portfolioR |
+
+	portfolioA _ Portfolio new.
+	portfolioD _ Portfolio new.
+	portfolioC _ Portfolio new.	
+	portfolioR _ Portfolio new.
+	
+	portfolioC addFinancialService: portfolioA.
+	portfolioD addFinancialService: portfolioA.
+	portfolioR addFinancialService: portfolioC.
+	
+	self shouldRaiseErrorWhenAdding: portfolioD to: portfolioR
+! !
+
+!methodRemoval: PortfolioTest #test27CantAddPortfolioFormingRomboid stamp: 'MP 10/17/2021 02:15:59'!
+test27CantAddPortfolioFormingRomboid
+	| portfolioA portfolioC portfolioD portfolioR |
+
+	portfolioA _ Portfolio new.
+	portfolioD _ Portfolio new.
+	portfolioC _ Portfolio new.	
+	portfolioR _ Portfolio new.
+	
+	portfolioC addFinancialService: portfolioA.
+	portfolioD addFinancialService: portfolioA.
+	portfolioR addFinancialService: portfolioC.
+	
+	self shouldRaiseErrorWhenAdding: portfolioD to: portfolioR
+!
+!PortfolioTest methodsFor: 'error conditions' stamp: 'MP 10/17/2021 02:16:03'!
+test27CantAddPortfolioFormingRombus
+	| portfolioA portfolioC portfolioD portfolioR |
+
+	portfolioA _ Portfolio new.
+	portfolioD _ Portfolio new.
+	portfolioC _ Portfolio new.	
+	portfolioR _ Portfolio new.
+	
+	portfolioC addFinancialService: portfolioA.
+	portfolioD addFinancialService: portfolioA.
+	portfolioR addFinancialService: portfolioC.
+	
+	self shouldRaiseErrorWhenAdding: portfolioD to: portfolioR
+! !
+
+!methodRemoval: PortfolioTest #test27CantAddPortfolioFormingRombo stamp: 'MP 10/17/2021 02:16:03'!
+test27CantAddPortfolioFormingRombo
+	| portfolioA portfolioC portfolioD portfolioR |
+
+	portfolioA _ Portfolio new.
+	portfolioD _ Portfolio new.
+	portfolioC _ Portfolio new.	
+	portfolioR _ Portfolio new.
+	
+	portfolioC addFinancialService: portfolioA.
+	portfolioD addFinancialService: portfolioA.
+	portfolioR addFinancialService: portfolioC.
+	
+	self shouldRaiseErrorWhenAdding: portfolioD to: portfolioR
+!
+
+----SNAPSHOT----(17 October 2021 02:16:33) CuisUniversity-4913.image priorSource: 18819164!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'MP 10/17/2021 02:16:43' prior: 50915343!
+test06ReceptiveAccountDoNotKnowNotRegisteredTransactions
+
+	| deposit withdraw account |
+	
+	account := ReceptiveAccount new.
+	deposit :=  Deposit for: 200.
+	withdraw := Withdraw for: 50.
+		
+	self deny: (account hasRegistered: deposit).
+	self deny: (account hasRegistered: withdraw).
+! !
+
+----SNAPSHOT----(17 October 2021 02:17:07) CuisUniversity-4913.image priorSource: 18841004!
