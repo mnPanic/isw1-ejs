@@ -871,3 +871,3881 @@ Object subclass: #NameOfSubclass
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
+
+----STARTUP---- (19 October 2021 17:15:05) as /home/mnpanic/Documents/dc/ing1/cuis/cuis-portfolio-2/CuisUniversity-4913.image!
+
+
+----End fileIn of /home/mnpanic/repos/uba/ing1-repos/isw1-ejs/18-Portfolio 2/Portfolio-Solucion.st----!
+
+!classRemoval: #ReportTest stamp: 'MP 10/19/2021 17:18:26'!
+TestCase subclass: #ReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransactionNetReport stamp: 'MP 10/19/2021 17:18:29'!
+Object subclass: #TransactionNetReport
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:19:15' prior: 50915776!
+register: aValue from: aSourceAccount to: aDestinationAccount
+
+	| transfer |
+	
+	transfer := self new initializeFor: aValue.
+	aSourceAccount register: transfer sourcePata.
+	aDestinationAccount register: transfer destinationPata.
+		
+	^ transfer
+
+	! !
+
+!methodRemoval: Transfer class #for: stamp: 'MP 10/19/2021 17:19:17'!
+for: aValue
+
+	^ self new initializeFor: aValue.
+	!
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:19:24' prior: 50915803!
+register: aValue from: aSourceAccount to: aDestinationAccount
+
+	| transfer |
+	
+	transfer := self new initializeFor: aValue.
+
+	aSourceAccount register: transfer sourcePata.
+	aDestinationAccount register: transfer destinationPata.
+		
+	^ transfer
+
+	! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:19:46' prior: 50915749!
+initializeFor: aValue
+
+	value _ aValue.
+	sourcePata _ SourcePata for: self.
+	destinationPata _ DestinationPata for: self.
+! !
+
+!classRenamed: #DestinationPata as: #TransferPataDestination stamp: 'MP 10/19/2021 17:21:04'!
+Smalltalk renameClassNamed: #DestinationPata as: #TransferPataDestination!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:21:04' prior: 50915829!
+initializeFor: aValue
+
+	value _ aValue.
+	sourcePata _ SourcePata for: self.
+	destinationPata _ TransferPataDestination for: self.
+! !
+
+!classRenamed: #TransferPataDestination as: #TransferDestinationPata stamp: 'MP 10/19/2021 17:21:15'!
+Smalltalk renameClassNamed: #TransferPataDestination as: #TransferDestinationPata!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:21:15' prior: 50915842!
+initializeFor: aValue
+
+	value _ aValue.
+	sourcePata _ SourcePata for: self.
+	destinationPata _ TransferDestinationPata for: self.
+! !
+
+!classRenamed: #SourcePata as: #TransferSourcePata stamp: 'MP 10/19/2021 17:21:20'!
+Smalltalk renameClassNamed: #SourcePata as: #TransferSourcePata!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:21:21' prior: 50915855!
+initializeFor: aValue
+
+	value _ aValue.
+	sourcePata _ TransferSourcePata for: self.
+	destinationPata _ TransferDestinationPata for: self.
+! !
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:29:50'!
+test10
+
+	| destinationAccount sourceAccount transfer |
+	
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	
+	transfer _ Transfer register: 100 from: sourceAccount to: destinationAccount.
+	
+	self assert: (sourceAccount hasRegistered: transfer).
+	
+	! !
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'MP 10/19/2021 17:29:55'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'MP 10/19/2021 17:30:12'!
+FAILURE!
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:30:23' prior: 50915874!
+test10
+
+	| destinationAccount sourceAccount transfer |
+	
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	
+	transfer _ Transfer register: 100 from: sourceAccount to: destinationAccount.
+	
+	self assert: (sourceAccount hasRegistered: transfer sourcePata).
+	
+	! !
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'MP 10/19/2021 17:30:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/19/2021 17:30:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 17:30:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 17:30:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/19/2021 17:30:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/19/2021 17:30:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/19/2021 17:30:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/19/2021 17:30:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferDecreasesBalanceOnSourceAndIncreasesBalanceOnDestination stamp: 'MP 10/19/2021 17:30:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'MP 10/19/2021 17:30:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'MP 10/19/2021 17:30:24'!
+PASSED!
+
+!methodRemoval: ReceptiveAccountTest #test10 stamp: 'MP 10/19/2021 17:32:24'!
+test10
+
+	| destinationAccount sourceAccount transfer |
+	
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	
+	transfer _ Transfer register: 100 from: sourceAccount to: destinationAccount.
+	
+	self assert: (sourceAccount hasRegistered: transfer sourcePata).
+	
+	!
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:33:36' prior: 50915228!
+test09
+
+	| transfer |
+		
+	transfer _ Transfer register: 100 from: ReceptiveAccount new to: ReceptiveAccount new.
+	
+	self assert: transfer sourcePata equals: transfer destinationPata otherPata.	
+	self assert: transfer destinationPata equals: transfer sourcePata otherPata.	
+
+	! !
+
+!classRenamed: #TransferDestinationPata as: #TransferDestination stamp: 'MP 10/19/2021 17:33:47'!
+Smalltalk renameClassNamed: #TransferDestinationPata as: #TransferDestination!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:33:47' prior: 50915867!
+initializeFor: aValue
+
+	value _ aValue.
+	sourcePata _ TransferSourcePata for: self.
+	destinationPata _ TransferDestination for: self.
+! !
+
+!classRenamed: #TransferSourcePata as: #TransferSource stamp: 'MP 10/19/2021 17:33:52'!
+Smalltalk renameClassNamed: #TransferSourcePata as: #TransferSource!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:33:52' prior: 50915973!
+initializeFor: aValue
+
+	value _ aValue.
+	sourcePata _ TransferSource for: self.
+	destinationPata _ TransferDestination for: self.
+! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:03'!
+destination
+	
+	^ destinationPata! !
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:03' prior: 50915955!
+test09
+
+	| transfer |
+		
+	transfer _ Transfer register: 100 from: ReceptiveAccount new to: ReceptiveAccount new.
+	
+	self assert: transfer sourcePata equals: transfer destination otherPata.	
+	self assert: transfer destination equals: transfer sourcePata otherPata.	
+
+	! !
+!TransferSource methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:03' prior: 50915677!
+otherPata
+
+	^ transfer destination! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:03' prior: 50915818!
+register: aValue from: aSourceAccount to: aDestinationAccount
+
+	| transfer |
+	
+	transfer := self new initializeFor: aValue.
+
+	aSourceAccount register: transfer sourcePata.
+	aDestinationAccount register: transfer destination.
+		
+	^ transfer
+
+	! !
+
+!methodRemoval: Transfer #destinationPata stamp: 'MP 10/19/2021 17:34:03'!
+destinationPata
+	
+	^ destinationPata!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:08'!
+source
+	
+	^ sourcePata! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:08' prior: 50916015!
+register: aValue from: aSourceAccount to: aDestinationAccount
+
+	| transfer |
+	
+	transfer := self new initializeFor: aValue.
+
+	aSourceAccount register: transfer source.
+	aDestinationAccount register: transfer destination.
+		
+	^ transfer
+
+	! !
+!TransferDestination methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:08' prior: 50915637!
+otherPata
+	
+	^ transfer source! !
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:08' prior: 50915998!
+test09
+
+	| transfer |
+		
+	transfer _ Transfer register: 100 from: ReceptiveAccount new to: ReceptiveAccount new.
+	
+	self assert: transfer source equals: transfer destination otherPata.	
+	self assert: transfer destination equals: transfer source otherPata.	
+
+	! !
+
+!methodRemoval: Transfer #sourcePata stamp: 'MP 10/19/2021 17:34:08'!
+sourcePata
+	
+	^ sourcePata!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'MP 10/19/2021 17:34:14'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value sourceAccount destinationAccount source destinationPata'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:14' prior: 50916029!
+source
+	
+	^ source! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:14' prior: 50915986!
+initializeFor: aValue
+
+	value _ aValue.
+	source _ TransferSource for: self.
+	destinationPata _ TransferDestination for: self.
+! !
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'MP 10/19/2021 17:34:26'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value sourceAccount destinationAccount source destination'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:26' prior: 50915993!
+destination
+	
+	^ destination! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:26' prior: 50916077!
+initializeFor: aValue
+
+	value _ aValue.
+	source _ TransferSource for: self.
+	destination _ TransferDestination for: self.
+! !
+!TransferDestination methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:38'!
+otherEnd
+	
+	^ transfer source! !
+!TransferSource methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:38'!
+otherEnd
+
+	^ transfer destination! !
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:38' prior: 50916049!
+test09
+
+	| transfer |
+		
+	transfer _ Transfer register: 100 from: ReceptiveAccount new to: ReceptiveAccount new.
+	
+	self assert: transfer source equals: transfer destination otherEnd.	
+	self assert: transfer destination equals: transfer source otherEnd.	
+
+	! !
+
+!methodRemoval: TransferDestination #otherPata stamp: 'MP 10/19/2021 17:34:38'!
+otherPata
+	
+	^ transfer source!
+
+!methodRemoval: TransferSource #otherPata stamp: 'MP 10/19/2021 17:34:38'!
+otherPata
+
+	^ transfer destination!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'MP 10/19/2021 17:35:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/19/2021 17:35:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 17:35:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 17:35:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/19/2021 17:35:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/19/2021 17:35:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/19/2021 17:35:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/19/2021 17:35:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferDecreasesBalanceOnSourceAndIncreasesBalanceOnDestination stamp: 'MP 10/19/2021 17:35:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'MP 10/19/2021 17:35:03'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:37:39'!
+test10
+
+	| transfer |
+		
+	self should: [ transfer _ Transfer register: 0 from: ReceptiveAccount new to: ReceptiveAccount new. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anException | self assert: Transfer cannotRegisterTransferErrorDescription equals: anException messageText].
+	
+
+	! !
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:37:48' prior: 50916167!
+test10
+		
+	self should: [ Transfer register: 0 from: ReceptiveAccount new to: ReceptiveAccount new. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anException | self assert: Transfer cannotRegisterTransferErrorDescription equals: anException messageText].
+	
+
+	! !
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:37:53' prior: 50916180!
+test10
+		
+	self should: [ Transfer register: 0 from: ReceptiveAccount new to: ReceptiveAccount new. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anException | 
+			self assert: Transfer cannotRegisterTransferErrorDescription equals: anException messageText ].
+	
+
+	! !
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:38:10' prior: 50916192!
+test10
+		
+	self should: [ Transfer register: 0 from: ReceptiveAccount new to: ReceptiveAccount new. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anException | 
+			self assert: Transfer cannotRegisterTransferErrorDescription equals: anException messageText ].
+	
+
+	! !
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'MP 10/19/2021 17:38:11'!
+FAILURE!
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:39:02' prior: 50916033!
+register: aValue from: aSourceAccount to: aDestinationAccount
+
+	| transfer |
+	
+	(aValue = 0) ifTrue: [ self error: self cannotRegisterTransferErrorDescription ].
+	
+	transfer := self new initializeFor: aValue.
+
+	aSourceAccount register: transfer source.
+	aDestinationAccount register: transfer destination.
+		
+	^ transfer
+
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/19/2021 17:39:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 17:39:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 17:39:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/19/2021 17:39:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/19/2021 17:39:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/19/2021 17:39:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/19/2021 17:39:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferDecreasesBalanceOnSourceAndIncreasesBalanceOnDestination stamp: 'MP 10/19/2021 17:39:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'MP 10/19/2021 17:39:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'MP 10/19/2021 17:39:04'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'MP 10/19/2021 17:39:04'!
+ERROR!
+!Transfer class methodsFor: 'error descriptions' stamp: 'MP 10/19/2021 17:39:19'!
+cannotRegisterTransferErrorDescription
+	self shouldBeImplemented.! !
+!Transfer class methodsFor: 'error descriptions' stamp: 'MP 10/19/2021 17:39:29' prior: 50916271!
+cannotRegisterTransferErrorDescription
+	
+	^ 'cannot register transaction'.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/19/2021 17:39:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 17:39:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 17:39:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/19/2021 17:39:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/19/2021 17:39:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/19/2021 17:39:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/19/2021 17:39:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferDecreasesBalanceOnSourceAndIncreasesBalanceOnDestination stamp: 'MP 10/19/2021 17:39:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'MP 10/19/2021 17:39:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'MP 10/19/2021 17:39:38'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:39:58'!
+test11
+		
+	self should: [ Transfer register: -1 from: ReceptiveAccount new to: ReceptiveAccount new. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anException | 
+			self assert: Transfer cannotRegisterTransferErrorDescription equals: anException messageText ].
+	
+
+	! !
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'MP 10/19/2021 17:39:58'!
+FAILURE!
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:40:10' prior: 50916219!
+register: aValue from: aSourceAccount to: aDestinationAccount
+
+	| transfer |
+	
+	(aValue <= 0) ifTrue: [ self error: self cannotRegisterTransferErrorDescription ].
+	
+	transfer := self new initializeFor: aValue.
+
+	aSourceAccount register: transfer source.
+	aDestinationAccount register: transfer destination.
+		
+	^ transfer
+
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/19/2021 17:40:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 17:40:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 17:40:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/19/2021 17:40:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/19/2021 17:40:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/19/2021 17:40:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/19/2021 17:40:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferDecreasesBalanceOnSourceAndIncreasesBalanceOnDestination stamp: 'MP 10/19/2021 17:40:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'MP 10/19/2021 17:40:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'MP 10/19/2021 17:40:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'MP 10/19/2021 17:40:12'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:40:23'!
+test12
+		
+	self should: [ Transfer register: -1 from: ReceptiveAccount new to: ReceptiveAccount new. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anException | 
+			self assert: Transfer cannotRegisterTransferErrorDescription equals: anException messageText ].
+	
+
+	! !
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:40:57' prior: 50916386!
+test12
+	
+	| anAccount |
+	anAccount _ ReceptiveAccount new.
+	self should: [ Transfer register: 10 from: anAccount to: anAccount. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anException | 
+			self assert: Transfer cannotRegisterTransferErrorDescription equals: anException messageText ].
+	
+
+	! !
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:41:00' prior: 50916398!
+test12
+	
+	| anAccount |
+
+	anAccount _ ReceptiveAccount new.
+	self should: [ Transfer register: 10 from: anAccount to: anAccount. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anException | 
+			self assert: Transfer cannotRegisterTransferErrorDescription equals: anException messageText ].
+	
+
+	! !
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'MP 10/19/2021 17:41:11'!
+FAILURE!
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:41:46' prior: 50916334!
+register: aValue from: aSourceAccount to: aDestinationAccount
+
+	| transfer |
+	
+	(aValue <= 0) ifTrue: [ self error: self cannotRegisterTransferErrorDescription ].
+	(aSourceAccount = aDestinationAccount ) ifTrue: [ self error: self cannotRegisterTransferErrorDescription ].
+	
+	transfer := self new initializeFor: aValue.
+
+	aSourceAccount register: transfer source.
+	aDestinationAccount register: transfer destination.
+		
+	^ transfer
+
+	! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:42:15' prior: 50916427!
+register: aValue from: aSourceAccount to: aDestinationAccount
+
+	| transfer |
+	
+	(aValue <= 0) ifTrue: [ self error: self cannotRegisterTransferErrorDescription ].
+	(aSourceAccount = aDestinationAccount ) ifTrue: [ self error: self cannotRegisterTransferWithTheSameAccountErrorDescription ].
+	
+	transfer := self new initializeFor: aValue.
+
+	aSourceAccount register: transfer source.
+	aDestinationAccount register: transfer destination.
+		
+	^ transfer
+
+	! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:42:56' prior: 50916444!
+register: aValue from: aSourceAccount to: aDestinationAccount
+
+	| transfer |
+	
+	(aValue <= 0) ifTrue: [ self error: self cannotRegisterTransferErrorDescription ].
+	(aSourceAccount = aDestinationAccount ) ifTrue: [ self error: self cannotTransferToYourselfErrorDescription ].
+	
+	transfer := self new initializeFor: aValue.
+
+	aSourceAccount register: transfer source.
+	aDestinationAccount register: transfer destination.
+		
+	^ transfer
+
+	! !
+!Transfer class methodsFor: 'error descriptions' stamp: 'MP 10/19/2021 17:43:10'!
+cannotTransferToYourselfErrorDescription
+	
+	^ 'cannot register a transfer with yourself as source and destination'.! !
+
+!methodRemoval: Transfer class #cannotTransferToYourselfErrorDescription stamp: 'MP 10/19/2021 17:44:06'!
+cannotTransferToYourselfErrorDescription
+	
+	^ 'cannot register a transfer with yourself as source and destination'.!
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:44:09' prior: 50916462!
+register: aValue from: aSourceAccount to: aDestinationAccount
+
+	| transfer |
+	
+	(aValue <= 0) ifTrue: [ self error: self cannotRegisterTransferErrorDescription ].
+	(aSourceAccount = aDestinationAccount ) ifTrue: [ self error: self cannotRegisterTransferErrorDescription ].
+	
+	transfer := self new initializeFor: aValue.
+
+	aSourceAccount register: transfer source.
+	aDestinationAccount register: transfer destination.
+		
+	^ transfer
+
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/19/2021 17:44:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 17:44:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 17:44:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/19/2021 17:44:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/19/2021 17:44:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/19/2021 17:44:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/19/2021 17:44:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferDecreasesBalanceOnSourceAndIncreasesBalanceOnDestination stamp: 'MP 10/19/2021 17:44:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'MP 10/19/2021 17:44:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'MP 10/19/2021 17:44:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'MP 10/19/2021 17:44:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'MP 10/19/2021 17:44:57'!
+PASSED!
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:45:35'!
+assertValueIsPositive: aValue
+
+	^ (aValue <= 0) ifTrue: [ self error: self cannotRegisterTransferErrorDescription ]! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:45:35' prior: 50916493!
+register: aValue from: aSourceAccount to: aDestinationAccount
+
+	| transfer |
+	
+	self assertValueIsPositive: aValue.
+	(aSourceAccount = aDestinationAccount ) ifTrue: [ self error: self cannotRegisterTransferErrorDescription ].
+	
+	transfer := self new initializeFor: aValue.
+
+	aSourceAccount register: transfer source.
+	aDestinationAccount register: transfer destination.
+		
+	^ transfer
+
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/19/2021 17:46:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 17:46:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 17:46:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/19/2021 17:46:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/19/2021 17:46:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/19/2021 17:46:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/19/2021 17:46:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferDecreasesBalanceOnSourceAndIncreasesBalanceOnDestination stamp: 'MP 10/19/2021 17:46:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'MP 10/19/2021 17:46:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'MP 10/19/2021 17:46:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'MP 10/19/2021 17:46:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'MP 10/19/2021 17:46:00'!
+PASSED!
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:46:10' prior: 50916551!
+assertValueIsPositive: aValue
+
+	(aValue <= 0) ifTrue: [ self error: self cannotRegisterTransferErrorDescription ]! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:46:52'!
+assertSource: aSourceAccount isDifferentFromDestination: aDestinationAccount
+
+	(aSourceAccount = aDestinationAccount ) ifTrue: [ self error: self cannotRegisterTransferErrorDescription ]! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:47:13' prior: 50916558!
+register: aValue from: aSourceAccount to: aDestinationAccount
+
+	| transfer |
+	
+	self assertValueIsPositive: aValue.
+	self assertSource: aSourceAccount isDifferentFromDestination: aDestinationAccount .
+	
+	transfer := self new initializeFor: aValue.
+
+	aSourceAccount register: transfer source.
+	aDestinationAccount register: transfer destination.
+		
+	^ transfer
+
+	! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:47:13' prior: 50916632!
+register: aValue from: aSourceAccount to: aDestinationAccount
+
+	| transfer |
+	
+	self assertValueIsPositive: aValue.
+	self assertSource: aSourceAccount isDifferentFromDestination: aDestinationAccount.
+	
+	transfer := self new initializeFor: aValue.
+
+	aSourceAccount register: transfer source.
+	aDestinationAccount register: transfer destination.
+		
+	^ transfer
+
+	! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:47:32'!
+assert: aSourceAccount isDifferentFrom: aDestinationAccount
+
+	(aSourceAccount = aDestinationAccount ) ifTrue: [ self error: self cannotRegisterTransferErrorDescription ]! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:47:32' prior: 50916647!
+register: aValue from: aSourceAccount to: aDestinationAccount
+
+	| transfer |
+	
+	self assertValueIsPositive: aValue.
+	self assert: aSourceAccount isDifferentFrom: aDestinationAccount.
+	
+	transfer := self new initializeFor: aValue.
+
+	aSourceAccount register: transfer source.
+	aDestinationAccount register: transfer destination.
+		
+	^ transfer
+
+	! !
+
+!methodRemoval: Transfer class #assertSource:isDifferentFromDestination: stamp: 'MP 10/19/2021 17:47:32'!
+assertSource: aSourceAccount isDifferentFromDestination: aDestinationAccount
+
+	(aSourceAccount = aDestinationAccount ) ifTrue: [ self error: self cannotRegisterTransferErrorDescription ]!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/19/2021 17:47:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 17:47:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 17:47:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/19/2021 17:47:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/19/2021 17:47:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/19/2021 17:47:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/19/2021 17:47:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferDecreasesBalanceOnSourceAndIncreasesBalanceOnDestination stamp: 'MP 10/19/2021 17:47:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'MP 10/19/2021 17:47:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10 stamp: 'MP 10/19/2021 17:47:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11 stamp: 'MP 10/19/2021 17:47:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12 stamp: 'MP 10/19/2021 17:47:59'!
+PASSED!
+
+----SNAPSHOT----(19 October 2021 17:48:02) CuisUniversity-4913.image priorSource: 18661997!
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:48:17'!
+test09TransferEndsAreTraversable
+
+	| transfer |
+		
+	transfer _ Transfer register: 100 from: ReceptiveAccount new to: ReceptiveAccount new.
+	
+	self assert: transfer source equals: transfer destination otherEnd.	
+	self assert: transfer destination equals: transfer source otherEnd.	
+
+	! !
+
+!methodRemoval: ReceptiveAccountTest #test09 stamp: 'MP 10/19/2021 17:48:17'!
+test09
+
+	| transfer |
+		
+	transfer _ Transfer register: 100 from: ReceptiveAccount new to: ReceptiveAccount new.
+	
+	self assert: transfer source equals: transfer destination otherEnd.	
+	self assert: transfer destination equals: transfer source otherEnd.	
+
+	!
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:49:01'!
+test08TransferMovesBalanceFromSourceToDestinationAccount
+
+	| destinationAccount sourceAccount aValue |
+	
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	
+	aValue _ 100.
+	
+	Transfer register: aValue from: sourceAccount to: destinationAccount.
+	
+	self assert: aValue negated equals: sourceAccount balance.
+	self assert: aValue equals: destinationAccount balance.
+	
+	! !
+
+!methodRemoval: ReceptiveAccountTest #test08TransferDecreasesBalanceOnSourceAndIncreasesBalanceOnDestination stamp: 'MP 10/19/2021 17:49:01'!
+test08TransferDecreasesBalanceOnSourceAndIncreasesBalanceOnDestination
+
+	| destinationAccount sourceAccount aValue |
+	
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	
+	aValue _ 100.
+	
+	Transfer register: aValue from: sourceAccount to: destinationAccount.
+	
+	self assert: aValue negated equals: sourceAccount balance.
+	self assert: aValue equals: destinationAccount balance.
+	
+	!
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:50:34'!
+test08TransferMovesValueFromSourceToDestinationAccount
+
+	| destinationAccount sourceAccount aValue |
+	
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	
+	aValue _ 100.
+	
+	Transfer register: aValue from: sourceAccount to: destinationAccount.
+	
+	self assert: aValue negated equals: sourceAccount balance.
+	self assert: aValue equals: destinationAccount balance.
+	
+	! !
+
+!methodRemoval: ReceptiveAccountTest #test08TransferMovesBalanceFromSourceToDestinationAccount stamp: 'MP 10/19/2021 17:50:34'!
+test08TransferMovesBalanceFromSourceToDestinationAccount
+
+	| destinationAccount sourceAccount aValue |
+	
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	
+	aValue _ 100.
+	
+	Transfer register: aValue from: sourceAccount to: destinationAccount.
+	
+	self assert: aValue negated equals: sourceAccount balance.
+	self assert: aValue equals: destinationAccount balance.
+	
+	!
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:51:38'!
+test10CannotRegisterTransferWithValueZero
+		
+	self should: [ Transfer register: 0 from: ReceptiveAccount new to: ReceptiveAccount new. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anException | 
+			self assert: Transfer cannotRegisterTransferErrorDescription equals: anException messageText ].
+	
+
+	! !
+
+!methodRemoval: ReceptiveAccountTest #test10 stamp: 'MP 10/19/2021 17:51:38'!
+test10
+		
+	self should: [ Transfer register: 0 from: ReceptiveAccount new to: ReceptiveAccount new. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anException | 
+			self assert: Transfer cannotRegisterTransferErrorDescription equals: anException messageText ].
+	
+
+	!
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:51:50'!
+test11CannotRegisterTransferWithNegativeValue
+		
+	self should: [ Transfer register: -1 from: ReceptiveAccount new to: ReceptiveAccount new. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anException | 
+			self assert: Transfer cannotRegisterTransferErrorDescription equals: anException messageText ].
+	
+
+	! !
+
+!methodRemoval: ReceptiveAccountTest #test11 stamp: 'MP 10/19/2021 17:51:50'!
+test11
+		
+	self should: [ Transfer register: -1 from: ReceptiveAccount new to: ReceptiveAccount new. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anException | 
+			self assert: Transfer cannotRegisterTransferErrorDescription equals: anException messageText ].
+	
+
+	!
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:51:58'!
+test12CannotTransferToYourself
+	
+	| anAccount |
+
+	anAccount _ ReceptiveAccount new.
+	self should: [ Transfer register: 10 from: anAccount to: anAccount. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anException | 
+			self assert: Transfer cannotRegisterTransferErrorDescription equals: anException messageText ].
+	
+
+	! !
+
+!methodRemoval: ReceptiveAccountTest #test12 stamp: 'MP 10/19/2021 17:51:58'!
+test12
+	
+	| anAccount |
+
+	anAccount _ ReceptiveAccount new.
+	self should: [ Transfer register: 10 from: anAccount to: anAccount. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anException | 
+			self assert: Transfer cannotRegisterTransferErrorDescription equals: anException messageText ].
+	
+
+	!
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:53:21'!
+assertCantRegisterTransferFor: anAccount
+
+	^ self should: [ Transfer register: 10 from: anAccount to: anAccount. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anException | 
+			self assert: Transfer cannotRegisterTransferErrorDescription equals: anException messageText ]! !
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:53:21' prior: 50916872!
+test12CannotTransferToYourself
+	
+	| anAccount |
+
+	anAccount _ ReceptiveAccount new.
+	self assertCantRegisterTransferFor: anAccount.
+	
+
+	! !
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:53:46'!
+assertCantRegisterTransferFor: aValue from: aSourceAccount to: aDestinationAccount
+
+	^ self should: [ Transfer register: 10 from: aSourceAccount to: aDestinationAccount. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anException | 
+			self assert: Transfer cannotRegisterTransferErrorDescription equals: anException messageText ]! !
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:53:48' prior: 50916918!
+assertCantRegisterTransferFor: aValue from: aSourceAccount to: aDestinationAccount
+
+	^ self should: [ Transfer register: aValue from: aSourceAccount to: aDestinationAccount. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anException | 
+			self assert: Transfer cannotRegisterTransferErrorDescription equals: anException messageText ]! !
+
+!methodRemoval: ReceptiveAccountTest #assertCantRegisterTransferFor: stamp: 'MP 10/19/2021 17:53:50'!
+assertCantRegisterTransferFor: anAccount
+
+	^ self should: [ Transfer register: 10 from: anAccount to: anAccount. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anException | 
+			self assert: Transfer cannotRegisterTransferErrorDescription equals: anException messageText ]!
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:53:59' prior: 50916911!
+test12CannotTransferToYourself
+	
+	| anAccount |
+
+	anAccount _ ReceptiveAccount new.
+	self assertCantRegisterTransferFor: 10 from: anAccount to: anAccount .
+	
+
+	! !
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:54:00' prior: 50916959!
+test12CannotTransferToYourself
+	
+	| anAccount |
+
+	anAccount _ ReceptiveAccount new.
+	self assertCantRegisterTransferFor: 10 from: anAccount to: anAccount.
+	
+
+	! !
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:54:18' prior: 50916848!
+test11CannotRegisterTransferWithNegativeValue
+		
+	self assertCantRegisterTransferFor: -1 from: ReceptiveAccount new to: ReceptiveAccount new.
+	
+
+	! !
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:55:10' prior: 50916824!
+test10CannotRegisterTransferWithValueZero
+		
+	self assertCantRegisterTransferFor: 0 from: ReceptiveAccount new to: ReceptiveAccount new.
+
+	
+
+	! !
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'MP 10/19/2021 17:55:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/19/2021 17:55:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 17:55:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 17:55:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/19/2021 17:55:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/19/2021 17:55:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/19/2021 17:55:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/19/2021 17:55:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'MP 10/19/2021 17:55:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'MP 10/19/2021 17:55:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'MP 10/19/2021 17:55:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'MP 10/19/2021 17:55:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'MP 10/19/2021 17:55:12'!
+PASSED!
+
+----SNAPSHOT----(19 October 2021 17:55:15) CuisUniversity-4913.image priorSource: 18722668!
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:55:40' prior: 50916985!
+test10CannotRegisterTransferWithValueZero
+		
+	self assertCantRegisterTransferFor: 0 from: ReceptiveAccount new to: ReceptiveAccount new.! !
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:55:44' prior: 50916977!
+test11CannotRegisterTransferWithNegativeValue
+		
+	self assertCantRegisterTransferFor: -1 from: ReceptiveAccount new to: ReceptiveAccount new.! !
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:55:48' prior: 50916968!
+test12CannotTransferToYourself
+	
+	| anAccount |
+
+	anAccount _ ReceptiveAccount new.
+	self assertCantRegisterTransferFor: 10 from: anAccount to: anAccount.! !
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'MP 10/19/2021 17:55:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/19/2021 17:55:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 17:55:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 17:55:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/19/2021 17:55:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/19/2021 17:55:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/19/2021 17:55:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/19/2021 17:55:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'MP 10/19/2021 17:55:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'MP 10/19/2021 17:55:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'MP 10/19/2021 17:55:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'MP 10/19/2021 17:55:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'MP 10/19/2021 17:55:49'!
+PASSED!
+
+----SNAPSHOT----(19 October 2021 17:56:36) CuisUniversity-4913.image priorSource: 18732476!
+
+TestCase subclass: #ReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #ReportTest category: 'Portfolio-Solucion' stamp: 'MP 10/19/2021 18:07:42'!
+TestCase subclass: #ReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReportTest methodsFor: 'nil' stamp: 'MP 10/19/2021 18:10:25'!
+test01
+
+	| account |
+	account _ ReceptiveAccount new.
+	self assert: (OrderedCollection with: 'Balance = 0') equals: account summaryReport.! !
+
+!testRun: #ReportTest #test01 stamp: 'MP 10/19/2021 18:10:30'!
+ERROR!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:10:46'!
+summaryReport
+	self shouldBeImplemented.! !
+
+!testRun: #ReportTest #test01 stamp: 'MP 10/19/2021 18:10:54'!
+ERROR!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:11:42' prior: 50917140!
+summaryReport
+	
+	^OrderedCollection with: 'Balance = 0'.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/19/2021 18:11:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 18:11:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 18:11:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/19/2021 18:11:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/19/2021 18:11:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/19/2021 18:11:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/19/2021 18:11:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'MP 10/19/2021 18:11:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'MP 10/19/2021 18:11:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'MP 10/19/2021 18:11:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'MP 10/19/2021 18:11:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'MP 10/19/2021 18:11:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MP 10/19/2021 18:11:45'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:12:47'!
+test02
+
+	| account expectedReport |
+	account _ ReceptiveAccount new.
+	Deposit register: 10 on: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Depósito por 10.'
+		with: 'Balance = 0'.
+	
+	self assert: expectedReport equals: account summaryReport.! !
+
+!testRun: #ReportTest #test02 stamp: 'MP 10/19/2021 18:12:53'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:13:58' prior: 50917147!
+summaryReport
+	
+	| report |
+	report _ OrderedCollection new.
+	
+	
+	report add: 'Balance = ', self balance asString.
+	
+	! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:14:55' prior: 50917315!
+summaryReport
+	
+	| report |
+	report _ OrderedCollection new.
+	
+	report add: 'Depósito por 10'.
+	
+	report add: 'Balance = ', self balance asString.
+	
+	! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:14:59' prior: 50917322!
+summaryReport
+	
+	| report |
+	report _ OrderedCollection new.
+	
+	report add: 'Depósito por 10.'.
+	
+	report add: 'Balance = ', self balance asString.
+	
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/19/2021 18:14:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 18:14:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 18:14:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/19/2021 18:14:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/19/2021 18:14:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/19/2021 18:14:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/19/2021 18:14:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'MP 10/19/2021 18:14:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'MP 10/19/2021 18:14:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'MP 10/19/2021 18:14:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'MP 10/19/2021 18:14:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'MP 10/19/2021 18:14:59'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MP 10/19/2021 18:15:59'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:16:06' prior: 50917330!
+summaryReport
+	
+	| report |
+	report _ OrderedCollection new.
+	
+	report add: 'Depósito por 10.'.
+	
+	report add: 'Balance = ', self balance asString.
+	
+	^report.
+	
+	! !
+
+!testRun: #ReportTest #test02 stamp: 'MP 10/19/2021 18:16:07'!
+FAILURE!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:16:16' prior: 50917301!
+test02
+
+	| account expectedReport |
+	account _ ReceptiveAccount new.
+	Deposit register: 10 on: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Depósito por 10.'
+		with: 'Balance = 10'.
+	
+	self assert: expectedReport equals: account summaryReport.! !
+
+!testRun: #ReportTest #test02 stamp: 'MP 10/19/2021 18:16:16'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MP 10/19/2021 18:16:16'!
+FAILURE!
+
+!testRun: #ReportTest #test02 stamp: 'MP 10/19/2021 18:16:16'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MP 10/19/2021 18:16:16'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:17:09' prior: 50917385!
+summaryReport
+	
+	| report |
+	report _ OrderedCollection new.
+	
+	report isEmpty ifFalse: [ report add: 'Depósito por 10.' ].
+	
+	
+	report add: 'Balance = ', self balance asString.
+	
+	^report.
+	
+	! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:17:11' prior: 50917417!
+summaryReport
+	
+	| report |
+	report _ OrderedCollection new.
+	
+	report isEmpty ifFalse: [ report add: 'Depósito por 10.' ].
+
+	report add: 'Balance = ', self balance asString.
+	
+	^report.
+	
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/19/2021 18:17:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 18:17:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 18:17:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/19/2021 18:17:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/19/2021 18:17:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/19/2021 18:17:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/19/2021 18:17:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'MP 10/19/2021 18:17:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'MP 10/19/2021 18:17:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'MP 10/19/2021 18:17:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'MP 10/19/2021 18:17:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'MP 10/19/2021 18:17:12'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:18:57'!
+test03
+
+	| account expectedReport |
+	account _ ReceptiveAccount new.
+	Withdraw register: 10 on: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Extracción por 10.'
+		with: 'Balance = -10'.
+	
+	self assert: expectedReport equals: account summaryReport.! !
+
+!testRun: #ReportTest #test03 stamp: 'MP 10/19/2021 18:18:58'!
+FAILURE!
+
+!testRun: #ReportTest #test03 stamp: 'MP 10/19/2021 18:19:05'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:19:47' prior: 50917427!
+summaryReport
+	
+	| report |
+	report _ OrderedCollection new.
+	
+	transactions isEmpty ifFalse: [ report add: 'Depósito por 10.' ].
+
+	report add: 'Balance = ', self balance asString.
+	
+	^report.
+	
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/19/2021 18:19:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 18:19:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 18:19:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/19/2021 18:19:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/19/2021 18:19:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/19/2021 18:19:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/19/2021 18:19:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'MP 10/19/2021 18:19:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'MP 10/19/2021 18:19:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'MP 10/19/2021 18:19:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'MP 10/19/2021 18:19:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'MP 10/19/2021 18:19:49'!
+PASSED!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:20:07' prior: 50917497!
+summaryReport
+	
+	| report |
+	report _ OrderedCollection new.
+	
+	report isEmpty ifFalse: [ report add: 'Depósito por 10.' ].
+
+	report add: 'Balance = ', self balance asString.
+	
+	^report.
+	
+	! !
+
+!testRun: #ReportTest #test02 stamp: 'MP 10/19/2021 18:20:08'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/19/2021 18:20:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 18:20:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 18:20:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/19/2021 18:20:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/19/2021 18:20:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/19/2021 18:20:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/19/2021 18:20:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'MP 10/19/2021 18:20:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'MP 10/19/2021 18:20:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'MP 10/19/2021 18:20:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'MP 10/19/2021 18:20:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'MP 10/19/2021 18:20:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MP 10/19/2021 18:20:16'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MP 10/19/2021 18:20:16'!
+FAILURE!
+
+!testRun: #ReportTest #test03 stamp: 'MP 10/19/2021 18:20:16'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:20:23' prior: 50917552!
+summaryReport
+	
+	| report |
+	report _ OrderedCollection new.
+	
+	transactions isEmpty ifFalse: [ report add: 'Depósito por 10.' ].
+
+	report add: 'Balance = ', self balance asString.
+	
+	^report.
+	
+	! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MP 10/19/2021 18:20:24'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MP 10/19/2021 18:20:24'!
+FAILURE!
+
+!testRun: #ReportTest #test03 stamp: 'MP 10/19/2021 18:20:24'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:21:13' prior: 50917718!
+summaryReport
+	
+	| report |
+	report _ OrderedCollection new.
+	
+	transactions isEmpty ifFalse: [ 
+		(transactions first isKindOf: Deposit) ifTrue: [ report add: 'Depósito por 10.' ]
+	
+	].
+
+	report add: 'Balance = ', self balance asString.
+	
+	^report.
+	
+	! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:21:27' prior: 50917839!
+summaryReport
+	
+	| report |
+	report _ OrderedCollection new.
+	
+	transactions isEmpty ifFalse: [ 
+		(transactions first isKindOf: Deposit) ifTrue: [ report add: 'Depósito por 10.' ].
+		(transactions first isKindOf: Withdraw) ifTrue: [ report add: 'Extracción por 10.' ].
+	].
+
+	report add: 'Balance = ', self balance asString.
+	
+	^report.
+	
+	! !
+
+!testRun: #ReportTest #test03 stamp: 'MP 10/19/2021 18:21:36'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MP 10/19/2021 18:21:36'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MP 10/19/2021 18:21:36'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MP 10/19/2021 18:21:36'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:23:07'!
+test04
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 10 from: sourceAccount to: destinationAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Salida por transferencia de 10.'
+		with: 'Balance = -10'.
+	
+	self assert: expectedReport equals: sourceAccount summaryReport.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:23:43' prior: 50917874!
+test04
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 10 from: sourceAccount to: destinationAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Salida por transferencia de 10.'
+		with: 'Balance = -10'.
+	
+	self assert: expectedReport equals: sourceAccount summaryReport.! !
+
+!testRun: #ReportTest #test04 stamp: 'MP 10/19/2021 18:23:44'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:24:01' prior: 50917851!
+summaryReport
+	
+	| report |
+	report _ OrderedCollection new.
+	
+	transactions isEmpty ifFalse: [ 
+		(transactions first isKindOf: Deposit) ifTrue: [ report add: 'Depósito por 10.' ].
+		(transactions first isKindOf: Withdraw) ifTrue: [ report add: 'Extracción por 10.' ].
+		(transactions first isKindOf: TransferSource) ifTrue: [ report add: 'Extracción por 10.' ].
+	].
+
+	report add: 'Balance = ', self balance asString.
+	
+	^report.
+	
+	! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:24:13' prior: 50917908!
+summaryReport
+	
+	| report |
+	report _ OrderedCollection new.
+	
+	transactions isEmpty ifFalse: [ 
+		(transactions first isKindOf: Deposit) ifTrue: [ report add: 'Depósito por 10.' ].
+		(transactions first isKindOf: Withdraw) ifTrue: [ report add: 'Extracción por 10.' ].
+		(transactions first isKindOf: TransferSource) ifTrue: [ report add: 'Salida por transferencia de 10.' ].
+	].
+
+	report add: 'Balance = ', self balance asString.
+	
+	^report.
+	
+	! !
+
+!testRun: #ReportTest #test04 stamp: 'MP 10/19/2021 18:24:15'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MP 10/19/2021 18:24:15'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MP 10/19/2021 18:24:15'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MP 10/19/2021 18:24:15'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MP 10/19/2021 18:24:15'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:24:28'!
+test05
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 10 from: sourceAccount to: destinationAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Entrada por transferencia de 10.'
+		with: 'Balance = -10'.
+	
+	self assert: expectedReport equals: destinationAccount summaryReport.! !
+
+!testRun: #ReportTest #test05 stamp: 'MP 10/19/2021 18:24:28'!
+FAILURE!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:24:33' prior: 50917953!
+test05
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 10 from: sourceAccount to: destinationAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Entrada por transferencia de 10.'
+		with: 'Balance = 10'.
+	
+	self assert: expectedReport equals: destinationAccount summaryReport.! !
+
+!testRun: #ReportTest #test05 stamp: 'MP 10/19/2021 18:24:34'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:24:45' prior: 50917925!
+summaryReport
+	
+	| report |
+	report _ OrderedCollection new.
+	
+	transactions isEmpty ifFalse: [ 
+		(transactions first isKindOf: Deposit) ifTrue: [ report add: 'Depósito por 10.' ].
+		(transactions first isKindOf: Withdraw) ifTrue: [ report add: 'Extracción por 10.' ].
+		(transactions first isKindOf: TransferSource) ifTrue: [ report add: 'Salida por transferencia de 10.' ].
+		(transactions first isKindOf: TransferDestination ) ifTrue: [ report add: 'Entrada por transferencia de 10.' ].
+	].
+
+	report add: 'Balance = ', self balance asString.
+	
+	^report.
+	
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/19/2021 18:24:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 18:24:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 18:24:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/19/2021 18:24:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/19/2021 18:24:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/19/2021 18:24:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/19/2021 18:24:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'MP 10/19/2021 18:24:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'MP 10/19/2021 18:24:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'MP 10/19/2021 18:24:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'MP 10/19/2021 18:24:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'MP 10/19/2021 18:24:46'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:31:16'!
+test06
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 20 from: sourceAccount to: destinationAccount.
+	Withdraw register: 30 on: sourceAccount.
+	Deposit register: 40 on: sourceAccount.
+	Transfer register: 15 from: destinationAccount to: sourceAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Entrada por transferencia de 10.'
+		with: 'Balance = 10'.
+	
+	self assert: expectedReport equals: destinationAccount summaryReport.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:32:41' prior: 50918054!
+test06
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 20 from: sourceAccount to: destinationAccount.
+	Withdraw register: 30 on: sourceAccount.
+	Deposit register: 40 on: sourceAccount.
+	Transfer register: 15 from: destinationAccount to: sourceAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Salida por transferencia de 20.'
+		with: 'Extracción por 30.'
+		with: 'Depósito por 40.'
+		with: 'Entrada por transferencia de 15.'
+		with: 'Balance = 10'.
+	
+	self assert: expectedReport equals: destinationAccount summaryReport.! !
+
+!testRun: #ReportTest #test06 stamp: 'MP 10/19/2021 18:32:50'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:33:55' prior: 50917989!
+summaryReport
+	
+	| report |
+	report _ OrderedCollection new.
+	
+	transactions do: [ :aTransaction |
+		(aTransaction isKindOf: Deposit)
+			ifTrue: [ report add: 'Depósito por' ].
+	
+		(aTransaction isKindOf: Withdraw)
+			ifTrue: [ report add: 'Extracción por 10.' ].
+	
+		(aTransaction isKindOf: TransferSource)
+			ifTrue: [ report add: 'Salida por transferencia de 10.' ].
+
+		(aTransaction isKindOf: TransferDestination )
+			ifTrue: [ report add: 'Entrada por transferencia de 10.' ].
+	]
+
+	report add: 'Balance = ', self balance asString.
+	
+	^report.
+	
+	! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:34:32' prior: 50918100!
+summaryReport
+	
+	| report |
+	report _ OrderedCollection new.
+	
+	transactions do: [ :aTransaction | | transactionValue |
+		transactionValue _ aTransaction value asString.
+		(aTransaction isKindOf: Deposit)
+			ifTrue: [ report add: 'Depósito por ', transactionValue, '.' ].
+	
+		(aTransaction isKindOf: Withdraw)
+			ifTrue: [ report add: 'Extracción por 10.' ].
+	
+		(aTransaction isKindOf: TransferSource)
+			ifTrue: [ report add: 'Salida por transferencia de 10.' ].
+
+		(aTransaction isKindOf: TransferDestination )
+			ifTrue: [ report add: 'Entrada por transferencia de 10.' ].
+	].
+
+	report add: 'Balance = ', self balance asString.
+	
+	^report.
+	
+	! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:34:38' prior: 50918121!
+summaryReport
+	
+	| report |
+	report _ OrderedCollection new.
+	
+	transactions do: [ :aTransaction |
+		| transactionValue |
+	
+		transactionValue _ aTransaction value asString.
+		(aTransaction isKindOf: Deposit)
+			ifTrue: [ report add: 'Depósito por ', transactionValue, '.' ].
+	
+		(aTransaction isKindOf: Withdraw)
+			ifTrue: [ report add: 'Extracción por 10.' ].
+	
+		(aTransaction isKindOf: TransferSource)
+			ifTrue: [ report add: 'Salida por transferencia de 10.' ].
+
+		(aTransaction isKindOf: TransferDestination )
+			ifTrue: [ report add: 'Entrada por transferencia de 10.' ].
+	].
+
+	report add: 'Balance = ', self balance asString.
+	
+	^report.
+	
+	! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:34:58' prior: 50918145!
+summaryReport
+	
+	| report |
+	report _ OrderedCollection new.
+	
+	transactions do: [ :aTransaction |
+		| transactionValue |
+	
+		transactionValue _ aTransaction value asString.
+		(aTransaction isKindOf: Deposit)
+			ifTrue: [ report add: 'Depósito por ', transactionValue, '.' ].
+	
+		(aTransaction isKindOf: Withdraw)
+			ifTrue: [ report add: 'Extracción por ', transactionValue, '.' ].
+	
+		(aTransaction isKindOf: TransferSource)
+			ifTrue: [ report add: 'Salida por transferencia de 10.' ].
+
+		(aTransaction isKindOf: TransferDestination )
+			ifTrue: [ report add: 'Entrada por transferencia de 10.' ].
+	].
+
+	report add: 'Balance = ', self balance asString.
+	
+	^report.
+	
+	! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:35:14' prior: 50918169!
+summaryReport
+	
+	| report |
+	report _ OrderedCollection new.
+	
+	transactions do: [ :aTransaction |
+		| transactionValue |
+	
+		transactionValue _ aTransaction value asString.
+		(aTransaction isKindOf: Deposit)
+			ifTrue: [ report add: 'Depósito por ', transactionValue, '.' ].
+	
+		(aTransaction isKindOf: Withdraw)
+			ifTrue: [ report add: 'Extracción por ', transactionValue, '.' ].
+	
+		(aTransaction isKindOf: TransferSource)
+			ifTrue: [ report add: 'Salida por transferencia de ', transactionValue, '.' ].
+
+		(aTransaction isKindOf: TransferDestination )
+			ifTrue: [ report add: 'Entrada por transferencia de 10.' ].
+	].
+
+	report add: 'Balance = ', self balance asString.
+	
+	^report.
+	
+	! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:35:18' prior: 50918194!
+summaryReport
+	
+	| report |
+	report _ OrderedCollection new.
+	
+	transactions do: [ :aTransaction |
+		| transactionValue |
+	
+		transactionValue _ aTransaction value asString.
+		(aTransaction isKindOf: Deposit)
+			ifTrue: [ report add: 'Depósito por ', transactionValue, '.' ].
+	
+		(aTransaction isKindOf: Withdraw)
+			ifTrue: [ report add: 'Extracción por ', transactionValue, '.' ].
+	
+		(aTransaction isKindOf: TransferSource)
+			ifTrue: [ report add: 'Salida por transferencia de ', transactionValue, '.' ].
+
+		(aTransaction isKindOf: TransferDestination )
+			ifTrue: [ report add: 'Entrada por transferencia de ', transactionValue, '.' ].
+	].
+
+	report add: 'Balance = ', self balance asString.
+	
+	^report.
+	
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/19/2021 18:35:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 18:35:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 18:35:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/19/2021 18:35:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/19/2021 18:35:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/19/2021 18:35:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/19/2021 18:35:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'MP 10/19/2021 18:35:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'MP 10/19/2021 18:35:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'MP 10/19/2021 18:35:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'MP 10/19/2021 18:35:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'MP 10/19/2021 18:35:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MP 10/19/2021 18:35:22'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MP 10/19/2021 18:35:22'!
+FAILURE!
+
+!testRun: #ReportTest #test05 stamp: 'MP 10/19/2021 18:35:22'!
+FAILURE!
+
+!testRun: #ReportTest #test06 stamp: 'MP 10/19/2021 18:35:22'!
+FAILURE!
+
+!testRun: #ReportTest #test06 stamp: 'MP 10/19/2021 18:35:25'!
+FAILURE!
+
+destinationAccount summaryReport!
+!TransferDestination methodsFor: 'nil' stamp: 'MP 10/19/2021 18:36:11' overrides: 16881508!
+value
+
+	^ transfer value.! !
+!TransferSource methodsFor: 'nil' stamp: 'MP 10/19/2021 18:36:14' overrides: 16881508!
+value
+
+	^ transfer value.! !
+
+!testRun: #ReportTest #test06 stamp: 'MP 10/19/2021 18:36:17'!
+FAILURE!
+
+destinationAccount summaryReport!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:36:36' prior: 50918074!
+test06
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 20 from: sourceAccount to: destinationAccount.
+	Withdraw register: 30 on: sourceAccount.
+	Deposit register: 40 on: sourceAccount.
+	Transfer register: 15 from: destinationAccount to: sourceAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Salida por transferencia de 20.'
+		with: 'Extracción por 30.'
+		with: 'Depósito por 40.'
+		with: 'Entrada por transferencia de 15.'
+		with: 'Balance = 10'.
+	
+	self assert: expectedReport equals: sourceAccount summaryReport.! !
+
+!testRun: #ReportTest #test06 stamp: 'MP 10/19/2021 18:36:37'!
+FAILURE!
+
+!testRun: #ReportTest #test06 stamp: 'MP 10/19/2021 18:36:39'!
+FAILURE!
+
+sourceAccount summaryReport!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:37:02' prior: 50918421!
+test06
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 20 from: sourceAccount to: destinationAccount.
+	Withdraw register: 30 on: sourceAccount.
+	Deposit register: 40 on: sourceAccount.
+	Transfer register: 15 from: destinationAccount to: sourceAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Salida por transferencia de 20.'
+		with: 'Extracción por 30.'
+		with: 'Depósito por 40.'
+		with: 'Entrada por transferencia de 15.'
+		with: 'Balance = 5'.
+	
+	self assert: expectedReport equals: sourceAccount summaryReport.! !
+
+!testRun: #ReportTest #test06 stamp: 'MP 10/19/2021 18:37:05'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MP 10/19/2021 18:37:05'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MP 10/19/2021 18:37:05'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MP 10/19/2021 18:37:05'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MP 10/19/2021 18:37:05'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MP 10/19/2021 18:37:05'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MP 10/19/2021 18:37:05'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MP 10/19/2021 18:37:07'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MP 10/19/2021 18:37:07'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MP 10/19/2021 18:37:07'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MP 10/19/2021 18:37:07'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MP 10/19/2021 18:37:07'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MP 10/19/2021 18:37:07'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MP 10/19/2021 18:37:07'!
+PASSED!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:40:21' prior: 50918219!
+summaryReport
+	
+	| report |
+	report _ OrderedCollection new.
+	
+	transactions do: [ :aTransaction |
+		| transactionValue |
+	
+		transactionValue _ aTransaction value asString.
+		(aTransaction isKindOf: Deposit)
+			ifTrue: [ report add: 'Depósito por ', transactionValue, '.' ].
+	
+		(aTransaction isKindOf: Withdraw)
+			ifTrue: [ report add: 'Extracción por ', transactionValue, '.' ].
+	
+		(aTransaction isKindOf: TransferSource)
+			ifTrue: [ report add: 'Salida por transferencia de ', transactionValue, '.' ].
+
+		(aTransaction isKindOf: TransferDestination )
+			ifTrue: [ report add: 'Entrada por transferencia de ', transactionValue, '.' ].
+	].
+
+	report add: 'Balance = ', self balance asString.
+
+	^report.
+	
+	! !
+!ReportTest methodsFor: 'summary report' stamp: 'MP 10/19/2021 18:43:13'!
+test01SummaryReportOfEmptyAccountContainsBalance
+
+	| account |
+	account _ ReceptiveAccount new.
+	self assert: (OrderedCollection with: 'Balance = 0') equals: account summaryReport.! !
+
+!methodRemoval: ReportTest #test01 stamp: 'MP 10/19/2021 18:43:13'!
+test01
+
+	| account |
+	account _ ReceptiveAccount new.
+	self assert: (OrderedCollection with: 'Balance = 0') equals: account summaryReport.!
+!ReportTest methodsFor: 'summary report' stamp: 'MP 10/19/2021 18:43:57'!
+test02SummaryReportOfAccountWithDepositContainsTheDepositAndBalance
+
+	| account expectedReport |
+	account _ ReceptiveAccount new.
+	Deposit register: 10 on: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Depósito por 10.'
+		with: 'Balance = 10'.
+	
+	self assert: expectedReport equals: account summaryReport.! !
+
+!methodRemoval: ReportTest #test02 stamp: 'MP 10/19/2021 18:43:57'!
+test02
+
+	| account expectedReport |
+	account _ ReceptiveAccount new.
+	Deposit register: 10 on: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Depósito por 10.'
+		with: 'Balance = 10'.
+	
+	self assert: expectedReport equals: account summaryReport.!
+!ReportTest methodsFor: 'summary report' stamp: 'MP 10/19/2021 18:44:08'!
+test01SummaryReportOfEmptyAccountListsTheBalance
+
+	| account |
+	account _ ReceptiveAccount new.
+	self assert: (OrderedCollection with: 'Balance = 0') equals: account summaryReport.! !
+
+!methodRemoval: ReportTest #test01SummaryReportOfEmptyAccountContainsBalance stamp: 'MP 10/19/2021 18:44:08'!
+test01SummaryReportOfEmptyAccountContainsBalance
+
+	| account |
+	account _ ReceptiveAccount new.
+	self assert: (OrderedCollection with: 'Balance = 0') equals: account summaryReport.!
+!ReportTest methodsFor: 'summary report' stamp: 'MP 10/19/2021 18:44:15'!
+test02SummaryReportOfAccountWithDepositListsTheDepositAndBalance
+
+	| account expectedReport |
+	account _ ReceptiveAccount new.
+	Deposit register: 10 on: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Depósito por 10.'
+		with: 'Balance = 10'.
+	
+	self assert: expectedReport equals: account summaryReport.! !
+
+!methodRemoval: ReportTest #test02SummaryReportOfAccountWithDepositContainsTheDepositAndBalance stamp: 'MP 10/19/2021 18:44:15'!
+test02SummaryReportOfAccountWithDepositContainsTheDepositAndBalance
+
+	| account expectedReport |
+	account _ ReceptiveAccount new.
+	Deposit register: 10 on: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Depósito por 10.'
+		with: 'Balance = 10'.
+	
+	self assert: expectedReport equals: account summaryReport.!
+!ReportTest methodsFor: 'summary report' stamp: 'MP 10/19/2021 18:44:31'!
+test06SummaryReportOfAccountWithMultipleTransactionsListsEachOneAndTheBalance
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 20 from: sourceAccount to: destinationAccount.
+	Withdraw register: 30 on: sourceAccount.
+	Deposit register: 40 on: sourceAccount.
+	Transfer register: 15 from: destinationAccount to: sourceAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Salida por transferencia de 20.'
+		with: 'Extracción por 30.'
+		with: 'Depósito por 40.'
+		with: 'Entrada por transferencia de 15.'
+		with: 'Balance = 5'.
+	
+	self assert: expectedReport equals: sourceAccount summaryReport.! !
+
+!methodRemoval: ReportTest #test06 stamp: 'MP 10/19/2021 18:44:31'!
+test06
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 20 from: sourceAccount to: destinationAccount.
+	Withdraw register: 30 on: sourceAccount.
+	Deposit register: 40 on: sourceAccount.
+	Transfer register: 15 from: destinationAccount to: sourceAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Salida por transferencia de 20.'
+		with: 'Extracción por 30.'
+		with: 'Depósito por 40.'
+		with: 'Entrada por transferencia de 15.'
+		with: 'Balance = 5'.
+	
+	self assert: expectedReport equals: sourceAccount summaryReport.!
+!ReportTest methodsFor: 'summary report' stamp: 'MP 10/19/2021 18:44:36'!
+test06SummaryReportOfAccountWithMultipleTransactionsListsEachOne
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 20 from: sourceAccount to: destinationAccount.
+	Withdraw register: 30 on: sourceAccount.
+	Deposit register: 40 on: sourceAccount.
+	Transfer register: 15 from: destinationAccount to: sourceAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Salida por transferencia de 20.'
+		with: 'Extracción por 30.'
+		with: 'Depósito por 40.'
+		with: 'Entrada por transferencia de 15.'
+		with: 'Balance = 5'.
+	
+	self assert: expectedReport equals: sourceAccount summaryReport.! !
+
+!methodRemoval: ReportTest #test06SummaryReportOfAccountWithMultipleTransactionsListsEachOneAndTheBalance stamp: 'MP 10/19/2021 18:44:36'!
+test06SummaryReportOfAccountWithMultipleTransactionsListsEachOneAndTheBalance
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 20 from: sourceAccount to: destinationAccount.
+	Withdraw register: 30 on: sourceAccount.
+	Deposit register: 40 on: sourceAccount.
+	Transfer register: 15 from: destinationAccount to: sourceAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Salida por transferencia de 20.'
+		with: 'Extracción por 30.'
+		with: 'Depósito por 40.'
+		with: 'Entrada por transferencia de 15.'
+		with: 'Balance = 5'.
+	
+	self assert: expectedReport equals: sourceAccount summaryReport.!
+!ReportTest methodsFor: 'summary report' stamp: 'MP 10/19/2021 18:45:03'!
+test06SummaryOfAccountWithMultipleTransactionsListsEachOne
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 20 from: sourceAccount to: destinationAccount.
+	Withdraw register: 30 on: sourceAccount.
+	Deposit register: 40 on: sourceAccount.
+	Transfer register: 15 from: destinationAccount to: sourceAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Salida por transferencia de 20.'
+		with: 'Extracción por 30.'
+		with: 'Depósito por 40.'
+		with: 'Entrada por transferencia de 15.'
+		with: 'Balance = 5'.
+	
+	self assert: expectedReport equals: sourceAccount summaryReport.! !
+
+!methodRemoval: ReportTest #test06SummaryReportOfAccountWithMultipleTransactionsListsEachOne stamp: 'MP 10/19/2021 18:45:03'!
+test06SummaryReportOfAccountWithMultipleTransactionsListsEachOne
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 20 from: sourceAccount to: destinationAccount.
+	Withdraw register: 30 on: sourceAccount.
+	Deposit register: 40 on: sourceAccount.
+	Transfer register: 15 from: destinationAccount to: sourceAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Salida por transferencia de 20.'
+		with: 'Extracción por 30.'
+		with: 'Depósito por 40.'
+		with: 'Entrada por transferencia de 15.'
+		with: 'Balance = 5'.
+	
+	self assert: expectedReport equals: sourceAccount summaryReport.!
+!ReportTest methodsFor: 'summary report' stamp: 'MP 10/19/2021 18:45:17'!
+test02SummaryOfAccountWithDepositListsTheDepositAndBalance
+
+	| account expectedReport |
+	account _ ReceptiveAccount new.
+	Deposit register: 10 on: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Depósito por 10.'
+		with: 'Balance = 10'.
+	
+	self assert: expectedReport equals: account summaryReport.! !
+
+!methodRemoval: ReportTest #test02SummaryReportOfAccountWithDepositListsTheDepositAndBalance stamp: 'MP 10/19/2021 18:45:17'!
+test02SummaryReportOfAccountWithDepositListsTheDepositAndBalance
+
+	| account expectedReport |
+	account _ ReceptiveAccount new.
+	Deposit register: 10 on: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Depósito por 10.'
+		with: 'Balance = 10'.
+	
+	self assert: expectedReport equals: account summaryReport.!
+!ReportTest methodsFor: 'summary report' stamp: 'MP 10/19/2021 18:45:21'!
+test01SummaryOfEmptyAccountListsTheBalance
+
+	| account |
+	account _ ReceptiveAccount new.
+	self assert: (OrderedCollection with: 'Balance = 0') equals: account summaryReport.! !
+
+!methodRemoval: ReportTest #test01SummaryReportOfEmptyAccountListsTheBalance stamp: 'MP 10/19/2021 18:45:21'!
+test01SummaryReportOfEmptyAccountListsTheBalance
+
+	| account |
+	account _ ReceptiveAccount new.
+	self assert: (OrderedCollection with: 'Balance = 0') equals: account summaryReport.!
+!ReportTest methodsFor: 'summary report' stamp: 'MP 10/19/2021 18:45:47'!
+test03SummaryOfAccountWithWithdrawListsItBeforeTheBalance
+
+	| account expectedReport |
+	account _ ReceptiveAccount new.
+	Withdraw register: 10 on: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Extracción por 10.'
+		with: 'Balance = -10'.
+	
+	self assert: expectedReport equals: account summaryReport.! !
+
+!methodRemoval: ReportTest #test03 stamp: 'MP 10/19/2021 18:45:47'!
+test03
+
+	| account expectedReport |
+	account _ ReceptiveAccount new.
+	Withdraw register: 10 on: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Extracción por 10.'
+		with: 'Balance = -10'.
+	
+	self assert: expectedReport equals: account summaryReport.!
+!ReportTest methodsFor: 'summary report' stamp: 'MP 10/19/2021 18:46:22'!
+test02SummaryOfAccountWithDepositListsItAndTheBalance
+
+	| account expectedReport |
+	account _ ReceptiveAccount new.
+	Deposit register: 10 on: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Depósito por 10.'
+		with: 'Balance = 10'.
+	
+	self assert: expectedReport equals: account summaryReport.! !
+
+!methodRemoval: ReportTest #test02SummaryOfAccountWithDepositListsTheDepositAndBalance stamp: 'MP 10/19/2021 18:46:22'!
+test02SummaryOfAccountWithDepositListsTheDepositAndBalance
+
+	| account expectedReport |
+	account _ ReceptiveAccount new.
+	Deposit register: 10 on: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Depósito por 10.'
+		with: 'Balance = 10'.
+	
+	self assert: expectedReport equals: account summaryReport.!
+!ReportTest methodsFor: 'summary report' stamp: 'MP 10/19/2021 18:46:29'!
+test03SummaryOfAccountWithWithdrawListsItAndTheBalance
+
+	| account expectedReport |
+	account _ ReceptiveAccount new.
+	Withdraw register: 10 on: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Extracción por 10.'
+		with: 'Balance = -10'.
+	
+	self assert: expectedReport equals: account summaryReport.! !
+
+!methodRemoval: ReportTest #test03SummaryOfAccountWithWithdrawListsItBeforeTheBalance stamp: 'MP 10/19/2021 18:46:29'!
+test03SummaryOfAccountWithWithdrawListsItBeforeTheBalance
+
+	| account expectedReport |
+	account _ ReceptiveAccount new.
+	Withdraw register: 10 on: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Extracción por 10.'
+		with: 'Balance = -10'.
+	
+	self assert: expectedReport equals: account summaryReport.!
+!ReportTest methodsFor: 'summary report' stamp: 'MP 10/19/2021 18:47:13'!
+test04SummaryOfAccountWithTransferFromListsItAndTheBalance
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 10 from: sourceAccount to: destinationAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Salida por transferencia de 10.'
+		with: 'Balance = -10'.
+	
+	self assert: expectedReport equals: sourceAccount summaryReport.! !
+
+!methodRemoval: ReportTest #test04 stamp: 'MP 10/19/2021 18:47:13'!
+test04
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 10 from: sourceAccount to: destinationAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Salida por transferencia de 10.'
+		with: 'Balance = -10'.
+	
+	self assert: expectedReport equals: sourceAccount summaryReport.!
+!ReportTest methodsFor: 'summary report' stamp: 'MP 10/19/2021 18:47:39'!
+test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 10 from: sourceAccount to: destinationAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Entrada por transferencia de 10.'
+		with: 'Balance = 10'.
+	
+	self assert: expectedReport equals: destinationAccount summaryReport.! !
+
+!methodRemoval: ReportTest #test05 stamp: 'MP 10/19/2021 18:47:39'!
+test05
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 10 from: sourceAccount to: destinationAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Entrada por transferencia de 10.'
+		with: 'Balance = 10'.
+	
+	self assert: expectedReport equals: destinationAccount summaryReport.!
+!ReportTest methodsFor: 'summary report' stamp: 'MP 10/19/2021 18:47:46'!
+test04SummaryOfAccountWithTransferSourceListsItAndTheBalance
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 10 from: sourceAccount to: destinationAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Salida por transferencia de 10.'
+		with: 'Balance = -10'.
+	
+	self assert: expectedReport equals: sourceAccount summaryReport.! !
+
+!methodRemoval: ReportTest #test04SummaryOfAccountWithTransferFromListsItAndTheBalance stamp: 'MP 10/19/2021 18:47:46'!
+test04SummaryOfAccountWithTransferFromListsItAndTheBalance
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 10 from: sourceAccount to: destinationAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Salida por transferencia de 10.'
+		with: 'Balance = -10'.
+	
+	self assert: expectedReport equals: sourceAccount summaryReport.!
+
+----SNAPSHOT----(19 October 2021 18:47:49) CuisUniversity-4913.image priorSource: 18734877!
+!ReportTest methodsFor: 'transaction net report' stamp: 'MP 10/19/2021 18:51:07'!
+test07
+
+	| account |
+	account _ ReceptiveAccount new.
+	
+	self assert: 0 equals: account transferNetReport.! !
+
+!testRun: #ReportTest #test07 stamp: 'MP 10/19/2021 18:51:08'!
+ERROR!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:51:13'!
+transferNetReport
+	self shouldBeImplemented.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:51:18' prior: 50918988!
+transferNetReport
+
+	^ 0.! !
+
+!testRun: #ReportTest #test07 stamp: 'MP 10/19/2021 18:51:19'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'MP 10/19/2021 18:51:19'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'MP 10/19/2021 18:51:19'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'MP 10/19/2021 18:51:19'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'MP 10/19/2021 18:51:19'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'MP 10/19/2021 18:51:19'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'MP 10/19/2021 18:51:19'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MP 10/19/2021 18:51:19'!
+PASSED!
+!ReportTest methodsFor: 'transaction net report' stamp: 'MP 10/19/2021 18:51:54'!
+test08
+
+	| account |
+	account _ ReceptiveAccount new.
+	Transfer register: 10 from: account to: ReceptiveAccount new.
+	
+	self assert: -10 equals: account transferNetReport.! !
+
+!testRun: #ReportTest #test08 stamp: 'MP 10/19/2021 18:51:55'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:52:21' prior: 50918993!
+transferNetReport
+
+	^ self balance.! !
+
+!testRun: #ReportTest #test08 stamp: 'MP 10/19/2021 18:52:50'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'MP 10/19/2021 18:52:50'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'MP 10/19/2021 18:52:50'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'MP 10/19/2021 18:52:50'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'MP 10/19/2021 18:52:50'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'MP 10/19/2021 18:52:50'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'MP 10/19/2021 18:52:50'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MP 10/19/2021 18:52:50'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'MP 10/19/2021 18:52:50'!
+PASSED!
+!ReportTest methodsFor: 'transaction net report' stamp: 'MP 10/19/2021 18:53:26'!
+test09
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	
+	self assert: -10 equals: firstAccount transferNetReport.! !
+!ReportTest methodsFor: 'transaction net report' stamp: 'MP 10/19/2021 18:53:45' prior: 50919069!
+test09
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Transfer register: 30 from: secondAccount to: firstAccount.
+	
+	self assert: -10 equals: firstAccount transferNetReport.! !
+!ReportTest methodsFor: 'transaction net report' stamp: 'MP 10/19/2021 18:53:46' prior: 50919080!
+test09
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Transfer register: 30 from: secondAccount to: firstAccount.
+	
+	self assert: -10 equals: firstAccount transferNetReport.! !
+!ReportTest methodsFor: 'transaction net report' stamp: 'MP 10/19/2021 18:53:52' prior: 50919093!
+test09
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Transfer register: 30 from: secondAccount to: firstAccount.
+	
+	self assert: 20 equals: firstAccount transferNetReport.! !
+
+!testRun: #ReportTest #test09 stamp: 'MP 10/19/2021 18:53:53'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'MP 10/19/2021 18:53:53'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'MP 10/19/2021 18:53:53'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'MP 10/19/2021 18:53:53'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'MP 10/19/2021 18:53:53'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'MP 10/19/2021 18:53:53'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'MP 10/19/2021 18:53:53'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MP 10/19/2021 18:53:53'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'MP 10/19/2021 18:53:53'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'MP 10/19/2021 18:53:53'!
+PASSED!
+!ReportTest methodsFor: 'transaction net report' stamp: 'MP 10/19/2021 18:54:38' prior: 50919106!
+test09
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Withdraw for: 10 on: firstAccount.
+	
+	self assert: -10 equals: firstAccount transferNetReport.! !
+
+!testRun: #ReportTest #test09 stamp: 'MP 10/19/2021 18:54:39'!
+ERROR!
+!ReportTest methodsFor: 'transaction net report' stamp: 'MP 10/19/2021 18:54:44' prior: 50919151!
+test09
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Withdraw register: 10 on: firstAccount.
+	
+	self assert: -10 equals: firstAccount transferNetReport.! !
+
+!testRun: #ReportTest #test09 stamp: 'MP 10/19/2021 18:54:44'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:55:12' prior: 50919035!
+transferNetReport
+
+	^ self transactions first value negated.! !
+
+!testRun: #ReportTest #test09 stamp: 'MP 10/19/2021 18:55:18'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'MP 10/19/2021 18:55:18'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'MP 10/19/2021 18:55:18'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'MP 10/19/2021 18:55:18'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'MP 10/19/2021 18:55:18'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'MP 10/19/2021 18:55:18'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'MP 10/19/2021 18:55:18'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MP 10/19/2021 18:55:18'!
+ERROR!
+
+!testRun: #ReportTest #test08 stamp: 'MP 10/19/2021 18:55:18'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'MP 10/19/2021 18:55:18'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MP 10/19/2021 18:55:18'!
+ERROR!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:55:47' prior: 50919180!
+transferNetReport
+
+	self transactions ifEmpty: [ ^0 ].
+
+	^ self transactions first value negated.! !
+
+!testRun: #ReportTest #test09 stamp: 'MP 10/19/2021 18:55:48'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'MP 10/19/2021 18:55:48'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'MP 10/19/2021 18:55:48'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'MP 10/19/2021 18:55:48'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'MP 10/19/2021 18:55:48'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'MP 10/19/2021 18:55:48'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'MP 10/19/2021 18:55:48'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MP 10/19/2021 18:55:48'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'MP 10/19/2021 18:55:48'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'MP 10/19/2021 18:55:48'!
+PASSED!
+!ReportTest methodsFor: 'transaction net report' stamp: 'MP 10/19/2021 18:56:01'!
+test10
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Withdraw register: 10 on: firstAccount.
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	
+	self assert: -20 equals: firstAccount transferNetReport.! !
+
+!testRun: #ReportTest #test10 stamp: 'MP 10/19/2021 18:56:04'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:57:44' prior: 50919220!
+transferNetReport
+
+	| net |
+	self transactions ifEmpty: [ ^0 ].
+
+	net _ 0.
+	self transactions do: [ :aTransaction |
+		
+		(aTransaction isKindOf: TransferSource) ifTrue: [
+			net _ net - aTransaction value.
+		]
+		first value negated.
+	]
+	
+	^ net.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:57:48' prior: 50919275!
+transferNetReport
+
+	| net |
+
+	self transactions ifEmpty: [ ^0 ].
+
+	net _ 0.
+	self transactions do: [ :aTransaction |
+		
+		(aTransaction isKindOf: TransferSource) ifTrue: [
+			net _ net - aTransaction value.
+		]
+		first value negated.
+	]
+	
+	^ net.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:57:52' prior: 50919286!
+transferNetReport
+
+	| net |
+
+	self transactions ifEmpty: [ ^0 ].
+
+	net _ 0.
+	self transactions do: [ :aTransaction |
+		
+		(aTransaction isKindOf: TransferSource) ifTrue: [
+			net _ net - aTransaction value.
+		]
+		first value negated.
+	]
+	
+	^ net.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:57:55' prior: 50919297!
+transferNetReport
+
+	| net |
+
+	self transactions ifEmpty: [ ^0 ].
+
+	net _ 0.
+	self transactions do: [ :aTransaction |
+		
+		(aTransaction isKindOf: TransferSource) ifTrue: [
+			net _ net - aTransaction value.
+		]
+	]
+	
+	^ net.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:57:58' prior: 50919308!
+transferNetReport
+
+	| net |
+
+	self transactions ifEmpty: [ ^0 ].
+
+	net _ 0.
+	self transactions do: [ :aTransaction |
+		
+		(aTransaction isKindOf: TransferSource) ifTrue: [
+			net _ net - aTransaction value.
+		]
+	].
+	
+	^ net.! !
+
+!testRun: #ReportTest #test10 stamp: 'MP 10/19/2021 18:57:59'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'MP 10/19/2021 18:57:59'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'MP 10/19/2021 18:57:59'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'MP 10/19/2021 18:57:59'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'MP 10/19/2021 18:57:59'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'MP 10/19/2021 18:57:59'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'MP 10/19/2021 18:57:59'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MP 10/19/2021 18:57:59'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'MP 10/19/2021 18:57:59'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'MP 10/19/2021 18:57:59'!
+PASSED!
+
+!testRun: #ReportTest #test10 stamp: 'MP 10/19/2021 18:57:59'!
+PASSED!
+!ReportTest methodsFor: 'transaction net report' stamp: 'MP 10/19/2021 18:58:16'!
+test11
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Withdraw register: 10 on: firstAccount.
+	Transfer register: 10 from: secondAccount to: firstAccount.
+	
+	self assert: -20 equals: firstAccount transferNetReport.! !
+!ReportTest methodsFor: 'transaction net report' stamp: 'MP 10/19/2021 18:58:19' prior: 50919363!
+test11
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Withdraw register: 10 on: firstAccount.
+	Transfer register: 290 from: secondAccount to: firstAccount.
+	
+	self assert: -20 equals: firstAccount transferNetReport.! !
+!ReportTest methodsFor: 'transaction net report' stamp: 'MP 10/19/2021 18:58:20' prior: 50919377!
+test11
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Withdraw register: 10 on: firstAccount.
+	Transfer register: 20 from: secondAccount to: firstAccount.
+	
+	self assert: -20 equals: firstAccount transferNetReport.! !
+!ReportTest methodsFor: 'transaction net report' stamp: 'MP 10/19/2021 18:58:29' prior: 50919391!
+test11
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Withdraw register: 10 on: firstAccount.
+	Transfer register: 20 from: secondAccount to: firstAccount.
+	
+	self assert: -10 equals: firstAccount transferNetReport.! !
+!ReportTest methodsFor: 'transaction net report' stamp: 'MP 10/19/2021 18:58:30' prior: 50919405!
+test11
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Withdraw register: 10 on: firstAccount.
+	Transfer register: 20 from: secondAccount to: firstAccount.
+	
+	self assert: 10 equals: firstAccount transferNetReport.! !
+
+!testRun: #ReportTest #test11 stamp: 'MP 10/19/2021 18:58:33'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:58:54' prior: 50919319!
+transferNetReport
+
+	| net |
+
+	self transactions ifEmpty: [ ^0 ].
+
+	net _ 0.
+	self transactions do: [ :aTransaction |
+		
+		(aTransaction isKindOf: TransferSource) ifTrue: [
+			net _ net - aTransaction value.
+		].
+	
+		(aTransaction isKindOf: TransferDestination) ifTrue: [
+			net _ net + aTransaction value.
+		]
+	].
+	
+	^ net.! !
+
+!testRun: #ReportTest #test11 stamp: 'MP 10/19/2021 18:58:56'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'MP 10/19/2021 18:58:56'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'MP 10/19/2021 18:58:56'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'MP 10/19/2021 18:58:56'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'MP 10/19/2021 18:58:56'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'MP 10/19/2021 18:58:56'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'MP 10/19/2021 18:58:56'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MP 10/19/2021 18:58:56'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'MP 10/19/2021 18:58:56'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'MP 10/19/2021 18:58:56'!
+PASSED!
+
+!testRun: #ReportTest #test10 stamp: 'MP 10/19/2021 18:58:56'!
+PASSED!
+
+!testRun: #ReportTest #test11 stamp: 'MP 10/19/2021 18:58:56'!
+PASSED!
+
+!testRun: #ReportTest #test11 stamp: 'MP 10/19/2021 18:59:06'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'MP 10/19/2021 18:59:06'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'MP 10/19/2021 18:59:06'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'MP 10/19/2021 18:59:06'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'MP 10/19/2021 18:59:06'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'MP 10/19/2021 18:59:06'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'MP 10/19/2021 18:59:06'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MP 10/19/2021 18:59:06'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'MP 10/19/2021 18:59:06'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'MP 10/19/2021 18:59:06'!
+PASSED!
+
+!testRun: #ReportTest #test10 stamp: 'MP 10/19/2021 18:59:06'!
+PASSED!
+
+!testRun: #ReportTest #test11 stamp: 'MP 10/19/2021 18:59:06'!
+PASSED!
+
+----SNAPSHOT----(19 October 2021 18:59:09) CuisUniversity-4913.image priorSource: 18794406!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:59:13' prior: 50919436!
+transferNetReport
+
+	| net |
+	net _ 0.
+	self transactions do: [ :aTransaction |
+		
+		(aTransaction isKindOf: TransferSource) ifTrue: [
+			net _ net - aTransaction value.
+		].
+	
+		(aTransaction isKindOf: TransferDestination) ifTrue: [
+			net _ net + aTransaction value.
+		]
+	].
+	
+	^ net.! !
+
+!testRun: #ReportTest #test11 stamp: 'MP 10/19/2021 18:59:14'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'MP 10/19/2021 18:59:14'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'MP 10/19/2021 18:59:14'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'MP 10/19/2021 18:59:14'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'MP 10/19/2021 18:59:14'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'MP 10/19/2021 18:59:14'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'MP 10/19/2021 18:59:14'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MP 10/19/2021 18:59:14'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'MP 10/19/2021 18:59:14'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'MP 10/19/2021 18:59:14'!
+PASSED!
+
+!testRun: #ReportTest #test10 stamp: 'MP 10/19/2021 18:59:14'!
+PASSED!
+
+!testRun: #ReportTest #test11 stamp: 'MP 10/19/2021 18:59:14'!
+PASSED!
+!ReportTest methodsFor: 'summary report' stamp: 'MP 10/19/2021 18:59:23' prior: 50918711!
+test06SummaryOfAccountWithMultipleTransactionsListsEachOne
+
+	| expectedReport destinationAccount firstAccount |
+	firstAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 20 from: firstAccount to: destinationAccount.
+	Withdraw register: 30 on: firstAccount.
+	Deposit register: 40 on: firstAccount.
+	Transfer register: 15 from: destinationAccount to: firstAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Salida por transferencia de 20.'
+		with: 'Extracción por 30.'
+		with: 'Depósito por 40.'
+		with: 'Entrada por transferencia de 15.'
+		with: 'Balance = 5'.
+	
+	self assert: expectedReport equals: firstAccount summaryReport.! !
+!ReportTest methodsFor: 'summary report' stamp: 'MP 10/19/2021 18:59:31' prior: 50919574!
+test06SummaryOfAccountWithMultipleTransactionsListsEachOne
+
+	| expectedReport secondAccount firstAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+	Transfer register: 20 from: firstAccount to: secondAccount.
+	Withdraw register: 30 on: firstAccount.
+	Deposit register: 40 on: firstAccount.
+	Transfer register: 15 from: secondAccount to: firstAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Salida por transferencia de 20.'
+		with: 'Extracción por 30.'
+		with: 'Depósito por 40.'
+		with: 'Entrada por transferencia de 15.'
+		with: 'Balance = 5'.
+	
+	self assert: expectedReport equals: firstAccount summaryReport.! !
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'MP 10/19/2021 18:59:33'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'MP 10/19/2021 18:59:33'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'MP 10/19/2021 18:59:33'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'MP 10/19/2021 18:59:33'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'MP 10/19/2021 18:59:33'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'MP 10/19/2021 18:59:33'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'MP 10/19/2021 18:59:33'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MP 10/19/2021 18:59:33'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'MP 10/19/2021 18:59:33'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'MP 10/19/2021 18:59:33'!
+PASSED!
+
+!testRun: #ReportTest #test10 stamp: 'MP 10/19/2021 18:59:33'!
+PASSED!
+
+!testRun: #ReportTest #test11 stamp: 'MP 10/19/2021 18:59:33'!
+PASSED!
+!ReportTest methodsFor: 'transfer net report' stamp: 'MP 10/19/2021 18:59:59'!
+test07TransferNetOfEmptyAccountReturns0
+
+	| account |
+	account _ ReceptiveAccount new.
+	
+	self assert: 0 equals: account transferNetReport.! !
+
+!methodRemoval: ReportTest #test07 stamp: 'MP 10/19/2021 18:59:59'!
+test07
+
+	| account |
+	account _ ReceptiveAccount new.
+	
+	self assert: 0 equals: account transferNetReport.!
+!ReportTest methodsFor: 'transfer net report' stamp: 'MP 10/19/2021 19:00:02'!
+test07TransferNetOfEmptyAccountReturnsZero
+
+	| account |
+	account _ ReceptiveAccount new.
+	
+	self assert: 0 equals: account transferNetReport.! !
+
+!methodRemoval: ReportTest #test07TransferNetOfEmptyAccountReturns0 stamp: 'MP 10/19/2021 19:00:02'!
+test07TransferNetOfEmptyAccountReturns0
+
+	| account |
+	account _ ReceptiveAccount new.
+	
+	self assert: 0 equals: account transferNetReport.!
+!ReportTest methodsFor: 'transfer net report' stamp: 'MP 10/19/2021 19:00:41'!
+test08TransferNetOfAccountSourceOfTransfer
+
+	| account |
+	account _ ReceptiveAccount new.
+	Transfer register: 10 from: account to: ReceptiveAccount new.
+	
+	self assert: -10 equals: account transferNetReport.! !
+
+!methodRemoval: ReportTest #test08 stamp: 'MP 10/19/2021 19:00:41'!
+test08
+
+	| account |
+	account _ ReceptiveAccount new.
+	Transfer register: 10 from: account to: ReceptiveAccount new.
+	
+	self assert: -10 equals: account transferNetReport.!
+!ReportTest methodsFor: 'transfer net report' stamp: 'MP 10/19/2021 19:00:51'!
+test08TransferNetOfAccountSourceOfTransferSubstractsItsValue
+
+	| account |
+	account _ ReceptiveAccount new.
+	Transfer register: 10 from: account to: ReceptiveAccount new.
+	
+	self assert: -10 equals: account transferNetReport.! !
+
+!methodRemoval: ReportTest #test08TransferNetOfAccountSourceOfTransfer stamp: 'MP 10/19/2021 19:00:51'!
+test08TransferNetOfAccountSourceOfTransfer
+
+	| account |
+	account _ ReceptiveAccount new.
+	Transfer register: 10 from: account to: ReceptiveAccount new.
+	
+	self assert: -10 equals: account transferNetReport.!
+!ReportTest methodsFor: 'transfer net report' stamp: 'MP 10/19/2021 19:01:40'!
+test07EmptyAccountTransferNetIsZero
+
+	| account |
+	account _ ReceptiveAccount new.
+	
+	self assert: 0 equals: account transferNetReport.! !
+
+!methodRemoval: ReportTest #test07TransferNetOfEmptyAccountReturnsZero stamp: 'MP 10/19/2021 19:01:40'!
+test07TransferNetOfEmptyAccountReturnsZero
+
+	| account |
+	account _ ReceptiveAccount new.
+	
+	self assert: 0 equals: account transferNetReport.!
+!ReportTest methodsFor: 'transfer net report' stamp: 'MP 10/19/2021 19:02:19'!
+test07TransferNetOfEmptyAccountIsZero
+
+	| account |
+	account _ ReceptiveAccount new.
+	
+	self assert: 0 equals: account transferNetReport.! !
+
+!methodRemoval: ReportTest #test07EmptyAccountTransferNetIsZero stamp: 'MP 10/19/2021 19:02:20'!
+test07EmptyAccountTransferNetIsZero
+
+	| account |
+	account _ ReceptiveAccount new.
+	
+	self assert: 0 equals: account transferNetReport.!
+!ReportTest methodsFor: 'transfer net report' stamp: 'MP 10/19/2021 19:02:52'!
+test08TransferNetOfAccountWithTransferSourceSubstractsItsValue
+
+	| account |
+	account _ ReceptiveAccount new.
+	Transfer register: 10 from: account to: ReceptiveAccount new.
+	
+	self assert: -10 equals: account transferNetReport.! !
+
+!methodRemoval: ReportTest #test08TransferNetOfAccountSourceOfTransferSubstractsItsValue stamp: 'MP 10/19/2021 19:02:52'!
+test08TransferNetOfAccountSourceOfTransferSubstractsItsValue
+
+	| account |
+	account _ ReceptiveAccount new.
+	Transfer register: 10 from: account to: ReceptiveAccount new.
+	
+	self assert: -10 equals: account transferNetReport.!
+!ReportTest methodsFor: 'transfer net report' stamp: 'MP 10/19/2021 19:03:15'!
+test09TransferNetConsidersJustTransfers
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Withdraw register: 10 on: firstAccount.
+	
+	self assert: -10 equals: firstAccount transferNetReport.! !
+
+!methodRemoval: ReportTest #test09 stamp: 'MP 10/19/2021 19:03:15'!
+test09
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Withdraw register: 10 on: firstAccount.
+	
+	self assert: -10 equals: firstAccount transferNetReport.!
+!ReportTest methodsFor: 'transfer net report' stamp: 'MP 10/19/2021 19:03:52'!
+test10TransferNetOfMultipleTransfersConsidersEachOne
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Withdraw register: 10 on: firstAccount.
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	
+	self assert: -20 equals: firstAccount transferNetReport.! !
+
+!methodRemoval: ReportTest #test10 stamp: 'MP 10/19/2021 19:03:52'!
+test10
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Withdraw register: 10 on: firstAccount.
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	
+	self assert: -20 equals: firstAccount transferNetReport.!
+!ReportTest methodsFor: 'transfer net report' stamp: 'MP 10/19/2021 19:03:58'!
+test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Withdraw register: 10 on: firstAccount.
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	
+	self assert: -20 equals: firstAccount transferNetReport.! !
+
+!methodRemoval: ReportTest #test10TransferNetOfMultipleTransfersConsidersEachOne stamp: 'MP 10/19/2021 19:03:58'!
+test10TransferNetOfMultipleTransfersConsidersEachOne
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Withdraw register: 10 on: firstAccount.
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	
+	self assert: -20 equals: firstAccount transferNetReport.!
+!ReportTest methodsFor: 'transfer net report' stamp: 'MP 10/19/2021 19:04:19' prior: 50919828!
+test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	
+	self assert: -20 equals: firstAccount transferNetReport.! !
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'MP 10/19/2021 19:04:21'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'MP 10/19/2021 19:04:21'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'MP 10/19/2021 19:04:21'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'MP 10/19/2021 19:04:21'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'MP 10/19/2021 19:04:21'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'MP 10/19/2021 19:04:21'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'MP 10/19/2021 19:04:21'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'MP 10/19/2021 19:04:21'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'MP 10/19/2021 19:04:21'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'MP 10/19/2021 19:04:21'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'MP 10/19/2021 19:04:21'!
+PASSED!
+
+!testRun: #ReportTest #test11 stamp: 'MP 10/19/2021 19:04:21'!
+PASSED!
+!ReportTest methodsFor: 'transfer net report' stamp: 'MP 10/19/2021 19:04:41'!
+test11TransferNetOfAccountWithTransferDestinationAddsItsValue
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Withdraw register: 10 on: firstAccount.
+	Transfer register: 20 from: secondAccount to: firstAccount.
+	
+	self assert: 10 equals: firstAccount transferNetReport.! !
+
+!methodRemoval: ReportTest #test11 stamp: 'MP 10/19/2021 19:04:41'!
+test11
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Withdraw register: 10 on: firstAccount.
+	Transfer register: 20 from: secondAccount to: firstAccount.
+	
+	self assert: 10 equals: firstAccount transferNetReport.!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'MP 10/19/2021 19:04:46'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'MP 10/19/2021 19:04:46'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'MP 10/19/2021 19:04:46'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'MP 10/19/2021 19:04:46'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'MP 10/19/2021 19:04:46'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'MP 10/19/2021 19:04:46'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'MP 10/19/2021 19:04:46'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'MP 10/19/2021 19:04:46'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'MP 10/19/2021 19:04:46'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'MP 10/19/2021 19:04:46'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'MP 10/19/2021 19:04:46'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'MP 10/19/2021 19:04:46'!
+PASSED!
+
+----SNAPSHOT----(19 October 2021 19:04:48) CuisUniversity-4913.image priorSource: 18811862!
+
+----SNAPSHOT----(19 October 2021 19:05:40) CuisUniversity-4913.image priorSource: 18826894!

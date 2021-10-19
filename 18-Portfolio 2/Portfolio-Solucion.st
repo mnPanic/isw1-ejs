@@ -304,8 +304,17 @@ test07AccountKnowsItsTransactions
 	self assert: (account1 transactions includes: deposit1).
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'IAR 10/18/2021 20:53:37'!
-test08TransferDecreasesBalanceOnSourceAndIncreasesBalanceOnDestination
+
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:53:48'!
+assertCantRegisterTransferFor: aValue from: aSourceAccount to: aDestinationAccount
+
+	^ self should: [ Transfer register: aValue from: aSourceAccount to: aDestinationAccount. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anException | 
+			self assert: Transfer cannotRegisterTransferErrorDescription equals: anException messageText ]! !
+
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:50:34'!
+test08TransferMovesValueFromSourceToDestinationAccount
 
 	| destinationAccount sourceAccount aValue |
 	
@@ -321,17 +330,35 @@ test08TransferDecreasesBalanceOnSourceAndIncreasesBalanceOnDestination
 	
 	! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'IAR 10/18/2021 21:57:20'!
-test09
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:48:17'!
+test09TransferEndsAreTraversable
 
 	| transfer |
 		
 	transfer _ Transfer register: 100 from: ReceptiveAccount new to: ReceptiveAccount new.
 	
-	self assert: transfer sourcePata equals: transfer destinationPata otherPata.	
-	self assert: transfer destinationPata equals: transfer sourcePata otherPata.	
+	self assert: transfer source equals: transfer destination otherEnd.	
+	self assert: transfer destination equals: transfer source otherEnd.	
 
 	! !
+
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:55:40'!
+test10CannotRegisterTransferWithValueZero
+		
+	self assertCantRegisterTransferFor: 0 from: ReceptiveAccount new to: ReceptiveAccount new.! !
+
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:55:44'!
+test11CannotRegisterTransferWithNegativeValue
+		
+	self assertCantRegisterTransferFor: -1 from: ReceptiveAccount new to: ReceptiveAccount new.! !
+
+!ReceptiveAccountTest methodsFor: 'transfer' stamp: 'MP 10/19/2021 17:55:48'!
+test12CannotTransferToYourself
+	
+	| anAccount |
+
+	anAccount _ ReceptiveAccount new.
+	self assertCantRegisterTransferFor: 10 from: anAccount to: anAccount.! !
 
 
 !classDefinition: #ReportTest category: 'Portfolio-Solucion'!
@@ -341,25 +368,141 @@ TestCase subclass: #ReportTest
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 22:07:10'!
-estoNoEsUnTest
+!ReportTest methodsFor: 'transfer net report' stamp: 'MP 10/19/2021 19:02:19'!
+test07TransferNetOfEmptyAccountIsZero
 
 	| account |
-	
 	account _ ReceptiveAccount new.
 	
-	self assert: 0 equals: (TransactionNetReport for: account) result.
-! !
+	self assert: 0 equals: account transferNetReport.! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 22:09:00'!
-test01
+!ReportTest methodsFor: 'transfer net report' stamp: 'MP 10/19/2021 19:02:52'!
+test08TransferNetOfAccountWithTransferSourceSubstractsItsValue
 
 	| account |
-	
 	account _ ReceptiveAccount new.
+	Transfer register: 10 from: account to: ReceptiveAccount new.
 	
-	self assert: (OrderedCollection with: 'Balance: 0') equals: account accountSummaryReport.
-! !
+	self assert: -10 equals: account transferNetReport.! !
+
+!ReportTest methodsFor: 'transfer net report' stamp: 'MP 10/19/2021 19:03:15'!
+test09TransferNetConsidersJustTransfers
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Withdraw register: 10 on: firstAccount.
+	
+	self assert: -10 equals: firstAccount transferNetReport.! !
+
+!ReportTest methodsFor: 'transfer net report' stamp: 'MP 10/19/2021 19:04:19'!
+test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	
+	self assert: -20 equals: firstAccount transferNetReport.! !
+
+!ReportTest methodsFor: 'transfer net report' stamp: 'MP 10/19/2021 19:04:41'!
+test11TransferNetOfAccountWithTransferDestinationAddsItsValue
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Withdraw register: 10 on: firstAccount.
+	Transfer register: 20 from: secondAccount to: firstAccount.
+	
+	self assert: 10 equals: firstAccount transferNetReport.! !
+
+
+!ReportTest methodsFor: 'summary report' stamp: 'MP 10/19/2021 18:45:21'!
+test01SummaryOfEmptyAccountListsTheBalance
+
+	| account |
+	account _ ReceptiveAccount new.
+	self assert: (OrderedCollection with: 'Balance = 0') equals: account summaryReport.! !
+
+!ReportTest methodsFor: 'summary report' stamp: 'MP 10/19/2021 18:46:22'!
+test02SummaryOfAccountWithDepositListsItAndTheBalance
+
+	| account expectedReport |
+	account _ ReceptiveAccount new.
+	Deposit register: 10 on: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Depósito por 10.'
+		with: 'Balance = 10'.
+	
+	self assert: expectedReport equals: account summaryReport.! !
+
+!ReportTest methodsFor: 'summary report' stamp: 'MP 10/19/2021 18:46:29'!
+test03SummaryOfAccountWithWithdrawListsItAndTheBalance
+
+	| account expectedReport |
+	account _ ReceptiveAccount new.
+	Withdraw register: 10 on: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Extracción por 10.'
+		with: 'Balance = -10'.
+	
+	self assert: expectedReport equals: account summaryReport.! !
+
+!ReportTest methodsFor: 'summary report' stamp: 'MP 10/19/2021 18:47:46'!
+test04SummaryOfAccountWithTransferSourceListsItAndTheBalance
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 10 from: sourceAccount to: destinationAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Salida por transferencia de 10.'
+		with: 'Balance = -10'.
+	
+	self assert: expectedReport equals: sourceAccount summaryReport.! !
+
+!ReportTest methodsFor: 'summary report' stamp: 'MP 10/19/2021 18:47:39'!
+test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 10 from: sourceAccount to: destinationAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Entrada por transferencia de 10.'
+		with: 'Balance = 10'.
+	
+	self assert: expectedReport equals: destinationAccount summaryReport.! !
+
+!ReportTest methodsFor: 'summary report' stamp: 'MP 10/19/2021 18:59:31'!
+test06SummaryOfAccountWithMultipleTransactionsListsEachOne
+
+	| expectedReport secondAccount firstAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+	Transfer register: 20 from: firstAccount to: secondAccount.
+	Withdraw register: 30 on: firstAccount.
+	Deposit register: 40 on: firstAccount.
+	Transfer register: 15 from: secondAccount to: firstAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Salida por transferencia de 20.'
+		with: 'Extracción por 30.'
+		with: 'Depósito por 40.'
+		with: 'Entrada por transferencia de 15.'
+		with: 'Balance = 5'.
+	
+	self assert: expectedReport equals: firstAccount summaryReport.! !
 
 
 !classDefinition: #Account category: 'Portfolio-Solucion'!
@@ -597,6 +740,54 @@ addedTo: aPortfolio
 	
 	! !
 
+
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:40:21'!
+summaryReport
+	
+	| report |
+	report _ OrderedCollection new.
+	
+	transactions do: [ :aTransaction |
+		| transactionValue |
+	
+		transactionValue _ aTransaction value asString.
+		(aTransaction isKindOf: Deposit)
+			ifTrue: [ report add: 'Depósito por ', transactionValue, '.' ].
+	
+		(aTransaction isKindOf: Withdraw)
+			ifTrue: [ report add: 'Extracción por ', transactionValue, '.' ].
+	
+		(aTransaction isKindOf: TransferSource)
+			ifTrue: [ report add: 'Salida por transferencia de ', transactionValue, '.' ].
+
+		(aTransaction isKindOf: TransferDestination )
+			ifTrue: [ report add: 'Entrada por transferencia de ', transactionValue, '.' ].
+	].
+
+	report add: 'Balance = ', self balance asString.
+
+	^report.
+	
+	! !
+
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:59:13'!
+transferNetReport
+
+	| net |
+	net _ 0.
+	self transactions do: [ :aTransaction |
+		
+		(aTransaction isKindOf: TransferSource) ifTrue: [
+			net _ net - aTransaction value.
+		].
+	
+		(aTransaction isKindOf: TransferDestination) ifTrue: [
+			net _ net + aTransaction value.
+		]
+	].
+	
+	^ net.! !
+
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
 Object subclass: #AccountTransaction
@@ -705,127 +896,30 @@ for: aValue
 	^ self new initializeFor: aValue ! !
 
 
-!classDefinition: #DestinationPata category: 'Portfolio-Solucion'!
-Object subclass: #DestinationPata
-	instanceVariableNames: 'transfer'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!DestinationPata methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:38:43'!
-affectBalance: aBalance
-
-	^ aBalance + transfer value.! !
-
-!DestinationPata methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:35:47'!
-initializeFor: aTransfer
-
-	transfer _ aTransfer.! !
-
-!DestinationPata methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 21:57:46'!
-otherPata
-	
-	^ transfer sourcePata! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'DestinationPata class' category: 'Portfolio-Solucion'!
-DestinationPata class
-	instanceVariableNames: ''!
-
-!DestinationPata class methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:35:31'!
-for: aTransfer
-
-	^ self new initializeFor: aTransfer.! !
-
-
-!classDefinition: #SourcePata category: 'Portfolio-Solucion'!
-Object subclass: #SourcePata
-	instanceVariableNames: 'transfer'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!SourcePata methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:37:40'!
-affectBalance: aBalance
-	
-	^ aBalance - transfer value.! !
-
-!SourcePata methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:36:38'!
-initializeFor: aTransfer
-
-	transfer _ aTransfer.! !
-
-!SourcePata methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 21:45:31'!
-otherPata
-
-	^ transfer destinationPata! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'SourcePata class' category: 'Portfolio-Solucion'!
-SourcePata class
-	instanceVariableNames: ''!
-
-!SourcePata class methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:35:22'!
-for: aTransfer
-
-	^ self new initializeFor: aTransfer.! !
-
-
-!classDefinition: #TransactionNetReport category: 'Portfolio-Solucion'!
-Object subclass: #TransactionNetReport
-	instanceVariableNames: 'account'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!TransactionNetReport methodsFor: 'initialization' stamp: 'IAR 10/18/2021 21:00:49'!
-initializeFor: anAccount 
-	
-	account := anAccount.! !
-
-
-!TransactionNetReport methodsFor: 'aaaaaaaaaaaaaaa' stamp: 'IAR 10/18/2021 21:02:17'!
-result
-	
-	^0! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'TransactionNetReport class' category: 'Portfolio-Solucion'!
-TransactionNetReport class
-	instanceVariableNames: ''!
-
-!TransactionNetReport class methodsFor: 'instance creation' stamp: 'IAR 10/18/2021 21:01:27'!
-for: anAccount 
-	
-	^self new initializeFor: anAccount ! !
-
-
 !classDefinition: #Transfer category: 'Portfolio-Solucion'!
 Object subclass: #Transfer
-	instanceVariableNames: 'value sourceAccount destinationAccount sourcePata destinationPata'
+	instanceVariableNames: 'value sourceAccount destinationAccount source destination'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!Transfer methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 21:43:19'!
-destinationPata
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:26'!
+destination
 	
-	^ destinationPata! !
+	^ destination! !
 
-!Transfer methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 21:51:59'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:26'!
 initializeFor: aValue
 
-	sourcePata _ SourcePata for: self.
-	destinationPata _ DestinationPata for: self.
-	value _ aValue.! !
+	value _ aValue.
+	source _ TransferSource for: self.
+	destination _ TransferDestination for: self.
+! !
 
-!Transfer methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 21:42:53'!
-sourcePata
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:14'!
+source
 	
-	^ sourcePata! !
+	^ source! !
 
 !Transfer methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:38:02'!
 value
@@ -838,21 +932,113 @@ value
 Transfer class
 	instanceVariableNames: ''!
 
-!Transfer class methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 21:51:30'!
-for: aValue
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:47:32'!
+assert: aSourceAccount isDifferentFrom: aDestinationAccount
 
-	^ self new initializeFor: aValue.
-	! !
+	(aSourceAccount = aDestinationAccount ) ifTrue: [ self error: self cannotRegisterTransferErrorDescription ]! !
 
-!Transfer class methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 21:49:56'!
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:46:10'!
+assertValueIsPositive: aValue
+
+	(aValue <= 0) ifTrue: [ self error: self cannotRegisterTransferErrorDescription ]! !
+
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:47:32'!
 register: aValue from: aSourceAccount to: aDestinationAccount
 
 	| transfer |
 	
-	transfer := self for: aValue.
-	aSourceAccount register: transfer sourcePata.
-	aDestinationAccount register: transfer destinationPata.
+	self assertValueIsPositive: aValue.
+	self assert: aSourceAccount isDifferentFrom: aDestinationAccount.
+	
+	transfer := self new initializeFor: aValue.
+
+	aSourceAccount register: transfer source.
+	aDestinationAccount register: transfer destination.
 		
 	^ transfer
 
 	! !
+
+
+!Transfer class methodsFor: 'error descriptions' stamp: 'MP 10/19/2021 17:39:29'!
+cannotRegisterTransferErrorDescription
+	
+	^ 'cannot register transaction'.! !
+
+
+!classDefinition: #TransferDestination category: 'Portfolio-Solucion'!
+Object subclass: #TransferDestination
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferDestination methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:38:43'!
+affectBalance: aBalance
+
+	^ aBalance + transfer value.! !
+
+!TransferDestination methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:35:47'!
+initializeFor: aTransfer
+
+	transfer _ aTransfer.! !
+
+!TransferDestination methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:38'!
+otherEnd
+	
+	^ transfer source! !
+
+!TransferDestination methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:36:11'!
+value
+
+	^ transfer value.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TransferDestination class' category: 'Portfolio-Solucion'!
+TransferDestination class
+	instanceVariableNames: ''!
+
+!TransferDestination class methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:35:31'!
+for: aTransfer
+
+	^ self new initializeFor: aTransfer.! !
+
+
+!classDefinition: #TransferSource category: 'Portfolio-Solucion'!
+Object subclass: #TransferSource
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferSource methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:37:40'!
+affectBalance: aBalance
+	
+	^ aBalance - transfer value.! !
+
+!TransferSource methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:36:38'!
+initializeFor: aTransfer
+
+	transfer _ aTransfer.! !
+
+!TransferSource methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:38'!
+otherEnd
+
+	^ transfer destination! !
+
+!TransferSource methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:36:14'!
+value
+
+	^ transfer value.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TransferSource class' category: 'Portfolio-Solucion'!
+TransferSource class
+	instanceVariableNames: ''!
+
+!TransferSource class methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:35:22'!
+for: aTransfer
+
+	^ self new initializeFor: aTransfer.! !
