@@ -1,0 +1,873 @@
+
+
+----STARTUP---- (18 October 2021 19:41:06) as /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/aaaa/cuis-clean/CuisUniversity-4913.image!
+
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/aaaa/Portfolio-Solucion.st----!
+!ReceptiveAccountTest methodsFor: 'transfer - tests' stamp: 'IAR 10/18/2021 19:53:44'!
+test08
+
+	| destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.! !
+!ReceptiveAccountTest methodsFor: 'transfer - tests' stamp: 'IAR 10/18/2021 19:53:53' prior: 50915565!
+test08
+
+	| destinationAccount sourceAccount |
+	
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.! !
+!ReceptiveAccountTest methodsFor: 'transfer - tests' stamp: 'IAR 10/18/2021 19:54:15' prior: 50915573!
+test08
+
+	| destinationAccount sourceAccount |
+	
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	
+	! !
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'IAR 10/18/2021 20:00:41'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccountTest methodsFor: 'transfer - tests' stamp: 'IAR 10/18/2021 20:00:21' prior: 50915581!
+test08
+
+	| destinationAccount sourceAccount aValue |
+	
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	
+	aValue _ 100.
+	
+	Transfer register: aValue from: sourceAccount to: destinationAccount.
+	
+	self assert: aValue negated equals: sourceAccount balance.
+	self assert: aValue equals: destinationAccount balance.
+	
+	! !
+!Transfer class methodsFor: 'nil' stamp: 'IAR 10/18/2021 20:07:17'!
+register: aValue from: aSourceAccount to: aDestinationAccount! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:07:25' prior: 50915610!
+register: aValue from: aSourceAccount to: aDestinationAccount
+
+	! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:09:28' prior: 50915616!
+register: aValue from: aSourceAccount to: aDestinationAccount
+
+	| transaction |
+	
+	transaction := self for: aValue.
+	aSourceAccount register: transaction.
+	aDestinationAccount register: transaction.
+		
+	^ transaction
+
+	! !
+
+!classDefinition: #SourceTransfer category: 'Portfolio-Solucion' stamp: 'IAR 10/18/2021 20:20:03'!
+Transfer subclass: #SourceTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #YTransfer category: 'Portfolio-Solucion' stamp: 'IAR 10/18/2021 20:21:56'!
+Object subclass: #YTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:21:44' prior: 50915622!
+register: aValue from: aSourceAccount to: aDestinationAccount
+
+	| transfer |
+	
+	transfer := self for: aValue from: aSourceAccount to: aDestinationAccount.
+	aSourceAccount register: (SourceTransfer for: transfer).
+	aDestinationAccount register: (YTransfer for: transfer).
+		
+	^ transfer
+
+	! !
+
+Object subclass: #SourceTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #SourceTransfer category: 'Portfolio-Solucion' stamp: 'IAR 10/18/2021 20:22:07'!
+Object subclass: #SourceTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRenamed: #SourceTransfer as: #XTransfer stamp: 'IAR 10/18/2021 20:22:33'!
+Smalltalk renameClassNamed: #SourceTransfer as: #XTransfer!
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:22:33' prior: 50915647!
+register: aValue from: aSourceAccount to: aDestinationAccount
+
+	| transfer |
+	
+	transfer := self for: aValue from: aSourceAccount to: aDestinationAccount.
+	aSourceAccount register: (XTransfer for: transfer).
+	aDestinationAccount register: (YTransfer for: transfer).
+		
+	^ transfer
+
+	! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:25:11'!
+for: aValue from: aSourceAccount to: aDestinationAccount
+
+	^ self new initializeFor: aValue from: aSourceAccount to: aDestinationAccount.
+
+	! !
+!Transfer methodsFor: 'nil' stamp: 'IAR 10/18/2021 20:25:42'!
+Initalizefor: aValue from: aSourceAccount to: aDestinationAccount! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:26:09'!
+Initializefor: aValue from: aSourceAccount to: aDestinationAccount! !
+
+!methodRemoval: Transfer #Initalizefor:from:to: stamp: 'IAR 10/18/2021 20:26:09'!
+Initalizefor: aValue from: aSourceAccount to: aDestinationAccount!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'IAR 10/18/2021 20:27:08'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'IAR 10/18/2021 20:27:10'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'value sourceAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'IAR 10/18/2021 20:27:11'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'value sourceAccount destinationAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:27:06' prior: 50915700!
+Initializefor: aValue from: aSourceAccount to: aDestinationAccount
+
+	value _ aValue.
+	sourceAccount _ aSourceAccount.
+	destinationAccount _ aDestinationAccount.! !
+!XTransfer class methodsFor: 'nil' stamp: 'IAR 10/18/2021 20:28:33'!
+for: aValue
+
+	^ self new initializeFor: aValue.! !
+
+!classDefinition: #XTransfer category: 'Portfolio-Solucion' stamp: 'IAR 10/18/2021 20:28:59'!
+Object subclass: #XTransfer
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!XTransfer methodsFor: 'nil' stamp: 'IAR 10/18/2021 20:28:57'!
+initializeFor: aValue
+
+	value _ aValue.! !
+
+!classDefinition: #YTransfer category: 'Portfolio-Solucion' stamp: 'IAR 10/18/2021 20:29:28'!
+Object subclass: #YTransfer
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!YTransfer methodsFor: 'nil' stamp: 'IAR 10/18/2021 20:29:27'!
+initializeFor: aValue
+
+	value _ aValue.! !
+!YTransfer class methodsFor: 'nil' stamp: 'IAR 10/18/2021 20:29:49'!
+for: aValue
+
+	^ self new initializeFor: aValue.! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:30:45'!
+InitializeFor: aValue from: aSourceAccount to: aDestinationAccount
+
+	value _ aValue.
+	sourceAccount _ aSourceAccount.
+	destinationAccount _ aDestinationAccount.! !
+
+!methodRemoval: Transfer #Initializefor:from:to: stamp: 'IAR 10/18/2021 20:30:45'!
+Initializefor: aValue from: aSourceAccount to: aDestinationAccount
+
+	value _ aValue.
+	sourceAccount _ aSourceAccount.
+	destinationAccount _ aDestinationAccount.!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IAR 10/18/2021 20:30:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IAR 10/18/2021 20:30:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IAR 10/18/2021 20:30:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IAR 10/18/2021 20:31:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IAR 10/18/2021 20:31:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IAR 10/18/2021 20:31:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IAR 10/18/2021 20:31:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'IAR 10/18/2021 20:31:00'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'IAR 10/18/2021 20:31:00'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'IAR 10/18/2021 20:31:29'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'IAR 10/18/2021 20:31:29'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'IAR 10/18/2021 20:32:00'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'IAR 10/18/2021 20:32:11'!
+ERROR!
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:33:52' prior: 50915688!
+for: aValue from: aSourceAccount to: aDestinationAccount
+
+	^ self new initializeFor: aValue from: aSourceAccount to: aDestinationAccount.
+
+	! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:34:02'!
+initializeFor: aValue from: aSourceAccount to: aDestinationAccount
+
+	value _ aValue.
+	sourceAccount _ aSourceAccount.
+	destinationAccount _ aDestinationAccount.! !
+
+!methodRemoval: Transfer #InitializeFor:from:to: stamp: 'IAR 10/18/2021 20:34:02'!
+InitializeFor: aValue from: aSourceAccount to: aDestinationAccount
+
+	value _ aValue.
+	sourceAccount _ aSourceAccount.
+	destinationAccount _ aDestinationAccount.!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IAR 10/18/2021 20:34:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IAR 10/18/2021 20:34:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IAR 10/18/2021 20:34:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IAR 10/18/2021 20:34:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IAR 10/18/2021 20:34:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IAR 10/18/2021 20:34:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IAR 10/18/2021 20:34:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'IAR 10/18/2021 20:34:06'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'IAR 10/18/2021 20:34:06'!
+ERROR!
+!XTransfer methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:34:22'!
+affectBalance: aSmallInteger 
+	self shouldBeImplemented.! !
+!XTransfer class methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:35:22' prior: 50915743!
+for: aTransfer
+
+	^ self new initializeFor: aTransfer.! !
+!YTransfer class methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:35:31' prior: 50915769!
+for: aTransfer
+
+	^ self new initializeFor: aTransfer.! !
+
+!classDefinition: #YTransfer category: 'Portfolio-Solucion' stamp: 'IAR 10/18/2021 20:35:48'!
+Object subclass: #YTransfer
+	instanceVariableNames: 'value transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!YTransfer methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:35:47' prior: 50915765!
+initializeFor: aTransfer
+
+	transfer _ aTransfer.! !
+!XTransfer methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:36:28' prior: 50915754!
+initializeFor: aTransfer
+
+	value _ aTransfer.! !
+
+!classDefinition: #XTransfer category: 'Portfolio-Solucion' stamp: 'IAR 10/18/2021 20:36:40'!
+Object subclass: #XTransfer
+	instanceVariableNames: 'value transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!XTransfer methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:36:38' prior: 50915917!
+initializeFor: aTransfer
+
+	transfer _ aTransfer.! !
+
+!classDefinition: #XTransfer category: 'Portfolio-Solucion' stamp: 'IAR 10/18/2021 20:36:50'!
+Object subclass: #XTransfer
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #YTransfer category: 'Portfolio-Solucion' stamp: 'IAR 10/18/2021 20:36:56'!
+Object subclass: #YTransfer
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!XTransfer methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:37:40' prior: 50915888!
+affectBalance: aBalance
+	
+	^ aBalance - transfer value.! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:38:01' overrides: 50915461!
+value
+
+	^ value! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:38:02' prior: 50915955 overrides: 50915461!
+value
+
+	^value! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IAR 10/18/2021 20:38:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IAR 10/18/2021 20:38:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IAR 10/18/2021 20:38:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IAR 10/18/2021 20:38:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IAR 10/18/2021 20:38:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IAR 10/18/2021 20:38:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IAR 10/18/2021 20:38:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'IAR 10/18/2021 20:38:18'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'IAR 10/18/2021 20:38:18'!
+ERROR!
+!YTransfer methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:38:24'!
+affectBalance: aSmallInteger 
+	self shouldBeImplemented.! !
+!YTransfer methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:38:43' prior: 50915995!
+affectBalance: aBalance
+
+	^ aBalance + transfer value.! !
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'IAR 10/18/2021 20:38:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IAR 10/18/2021 20:38:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IAR 10/18/2021 20:38:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IAR 10/18/2021 20:38:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IAR 10/18/2021 20:38:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IAR 10/18/2021 20:38:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IAR 10/18/2021 20:38:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IAR 10/18/2021 20:38:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08 stamp: 'IAR 10/18/2021 20:38:52'!
+PASSED!
+
+TestCase subclass: #ReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #ReportTest category: 'Portfolio-Solucion' stamp: 'IAR 10/18/2021 20:50:11'!
+TestCase subclass: #ReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReportTest methodsFor: 'nil' stamp: 'IAR 10/18/2021 20:50:21'!
+test01! !
+
+!methodRemoval: ReportTest #test01 stamp: 'IAR 10/18/2021 20:51:11'!
+test01!
+!ReportTest methodsFor: 'nil' stamp: 'IAR 10/18/2021 20:51:17'!
+test01
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'IAR 10/18/2021 20:52:24'!
+test08TransferDecreasesBalanceOnSourceAndIncreseasesBalanceOnDestination
+
+	| destinationAccount sourceAccount aValue |
+	
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	
+	aValue _ 100.
+	
+	Transfer register: aValue from: sourceAccount to: destinationAccount.
+	
+	self assert: aValue negated equals: sourceAccount balance.
+	self assert: aValue equals: destinationAccount balance.
+	
+	! !
+
+!methodRemoval: ReceptiveAccountTest #test08 stamp: 'IAR 10/18/2021 20:52:24'!
+test08
+
+	| destinationAccount sourceAccount aValue |
+	
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	
+	aValue _ 100.
+	
+	Transfer register: aValue from: sourceAccount to: destinationAccount.
+	
+	self assert: aValue negated equals: sourceAccount balance.
+	self assert: aValue equals: destinationAccount balance.
+	
+	!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'IAR 10/18/2021 20:53:37'!
+test08TransferDecreasesBalanceOnSourceAndIncreasesBalanceOnDestination
+
+	| destinationAccount sourceAccount aValue |
+	
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	
+	aValue _ 100.
+	
+	Transfer register: aValue from: sourceAccount to: destinationAccount.
+	
+	self assert: aValue negated equals: sourceAccount balance.
+	self assert: aValue equals: destinationAccount balance.
+	
+	! !
+
+!methodRemoval: ReceptiveAccountTest #test08TransferDecreasesBalanceOnSourceAndIncreseasesBalanceOnDestination stamp: 'IAR 10/18/2021 20:53:37'!
+test08TransferDecreasesBalanceOnSourceAndIncreseasesBalanceOnDestination
+
+	| destinationAccount sourceAccount aValue |
+	
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	
+	aValue _ 100.
+	
+	Transfer register: aValue from: sourceAccount to: destinationAccount.
+	
+	self assert: aValue negated equals: sourceAccount balance.
+	self assert: aValue equals: destinationAccount balance.
+	
+	!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:54:26' prior: 50916053!
+test01
+
+	| destinationAccount sourceAccount aValue |
+	
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	
+	aValue _ 100.
+	
+	Transfer register: aValue from: sourceAccount to: destinationAccount.
+	
+	self assert: aValue negated equals: sourceAccount balance.
+	self assert: aValue equals: destinationAccount balance.
+! !
+
+!classDefinition: #TransactionNetReport category: 'Portfolio-Solucion' stamp: 'IAR 10/18/2021 20:58:12'!
+Object subclass: #TransactionNetReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:58:06' prior: 50916119!
+test01
+
+	| sourceAccount account |
+	
+	sourceAccount _ ReceptiveAccount new.
+	
+	self assert: 0 equals: (TransactionNetReport for: account) result.
+! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:58:44' prior: 50916141!
+test01
+
+	| account |
+	
+	account _ ReceptiveAccount new.
+	
+	self assert: 0 equals: (TransactionNetReport for: account) result.
+! !
+
+!testRun: #ReportTest #test01 stamp: 'IAR 10/18/2021 20:58:48'!
+ERROR!
+!TransactionNetReport class methodsFor: 'instance creation' stamp: 'IAR 10/18/2021 20:59:01'!
+for: aReceptiveAccount 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aReceptiveAccount ! !
+!TransactionNetReport class methodsFor: 'instance creation' stamp: 'IAR 10/18/2021 20:59:31' prior: 50916159!
+for: aReceptiveAccount 
+	
+	^self new initializeFor: aReceptiveAccount ! !
+
+!testRun: #ReportTest #test01 stamp: 'IAR 10/18/2021 20:59:33'!
+ERROR!
+
+!classDefinition: #TransactionNetReport category: 'Portfolio-Solucion' stamp: 'IAR 10/18/2021 20:59:57'!
+Object subclass: #TransactionNetReport
+	instanceVariableNames: 'receptiveAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransactionNetReport methodsFor: 'initialization' stamp: 'IAR 10/18/2021 20:59:57'!
+initializeFor: aReceptiveAccount 
+	self shouldBeImplemented.
+	receptiveAccount := aReceptiveAccount.! !
+
+!classDefinition: #TransactionNetReport category: 'Portfolio-Solucion' stamp: 'IAR 10/18/2021 21:00:51'!
+Object subclass: #TransactionNetReport
+	instanceVariableNames: 'receptiveAccount account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransactionNetReport methodsFor: 'initialization' stamp: 'IAR 10/18/2021 21:00:49' prior: 50916184!
+initializeFor: anAccount 
+	
+	account := anAccount.! !
+
+!testRun: #ReportTest #test01 stamp: 'IAR 10/18/2021 21:00:53'!
+ERROR!
+
+Object subclass: #TransactionNetReport
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransactionNetReport category: 'Portfolio-Solucion' stamp: 'IAR 10/18/2021 21:01:07'!
+Object subclass: #TransactionNetReport
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransactionNetReport class methodsFor: 'instance creation' stamp: 'IAR 10/18/2021 21:01:27' prior: 50916168!
+for: anAccount 
+	
+	^self new initializeFor: anAccount ! !
+
+!testRun: #ReportTest #test01 stamp: 'IAR 10/18/2021 21:01:30'!
+ERROR!
+
+!testRun: #ReportTest #test01 stamp: 'IAR 10/18/2021 21:01:30'!
+ERROR!
+!TransactionNetReport methodsFor: 'aaaaaaaaaaaaaaa' stamp: 'IAR 10/18/2021 21:02:01'!
+result
+	self shouldBeImplemented.! !
+!TransactionNetReport methodsFor: 'aaaaaaaaaaaaaaa' stamp: 'IAR 10/18/2021 21:02:17' prior: 50916229!
+result
+	
+	^0! !
+
+!testRun: #ReportTest #test01 stamp: 'IAR 10/18/2021 21:02:18'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'IAR 10/18/2021 21:02:23'!
+PASSED!
+
+Object subclass: #Transfer
+	instanceVariableNames: 'value sourceAccount destinationAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'IAR 10/18/2021 21:25:00'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value sourceAccount destinationAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'IAR 10/18/2021 21:31:28'!
+test09
+
+	| destinationAccount sourceAccount aValue |
+	
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+		
+	Transfer register: aValue from: sourceAccount to: destinationAccount.
+	
+	self assert: aValue negated equals: sourceAccount balance.
+	self assert: aValue equals: destinationAccount balance.
+	
+	! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'IAR 10/18/2021 21:41:36' prior: 50916256!
+test09
+
+	| destinationAccount sourceAccount transfer |
+	
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+		
+	transfer _ Transfer register: 100 from: sourceAccount to: destinationAccount.
+	
+	self assert: transfer sourcePata equals: transfer destinationPata otherPata.	
+	! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'IAR 10/18/2021 21:42:09' prior: 50916270!
+test09
+
+	| transfer |
+		
+	transfer _ Transfer register: 100 from: ReceptiveAccount new to: ReceptiveAccount new.
+	
+	self assert: transfer sourcePata equals: transfer destinationPata otherPata.	
+	! !
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'IAR 10/18/2021 21:42:25'!
+ERROR!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 21:42:30'!
+sourcePata
+	self shouldBeImplemented.! !
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'IAR 10/18/2021 21:42:56'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value sourceAccount destinationAccount sourcePata'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 21:42:53' prior: 50916295!
+sourcePata
+	
+	^ sourcePata! !
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'IAR 10/18/2021 21:43:05'!
+ERROR!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 21:43:10'!
+destinationPata
+	self shouldBeImplemented.! !
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'IAR 10/18/2021 21:43:20'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value sourceAccount destinationAccount sourcePata destinationPata'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 21:43:19' prior: 50916314!
+destinationPata
+	
+	^ destinationPata! !
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'IAR 10/18/2021 21:43:23'!
+ERROR!
+
+!classRenamed: #XTransfer as: #SourcePata stamp: 'IAR 10/18/2021 21:44:14'!
+Smalltalk renameClassNamed: #XTransfer as: #SourcePata!
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 21:44:14' prior: 50915676!
+register: aValue from: aSourceAccount to: aDestinationAccount
+
+	| transfer |
+	
+	transfer := self for: aValue from: aSourceAccount to: aDestinationAccount.
+	aSourceAccount register: (SourcePata for: transfer).
+	aDestinationAccount register: (YTransfer for: transfer).
+		
+	^ transfer
+
+	! !
+
+!classRenamed: #YTransfer as: #DestinationPata stamp: 'IAR 10/18/2021 21:44:33'!
+Smalltalk renameClassNamed: #YTransfer as: #DestinationPata!
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 21:44:34' prior: 50916340!
+register: aValue from: aSourceAccount to: aDestinationAccount
+
+	| transfer |
+	
+	transfer := self for: aValue from: aSourceAccount to: aDestinationAccount.
+	aSourceAccount register: (SourcePata for: transfer).
+	aDestinationAccount register: (DestinationPata for: transfer).
+		
+	^ transfer
+
+	! !
+!SourcePata methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 21:45:31'!
+otherPata
+
+	^ transfer destinationPata! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 21:49:56' prior: 50916357!
+register: aValue from: aSourceAccount to: aDestinationAccount
+
+	| transfer |
+	
+	transfer := self for: aValue.
+	aSourceAccount register: transfer sourcePata.
+	aDestinationAccount register: transfer destinationPata.
+		
+	^ transfer
+
+	! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 21:51:30'!
+for: aValue
+
+	^ self new initializeFor: aValue.
+	! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 21:51:59'!
+initializeFor: aValue
+
+	sourcePata _ SourcePata for: self.
+	destinationPata _ DestinationPata for: self.
+	value _ aValue.! !
+
+!methodRemoval: Transfer #initializeFor:from:to: stamp: 'IAR 10/18/2021 21:54:53'!
+initializeFor: aValue from: aSourceAccount to: aDestinationAccount
+
+	value _ aValue.
+	sourceAccount _ aSourceAccount.
+	destinationAccount _ aDestinationAccount.!
+
+!methodRemoval: Transfer class #for:from:to: stamp: 'IAR 10/18/2021 21:55:10'!
+for: aValue from: aSourceAccount to: aDestinationAccount
+
+	^ self new initializeFor: aValue from: aSourceAccount to: aDestinationAccount.
+
+	!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'IAR 10/18/2021 21:57:20' prior: 50916283!
+test09
+
+	| transfer |
+		
+	transfer _ Transfer register: 100 from: ReceptiveAccount new to: ReceptiveAccount new.
+	
+	self assert: transfer sourcePata equals: transfer destinationPata otherPata.	
+	self assert: transfer destinationPata equals: transfer sourcePata otherPata.	
+
+	! !
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'IAR 10/18/2021 21:57:22'!
+ERROR!
+!DestinationPata methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 21:57:31'!
+otherPata
+	self shouldBeImplemented.! !
+!DestinationPata methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 21:57:46' prior: 50916425!
+otherPata
+	
+	^ transfer sourcePata! !
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'IAR 10/18/2021 21:57:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IAR 10/18/2021 21:57:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IAR 10/18/2021 21:57:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IAR 10/18/2021 21:57:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IAR 10/18/2021 21:57:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IAR 10/18/2021 21:57:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IAR 10/18/2021 21:57:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IAR 10/18/2021 21:57:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferDecreasesBalanceOnSourceAndIncreasesBalanceOnDestination stamp: 'IAR 10/18/2021 21:57:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09 stamp: 'IAR 10/18/2021 21:57:47'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 22:07:10'!
+estoNoEsUnTest
+
+	| account |
+	
+	account _ ReceptiveAccount new.
+	
+	self assert: 0 equals: (TransactionNetReport for: account) result.
+! !
+
+!methodRemoval: ReportTest #test01 stamp: 'IAR 10/18/2021 22:07:10'!
+test01
+
+	| account |
+	
+	account _ ReceptiveAccount new.
+	
+	self assert: 0 equals: (TransactionNetReport for: account) result.
+!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 22:09:00'!
+test01
+
+	| account |
+	
+	account _ ReceptiveAccount new.
+	
+	self assert: (OrderedCollection with: 'Balance: 0') equals: account accountSummaryReport.
+! !
+
+Object subclass: #NameOfSubclass
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #NameOfSubclass category: 'Portfolio-Solucion' stamp: 'IAR 10/18/2021 22:11:05'!
+Object subclass: #NameOfSubclass
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #NameOfSubclass stamp: 'IAR 10/18/2021 22:11:18'!
+Object subclass: #NameOfSubclass
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
