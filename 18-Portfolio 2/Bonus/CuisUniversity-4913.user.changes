@@ -11851,3 +11851,1271 @@ PASSED!
 PASSED!
 
 ----SNAPSHOT----(23 October 2021 19:16:45) CuisUniversity-4913.image priorSource: 18818484!
+
+----STARTUP---- (23 October 2021 19:19:33) as /home/mnpanic/Documents/dc/ing1/cuis/cuis-portfolio-2/CuisUniversity-4913.image!
+
+
+!classRemoval: #TransferSource stamp: 'MP 10/23/2021 19:19:40'!
+Object subclass: #TransferSource
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferDestination stamp: 'MP 10/23/2021 19:19:41'!
+Object subclass: #TransferDestination
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Transfer stamp: 'MP 10/23/2021 19:19:41'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value sourceAccount destinationAccount source destination'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Withdraw stamp: 'MP 10/23/2021 19:19:41'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Deposit stamp: 'MP 10/23/2021 19:19:42'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountTransaction stamp: 'MP 10/23/2021 19:19:42'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccount stamp: 'MP 10/23/2021 19:19:42'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Portfolio stamp: 'MP 10/23/2021 19:19:43'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Account stamp: 'MP 10/23/2021 19:19:43'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReportTest stamp: 'MP 10/23/2021 19:19:44'!
+TestCase subclass: #ReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccountTest stamp: 'MP 10/23/2021 19:19:44'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #PortfolioTest stamp: 'MP 10/23/2021 19:19:45'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+----End fileIn of /home/mnpanic/repos/uba/ing1-repos/isw1-ejs/18-Portfolio 2/Bonus/Portfolio-Solucion-Bonus.st----!
+!Portfolio methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:31:13' prior: 50921048!
+treeSummaryReport
+	
+	 | report |
+	
+	report _ OrderedCollection with: self name.
+	
+	accounts do: [ :anAccount |
+		| accountSummary |
+		accountSummary _ (SummaryReport for: anAccount) generate.
+		
+		report add: '\t', anAccount name.
+		accountSummary do: [ :aReportEntry | report add: '\t\t', aReportEntry ].
+	].
+	
+	report add: 	'\t', 'Balance = ', self balance asString.
+	^ report! !
+!Portfolio methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:31:14' prior: 50921663!
+treeSummaryReport
+	
+	 | report |
+	
+	report _ OrderedCollection with: self name.
+	
+	accounts do: [ :anAccount |
+		| accountSummary |
+		accountSummary _ (SummaryReport for: anAccount) generate.
+		
+		report add: '\t', anAccount name.
+		accountSummary do: [ :aReportEntry | report add: '\t\t', aReportEntry ].
+	].
+
+	report add: 	'\t', 'Balance = ', self balance asString.
+	^ report! !
+!ReportTest methodsFor: 'tree summary report' stamp: 'MP 10/23/2021 19:33:33'!
+test23
+
+	| portfolio portfolioName accountName expectedReport account rootPortfolio rootPortfolioName |
+	
+	rootPortfolioName _ 'Portfolio R'.
+	portfolioName _ 'Portfolio A'.
+	accountName _ 'Account 1'.
+	
+	account _ ReceptiveAccount named: accountName.
+	Deposit register: 100 on: account. 
+	
+	portfolio _ Portfolio named: portfolioName with: account.
+	rootPortfolio _ Portfolio named: rootPortfolioName with: portfolio.
+	
+	expectedReport _ (OrderedCollection new)
+		add: rootPortfolioName;
+		add: '\t', portfolioName;
+		add: '\t\t', accountName;
+		add: '\t\t\t', 'Depósito por 100.';
+		add: '\t\t\t', 'Balance = 100';
+		add: '\t\t', 'Balance = 100';
+		add: '\t', 'Balance = 100'.
+	
+	self assert: expectedReport equals: portfolio treeSummaryReport.
+	! !
+!ReportTest methodsFor: 'tree summary report' stamp: 'MP 10/23/2021 19:33:49' prior: 50921693!
+test23
+
+	| portfolio portfolioName accountName expectedReport account rootPortfolio rootPortfolioName |
+	
+	rootPortfolioName _ 'Portfolio R'.
+	portfolioName _ 'Portfolio A'.
+	accountName _ 'Account 1'.
+	
+	account _ ReceptiveAccount named: accountName.
+	Deposit register: 100 on: account. 
+	
+	portfolio _ Portfolio named: portfolioName with: account.
+	rootPortfolio _ Portfolio named: rootPortfolioName with: portfolio.
+	
+	expectedReport _ (OrderedCollection new)
+		add: rootPortfolioName;
+		add: '\t', portfolioName;
+		add: '\t\t', accountName;
+		add: '\t\t\t', 'Depósito por 100.';
+		add: '\t\t\t', 'Balance = 100';
+		add: '\t\t', 'Balance = 100';
+		add: '\t', 'Balance = 100'.
+	
+	self assert: expectedReport equals: rootPortfolio treeSummaryReport.
+	! !
+
+!testRun: #ReportTest #test23 stamp: 'MP 10/23/2021 19:33:55'!
+FAILURE!
+!Portfolio methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:34:18' prior: 50921678!
+treeSummaryReport
+	
+	 | report |
+	
+	report _ OrderedCollection with: self name.
+	
+	accounts do: [ :anAccount |
+
+		| accountSummary |
+		accountSummary _ (SummaryReport for: anAccount) generate.
+		
+		report add: '\t', anAccount name.
+		accountSummary do: [ :aReportEntry | report add: '\t\t', aReportEntry ].
+	].
+
+	report add: 	'\t', 'Balance = ', self balance asString.
+	^ report! !
+!Portfolio methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:34:18' prior: 50921749!
+treeSummaryReport
+	
+	 | report |
+	
+	report _ OrderedCollection with: self name.
+	
+	accounts do: [ :anAccount |
+		| accountSummary |
+		accountSummary _ (SummaryReport for: anAccount) generate.
+		
+		report add: '\t', anAccount name.
+		accountSummary do: [ :aReportEntry | report add: '\t\t', aReportEntry ].
+	].
+
+	report add: 	'\t', 'Balance = ', self balance asString.
+	^ report! !
+!ReceptiveAccount methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:35:02'!
+treeSummaryReport
+
+	| accountSummary report |
+	report _ OrderedCollection new.
+
+	accountSummary _ (SummaryReport for: self) generate.
+	
+	report add: '\t', self name.
+	accountSummary do: [ :aReportEntry | report add: '\t\t', aReportEntry ].
+! !
+!ReceptiveAccount methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:35:06' prior: 50921779!
+treeSummaryReport
+
+	| accountSummary report |
+
+	report _ OrderedCollection new.
+
+	accountSummary _ (SummaryReport for: self) generate.
+	
+	report add: '\t', self name.
+	accountSummary do: [ :aReportEntry | report add: '\t\t', aReportEntry ].
+! !
+!ReceptiveAccount methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:35:08' prior: 50921790!
+treeSummaryReport
+
+	| accountSummary report |
+
+	report _ OrderedCollection new.
+	accountSummary _ (SummaryReport for: self) generate.
+	
+	report add: '\t', self name.
+	accountSummary do: [ :aReportEntry | report add: '\t\t', aReportEntry ].
+! !
+!ReceptiveAccount methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:35:20' prior: 50921801!
+treeSummaryReport
+
+	| accountSummary report |
+
+	report _ OrderedCollection with: '\t', self name.
+	accountSummary _ (SummaryReport for: self) generate.
+	
+	report add: '\t', self name.
+	accountSummary do: [ :aReportEntry | report add: '\t\t', aReportEntry ].
+! !
+!ReceptiveAccount methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:35:22' prior: 50921812!
+treeSummaryReport
+
+	| accountSummary report |
+
+	report _ OrderedCollection with: '\t', self name.
+	accountSummary _ (SummaryReport for: self) generate.
+	
+	accountSummary do: [ :aReportEntry | report add: '\t\t', aReportEntry ].
+! !
+!ReceptiveAccount methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:35:23' prior: 50921824!
+treeSummaryReport
+
+	| accountSummary report |
+
+	report _ OrderedCollection with: '\t', self name.
+	accountSummary _ (SummaryReport for: self) generate.	
+	accountSummary do: [ :aReportEntry | report add: '\t\t', aReportEntry ].
+! !
+!ReceptiveAccount methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:35:24' prior: 50921835!
+treeSummaryReport
+
+	| accountSummary report |
+
+	report _ OrderedCollection with: '\t', self name.
+
+	accountSummary _ (SummaryReport for: self) generate.	
+	accountSummary do: [ :aReportEntry | report add: '\t\t', aReportEntry ].
+! !
+!ReceptiveAccount methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:35:28' prior: 50921846!
+treeSummaryReport
+
+	| accountSummary report |
+
+	report _ OrderedCollection with: '\t', self name.
+
+	accountSummary _ (SummaryReport for: self) generate.	
+	accountSummary do: [ :aReportEntry | report add: '\t\t', aReportEntry ].
+
+	^report.! !
+!ReceptiveAccount methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:36:00' prior: 50921857!
+treeSummaryReport
+
+	| accountSummary report |
+
+	report _ OrderedCollection with: self name.
+
+	accountSummary _ (SummaryReport for: self) generate.	
+	accountSummary do: [ :aReportEntry | report add: '\t', aReportEntry ].
+
+	^report.! !
+!Portfolio methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:36:29' prior: 50921764!
+treeSummaryReport
+	
+	 | report |
+	
+	report _ OrderedCollection with: self name.
+	
+	accounts do: [ :anAccount | | subtreeSummaryReport |
+		subtreeSummaryReport _ anAccount treeSummaryReport.
+	
+		subtreeSummaryReport do: [ :aReportEntry | report add: '\t', aReportEntry ].
+	].
+
+	report add: 	'\t', 'Balance = ', self balance asString.
+	^ report! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'MP 10/23/2021 19:36:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'MP 10/23/2021 19:36:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'MP 10/23/2021 19:36:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'MP 10/23/2021 19:36:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'MP 10/23/2021 19:36:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'MP 10/23/2021 19:36:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'MP 10/23/2021 19:36:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'MP 10/23/2021 19:36:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'MP 10/23/2021 19:36:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'MP 10/23/2021 19:36:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'MP 10/23/2021 19:36:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'MP 10/23/2021 19:36:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'MP 10/23/2021 19:36:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'MP 10/23/2021 19:36:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'MP 10/23/2021 19:36:35'!
+PASSED!
+!Portfolio methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:36:40' prior: 50921878!
+treeSummaryReport
+	
+	 | report |
+	
+	report _ OrderedCollection with: self name.
+	
+	accounts do: [ :anAccount | | subtreeSummaryReport |
+		subtreeSummaryReport _ anAccount treeSummaryReport.
+		subtreeSummaryReport do: [ :aReportEntry | report add: '\t', aReportEntry ].
+	].
+
+	report add: 	'\t', 'Balance = ', self balance asString.
+	^ report! !
+!Portfolio methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:38:17' prior: 50921038!
+treeReport
+	
+	| report |
+	
+	report _ OrderedCollection with: name.
+
+	accounts do: [ :anAccount |
+		| subtreeReport |
+		subtreeReport _ anAccount treeReport.
+		subtreeReport do: [ :aReportEntry |		report add: '\t' , aReportEntry ]].
+	
+	^report
+	! !
+
+Object subclass: #PortfolioTreeReport
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion-Bonus'!
+
+!classDefinition: #PortfolioTreeReport category: 'Portfolio-Solucion-Bonus' stamp: 'MP 10/23/2021 19:38:54'!
+Object subclass: #PortfolioTreeReport
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion-Bonus'!
+!Report class methodsFor: 'instance creation' stamp: 'MP 10/23/2021 19:39:33' prior: 50921484!
+for: anAccount
+
+	^ self new initializeFor: anAccount.! !
+!PortfolioTreeReport class methodsFor: 'nil' stamp: 'MP 10/23/2021 19:39:44'!
+for: anAccount
+
+	^self new initializeFor: anAccount.! !
+!PortfolioTreeReport methodsFor: 'nil' stamp: 'MP 10/23/2021 19:39:56'!
+initializeFor: anAccount
+
+	account _ anAccount! !
+
+!classDefinition: #PortfolioTreeReport category: 'Portfolio-Solucion-Bonus' stamp: 'MP 10/23/2021 19:40:11'!
+Object subclass: #PortfolioTreeReport
+	instanceVariableNames: 'account portfolio'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion-Bonus'!
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 19:40:09' prior: 50921997!
+initializeFor: aPortfolio
+
+	portfolio _ aPortfolio.! !
+
+!classDefinition: #PortfolioTreeReport category: 'Portfolio-Solucion-Bonus' stamp: 'MP 10/23/2021 19:40:22'!
+Object subclass: #PortfolioTreeReport
+	instanceVariableNames: 'portfolio'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion-Bonus'!
+!PortfolioTreeReport class methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 19:40:28' prior: 50921993!
+for: aPortfolio
+
+	^self new initializeFor: aPortfolio.! !
+!PortfolioTreeReport methodsFor: 'nil' stamp: 'MP 10/23/2021 19:40:40'!
+xxx
+
+	! !
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 19:42:15' prior: 50922030!
+xxx
+	
+	^portfolio treeReport! !
+!ReportTest methodsFor: 'tree report' stamp: 'MP 10/23/2021 19:42:49' prior: 50920769!
+test15BONUSTRACK
+
+	| portfolio name |
+	
+	name _ 'Portfolio A'.
+	portfolio _ Portfolio named: name.
+	
+	self assert: (OrderedCollection with: name) equals: (PortfolioTreeReport for: portfolio) xxx.
+	! !
+
+!testRun: #ReportTest #test15BONUSTRACK stamp: 'MP 10/23/2021 19:42:49'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'MP 10/23/2021 19:42:49'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'MP 10/23/2021 19:42:49'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'MP 10/23/2021 19:42:49'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'MP 10/23/2021 19:42:49'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'MP 10/23/2021 19:42:49'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'MP 10/23/2021 19:42:49'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'MP 10/23/2021 19:42:49'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'MP 10/23/2021 19:42:49'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'MP 10/23/2021 19:42:49'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'MP 10/23/2021 19:42:49'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'MP 10/23/2021 19:42:49'!
+PASSED!
+
+!testRun: #ReportTest #test12SummaryOfEmptyPortfolioListsTheBalance stamp: 'MP 10/23/2021 19:42:49'!
+PASSED!
+
+!testRun: #ReportTest #test13SummaryOfPortfolioListsAllSubAccounts stamp: 'MP 10/23/2021 19:42:49'!
+PASSED!
+
+!testRun: #ReportTest #test14TransferNetOfPortfolioConsidersAllSubAccounts stamp: 'MP 10/23/2021 19:42:49'!
+PASSED!
+
+!testRun: #ReportTest #test15BONUSTRACK stamp: 'MP 10/23/2021 19:42:49'!
+PASSED!
+
+!testRun: #ReportTest #test16 stamp: 'MP 10/23/2021 19:42:49'!
+PASSED!
+
+!testRun: #ReportTest #test17 stamp: 'MP 10/23/2021 19:42:49'!
+PASSED!
+
+!testRun: #ReportTest #test18 stamp: 'MP 10/23/2021 19:42:49'!
+PASSED!
+
+!testRun: #ReportTest #test19 stamp: 'MP 10/23/2021 19:42:49'!
+PASSED!
+
+!testRun: #ReportTest #test20 stamp: 'MP 10/23/2021 19:42:49'!
+PASSED!
+
+!testRun: #ReportTest #test21 stamp: 'MP 10/23/2021 19:42:49'!
+PASSED!
+
+!testRun: #ReportTest #test22 stamp: 'MP 10/23/2021 19:42:49'!
+PASSED!
+
+!testRun: #ReportTest #test23 stamp: 'MP 10/23/2021 19:42:49'!
+FAILURE!
+
+!testRun: #ReportTest #test23 stamp: 'MP 10/23/2021 19:42:49'!
+FAILURE!
+
+!testRun: #ReportTest #test23 stamp: 'MP 10/23/2021 19:43:02'!
+FAILURE!
+
+!testRun: #ReportTest #test23 stamp: 'MP 10/23/2021 19:43:06'!
+FAILURE!
+
+expectedReport!
+
+rootPortfolio treeSummaryReport!
+!ReportTest methodsFor: 'tree summary report' stamp: 'MP 10/23/2021 19:44:04' prior: 50921720!
+test23
+
+	| portfolio portfolioName accountName expectedReport account rootPortfolio rootPortfolioName |
+	
+	rootPortfolioName _ 'Portfolio R'.
+	portfolioName _ 'Portfolio A'.
+	accountName _ 'Account 1'.
+	
+	account _ ReceptiveAccount named: accountName.
+	Deposit register: 100 on: account. 
+	
+	portfolio _ Portfolio named: portfolioName with: account.
+	rootPortfolio _ Portfolio named: rootPortfolioName with: portfolio.
+	
+	expectedReport _ (OrderedCollection new)
+		add: rootPortfolioName;
+		add: '\t', portfolioName;
+		add: '\t\t', accountName;
+		add: '\t\t\t', 'Depósito por 100.';
+		add: '\t\t\t', 'Balance = 100';
+		add: '\t\t', 'Balance = 100';
+		add: '\t', 'Balance = 100';
+		yourself.
+	
+	self assert: expectedReport equals: rootPortfolio treeSummaryReport.
+	! !
+
+!testRun: #ReportTest #test23 stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test12SummaryOfEmptyPortfolioListsTheBalance stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test13SummaryOfPortfolioListsAllSubAccounts stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test14TransferNetOfPortfolioConsidersAllSubAccounts stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test15BONUSTRACK stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test16 stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test17 stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test18 stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test19 stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test20 stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test21 stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test22 stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test23 stamp: 'MP 10/23/2021 19:44:06'!
+PASSED!
+
+!testRun: #ReportTest #test23 stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+
+!testRun: #ReportTest #test12SummaryOfEmptyPortfolioListsTheBalance stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+
+!testRun: #ReportTest #test13SummaryOfPortfolioListsAllSubAccounts stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+
+!testRun: #ReportTest #test14TransferNetOfPortfolioConsidersAllSubAccounts stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+
+!testRun: #ReportTest #test15BONUSTRACK stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+
+!testRun: #ReportTest #test16 stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+
+!testRun: #ReportTest #test17 stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+
+!testRun: #ReportTest #test18 stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+
+!testRun: #ReportTest #test19 stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+
+!testRun: #ReportTest #test20 stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+
+!testRun: #ReportTest #test21 stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+
+!testRun: #ReportTest #test22 stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+
+!testRun: #ReportTest #test23 stamp: 'MP 10/23/2021 19:44:09'!
+PASSED!
+!ReportTest methodsFor: 'tree report' stamp: 'MP 10/23/2021 19:44:20' prior: 50920777!
+test16
+
+	| portfolio portfolioName accountName expectedReport |
+	
+	portfolioName _ 'Portfolio A'.
+	accountName _ 'Account 1'.
+	
+	portfolio _ Portfolio named: portfolioName with: (ReceptiveAccount named: accountName).
+	expectedReport _ OrderedCollection with: portfolioName with: '\t', accountName.
+	
+	self assert: expectedReport equals: (PortfolioTreeReport for: portfolio) xxx.
+	! !
+!ReportTest methodsFor: 'tree report' stamp: 'MP 10/23/2021 19:44:23' prior: 50920791!
+test17
+
+	| portfolio portfolioName accountName expectedReport childPortfolioName |
+	
+	portfolioName _ 'Portfolio A'.
+	childPortfolioName _ 'Portfolio B'.
+	accountName _ 'Account 1'.
+	
+	portfolio _ Portfolio named: portfolioName
+		with: (Portfolio named: childPortfolioName)
+		with: (ReceptiveAccount named: accountName).
+		
+	expectedReport _ OrderedCollection
+		with: portfolioName
+		with: '\t', childPortfolioName
+		with: '\t', accountName.
+	
+	self assert: expectedReport equals: (PortfolioTreeReport for: portfolio) xxx.
+	! !
+!ReportTest methodsFor: 'tree report' stamp: 'MP 10/23/2021 19:44:26' prior: 50920810!
+test18
+
+	| portfolio portfolioName accountName expectedReport childPortfolioName |
+	
+	portfolioName _ 'Portfolio A'.
+	childPortfolioName _ 'Portfolio B'.
+	accountName _ 'Account 1'.
+	
+	portfolio _ Portfolio named: portfolioName
+		with: (Portfolio named: childPortfolioName
+			with: (ReceptiveAccount named: accountName)).
+			
+	expectedReport _ OrderedCollection
+		with: portfolioName
+		with: '\t', childPortfolioName
+		with: '\t\t', accountName.
+	
+	self assert: expectedReport equals: (PortfolioTreeReport for: portfolio) xxx.
+	! !
+!ReportTest methodsFor: 'tree report' stamp: 'MP 10/23/2021 19:44:42' prior: 50920829!
+test19
+
+	| angiesAccount childrenPortfolio expectedReport familyPortfolio johnsAccount myAccount familyPortfolioName myAccountName childrenPortfolioName juanAccountName angelesAccountName |
+	
+	" El test pasa de una, lo agregamos por completitud."
+	
+	familyPortfolioName _ 'Portfolio de la familia'.
+	myAccountName _ 'Cuenta mia'.
+	childrenPortfolioName _ 'Portfolio de hijos'.
+	juanAccountName _ 'Cuenta de Juan'.
+	angelesAccountName _ 'Cuenta de Angeles'.
+
+	
+	johnsAccount _ ReceptiveAccount named: juanAccountName.
+	angiesAccount _ ReceptiveAccount named: angelesAccountName.
+	childrenPortfolio _ Portfolio named: childrenPortfolioName with: johnsAccount with: angiesAccount.
+	myAccount _ ReceptiveAccount named: myAccountName.
+	familyPortfolio _ Portfolio named: familyPortfolioName with: myAccount with: childrenPortfolio.
+			
+	expectedReport _ OrderedCollection new
+		add: familyPortfolioName;
+		add: '\t', myAccountName;
+		add: '\t', childrenPortfolioName;
+		add: '\t\t', juanAccountName;
+		add: '\t\t', angelesAccountName;
+		yourself.
+	
+	self assert: expectedReport equals:(PortfolioTreeReport for: familyPortfolio) xxx..
+	! !
+!ReportTest methodsFor: 'tree report' stamp: 'MP 10/23/2021 19:44:44' prior: 50922362!
+test19
+
+	| angiesAccount childrenPortfolio expectedReport familyPortfolio johnsAccount myAccount familyPortfolioName myAccountName childrenPortfolioName juanAccountName angelesAccountName |
+	
+	" El test pasa de una, lo agregamos por completitud."
+	
+	familyPortfolioName _ 'Portfolio de la familia'.
+	myAccountName _ 'Cuenta mia'.
+	childrenPortfolioName _ 'Portfolio de hijos'.
+	juanAccountName _ 'Cuenta de Juan'.
+	angelesAccountName _ 'Cuenta de Angeles'.
+
+	
+	johnsAccount _ ReceptiveAccount named: juanAccountName.
+	angiesAccount _ ReceptiveAccount named: angelesAccountName.
+	childrenPortfolio _ Portfolio named: childrenPortfolioName with: johnsAccount with: angiesAccount.
+	myAccount _ ReceptiveAccount named: myAccountName.
+	familyPortfolio _ Portfolio named: familyPortfolioName with: myAccount with: childrenPortfolio.
+			
+	expectedReport _ OrderedCollection new
+		add: familyPortfolioName;
+		add: '\t', myAccountName;
+		add: '\t', childrenPortfolioName;
+		add: '\t\t', juanAccountName;
+		add: '\t\t', angelesAccountName;
+		yourself.
+	
+	self assert: expectedReport equals: (PortfolioTreeReport for: familyPortfolio) xxx..
+	! !
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 19:46:33' prior: 50922034!
+xxx
+	| report |
+	
+	report _ OrderedCollection with: portfolio name.
+
+	portfolio accountsDo: [ :anAccount |
+		| subtreeReport |
+		subtreeReport _ anAccount treeReport.
+		subtreeReport do: [ :aReportEntry |		report add: '\t' , aReportEntry ]].
+	
+	^report
+	! !
+!Portfolio methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:47:37'!
+includeAccountsInReport: aReport 
+	
+	accounts do: [ :anAccount | anAccount includeInReport: aReport ].! !
+!Portfolio methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:48:13' prior: 50922451!
+includeAccountsInReport: aReport 
+
+	accounts do: [ :anAccount | anAccount includeInReport: aReport ].! !
+!Portfolio methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:48:35' prior: 50922457!
+includeAccountsInReport: aReport 
+
+	accounts do: [ :anAccount | anAccount includeAccountInReport: aReport ].! !
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 19:49:35' prior: 50922440!
+xxx
+	| report |
+	
+	report _ OrderedCollection with: portfolio name.
+	portfolio includeAccountsInReport: self.
+	
+	^report
+	! !
+!Portfolio methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:51:35' prior: 50922463!
+includeAccountsInReport: aReport 
+
+	accounts do: [ :anAccount | anAccount includeAccountsInReport: aReport. ].! !
+!Portfolio methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:51:42' prior: 50922477!
+includeAccountsInReport: aReport 
+
+	accounts do: [ :anAccount | anAccount includeAccountsInReport: aReport. ].! !
+!Portfolio methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:51:43' prior: 50922484!
+includeAccountsInReport: aReport
+
+	accounts do: [ :anAccount | anAccount includeAccountsInReport: aReport. ].! !
+!ReceptiveAccount methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:53:28'!
+includeAccountsInReport: aReport
+
+	aReport includeAccount: self.! !
+!Portfolio methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:53:42' prior: 50921032 overrides: 50920899!
+includeTransactionsInReport: aReport 
+	
+	accounts do: [ :anAccount | anAccount includeTransactionsInReport: aReport ].! !
+!Portfolio methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:53:51' prior: 50922491!
+includeAccountsInReport: aReport
+
+	aReport includePortfolio: self.
+	accounts do: [ :anAccount | anAccount includeAccountsInReport: aReport. ].! !
+!Portfolio methodsFor: 'reporting' stamp: 'MP 10/23/2021 19:53:58' prior: 50922510!
+includeAccountsInReport: aReport
+
+	aReport includePortfolio: self.! !
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 19:54:05'!
+includePortfolio! !
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 19:54:08'!
+includeAccount! !
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 19:54:51'!
+includeReceptiveAccount: aReceptiveAccount
+
+	| report |
+	report add: aReceptiveAccount name.! !
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 19:55:02' prior: 50922470!
+xxx
+	| report |
+	
+	report _ OrderedCollection with: portfolio name.
+	portfolio includeAccountsInReport: self.
+	
+	^report
+	! !
+
+Object subclass: #PortfolioTreeReport
+	instanceVariableNames: 'portfolio report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion-Bonus'!
+
+Object subclass: #PortfolioTreeReport
+	instanceVariableNames: 'portfolio report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion-Bonus'!
+
+Object subclass: #PortfolioTreeReport
+	instanceVariableNames: 'portfolio report2'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion-Bonus'!
+
+!classDefinition: #PortfolioTreeReport category: 'Portfolio-Solucion-Bonus' stamp: 'MP 10/23/2021 19:55:13'!
+Object subclass: #PortfolioTreeReport
+	instanceVariableNames: 'portfolio report2'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion-Bonus'!
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 19:55:19' prior: 50922538!
+xxx
+	report2 _ OrderedCollection with: portfolio name.
+	portfolio includeAccountsInReport: self.
+	
+	^report2
+	! !
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 19:55:36' prior: 50922531!
+includeReceptiveAccount: aReceptiveAccount
+
+
+	report2 add: aReceptiveAccount name.! !
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 19:55:36' prior: 50922577!
+includeReceptiveAccount: aReceptiveAccount
+
+	report2 add: aReceptiveAccount name.! !
+
+!classDefinition: #PortfolioTreeReport category: 'Portfolio-Solucion-Bonus' stamp: 'MP 10/23/2021 19:55:38'!
+Object subclass: #PortfolioTreeReport
+	instanceVariableNames: 'portfolio report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion-Bonus'!
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 19:55:38' prior: 50922570!
+xxx
+	report _ OrderedCollection with: portfolio name.
+	portfolio includeAccountsInReport: self.
+	
+	^report
+	! !
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 19:55:38' prior: 50922583!
+includeReceptiveAccount: aReceptiveAccount
+
+	report add: aReceptiveAccount name.! !
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 19:55:42' prior: 50922605!
+includeReceptiveAccount: aReceptiveAccount
+
+	report add: aReceptiveAccount name.! !
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 19:58:49'!
+includePortfolio: aPortfolio
+
+	report add: aPortfolio name.
+	
+	
+	"
+	accounts do: [ :anAccount | anAccount includeAccountsInReport: aReport. ].
+	
+	subtreeReport _ anAccount treeReport.
+	subtreeReport do: [ :aReportEntry |		report add: '\t' , aReportEntry ] 
+	"! !
+
+!methodRemoval: PortfolioTreeReport #includePortfolio stamp: 'MP 10/23/2021 20:03:57'!
+includePortfolio!
+
+!methodRemoval: PortfolioTreeReport #includeAccount stamp: 'MP 10/23/2021 20:03:58'!
+includeAccount!
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 20:04:08' prior: 50922598!
+xxx
+
+	report _ OrderedCollection with: portfolio name.
+	portfolio includeAccountsInReport: self.
+	
+	^report
+	! !
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 20:04:40' prior: 50922635!
+xxx
+
+	report _ OrderedCollection with: portfolio name.
+
+	portfolio includeAccountsInReport: self.
+	
+	^report
+	! !
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 20:09:28' prior: 50922642!
+xxx
+
+	report _ OrderedCollection new.
+
+	portfolio includeAccountsInReport: self.
+	
+	^report
+	! !
+!Portfolio methodsFor: 'reporting' stamp: 'MP 10/23/2021 20:09:43' prior: 50922518!
+includeAccountsInReport: aReport
+
+	aReport includePortfolio: self.! !
+!Portfolio methodsFor: 'reporting' stamp: 'MP 10/23/2021 20:10:17' prior: 50922655!
+includeAccountsInReport: aReport
+
+	aReport includePortfolio: self.
+	accounts do: [ :anAccount | anAccount includeAccountsInReport: aReport ].! !
+
+!classDefinition: #PortfolioTreeReport category: 'Portfolio-Solucion-Bonus' stamp: 'MP 10/23/2021 20:10:44'!
+Object subclass: #PortfolioTreeReport
+	instanceVariableNames: 'portfolio report tabulation'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion-Bonus'!
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 20:10:46' prior: 50922617!
+includePortfolio: aPortfolio
+
+	tabulation _ tabulation, '\t'.
+
+	report add: aPortfolio name.
+	
+	
+	"
+	accounts do: [ :anAccount | anAccount includeAccountsInReport: aReport. ].
+	
+	subtreeReport _ anAccount treeReport.
+	subtreeReport do: [ :aReportEntry |		report add: '\t'Unmatched string quote -> , aReportEntry ] 
+	"! !
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 20:10:48' prior: 50922677!
+includePortfolio: aPortfolio
+
+	tabulation _ tabulation, '\t'.
+	report add: aPortfolio name.
+	
+	
+	"
+	accounts do: [ :anAccount | anAccount includeAccountsInReport: aReport. ].
+	
+	subtreeReport _ anAccount treeReport.
+	subtreeReport do: [ :aReportEntry |		report add: '\t'Unmatched string quote -> , aReportEntry ] 
+	"! !
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 20:11:02' prior: 50922691!
+includePortfolio: aPortfolio
+
+	report add: tabulation, aPortfolio name.
+	tabulation _ tabulation, '\t'.
+	
+	
+	"
+	accounts do: [ :anAccount | anAccount includeAccountsInReport: aReport. ].
+	
+	subtreeReport _ anAccount treeReport.
+	subtreeReport do: [ :aReportEntry |		report add: '\t'Unmatched string quote -> , aReportEntry ] 
+	"! !
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 20:11:05' prior: 50922705!
+includePortfolio: aPortfolio
+
+	report add: tabulation, aPortfolio name.
+	tabulation _ tabulation, '\t'.
+
+	"
+	accounts do: [ :anAccount | anAccount includeAccountsInReport: aReport. ].
+	
+	subtreeReport _ anAccount treeReport.
+	subtreeReport do: [ :aReportEntry |		report add: '\t'Unmatched string quote -> , aReportEntry ] 
+	"! !
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 20:12:06' prior: 50922611!
+includeReceptiveAccount: aReceptiveAccount
+
+	report add: tabulation, aReceptiveAccount name.! !
+!ReceptiveAccount methodsFor: 'reporting' stamp: 'MP 10/23/2021 20:12:21' prior: 50922497!
+includeAccountsInReport: aReport
+
+	aReport includeReceptiveAccount: self.! !
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'MP 10/23/2021 20:12:35'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'MP 10/23/2021 20:12:35'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'MP 10/23/2021 20:12:35'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'MP 10/23/2021 20:12:35'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'MP 10/23/2021 20:12:35'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'MP 10/23/2021 20:12:35'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'MP 10/23/2021 20:12:35'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'MP 10/23/2021 20:12:35'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'MP 10/23/2021 20:12:35'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'MP 10/23/2021 20:12:35'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'MP 10/23/2021 20:12:35'!
+PASSED!
+
+!testRun: #ReportTest #test12SummaryOfEmptyPortfolioListsTheBalance stamp: 'MP 10/23/2021 20:12:35'!
+PASSED!
+
+!testRun: #ReportTest #test13SummaryOfPortfolioListsAllSubAccounts stamp: 'MP 10/23/2021 20:12:35'!
+PASSED!
+
+!testRun: #ReportTest #test14TransferNetOfPortfolioConsidersAllSubAccounts stamp: 'MP 10/23/2021 20:12:35'!
+PASSED!
+
+!testRun: #ReportTest #test15BONUSTRACK stamp: 'MP 10/23/2021 20:12:35'!
+ERROR!
+
+!testRun: #ReportTest #test16 stamp: 'MP 10/23/2021 20:12:35'!
+ERROR!
+
+!testRun: #ReportTest #test17 stamp: 'MP 10/23/2021 20:12:35'!
+ERROR!
+
+!testRun: #ReportTest #test18 stamp: 'MP 10/23/2021 20:12:35'!
+ERROR!
+
+!testRun: #ReportTest #test19 stamp: 'MP 10/23/2021 20:12:35'!
+ERROR!
+
+!testRun: #ReportTest #test20 stamp: 'MP 10/23/2021 20:12:35'!
+PASSED!
+
+!testRun: #ReportTest #test21 stamp: 'MP 10/23/2021 20:12:35'!
+PASSED!
+
+!testRun: #ReportTest #test22 stamp: 'MP 10/23/2021 20:12:35'!
+PASSED!
+
+!testRun: #ReportTest #test23 stamp: 'MP 10/23/2021 20:12:35'!
+PASSED!
+
+!testRun: #ReportTest #test15BONUSTRACK stamp: 'MP 10/23/2021 20:12:43'!
+ERROR!
+!PortfolioTreeReport methodsFor: 'as yet unclassified' stamp: 'MP 10/23/2021 20:13:05' prior: 50922649!
+xxx
+
+	report _ OrderedCollection new.
+	tabulation _ ''.
+	portfolio includeAccountsInReport: self.
+	
+	^report
+	! !
+
+!testRun: #ReportTest #test15BONUSTRACK stamp: 'MP 10/23/2021 20:13:11'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'MP 10/23/2021 20:13:11'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'MP 10/23/2021 20:13:11'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'MP 10/23/2021 20:13:11'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'MP 10/23/2021 20:13:11'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'MP 10/23/2021 20:13:11'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'MP 10/23/2021 20:13:11'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'MP 10/23/2021 20:13:11'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'MP 10/23/2021 20:13:11'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'MP 10/23/2021 20:13:11'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'MP 10/23/2021 20:13:11'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'MP 10/23/2021 20:13:11'!
+PASSED!
+
+!testRun: #ReportTest #test12SummaryOfEmptyPortfolioListsTheBalance stamp: 'MP 10/23/2021 20:13:11'!
+PASSED!
+
+!testRun: #ReportTest #test13SummaryOfPortfolioListsAllSubAccounts stamp: 'MP 10/23/2021 20:13:11'!
+PASSED!
+
+!testRun: #ReportTest #test14TransferNetOfPortfolioConsidersAllSubAccounts stamp: 'MP 10/23/2021 20:13:11'!
+PASSED!
+
+!testRun: #ReportTest #test15BONUSTRACK stamp: 'MP 10/23/2021 20:13:11'!
+PASSED!
+
+!testRun: #ReportTest #test16 stamp: 'MP 10/23/2021 20:13:11'!
+PASSED!
+
+!testRun: #ReportTest #test17 stamp: 'MP 10/23/2021 20:13:11'!
+FAILURE!
+
+!testRun: #ReportTest #test18 stamp: 'MP 10/23/2021 20:13:11'!
+PASSED!
+
+!testRun: #ReportTest #test19 stamp: 'MP 10/23/2021 20:13:11'!
+PASSED!
+
+!testRun: #ReportTest #test20 stamp: 'MP 10/23/2021 20:13:11'!
+PASSED!
+
+!testRun: #ReportTest #test21 stamp: 'MP 10/23/2021 20:13:11'!
+PASSED!
+
+!testRun: #ReportTest #test22 stamp: 'MP 10/23/2021 20:13:11'!
+PASSED!
+
+!testRun: #ReportTest #test23 stamp: 'MP 10/23/2021 20:13:11'!
+PASSED!
+
+!testRun: #ReportTest #test17 stamp: 'MP 10/23/2021 20:13:11'!
+FAILURE!
+
+!testRun: #ReportTest #test17 stamp: 'MP 10/23/2021 20:13:25'!
+FAILURE!
+
+(PortfolioTreeReport for: portfolio) xxx!
+!Portfolio methodsFor: 'reporting' stamp: 'MP 10/23/2021 20:16:04' prior: 50922660!
+includeAccountsInReport: aReport
+
+	aReport includePortfolio: self.
+	accounts do: [ :anAccount | anAccount includeAccountsInReport: aReport ].
+! !
+!Portfolio methodsFor: 'reporting' stamp: 'MP 10/23/2021 20:16:57' prior: 50922907!
+includeAccountsInReport: aReport
+
+	aReport includePortfolio: self.
+	accounts do: [ :anAccount | anAccount includeAccountsInReport: aReport].
+! !
