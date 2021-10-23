@@ -8440,3 +8440,587 @@ PASSED!
 PASSED!
 
 ----SNAPSHOT----(23 October 2021 16:07:38) CuisUniversity-4913.image priorSource: 18661997!
+!ReportTest methodsFor: 'transfer net report' stamp: 'IAR 10/23/2021 16:11:48'!
+test12
+	
+	| expectedSummary |
+	expectedSummary _ OrderedCollection with: 1.
+	self assert: 10 equals: (TransferNetReport for: Portfolio new) compute.! !
+!ReportTest methodsFor: 'category-name' stamp: 'IAR 10/23/2021 16:12:42' prior: 50919099!
+test12
+	
+	| expectedReport |
+	expectedReport _ OrderedCollection with: 1.
+	self assert: 10 equals: (TransferNetReport for: Portfolio new) compute.! !
+!ReportTest methodsFor: 'category-name' stamp: 'IAR 10/23/2021 16:12:52' prior: 50919107!
+test12
+	
+	| expectedReport |
+	expectedReport _ OrderedCollection with: 'Balance = 5'.
+	self assert: 10 equals: (TransferNetReport for: Portfolio new) compute.! !
+!ReportTest methodsFor: 'category-name' stamp: 'IAR 10/23/2021 16:12:59' prior: 50919115!
+test12
+	
+	| expectedReport |
+	expectedReport _ OrderedCollection with: 'Balance = 5'.
+	self assert: expectedReport equals: (TransferNetReport for: Portfolio new) compute.! !
+!ReportTest methodsFor: 'category-name' stamp: 'IAR 10/23/2021 16:13:00' prior: 50919123!
+test12
+	
+	| expectedReport |
+	expectedReport _ OrderedCollection with: 'Balance = 5'.
+	
+	self assert: expectedReport equals: (TransferNetReport for: Portfolio new) compute.! !
+!ReportTest methodsFor: 'category-name' stamp: 'IAR 10/23/2021 16:13:11' prior: 50919132!
+test12
+	
+	| expectedReport |
+	expectedReport _ OrderedCollection with: 'Balance = 5'.
+	
+	self assert: expectedReport equals: (SummaryReport for: Portfolio new) generate.! !
+!ReportTest methodsFor: 'category-name' stamp: 'IAR 10/23/2021 16:13:14' prior: 50919141!
+test12
+	
+	| expectedReport |
+	expectedReport _ OrderedCollection with: 'Balance = 0'.
+	
+	self assert: expectedReport equals: (SummaryReport for: Portfolio new) generate.! !
+
+!testRun: #ReportTest #test12 stamp: 'IAR 10/23/2021 16:13:16'!
+ERROR!
+
+!testRun: #ReportTest #test12 stamp: 'IAR 10/23/2021 16:13:42'!
+ERROR!
+
+!testRun: #ReportTest #test12 stamp: 'IAR 10/23/2021 16:13:43'!
+ERROR!
+!Portfolio methodsFor: 'reporting' stamp: 'IAR 10/23/2021 16:14:11'!
+includeTransactionsInReport: aSummaryReport 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'reporting' stamp: 'IAR 10/23/2021 16:16:33' prior: 50919165!
+includeTransactionsInReport: aReport 
+	
+	! !
+
+!testRun: #ReportTest #test12 stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReportTest #test12 stamp: 'IAR 10/23/2021 16:16:34'!
+PASSED!
+
+!testRun: #ReportTest #test12 stamp: 'IAR 10/23/2021 16:16:38'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'IAR 10/23/2021 16:16:38'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 16:16:38'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'IAR 10/23/2021 16:16:38'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'IAR 10/23/2021 16:16:38'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'IAR 10/23/2021 16:16:38'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'IAR 10/23/2021 16:16:38'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'IAR 10/23/2021 16:16:38'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'IAR 10/23/2021 16:16:39'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'IAR 10/23/2021 16:16:39'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'IAR 10/23/2021 16:16:39'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'IAR 10/23/2021 16:16:39'!
+PASSED!
+
+!testRun: #ReportTest #test12 stamp: 'IAR 10/23/2021 16:16:39'!
+PASSED!
+!ReportTest methodsFor: 'category-name' stamp: 'IAR 10/23/2021 16:17:40'!
+test13
+	
+	| expectedReport portfolio |
+	
+	portfolio  _ Portfolio new.
+	expectedReport _ OrderedCollection with: 'Balance = 0'.
+	
+	self assert: expectedReport equals: (SummaryReport for: portfolio) generate.! !
+!ReportTest methodsFor: 'category-name' stamp: 'IAR 10/23/2021 16:20:12' prior: 50919370!
+test13
+	
+	| expectedReport portfolio account |
+	
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount new.
+	Deposit register: 10 on: account.
+	
+	portfolio add: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Depósito por 10.'
+		with: 'Balance = 10'.
+	
+	self assert: expectedReport equals: (SummaryReport for: portfolio) generate.! !
+
+!testRun: #ReportTest #test13 stamp: 'IAR 10/23/2021 16:20:17'!
+FAILURE!
+
+!testRun: #ReportTest #test13 stamp: 'IAR 10/23/2021 16:20:27'!
+FAILURE!
+
+!testRun: #ReportTest #test13 stamp: 'IAR 10/23/2021 16:20:49'!
+FAILURE!
+!Portfolio methodsFor: 'reporting' stamp: 'IAR 10/23/2021 16:25:00' prior: 50919170!
+includeTransactionsInReport: aReport 
+	
+	accounts do: [ :anAccount | anAccount includeTransactionsInReport: aReport ].! !
+
+!testRun: #ReportTest #test13 stamp: 'IAR 10/23/2021 16:25:02'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'IAR 10/23/2021 16:25:02'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 16:25:02'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'IAR 10/23/2021 16:25:02'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'IAR 10/23/2021 16:25:02'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'IAR 10/23/2021 16:25:02'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'IAR 10/23/2021 16:25:02'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'IAR 10/23/2021 16:25:02'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'IAR 10/23/2021 16:25:02'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'IAR 10/23/2021 16:25:02'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'IAR 10/23/2021 16:25:02'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'IAR 10/23/2021 16:25:02'!
+PASSED!
+
+!testRun: #ReportTest #test12 stamp: 'IAR 10/23/2021 16:25:02'!
+PASSED!
+
+!testRun: #ReportTest #test13 stamp: 'IAR 10/23/2021 16:25:02'!
+PASSED!
+!Account methodsFor: 'reporting' stamp: 'IAR 10/23/2021 16:25:36'!
+includeTransactionsInReport: aReport 
+
+	self subclassResponsibility.! !
+!ReportTest methodsFor: 'category-name' stamp: 'IAR 10/23/2021 16:26:08' prior: 50919380!
+test13
+	
+	| expectedReport portfolio account |
+	
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount new.
+	Deposit register: 10 on: account.
+	Deposit register: 30 on: account.
+
+	
+	portfolio add: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Depósito por 10.'
+		with: 'Balance = 10'.
+	
+	self assert: expectedReport equals: (SummaryReport for: portfolio) generate.! !
+!ReportTest methodsFor: 'category-name' stamp: 'IAR 10/23/2021 16:26:34' prior: 50919462!
+test13
+	
+	| expectedReport portfolio account |
+	
+	
+	"Paso de una" 
+	
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount new.
+	Deposit register: 10 on: account.
+	Deposit register: 30 on: account.
+
+	portfolio add: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Depósito por 10.'
+		with: 'Depósito por 30.'
+		with: 'Balance = 40'.
+	
+	self assert: expectedReport equals: (SummaryReport for: portfolio) generate.! !
+
+!testRun: #ReportTest #test13 stamp: 'IAR 10/23/2021 16:26:35'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'IAR 10/23/2021 16:26:35'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 16:26:35'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'IAR 10/23/2021 16:26:35'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'IAR 10/23/2021 16:26:35'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'IAR 10/23/2021 16:26:35'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'IAR 10/23/2021 16:26:35'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'IAR 10/23/2021 16:26:35'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'IAR 10/23/2021 16:26:35'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'IAR 10/23/2021 16:26:35'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'IAR 10/23/2021 16:26:35'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'IAR 10/23/2021 16:26:35'!
+PASSED!
+
+!testRun: #ReportTest #test12 stamp: 'IAR 10/23/2021 16:26:35'!
+PASSED!
+
+!testRun: #ReportTest #test13 stamp: 'IAR 10/23/2021 16:26:35'!
+PASSED!
+!ReportTest methodsFor: 'category-name' stamp: 'IAR 10/23/2021 16:26:43' prior: 50919477!
+test13
+	
+	| expectedReport portfolio account |
+		
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount new.
+	Deposit register: 10 on: account.
+	Deposit register: 30 on: account.
+
+	portfolio add: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Depósito por 10.'
+		with: 'Depósito por 30.'
+		with: 'Balance = 40'.
+	
+	self assert: expectedReport equals: (SummaryReport for: portfolio) generate.! !
+!ReportTest methodsFor: 'category-name' stamp: 'IAR 10/23/2021 16:27:49'!
+test14
+	
+	| expectedReport portfolio account |
+		
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount new.
+	
+	Transfer register: 100 from: account to: ReceptiveAccount new.
+	Deposit register: 30 on: account.
+
+	portfolio add: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Depósito por 10.'
+		with: 'Depósito por 30.'
+		with: 'Balance = 40'.
+	
+	self assert: expectedReport equals: (SummaryReport for: portfolio) generate.! !
+!ReportTest methodsFor: 'category-name' stamp: 'IAR 10/23/2021 16:28:13' prior: 50919557!
+test14
+	
+	| portfolio account |
+		
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount new.
+	
+	Transfer register: 100 from: account to: ReceptiveAccount new.
+	Deposit register: 30 on: account.
+
+	portfolio add: account.
+	
+	self assert: -100 equals: (TransferNetReport for: portfolio) compute.! !
+
+!testRun: #ReportTest #test14 stamp: 'IAR 10/23/2021 16:28:18'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'IAR 10/23/2021 16:28:18'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 16:28:18'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'IAR 10/23/2021 16:28:18'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'IAR 10/23/2021 16:28:18'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'IAR 10/23/2021 16:28:18'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'IAR 10/23/2021 16:28:18'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'IAR 10/23/2021 16:28:18'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'IAR 10/23/2021 16:28:18'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'IAR 10/23/2021 16:28:18'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'IAR 10/23/2021 16:28:18'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'IAR 10/23/2021 16:28:18'!
+PASSED!
+
+!testRun: #ReportTest #test12 stamp: 'IAR 10/23/2021 16:28:18'!
+PASSED!
+
+!testRun: #ReportTest #test13 stamp: 'IAR 10/23/2021 16:28:18'!
+PASSED!
+
+!testRun: #ReportTest #test14 stamp: 'IAR 10/23/2021 16:28:18'!
+PASSED!
+!ReportTest methodsFor: 'category-name' stamp: 'IAR 10/23/2021 16:28:42' prior: 50919574!
+test14
+	
+	"Test pasó de una, pero lo dejamos por completitud"
+	
+	| portfolio account |
+		
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount new.
+	
+	Transfer register: 100 from: account to: ReceptiveAccount new.
+	Deposit register: 30 on: account.
+
+	portfolio add: account.
+	
+	self assert: -100 equals: (TransferNetReport for: portfolio) compute.! !
+!ReportTest methodsFor: 'summary report' stamp: 'IAR 10/23/2021 16:29:46'!
+test12SummaryOfEmptyPortfolioListsTheBalance
+	
+	| expectedReport |
+	expectedReport _ OrderedCollection with: 'Balance = 0'.
+	
+	self assert: expectedReport equals: (SummaryReport for: Portfolio new) generate.! !
+
+!methodRemoval: ReportTest #test12 stamp: 'IAR 10/23/2021 16:29:46'!
+test12
+	
+	| expectedReport |
+	expectedReport _ OrderedCollection with: 'Balance = 0'.
+	
+	self assert: expectedReport equals: (SummaryReport for: Portfolio new) generate.!
+!ReportTest methodsFor: 'summary report' stamp: 'IAR 10/23/2021 16:31:16'!
+test13SummaryOfPortfolioListsAllSubAccounts
+	
+	| expectedReport portfolio account |
+		
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount new.
+	Deposit register: 10 on: account.
+	Deposit register: 30 on: account.
+
+	portfolio add: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Depósito por 10.'
+		with: 'Depósito por 30.'
+		with: 'Balance = 40'.
+	
+	self assert: expectedReport equals: (SummaryReport for: portfolio) generate.! !
+
+!methodRemoval: ReportTest #test13 stamp: 'IAR 10/23/2021 16:31:16'!
+test13
+	
+	| expectedReport portfolio account |
+		
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount new.
+	Deposit register: 10 on: account.
+	Deposit register: 30 on: account.
+
+	portfolio add: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Depósito por 10.'
+		with: 'Depósito por 30.'
+		with: 'Balance = 40'.
+	
+	self assert: expectedReport equals: (SummaryReport for: portfolio) generate.!
+!ReportTest methodsFor: 'transfer net report' stamp: 'IAR 10/23/2021 16:32:07'!
+test14TransferNetOfPortfolioConsidersAllSubAccounts
+	
+	"Test pasó de una, pero lo dejamos por completitud"
+	
+	| portfolio account |
+		
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount new.
+	
+	Transfer register: 100 from: account to: ReceptiveAccount new.
+	Deposit register: 30 on: account.
+
+	portfolio add: account.
+	
+	self assert: -100 equals: (TransferNetReport for: portfolio) compute.! !
+
+!methodRemoval: ReportTest #test14 stamp: 'IAR 10/23/2021 16:32:07'!
+test14
+	
+	"Test pasó de una, pero lo dejamos por completitud"
+	
+	| portfolio account |
+		
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount new.
+	
+	Transfer register: 100 from: account to: ReceptiveAccount new.
+	Deposit register: 30 on: account.
+
+	portfolio add: account.
+	
+	self assert: -100 equals: (TransferNetReport for: portfolio) compute.!
+
+----SNAPSHOT----(23 October 2021 16:32:28) CuisUniversity-4913.image priorSource: 18798257!

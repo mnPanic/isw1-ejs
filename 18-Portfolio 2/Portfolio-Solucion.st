@@ -422,6 +422,23 @@ test11TransferNetOfAccountWithTransferDestinationAddsItsValue
 	
 	self assert: 10 equals: (TransferNetReport for: firstAccount) compute.! !
 
+!ReportTest methodsFor: 'transfer net report' stamp: 'IAR 10/23/2021 16:32:07'!
+test14TransferNetOfPortfolioConsidersAllSubAccounts
+	
+	"Test pasó de una, pero lo dejamos por completitud"
+	
+	| portfolio account |
+		
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount new.
+	
+	Transfer register: 100 from: account to: ReceptiveAccount new.
+	Deposit register: 30 on: account.
+
+	portfolio add: account.
+	
+	self assert: -100 equals: (TransferNetReport for: portfolio) compute.! !
+
 
 !ReportTest methodsFor: 'summary report' stamp: 'IAR 10/23/2021 15:42:18'!
 test01SummaryOfEmptyAccountListsTheBalance
@@ -504,6 +521,33 @@ test06SummaryOfAccountWithMultipleTransactionsListsEachOne
 	
 	self assert: expectedReport equals: (SummaryReport for: firstAccount ) generate.! !
 
+!ReportTest methodsFor: 'summary report' stamp: 'IAR 10/23/2021 16:29:46'!
+test12SummaryOfEmptyPortfolioListsTheBalance
+	
+	| expectedReport |
+	expectedReport _ OrderedCollection with: 'Balance = 0'.
+	
+	self assert: expectedReport equals: (SummaryReport for: Portfolio new) generate.! !
+
+!ReportTest methodsFor: 'summary report' stamp: 'IAR 10/23/2021 16:31:16'!
+test13SummaryOfPortfolioListsAllSubAccounts
+	
+	| expectedReport portfolio account |
+		
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount new.
+	Deposit register: 10 on: account.
+	Deposit register: 30 on: account.
+
+	portfolio add: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Depósito por 10.'
+		with: 'Depósito por 30.'
+		with: 'Balance = 40'.
+	
+	self assert: expectedReport equals: (SummaryReport for: portfolio) generate.! !
+
 
 !classDefinition: #Account category: 'Portfolio-Solucion'!
 Object subclass: #Account
@@ -538,6 +582,12 @@ addTransactionsTo: aCollectionOfTransactions
 transactions
 
 	self subclassResponsibility ! !
+
+
+!Account methodsFor: 'reporting' stamp: 'IAR 10/23/2021 16:25:36'!
+includeTransactionsInReport: aReport 
+
+	self subclassResponsibility.! !
 
 
 !Account methodsFor: 'composition' stamp: 'HAW 5/25/2019 12:24:04'!
@@ -656,6 +706,12 @@ assertCanAdd: accountToAdd
 signalCanNotAddAccount
 	
 	self error: self class canNotAddAccountErrorMessage! !
+
+
+!Portfolio methodsFor: 'reporting' stamp: 'IAR 10/23/2021 16:25:00'!
+includeTransactionsInReport: aReport 
+	
+	accounts do: [ :anAccount | anAccount includeTransactionsInReport: aReport ].! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
