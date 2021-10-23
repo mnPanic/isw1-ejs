@@ -6086,3 +6086,2357 @@ PASSED!
 PASSED!
 
 ----SNAPSHOT----(21 October 2021 22:16:00) CuisUniversity-4913.image priorSource: 18661997!
+
+----STARTUP---- (23 October 2021 14:46:20) as /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/protfolio2-vm/CuisUniversity-4913.image!
+
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1-ejs/18-Portfolio 2/Portfolio-Solucion.st----!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'IAR 10/23/2021 15:05:37'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 15:05:37'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'IAR 10/23/2021 15:05:37'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'IAR 10/23/2021 15:05:37'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'IAR 10/23/2021 15:05:37'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'IAR 10/23/2021 15:05:37'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'IAR 10/23/2021 15:05:37'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'IAR 10/23/2021 15:05:37'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'IAR 10/23/2021 15:05:37'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'IAR 10/23/2021 15:05:37'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'IAR 10/23/2021 15:05:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IAR 10/23/2021 15:05:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:05:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:05:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IAR 10/23/2021 15:05:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IAR 10/23/2021 15:05:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IAR 10/23/2021 15:05:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IAR 10/23/2021 15:05:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'IAR 10/23/2021 15:05:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'IAR 10/23/2021 15:05:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'IAR 10/23/2021 15:05:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'IAR 10/23/2021 15:05:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'IAR 10/23/2021 15:05:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'IAR 10/23/2021 15:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'IAR 10/23/2021 15:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'IAR 10/23/2021 15:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'IAR 10/23/2021 15:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'IAR 10/23/2021 15:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'IAR 10/23/2021 15:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'IAR 10/23/2021 15:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'IAR 10/23/2021 15:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'IAR 10/23/2021 15:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'IAR 10/23/2021 15:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'IAR 10/23/2021 15:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'IAR 10/23/2021 15:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'IAR 10/23/2021 15:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'IAR 10/23/2021 15:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'IAR 10/23/2021 15:05:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'IAR 10/23/2021 15:05:53'!
+PASSED!
+!AccountTransaction methodsFor: 'category-name' stamp: 'IAR 10/23/2021 15:12:41'!
+includeInReport: aNetReport
+
+	self subclassResponsibility ! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:12:41' overrides: 50916481!
+includeInReport: aNetReport
+
+	aNetReport reportWithDeposit: self.! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:12:41' overrides: 50916481!
+includeInReport: aNetReport
+
+	aNetReport reportWithWithdraw: self.! !
+!TransferDestination methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:12:41'!
+includeInReport: aNetReport
+
+	aNetReport reportWithTransferDestination: self.! !
+!TransferSource methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:12:41'!
+includeInReport: aNetReport
+
+	aNetReport reportWithTransferSource: self.! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:12:41' prior: 50916110!
+xxx
+
+	net _ 0.
+	receptiveAccount transactionsDo: [ :aTransaction | aTransaction includeInReport: self. 	].
+	
+	^ net.! !
+
+!methodRemoval: AccountTransaction #affectTransferNet: stamp: 'IAR 10/23/2021 15:12:41'!
+affectTransferNet: aNetReport
+
+	self subclassResponsibility !
+
+!methodRemoval: Deposit #affectTransferNet: stamp: 'IAR 10/23/2021 15:12:41'!
+affectTransferNet: aNetReport
+
+	aNetReport reportWithDeposit: self.!
+
+!methodRemoval: Withdraw #affectTransferNet: stamp: 'IAR 10/23/2021 15:12:41'!
+affectTransferNet: aNetReport
+
+	aNetReport reportWithWithdraw: self.!
+
+!methodRemoval: TransferDestination #affectTransferNet: stamp: 'IAR 10/23/2021 15:12:41'!
+affectTransferNet: aNetReport
+
+	aNetReport reportWithTransferDestination: self.!
+
+!methodRemoval: TransferSource #affectTransferNet: stamp: 'IAR 10/23/2021 15:12:41'!
+affectTransferNet: aNetReport
+
+	aNetReport reportWithTransferSource: self.!
+!Deposit methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:13:55' prior: 50916486 overrides: 50916481!
+includeInReport: aReport
+
+	aReport reportWithDeposit: self.! !
+
+!methodRemoval: Deposit #afectSummaryReport: stamp: 'IAR 10/23/2021 15:14:05'!
+afectSummaryReport: aSummaryReport
+
+	aSummaryReport reportWithDeposit: self.!
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:16:09' prior: 50915915!
+yyy
+
+	summary _  OrderedCollection new.
+	
+	receptiveAccount transactionsDo: [ :aTransaction | aTransaction includeInReport: self].
+	summary add: 'Balance = ', receptiveAccount balance asString.
+	^summary.! !
+
+!methodRemoval: TransferDestination #afectSummaryReport: stamp: 'IAR 10/23/2021 15:16:32'!
+afectSummaryReport: aSummaryReport
+
+	aSummaryReport reportWithTransferDestination: self.!
+
+!methodRemoval: TransferSource #afectSummaryReport: stamp: 'IAR 10/23/2021 15:16:39'!
+afectSummaryReport: aSummaryReport
+
+	aSummaryReport reportWithTransferSource: self.!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'IAR 10/23/2021 15:16:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'IAR 10/23/2021 15:17:03'!
+PASSED!
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:19:05' prior: 50916551!
+yyy
+
+	summary _  OrderedCollection new.
+	
+	receptiveAccount includeTransactionsInReport: self.
+	summary add: 'Balance = ', receptiveAccount balance asString.
+	^summary.! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:20:13' prior: 50916509!
+xxx
+
+	net _ 0.
+	receptiveAccount includeTransactionsInReport: self.
+	
+	^ net.! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'IAR 10/23/2021 15:20:28'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'IAR 10/23/2021 15:20:28'!
+ERROR!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 15:20:28'!
+ERROR!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'IAR 10/23/2021 15:20:28'!
+ERROR!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'IAR 10/23/2021 15:20:28'!
+ERROR!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'IAR 10/23/2021 15:20:28'!
+ERROR!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'IAR 10/23/2021 15:20:28'!
+ERROR!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'IAR 10/23/2021 15:20:28'!
+ERROR!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'IAR 10/23/2021 15:20:28'!
+ERROR!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'IAR 10/23/2021 15:20:28'!
+ERROR!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'IAR 10/23/2021 15:20:28'!
+ERROR!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'IAR 10/23/2021 15:20:28'!
+ERROR!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'IAR 10/23/2021 15:20:33'!
+ERROR!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:20:57'!
+includeTransactionsInReport: aSummaryReport 
+	self shouldBeImplemented.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:21:29' prior: 50917025!
+includeTransactionsInReport: aReport 
+	self shouldBeImplemented.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:22:37' prior: 50917031!
+includeTransactionsInReport: aReport 
+	
+	transactions do: [ :aTransaction | aTransaction includeTransactionsInReport: self].! !
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'IAR 10/23/2021 15:22:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 15:22:42'!
+ERROR!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'IAR 10/23/2021 15:22:42'!
+ERROR!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'IAR 10/23/2021 15:22:42'!
+ERROR!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'IAR 10/23/2021 15:22:42'!
+ERROR!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'IAR 10/23/2021 15:22:42'!
+ERROR!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'IAR 10/23/2021 15:22:42'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'IAR 10/23/2021 15:22:42'!
+ERROR!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'IAR 10/23/2021 15:22:42'!
+ERROR!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'IAR 10/23/2021 15:22:42'!
+ERROR!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'IAR 10/23/2021 15:22:42'!
+ERROR!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 15:22:48'!
+ERROR!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:23:15' prior: 50917037!
+includeTransactionsInReport: aReport 
+	
+	transactions do: [ :aTransaction | aTransaction includeInReport: self].! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 15:23:18'!
+ERROR!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'IAR 10/23/2021 15:23:18'!
+ERROR!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'IAR 10/23/2021 15:23:18'!
+ERROR!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'IAR 10/23/2021 15:23:18'!
+ERROR!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'IAR 10/23/2021 15:23:18'!
+ERROR!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'IAR 10/23/2021 15:23:18'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'IAR 10/23/2021 15:23:18'!
+ERROR!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'IAR 10/23/2021 15:23:18'!
+ERROR!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'IAR 10/23/2021 15:23:18'!
+ERROR!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'IAR 10/23/2021 15:23:18'!
+ERROR!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 15:23:21'!
+ERROR!
+!Deposit methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:23:40' prior: 50916541 overrides: 50916481!
+includeInReport: aReport
+
+	self reportWithDeposit: aReport.! !
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 15:23:41'!
+ERROR!
+!Deposit methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:24:01' prior: 50917352 overrides: 50916481!
+includeInReport: aReport
+
+	aReport reportWithDeposit: self.! !
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 15:24:02'!
+ERROR!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:24:32' prior: 50917196!
+includeTransactionsInReport: aReport 
+	
+	transactions do: [ :aTransaction | aTransaction includeInReport: aReport ].! !
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 15:24:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'IAR 10/23/2021 15:24:37'!
+PASSED!
+
+Object subclass: #Report
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Report category: 'Portfolio-Solucion' stamp: 'IAR 10/23/2021 15:28:17'!
+Object subclass: #Report
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #SummaryReport category: 'Portfolio-Solucion' stamp: 'IAR 10/23/2021 15:28:32'!
+Object subclass: #SummaryReport
+	instanceVariableNames: 'receptiveAccount summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Report subclass: #TransferNetReport
+	instanceVariableNames: 'receptiveAccount net'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferNetReport category: 'Portfolio-Solucion' stamp: 'IAR 10/23/2021 15:28:57'!
+Report subclass: #TransferNetReport
+	instanceVariableNames: 'receptiveAccount net'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Report subclass: #SummaryReport
+	instanceVariableNames: 'receptiveAccount summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #SummaryReport category: 'Portfolio-Solucion' stamp: 'IAR 10/23/2021 15:29:03'!
+Report subclass: #SummaryReport
+	instanceVariableNames: 'receptiveAccount summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Report methodsFor: 'nil' stamp: 'IAR 10/23/2021 15:30:25'!
+includeDeposit: aDeposit
+
+	self subclassResponsibility ! !
+!Report methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:30:26' prior: 50917572!
+includeDeposit: aDeposit
+
+	self subclassResponsibility.! !
+!Report methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:30:58'!
+includeWithdraw: aWithdraw
+
+	self subclassResponsibility.! !
+!Report methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:31:35'!
+includeTransferDestination: aTransferDestination
+
+	self subclassResponsibility.! !
+!Report methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:31:50'!
+includeTransferSource: aTransferSource
+
+	self subclassResponsibility.! !
+!Report class methodsFor: 'nil' stamp: 'IAR 10/23/2021 15:33:34'!
+for: aReceptiveAccount
+
+	^ self new initializeFor: aReceptiveAccount.! !
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'IAR 10/23/2021 15:33:59'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 15:33:59'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'IAR 10/23/2021 15:33:59'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'IAR 10/23/2021 15:33:59'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'IAR 10/23/2021 15:33:59'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'IAR 10/23/2021 15:33:59'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'IAR 10/23/2021 15:33:59'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'IAR 10/23/2021 15:33:59'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'IAR 10/23/2021 15:33:59'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'IAR 10/23/2021 15:33:59'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'IAR 10/23/2021 15:33:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'IAR 10/23/2021 15:34:05'!
+PASSED!
+!Report methodsFor: 'nil' stamp: 'IAR 10/23/2021 15:34:44'!
+initializeFor: aReceptiveAccount
+
+	self subclassResponsibility.! !
+
+!classDefinition: #Report category: 'Portfolio-Solucion' stamp: 'IAR 10/23/2021 15:36:36'!
+Object subclass: #Report
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Report methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:36:34' prior: 50917788!
+initializeFor: aReceptiveAccount
+
+	account _ aReceptiveAccount.! !
+
+!methodRemoval: SummaryReport #initializeFor: stamp: 'IAR 10/23/2021 15:36:45'!
+initializeFor: aReceptiveAccount
+
+	receptiveAccount _  aReceptiveAccount.!
+
+!methodRemoval: TransferNetReport #initializeFor: stamp: 'IAR 10/23/2021 15:36:54'!
+initializeFor: aReceptiveAccount
+
+	receptiveAccount _ aReceptiveAccount.!
+
+!methodRemoval: TransferNetReport class #for: stamp: 'IAR 10/23/2021 15:36:57'!
+for: aReceptiveAccount
+
+	^self new initializeFor: aReceptiveAccount.!
+
+!methodRemoval: SummaryReport class #for: stamp: 'IAR 10/23/2021 15:37:01'!
+for: aReceptiveAccount
+
+	^self new initializeFor: aReceptiveAccount.!
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:38:11' overrides: 50917577!
+includeDeposit: aDeposit
+
+	| transactionValue |
+	transactionValue _ aDeposit value asString.
+	summary add: 'Depósito por ', transactionValue, '.'.! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:38:11' overrides: 50917577!
+includeDeposit: aDeposit
+
+	! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:38:11' prior: 50917362 overrides: 50916481!
+includeInReport: aReport
+
+	aReport includeDeposit: self.! !
+
+!methodRemoval: SummaryReport #reportWithDeposit: stamp: 'IAR 10/23/2021 15:38:11'!
+reportWithDeposit: aDeposit
+
+	| transactionValue |
+	transactionValue _ aDeposit value asString.
+	summary add: 'Depósito por ', transactionValue, '.'.!
+
+!methodRemoval: TransferNetReport #reportWithDeposit: stamp: 'IAR 10/23/2021 15:38:11'!
+reportWithDeposit: aDeposit
+
+	!
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:38:39' prior: 50916862!
+yyy
+
+	summary _  OrderedCollection new.
+	
+	receptiveAccount includeTransactionsInReport: self.
+	summary add: 'Balance = ', account balance asString.
+	^summary.! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:38:46' prior: 50916871!
+xxx
+
+	net _ 0.
+	account includeTransactionsInReport: self.
+	
+	^ net.! !
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:38:54' prior: 50917857!
+yyy
+
+	summary _  OrderedCollection new.
+	
+	account includeTransactionsInReport: self.
+	summary add: 'Balance = ', account balance asString.
+	^summary.! !
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:39:15' overrides: 50917587!
+includeTransferDestination: aTrasferDestination
+
+	| transactionValue |
+	transactionValue _ aTrasferDestination value asString.
+	summary add: 'Entrada por transferencia de ', transactionValue, '.'.! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:39:15' overrides: 50917587!
+includeTransferDestination: aTransferDestination
+
+	net _ net + aTransferDestination value.
+
+	! !
+!TransferDestination methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:39:15' prior: 50916497!
+includeInReport: aNetReport
+
+	aNetReport includeTransferDestination: self.! !
+
+!methodRemoval: SummaryReport #reportWithTransferDestination: stamp: 'IAR 10/23/2021 15:39:15'!
+reportWithTransferDestination: aTrasferDestination
+
+	| transactionValue |
+	transactionValue _ aTrasferDestination value asString.
+	summary add: 'Entrada por transferencia de ', transactionValue, '.'.!
+
+!methodRemoval: TransferNetReport #reportWithTransferDestination: stamp: 'IAR 10/23/2021 15:39:15'!
+reportWithTransferDestination: aTransferDestination
+
+	net _ net + aTransferDestination value.
+
+	!
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:39:33' overrides: 50917592!
+includeTransferSource: aTrasferSource
+
+	| transactionValue |
+	transactionValue _ aTrasferSource value asString.
+	summary add: ('Salida por transferencia de ', transactionValue, '.').! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:39:33' overrides: 50917592!
+includeTransferSource: aTransferSource
+
+	net _ net - aTransferSource value.
+
+	! !
+!TransferSource methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:39:33' prior: 50916503!
+includeInReport: aNetReport
+
+	aNetReport includeTransferSource: self.! !
+
+!methodRemoval: SummaryReport #reportWithTransferSource: stamp: 'IAR 10/23/2021 15:39:33'!
+reportWithTransferSource: aTrasferSource
+
+	| transactionValue |
+	transactionValue _ aTrasferSource value asString.
+	summary add: ('Salida por transferencia de ', transactionValue, '.').!
+
+!methodRemoval: TransferNetReport #reportWithTransferSource: stamp: 'IAR 10/23/2021 15:39:33'!
+reportWithTransferSource: aTransferSource
+
+	net _ net - aTransferSource value.
+
+	!
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:39:52' overrides: 50917582!
+includeWithdraw: aWithdraw
+
+	| transactionValue |
+	transactionValue _ aWithdraw value asString.
+	summary add: 'Extracción por ', transactionValue, '.'.! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:39:52' overrides: 50917582!
+includeWithdraw: aWithdraw
+
+	! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:39:52' prior: 50916492 overrides: 50916481!
+includeInReport: aNetReport
+
+	aNetReport includeWithdraw: self.! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:39:52' prior: 50915839!
+afectSummaryReport: aSummaryReport
+
+	aSummaryReport includeWithdraw: self.! !
+
+!methodRemoval: SummaryReport #reportWithWithdraw: stamp: 'IAR 10/23/2021 15:39:52'!
+reportWithWithdraw: aWithdraw
+
+	| transactionValue |
+	transactionValue _ aWithdraw value asString.
+	summary add: 'Extracción por ', transactionValue, '.'.!
+
+!methodRemoval: TransferNetReport #reportWithWithdraw: stamp: 'IAR 10/23/2021 15:39:52'!
+reportWithWithdraw: aWithdraw
+
+	!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'IAR 10/23/2021 15:40:03'!
+PASSED!
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:41:00'!
+compute
+
+	net _ 0.
+	account includeTransactionsInReport: self.
+	
+	^ net.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:41:00' prior: 50915286!
+test07TransferNetOfEmptyAccountIsZero
+
+	| account |
+	account _ ReceptiveAccount new.
+	
+	self assert: 0 equals: (TransferNetReport for: account) compute.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:41:00' prior: 50915333!
+test11TransferNetOfAccountWithTransferDestinationAddsItsValue
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Withdraw register: 10 on: firstAccount.
+	Transfer register: 20 from: secondAccount to: firstAccount.
+	
+	self assert: 10 equals: (TransferNetReport for: firstAccount) compute.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:41:00' prior: 50915294!
+test08TransferNetOfAccountWithTransferSourceSubstractsItsValue
+
+	| account |
+	account _ ReceptiveAccount new.
+	Transfer register: 10 from: account to: ReceptiveAccount new.
+	
+	self assert: -10 equals: (TransferNetReport for: account) compute.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:41:00' prior: 50915305!
+test09TransferNetConsidersJustTransfers
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Withdraw register: 10 on: firstAccount.
+	
+	self assert: -10 equals: (TransferNetReport for: firstAccount) compute.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:41:00' prior: 50915318!
+test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne
+
+	| firstAccount secondAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	Transfer register: 10 from: firstAccount to: secondAccount.
+	
+	self assert: -20 equals: (TransferNetReport for: firstAccount) compute.! !
+
+!methodRemoval: TransferNetReport #xxx stamp: 'IAR 10/23/2021 15:41:00'!
+xxx
+
+	net _ 0.
+	account includeTransactionsInReport: self.
+	
+	^ net.!
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:42:18'!
+generate
+
+	summary _  OrderedCollection new.
+	
+	account includeTransactionsInReport: self.
+	summary add: 'Balance = ', account balance asString.
+	^summary.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:42:18' prior: 50915358!
+test02SummaryOfAccountWithDepositListsItAndTheBalance
+
+	| account expectedReport |
+	account _ ReceptiveAccount new.
+	Deposit register: 10 on: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Depósito por 10.'
+		with: 'Balance = 10'.
+	
+	self assert: expectedReport equals: (SummaryReport for: account) generate.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:42:18' prior: 50915418!
+test06SummaryOfAccountWithMultipleTransactionsListsEachOne
+
+	| expectedReport secondAccount firstAccount |
+	firstAccount _ ReceptiveAccount new.
+	secondAccount _ ReceptiveAccount new.
+	Transfer register: 20 from: firstAccount to: secondAccount.
+	Withdraw register: 30 on: firstAccount.
+	Deposit register: 40 on: firstAccount.
+	Transfer register: 15 from: secondAccount to: firstAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Salida por transferencia de 20.'
+		with: 'Extracción por 30.'
+		with: 'Depósito por 40.'
+		with: 'Entrada por transferencia de 15.'
+		with: 'Balance = 5'.
+	
+	self assert: expectedReport equals: (SummaryReport for: firstAccount ) generate.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:42:18' prior: 50915401!
+test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 10 from: sourceAccount to: destinationAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Entrada por transferencia de 10.'
+		with: 'Balance = 10'.
+	
+	self assert: expectedReport equals: (SummaryReport for: destinationAccount ) generate.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:42:18' prior: 50915349!
+test01SummaryOfEmptyAccountListsTheBalance
+
+	| account |
+	account _ ReceptiveAccount new.
+	self assert: (OrderedCollection with: 'Balance = 0') equals: (SummaryReport for: account) generate.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:42:18' prior: 50915384!
+test04SummaryOfAccountWithTransferSourceListsItAndTheBalance
+
+	| expectedReport destinationAccount sourceAccount |
+	sourceAccount _ ReceptiveAccount new.
+	destinationAccount _ ReceptiveAccount new.
+	Transfer register: 10 from: sourceAccount to: destinationAccount.
+
+	expectedReport _ OrderedCollection 
+		with: 'Salida por transferencia de 10.'
+		with: 'Balance = -10'.
+	
+	self assert: expectedReport equals: (SummaryReport for: sourceAccount ) generate.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'IAR 10/23/2021 15:42:18' prior: 50915371!
+test03SummaryOfAccountWithWithdrawListsItAndTheBalance
+
+	| account expectedReport |
+	account _ ReceptiveAccount new.
+	Withdraw register: 10 on: account.
+
+	expectedReport _ OrderedCollection 
+		with: 'Extracción por 10.'
+		with: 'Balance = -10'.
+	
+	self assert: expectedReport equals: (SummaryReport for: account) generate.! !
+
+!methodRemoval: SummaryReport #yyy stamp: 'IAR 10/23/2021 15:42:18'!
+yyy
+
+	summary _  OrderedCollection new.
+	
+	account includeTransactionsInReport: self.
+	summary add: 'Balance = ', account balance asString.
+	^summary.!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'IAR 10/23/2021 15:42:28'!
+PASSED!
+
+!classDefinition: #SummaryReport category: 'Portfolio-Solucion' stamp: 'IAR 10/23/2021 15:44:03'!
+Report subclass: #SummaryReport
+	instanceVariableNames: 'summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferNetReport category: 'Portfolio-Solucion' stamp: 'IAR 10/23/2021 15:44:12'!
+Report subclass: #TransferNetReport
+	instanceVariableNames: 'net'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'IAR 10/23/2021 15:56:54'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'IAR 10/23/2021 15:57:48'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 15:57:48'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'IAR 10/23/2021 15:57:48'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'IAR 10/23/2021 15:57:48'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'IAR 10/23/2021 15:57:48'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'IAR 10/23/2021 15:57:48'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'IAR 10/23/2021 15:57:48'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'IAR 10/23/2021 15:57:48'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'IAR 10/23/2021 15:57:48'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'IAR 10/23/2021 15:57:48'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'IAR 10/23/2021 15:57:48'!
+PASSED!
+
+AccountTransaction subclass: #TransferDestination
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferDestination category: 'Portfolio-Solucion' stamp: 'IAR 10/23/2021 15:59:40'!
+AccountTransaction subclass: #TransferDestination
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountTransaction subclass: #TransferSource
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferSource category: 'Portfolio-Solucion' stamp: 'IAR 10/23/2021 15:59:47'!
+AccountTransaction subclass: #TransferSource
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!AccountTransaction methodsFor: 'initialization' stamp: 'IAR 10/23/2021 16:01:13'!
+initializeFor: s! !
+
+!methodRemoval: AccountTransaction #initializeFor: stamp: 'IAR 10/23/2021 16:01:36'!
+initializeFor: s!
+
+!methodRemoval: Withdraw #afectSummaryReport: stamp: 'IAR 10/23/2021 16:03:12'!
+afectSummaryReport: aSummaryReport
+
+	aSummaryReport includeWithdraw: self.!
+
+!methodRemoval: ReceptiveAccount #transferNetReport stamp: 'IAR 10/23/2021 16:03:58'!
+transferNetReport
+
+	| net |
+	net _ 0.
+	self transactions do: [ :aTransaction |
+		
+		(aTransaction isKindOf: TransferSource) ifTrue: [
+			net _ net - aTransaction value.
+		].
+	
+		(aTransaction isKindOf: TransferDestination) ifTrue: [
+			net _ net + aTransaction value.
+		]
+	].
+	
+	^ net.!
+
+!methodRemoval: ReceptiveAccount #transactionsDo: stamp: 'IAR 10/23/2021 16:04:00'!
+transactionsDo: aClosureForATransactionXXXXXXXXXX 
+	
+	self transactions do: aClosureForATransactionXXXXXXXXXX.!
+
+!methodRemoval: ReceptiveAccount #summaryReport stamp: 'IAR 10/23/2021 16:04:01'!
+summaryReport
+	
+	| report |
+	report _ OrderedCollection new.
+	
+	transactions do: [ :aTransaction |
+		| transactionValue |
+	
+		transactionValue _ aTransaction value asString.
+		(aTransaction isKindOf: Deposit)
+			ifTrue: [ report add: 'Depósito por ', transactionValue, '.' ].
+	
+		(aTransaction isKindOf: Withdraw)
+			ifTrue: [ report add: 'Extracción por ', transactionValue, '.' ].
+	
+		(aTransaction isKindOf: TransferSource)
+			ifTrue: [ report add: 'Salida por transferencia de ', transactionValue, '.' ].
+
+		(aTransaction isKindOf: TransferDestination )
+			ifTrue: [ report add: 'Entrada por transferencia de ', transactionValue, '.' ].
+	].
+
+	report add: 'Balance = ', self balance asString.
+
+	^report.
+	
+	!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IAR 10/23/2021 16:04:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 16:04:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 16:04:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IAR 10/23/2021 16:04:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IAR 10/23/2021 16:04:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IAR 10/23/2021 16:04:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IAR 10/23/2021 16:04:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'IAR 10/23/2021 16:04:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'IAR 10/23/2021 16:04:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'IAR 10/23/2021 16:04:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'IAR 10/23/2021 16:04:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'IAR 10/23/2021 16:04:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'IAR 10/23/2021 16:04:16'!
+PASSED!
+!SummaryReport methodsFor: 'private' stamp: 'IAR 10/23/2021 16:05:36' prior: 50917920 overrides: 50917592!
+includeTransferSource: aTrasferSource
+
+	| transactionValue |
+	transactionValue _ aTrasferSource value asString.
+	summary add: 'Salida por transferencia de ', transactionValue, '.'.! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferMovesValueFromSourceToDestinationAccount stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09TransferEndsAreTraversable stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CannotRegisterTransferWithValueZero stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11CannotRegisterTransferWithNegativeValue stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12CannotTransferToYourself stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #ReportTest #test01SummaryOfEmptyAccountListsTheBalance stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #ReportTest #test02SummaryOfAccountWithDepositListsItAndTheBalance stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #ReportTest #test03SummaryOfAccountWithWithdrawListsItAndTheBalance stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #ReportTest #test04SummaryOfAccountWithTransferSourceListsItAndTheBalance stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #ReportTest #test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #ReportTest #test06SummaryOfAccountWithMultipleTransactionsListsEachOne stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfEmptyAccountIsZero stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferNetOfAccountWithTransferSourceSubstractsItsValue stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferNetConsidersJustTransfers stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #ReportTest #test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+!testRun: #ReportTest #test11TransferNetOfAccountWithTransferDestinationAddsItsValue stamp: 'IAR 10/23/2021 16:05:39'!
+PASSED!
+
+----SNAPSHOT----(23 October 2021 16:07:38) CuisUniversity-4913.image priorSource: 18661997!

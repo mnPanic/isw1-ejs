@@ -368,24 +368,24 @@ TestCase subclass: #ReportTest
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!ReportTest methodsFor: 'transfer net report' stamp: 'AF 10/21/2021 21:17:48'!
+!ReportTest methodsFor: 'transfer net report' stamp: 'IAR 10/23/2021 15:41:00'!
 test07TransferNetOfEmptyAccountIsZero
 
 	| account |
 	account _ ReceptiveAccount new.
 	
-	self assert: 0 equals: (TransferNetReport for: account) xxx.! !
+	self assert: 0 equals: (TransferNetReport for: account) compute.! !
 
-!ReportTest methodsFor: 'transfer net report' stamp: 'AF 10/21/2021 21:18:21'!
+!ReportTest methodsFor: 'transfer net report' stamp: 'IAR 10/23/2021 15:41:00'!
 test08TransferNetOfAccountWithTransferSourceSubstractsItsValue
 
 	| account |
 	account _ ReceptiveAccount new.
 	Transfer register: 10 from: account to: ReceptiveAccount new.
 	
-	self assert: -10 equals: (TransferNetReport for: account) xxx.! !
+	self assert: -10 equals: (TransferNetReport for: account) compute.! !
 
-!ReportTest methodsFor: 'transfer net report' stamp: 'AF 10/21/2021 21:18:51'!
+!ReportTest methodsFor: 'transfer net report' stamp: 'IAR 10/23/2021 15:41:00'!
 test09TransferNetConsidersJustTransfers
 
 	| firstAccount secondAccount |
@@ -395,9 +395,9 @@ test09TransferNetConsidersJustTransfers
 	Transfer register: 10 from: firstAccount to: secondAccount.
 	Withdraw register: 10 on: firstAccount.
 	
-	self assert: -10 equals: (TransferNetReport for: firstAccount) xxx.! !
+	self assert: -10 equals: (TransferNetReport for: firstAccount) compute.! !
 
-!ReportTest methodsFor: 'transfer net report' stamp: 'AF 10/21/2021 21:19:18'!
+!ReportTest methodsFor: 'transfer net report' stamp: 'IAR 10/23/2021 15:41:00'!
 test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne
 
 	| firstAccount secondAccount |
@@ -407,9 +407,9 @@ test10TransferNetOfAccountWithMultipleTransfersConsidersEachOne
 	Transfer register: 10 from: firstAccount to: secondAccount.
 	Transfer register: 10 from: firstAccount to: secondAccount.
 	
-	self assert: -20 equals: (TransferNetReport for: firstAccount) xxx.! !
+	self assert: -20 equals: (TransferNetReport for: firstAccount) compute.! !
 
-!ReportTest methodsFor: 'transfer net report' stamp: 'AF 10/21/2021 21:19:28'!
+!ReportTest methodsFor: 'transfer net report' stamp: 'IAR 10/23/2021 15:41:00'!
 test11TransferNetOfAccountWithTransferDestinationAddsItsValue
 
 	| firstAccount secondAccount |
@@ -420,17 +420,17 @@ test11TransferNetOfAccountWithTransferDestinationAddsItsValue
 	Withdraw register: 10 on: firstAccount.
 	Transfer register: 20 from: secondAccount to: firstAccount.
 	
-	self assert: 10 equals: (TransferNetReport for: firstAccount) xxx.! !
+	self assert: 10 equals: (TransferNetReport for: firstAccount) compute.! !
 
 
-!ReportTest methodsFor: 'summary report' stamp: 'AF 10/21/2021 22:05:07'!
+!ReportTest methodsFor: 'summary report' stamp: 'IAR 10/23/2021 15:42:18'!
 test01SummaryOfEmptyAccountListsTheBalance
 
 	| account |
 	account _ ReceptiveAccount new.
-	self assert: (OrderedCollection with: 'Balance = 0') equals: (SummaryReport for: account) yyy.! !
+	self assert: (OrderedCollection with: 'Balance = 0') equals: (SummaryReport for: account) generate.! !
 
-!ReportTest methodsFor: 'summary report' stamp: 'AF 10/21/2021 22:04:11'!
+!ReportTest methodsFor: 'summary report' stamp: 'IAR 10/23/2021 15:42:18'!
 test02SummaryOfAccountWithDepositListsItAndTheBalance
 
 	| account expectedReport |
@@ -441,9 +441,9 @@ test02SummaryOfAccountWithDepositListsItAndTheBalance
 		with: 'Depósito por 10.'
 		with: 'Balance = 10'.
 	
-	self assert: expectedReport equals: (SummaryReport for: account) yyy.! !
+	self assert: expectedReport equals: (SummaryReport for: account) generate.! !
 
-!ReportTest methodsFor: 'summary report' stamp: 'AF 10/21/2021 22:10:44'!
+!ReportTest methodsFor: 'summary report' stamp: 'IAR 10/23/2021 15:42:18'!
 test03SummaryOfAccountWithWithdrawListsItAndTheBalance
 
 	| account expectedReport |
@@ -454,9 +454,9 @@ test03SummaryOfAccountWithWithdrawListsItAndTheBalance
 		with: 'Extracción por 10.'
 		with: 'Balance = -10'.
 	
-	self assert: expectedReport equals: (SummaryReport for: account) yyy.! !
+	self assert: expectedReport equals: (SummaryReport for: account) generate.! !
 
-!ReportTest methodsFor: 'summary report' stamp: 'AF 10/21/2021 22:11:10'!
+!ReportTest methodsFor: 'summary report' stamp: 'IAR 10/23/2021 15:42:18'!
 test04SummaryOfAccountWithTransferSourceListsItAndTheBalance
 
 	| expectedReport destinationAccount sourceAccount |
@@ -468,9 +468,9 @@ test04SummaryOfAccountWithTransferSourceListsItAndTheBalance
 		with: 'Salida por transferencia de 10.'
 		with: 'Balance = -10'.
 	
-	self assert: expectedReport equals: (SummaryReport for: sourceAccount ) yyy.! !
+	self assert: expectedReport equals: (SummaryReport for: sourceAccount ) generate.! !
 
-!ReportTest methodsFor: 'summary report' stamp: 'AF 10/21/2021 22:11:22'!
+!ReportTest methodsFor: 'summary report' stamp: 'IAR 10/23/2021 15:42:18'!
 test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance
 
 	| expectedReport destinationAccount sourceAccount |
@@ -482,9 +482,9 @@ test05SummaryOfAccountWithTransferDestinationListsItAndTheBalance
 		with: 'Entrada por transferencia de 10.'
 		with: 'Balance = 10'.
 	
-	self assert: expectedReport equals: (SummaryReport for: destinationAccount ) yyy.! !
+	self assert: expectedReport equals: (SummaryReport for: destinationAccount ) generate.! !
 
-!ReportTest methodsFor: 'summary report' stamp: 'AF 10/21/2021 22:15:14'!
+!ReportTest methodsFor: 'summary report' stamp: 'IAR 10/23/2021 15:42:18'!
 test06SummaryOfAccountWithMultipleTransactionsListsEachOne
 
 	| expectedReport secondAccount firstAccount |
@@ -502,7 +502,7 @@ test06SummaryOfAccountWithMultipleTransactionsListsEachOne
 		with: 'Entrada por transferencia de 15.'
 		with: 'Balance = 5'.
 	
-	self assert: expectedReport equals: (SummaryReport for: firstAccount ) yyy.! !
+	self assert: expectedReport equals: (SummaryReport for: firstAccount ) generate.! !
 
 
 !classDefinition: #Account category: 'Portfolio-Solucion'!
@@ -741,57 +741,10 @@ addedTo: aPortfolio
 	! !
 
 
-!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:40:21'!
-summaryReport
+!ReceptiveAccount methodsFor: 'reporting' stamp: 'IAR 10/23/2021 15:24:32'!
+includeTransactionsInReport: aReport 
 	
-	| report |
-	report _ OrderedCollection new.
-	
-	transactions do: [ :aTransaction |
-		| transactionValue |
-	
-		transactionValue _ aTransaction value asString.
-		(aTransaction isKindOf: Deposit)
-			ifTrue: [ report add: 'Depósito por ', transactionValue, '.' ].
-	
-		(aTransaction isKindOf: Withdraw)
-			ifTrue: [ report add: 'Extracción por ', transactionValue, '.' ].
-	
-		(aTransaction isKindOf: TransferSource)
-			ifTrue: [ report add: 'Salida por transferencia de ', transactionValue, '.' ].
-
-		(aTransaction isKindOf: TransferDestination )
-			ifTrue: [ report add: 'Entrada por transferencia de ', transactionValue, '.' ].
-	].
-
-	report add: 'Balance = ', self balance asString.
-
-	^report.
-	
-	! !
-
-!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'AF 10/21/2021 21:26:01'!
-transactionsDo: aClosureForATransactionXXXXXXXXXX 
-	
-	self transactions do: aClosureForATransactionXXXXXXXXXX.! !
-
-!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:59:13'!
-transferNetReport
-
-	| net |
-	net _ 0.
-	self transactions do: [ :aTransaction |
-		
-		(aTransaction isKindOf: TransferSource) ifTrue: [
-			net _ net - aTransaction value.
-		].
-	
-		(aTransaction isKindOf: TransferDestination) ifTrue: [
-			net _ net + aTransaction value.
-		]
-	].
-	
-	^ net.! !
+	transactions do: [ :aTransaction | aTransaction includeInReport: aReport ].! !
 
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
@@ -807,8 +760,8 @@ value
 	self subclassResponsibility ! !
 
 
-!AccountTransaction methodsFor: 'category-name' stamp: 'AF 10/21/2021 21:30:14'!
-affectTransferNet: aNetReport
+!AccountTransaction methodsFor: 'reporting' stamp: 'IAR 10/23/2021 15:12:41'!
+includeInReport: aNetReport
 
 	self subclassResponsibility ! !
 
@@ -817,6 +770,7 @@ affectTransferNet: aNetReport
 affectBalance: aBalance
 
 	self subclassResponsibility ! !
+
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -860,15 +814,10 @@ affectBalance: aBalance
 	^aBalance + value ! !
 
 
-!Deposit methodsFor: 'as yet unclassified' stamp: 'AF 10/21/2021 21:54:47'!
-afectSummaryReport: aSummaryReport
+!Deposit methodsFor: 'reporting' stamp: 'IAR 10/23/2021 15:38:11'!
+includeInReport: aReport
 
-	aSummaryReport reportWithDeposit: self.! !
-
-!Deposit methodsFor: 'as yet unclassified' stamp: 'AF 10/21/2021 21:31:20'!
-affectTransferNet: aNetReport
-
-	aNetReport reportWithDeposit: self.! !
+	aReport includeDeposit: self.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -880,6 +829,102 @@ Deposit class
 for: aValue
 
 	^ self new initializeFor: aValue ! !
+
+
+!classDefinition: #TransferDestination category: 'Portfolio-Solucion'!
+AccountTransaction subclass: #TransferDestination
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferDestination methodsFor: 'accessing' stamp: 'MP 10/19/2021 17:34:38'!
+otherEnd
+	
+	^ transfer source! !
+
+
+!TransferDestination methodsFor: 'balance' stamp: 'IAR 10/18/2021 20:38:43'!
+affectBalance: aBalance
+
+	^ aBalance + transfer value.! !
+
+
+!TransferDestination methodsFor: 'reporting' stamp: 'IAR 10/23/2021 15:39:15'!
+includeInReport: aNetReport
+
+	aNetReport includeTransferDestination: self.! !
+
+
+!TransferDestination methodsFor: 'initialization' stamp: 'IAR 10/18/2021 20:35:47'!
+initializeFor: aTransfer
+
+	transfer _ aTransfer.! !
+
+
+!TransferDestination methodsFor: 'value' stamp: 'MP 10/19/2021 18:36:11'!
+value
+
+	^ transfer value.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TransferDestination class' category: 'Portfolio-Solucion'!
+TransferDestination class
+	instanceVariableNames: ''!
+
+!TransferDestination class methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:35:31'!
+for: aTransfer
+
+	^ self new initializeFor: aTransfer.! !
+
+
+!classDefinition: #TransferSource category: 'Portfolio-Solucion'!
+AccountTransaction subclass: #TransferSource
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferSource methodsFor: 'accessing' stamp: 'MP 10/19/2021 17:34:38'!
+otherEnd
+
+	^ transfer destination! !
+
+
+!TransferSource methodsFor: 'initialization' stamp: 'IAR 10/18/2021 20:36:38'!
+initializeFor: aTransfer
+
+	transfer _ aTransfer.! !
+
+
+!TransferSource methodsFor: 'balance' stamp: 'IAR 10/18/2021 20:37:40'!
+affectBalance: aBalance
+	
+	^ aBalance - transfer value.! !
+
+
+!TransferSource methodsFor: 'reporting' stamp: 'IAR 10/23/2021 15:39:33'!
+includeInReport: aNetReport
+
+	aNetReport includeTransferSource: self.! !
+
+
+!TransferSource methodsFor: 'value' stamp: 'MP 10/19/2021 18:36:14'!
+value
+
+	^ transfer value.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TransferSource class' category: 'Portfolio-Solucion'!
+TransferSource class
+	instanceVariableNames: ''!
+
+!TransferSource class methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:35:22'!
+for: aTransfer
+
+	^ self new initializeFor: aTransfer.! !
 
 
 !classDefinition: #Withdraw category: 'Portfolio-Solucion'!
@@ -907,15 +952,10 @@ affectBalance: aBalance
 	^aBalance - value! !
 
 
-!Withdraw methodsFor: 'as yet unclassified' stamp: 'AF 10/21/2021 21:54:33'!
-afectSummaryReport: aSummaryReport
+!Withdraw methodsFor: 'reporting' stamp: 'IAR 10/23/2021 15:39:52'!
+includeInReport: aNetReport
 
-	aSummaryReport reportWithWithdraw: self.! !
-
-!Withdraw methodsFor: 'as yet unclassified' stamp: 'AF 10/21/2021 21:32:00'!
-affectTransferNet: aNetReport
-
-	aNetReport reportWithWithdraw: self.! !
+	aNetReport includeWithdraw: self.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -929,65 +969,136 @@ for: aValue
 	^ self new initializeFor: aValue ! !
 
 
-!classDefinition: #SummaryReport category: 'Portfolio-Solucion'!
-Object subclass: #SummaryReport
-	instanceVariableNames: 'receptiveAccount net summary'
+!classDefinition: #Report category: 'Portfolio-Solucion'!
+Object subclass: #Report
+	instanceVariableNames: 'account'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!SummaryReport methodsFor: 'as yet unclassified' stamp: 'AF 10/21/2021 21:47:53'!
+!Report methodsFor: 'private' stamp: 'IAR 10/23/2021 15:30:26'!
+includeDeposit: aDeposit
+
+	self subclassResponsibility.! !
+
+!Report methodsFor: 'private' stamp: 'IAR 10/23/2021 15:31:35'!
+includeTransferDestination: aTransferDestination
+
+	self subclassResponsibility.! !
+
+!Report methodsFor: 'private' stamp: 'IAR 10/23/2021 15:31:50'!
+includeTransferSource: aTransferSource
+
+	self subclassResponsibility.! !
+
+!Report methodsFor: 'private' stamp: 'IAR 10/23/2021 15:30:58'!
+includeWithdraw: aWithdraw
+
+	self subclassResponsibility.! !
+
+
+!Report methodsFor: 'initialization' stamp: 'IAR 10/23/2021 15:36:34'!
 initializeFor: aReceptiveAccount
 
-	receptiveAccount _  aReceptiveAccount.! !
+	account _ aReceptiveAccount.! !
 
-!SummaryReport methodsFor: 'as yet unclassified' stamp: 'AF 10/21/2021 22:07:36'!
-reportWithDeposit: aDeposit
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Report class' category: 'Portfolio-Solucion'!
+Report class
+	instanceVariableNames: ''!
+
+!Report class methodsFor: 'instance creation' stamp: 'IAR 10/23/2021 15:33:34'!
+for: aReceptiveAccount
+
+	^ self new initializeFor: aReceptiveAccount.! !
+
+
+!classDefinition: #SummaryReport category: 'Portfolio-Solucion'!
+Report subclass: #SummaryReport
+	instanceVariableNames: 'summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!SummaryReport methodsFor: 'reporting' stamp: 'IAR 10/23/2021 15:42:18'!
+generate
+
+	summary _  OrderedCollection new.
+	
+	account includeTransactionsInReport: self.
+	summary add: 'Balance = ', account balance asString.
+	^summary.! !
+
+
+!SummaryReport methodsFor: 'private' stamp: 'IAR 10/23/2021 15:38:11'!
+includeDeposit: aDeposit
 
 	| transactionValue |
 	transactionValue _ aDeposit value asString.
 	summary add: 'Depósito por ', transactionValue, '.'.! !
 
-!SummaryReport methodsFor: 'as yet unclassified' stamp: 'AF 10/21/2021 22:14:08'!
-reportWithTransferDestination: aTrasferDestination
+!SummaryReport methodsFor: 'private' stamp: 'IAR 10/23/2021 15:39:15'!
+includeTransferDestination: aTrasferDestination
 
 	| transactionValue |
 	transactionValue _ aTrasferDestination value asString.
 	summary add: 'Entrada por transferencia de ', transactionValue, '.'.! !
 
-!SummaryReport methodsFor: 'as yet unclassified' stamp: 'AF 10/21/2021 22:00:46'!
-reportWithTransferSource: aTrasferSource
+!SummaryReport methodsFor: 'private' stamp: 'IAR 10/23/2021 16:05:36'!
+includeTransferSource: aTrasferSource
 
 	| transactionValue |
 	transactionValue _ aTrasferSource value asString.
-	summary add: ('Salida por transferencia de ', transactionValue, '.').! !
+	summary add: 'Salida por transferencia de ', transactionValue, '.'.! !
 
-!SummaryReport methodsFor: 'as yet unclassified' stamp: 'AF 10/21/2021 22:10:13'!
-reportWithWithdraw: aWithdraw
+!SummaryReport methodsFor: 'private' stamp: 'IAR 10/23/2021 15:39:52'!
+includeWithdraw: aWithdraw
 
 	| transactionValue |
 	transactionValue _ aWithdraw value asString.
 	summary add: 'Extracción por ', transactionValue, '.'.! !
 
-!SummaryReport methodsFor: 'as yet unclassified' stamp: 'AF 10/21/2021 22:06:06'!
-yyy
+
+!classDefinition: #TransferNetReport category: 'Portfolio-Solucion'!
+Report subclass: #TransferNetReport
+	instanceVariableNames: 'net'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
 
-	summary _  OrderedCollection new.
+!TransferNetReport methodsFor: 'reporting' stamp: 'IAR 10/23/2021 15:41:00'!
+compute
+
+	net _ 0.
+	account includeTransactionsInReport: self.
 	
-	receptiveAccount transactionsDo: [ :aTransaction | aTransaction afectSummaryReport: self].
-	summary add: 'Balance = ', receptiveAccount balance asString.
-	^summary.! !
+	^ net.! !
 
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'SummaryReport class' category: 'Portfolio-Solucion'!
-SummaryReport class
-	instanceVariableNames: ''!
+!TransferNetReport methodsFor: 'private' stamp: 'IAR 10/23/2021 15:38:11'!
+includeDeposit: aDeposit
 
-!SummaryReport class methodsFor: 'as yet unclassified' stamp: 'AF 10/21/2021 22:04:34'!
-for: aReceptiveAccount
+	! !
 
-	^self new initializeFor: aReceptiveAccount.! !
+!TransferNetReport methodsFor: 'private' stamp: 'IAR 10/23/2021 15:39:15'!
+includeTransferDestination: aTransferDestination
+
+	net _ net + aTransferDestination value.
+
+	! !
+
+!TransferNetReport methodsFor: 'private' stamp: 'IAR 10/23/2021 15:39:33'!
+includeTransferSource: aTransferSource
+
+	net _ net - aTransferSource value.
+
+	! !
+
+!TransferNetReport methodsFor: 'private' stamp: 'IAR 10/23/2021 15:39:52'!
+includeWithdraw: aWithdraw
+
+	! !
 
 
 !classDefinition: #Transfer category: 'Portfolio-Solucion'!
@@ -997,28 +1108,29 @@ Object subclass: #Transfer
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!Transfer methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:26'!
+!Transfer methodsFor: 'accessing' stamp: 'MP 10/19/2021 17:34:26'!
 destination
 	
 	^ destination! !
 
-!Transfer methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:26'!
+!Transfer methodsFor: 'accessing' stamp: 'MP 10/19/2021 17:34:14'!
+source
+	
+	^ source! !
+
+!Transfer methodsFor: 'accessing' stamp: 'IAR 10/18/2021 20:38:02'!
+value
+
+	^value! !
+
+
+!Transfer methodsFor: 'initialization' stamp: 'MP 10/19/2021 17:34:26'!
 initializeFor: aValue
 
 	value _ aValue.
 	source _ TransferSource for: self.
 	destination _ TransferDestination for: self.
 ! !
-
-!Transfer methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:14'!
-source
-	
-	^ source! !
-
-!Transfer methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:38:02'!
-value
-
-	^value! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -1058,157 +1170,3 @@ register: aValue from: aSourceAccount to: aDestinationAccount
 cannotRegisterTransferErrorDescription
 	
 	^ 'cannot register transaction'.! !
-
-
-!classDefinition: #TransferDestination category: 'Portfolio-Solucion'!
-Object subclass: #TransferDestination
-	instanceVariableNames: 'transfer'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!TransferDestination methodsFor: 'as yet unclassified' stamp: 'AF 10/21/2021 21:53:03'!
-afectSummaryReport: aSummaryReport
-
-	aSummaryReport reportWithTransferDestination: self.! !
-
-!TransferDestination methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:38:43'!
-affectBalance: aBalance
-
-	^ aBalance + transfer value.! !
-
-!TransferDestination methodsFor: 'as yet unclassified' stamp: 'AF 10/21/2021 21:33:14'!
-affectTransferNet: aNetReport
-
-	aNetReport reportWithTransferDestination: self.! !
-
-!TransferDestination methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:35:47'!
-initializeFor: aTransfer
-
-	transfer _ aTransfer.! !
-
-!TransferDestination methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:38'!
-otherEnd
-	
-	^ transfer source! !
-
-!TransferDestination methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:36:11'!
-value
-
-	^ transfer value.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'TransferDestination class' category: 'Portfolio-Solucion'!
-TransferDestination class
-	instanceVariableNames: ''!
-
-!TransferDestination class methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:35:31'!
-for: aTransfer
-
-	^ self new initializeFor: aTransfer.! !
-
-
-!classDefinition: #TransferNetReport category: 'Portfolio-Solucion'!
-Object subclass: #TransferNetReport
-	instanceVariableNames: 'receptiveAccount net'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'AF 10/21/2021 21:13:07'!
-initializeFor: aReceptiveAccount
-
-	receptiveAccount _ aReceptiveAccount.! !
-
-!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'AF 10/21/2021 21:34:23'!
-reportWithDeposit: aDeposit
-
-	! !
-
-!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'AF 10/21/2021 21:37:35'!
-reportWithTransferDestination: aTransferDestination
-
-	net _ net + aTransferDestination value.
-
-	! !
-
-!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'AF 10/21/2021 21:36:55'!
-reportWithTransferSource: aTransferSource
-
-	net _ net - aTransferSource value.
-
-	! !
-
-!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'AF 10/21/2021 21:35:02'!
-reportWithWithdraw: aWithdraw
-
-	! !
-
-!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'AF 10/21/2021 21:40:39'!
-xxx
-
-	net _ 0.
-	receptiveAccount transactionsDo: [ :aTransaction | aTransaction affectTransferNet: self. 	].
-	
-	^ net.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'TransferNetReport class' category: 'Portfolio-Solucion'!
-TransferNetReport class
-	instanceVariableNames: ''!
-
-!TransferNetReport class methodsFor: 'as yet unclassified' stamp: 'AF 10/21/2021 21:18:08'!
-for: aReceptiveAccount
-
-	^self new initializeFor: aReceptiveAccount.! !
-
-
-!classDefinition: #TransferSource category: 'Portfolio-Solucion'!
-Object subclass: #TransferSource
-	instanceVariableNames: 'transfer'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!TransferSource methodsFor: 'as yet unclassified' stamp: 'AF 10/21/2021 21:53:32'!
-afectSummaryReport: aSummaryReport
-
-	aSummaryReport reportWithTransferSource: self.! !
-
-!TransferSource methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:37:40'!
-affectBalance: aBalance
-	
-	^ aBalance - transfer value.! !
-
-!TransferSource methodsFor: 'as yet unclassified' stamp: 'AF 10/21/2021 21:33:46'!
-affectTransferNet: aNetReport
-
-	aNetReport reportWithTransferSource: self.! !
-
-!TransferSource methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:36:38'!
-initializeFor: aTransfer
-
-	transfer _ aTransfer.! !
-
-!TransferSource methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 17:34:38'!
-otherEnd
-
-	^ transfer destination! !
-
-!TransferSource methodsFor: 'as yet unclassified' stamp: 'MP 10/19/2021 18:36:14'!
-value
-
-	^ transfer value.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'TransferSource class' category: 'Portfolio-Solucion'!
-TransferSource class
-	instanceVariableNames: ''!
-
-!TransferSource class methodsFor: 'as yet unclassified' stamp: 'IAR 10/18/2021 20:35:22'!
-for: aTransfer
-
-	^ self new initializeFor: aTransfer.! !
