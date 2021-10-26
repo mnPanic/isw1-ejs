@@ -1,0 +1,1443 @@
+
+
+----QUIT----(13 October 2021 15:20:10) CuisUniversity-4913.image priorSource: 14638157!
+
+----STARTUP---- (13 October 2021 15:20:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-4913.image!
+
+
+----QUIT----(13 October 2021 15:20:10) CuisUniversity-4913.image priorSource: 18661767!
+
+----STARTUP---- (13 October 2021 15:21:02) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-4913.image!
+
+
+----QUIT----(13 October 2021 15:21:02) CuisUniversity-4913.image priorSource: 18661997!
+
+----QUIT----(13 October 2021 15:26:07) CuisUniversity-4913.image priorSource: 14638157!
+
+----STARTUP---- (13 October 2021 15:26:08) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-4913.image!
+
+
+----QUIT----(13 October 2021 15:26:08) CuisUniversity-4913.image priorSource: 18661767!
+
+----STARTUP---- (25 October 2021 21:00:02) as /home/mnpanic/Documents/dc/ing1/cuis/cuis-mars-rover-2/CuisUniversity-4913.image!
+
+
+----End fileIn of /home/mnpanic/repos/uba/ing1-repos/2021-2c/19-MarsRover-ElRegreso/MarsRover-WithHeading.st----!
+
+TestCase subclass: #MarsRoverObserverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverObserverTest category: 'MarsRover-WithHeading' stamp: 'MP 10/25/2021 21:01:16'!
+TestCase subclass: #MarsRoverObserverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRoverObserverTest methodsFor: 'nil' stamp: 'MP 10/25/2021 21:01:38'!
+test01
+
+	MarsRover at: 0@0 heading: MarsRoverHeadingNorth.! !
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:04:23' prior: 50915345!
+test01
+
+	| expectedLog positionLog rover |
+	rover _ MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	positionLog _ rover trackPositions.
+
+	expectedLog _ OrderedCollection new.
+	self assert: expectedLog equals: positionLog.! !
+
+!testRun: #MarsRoverObserverTest #test01 stamp: 'MP 10/25/2021 21:04:43'!
+ERROR!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:04:53'!
+trackPositions
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:05:00' prior: 50915364!
+trackPositions
+	^ OrderedCollection new.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:05:04' prior: 50915369!
+trackPositions
+
+	^ OrderedCollection new.! !
+
+!testRun: #MarsRoverObserverTest #test01 stamp: 'MP 10/25/2021 21:05:05'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test01 stamp: 'MP 10/25/2021 21:05:05'!
+PASSED!
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:06:08'!
+test02
+
+	| expectedLog positionLog rover |
+	rover _ MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	positionLog _ rover trackPositions.
+	
+	rover process: 'f'.
+
+	expectedLog _ OrderedCollection with: '0@1'.
+	self assert: expectedLog equals: positionLog.! !
+
+!testRun: #MarsRoverObserverTest #test02 stamp: 'MP 10/25/2021 21:06:08'!
+FAILURE!
+!MarsRover methodsFor: 'command processing' stamp: 'MP 10/25/2021 21:06:23' prior: 50915110!
+process: aSequenceOfCommands
+
+	aSequenceOfCommands do: [ :aCommand | self processCommand: aCommand ]
+! !
+!MarsRover methodsFor: 'command processing' stamp: 'MP 10/25/2021 21:08:00' prior: 50915116!
+processCommand: aCommand
+
+	(self isForwardCommand: aCommand) ifTrue: [ ^ self moveForward ].
+	(self isBackwardCommand: aCommand) ifTrue: [ ^ self moveBackward ].
+	(self isRotateRightCommand: aCommand) ifTrue: [ ^ self rotateRight ].
+	(self isRotateLeftCommand: aCommand) ifTrue: [ ^ self rotateLeft ].
+
+	self signalInvalidCommand.! !
+!MarsRover methodsFor: 'command processing' stamp: 'MP 10/25/2021 21:08:04' prior: 50915405!
+processCommand: aCommand
+
+	(self isForwardCommand: aCommand) ifTrue: [ ^ self moveForward ].
+	(self isBackwardCommand: aCommand) ifTrue: [ ^ self moveBackward ].
+	(self isRotateRightCommand: aCommand) ifTrue: [ ^ self rotateRight ].
+	(self isRotateLeftCommand: aCommand) ifTrue: [ ^ self rotateLeft ].
+
+	self signalInvalidCommand.! !
+
+!classDefinition: #MarsRover category: 'MarsRover-WithHeading' stamp: 'MP 10/25/2021 21:09:32'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head positionLog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRover methodsFor: 'command processing' stamp: 'MP 10/25/2021 21:09:31' prior: 50915419!
+processCommand: aCommand
+
+	(self isForwardCommand: aCommand) ifTrue: [ 
+		self moveForward .
+		^ positionLog add: position ].
+	(self isBackwardCommand: aCommand) ifTrue: [ ^ self moveBackward ].
+	(self isRotateRightCommand: aCommand) ifTrue: [ ^ self rotateRight ].
+	(self isRotateLeftCommand: aCommand) ifTrue: [ ^ self rotateLeft ].
+
+	self signalInvalidCommand.! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'MP 10/25/2021 21:09:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'MP 10/25/2021 21:09:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'MP 10/25/2021 21:09:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'MP 10/25/2021 21:09:42'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'MP 10/25/2021 21:09:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'MP 10/25/2021 21:09:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'MP 10/25/2021 21:09:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'MP 10/25/2021 21:09:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'MP 10/25/2021 21:09:42'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'MP 10/25/2021 21:09:42'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'MP 10/25/2021 21:09:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'MP 10/25/2021 21:09:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'MP 10/25/2021 21:09:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'MP 10/25/2021 21:09:42'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'MP 10/25/2021 21:09:42'!
+ERROR!
+!MarsRover methodsFor: 'initialization' stamp: 'MP 10/25/2021 21:10:09' prior: 50915034!
+initializeAt: aPosition heading: aHeadingType
+
+	position := aPosition.
+	head := aHeadingType for: self.
+	positionLog _ OrderedCollection new.! !
+!MarsRover methodsFor: 'initialization' stamp: 'MP 10/25/2021 21:10:13' prior: 50915510!
+initializeAt: aPosition heading: aHeadingType
+
+	position _ aPosition.
+	head _ aHeadingType for: self.
+	positionLog _ OrderedCollection new.! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'MP 10/25/2021 21:10:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'MP 10/25/2021 21:10:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'MP 10/25/2021 21:10:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'MP 10/25/2021 21:10:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'MP 10/25/2021 21:10:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'MP 10/25/2021 21:10:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'MP 10/25/2021 21:10:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'MP 10/25/2021 21:10:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'MP 10/25/2021 21:10:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'MP 10/25/2021 21:10:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'MP 10/25/2021 21:10:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'MP 10/25/2021 21:10:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'MP 10/25/2021 21:10:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'MP 10/25/2021 21:10:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'MP 10/25/2021 21:10:14'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test02 stamp: 'MP 10/25/2021 21:10:37'!
+FAILURE!
+
+!testRun: #MarsRoverObserverTest #test02 stamp: 'MP 10/25/2021 21:10:42'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:11:00' prior: 50915374!
+trackPositions
+
+	^ positionLog.! !
+
+!testRun: #MarsRoverObserverTest #test01 stamp: 'MP 10/25/2021 21:11:01'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test02 stamp: 'MP 10/25/2021 21:11:01'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'MP 10/25/2021 21:11:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'MP 10/25/2021 21:11:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'MP 10/25/2021 21:11:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'MP 10/25/2021 21:11:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'MP 10/25/2021 21:11:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'MP 10/25/2021 21:11:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'MP 10/25/2021 21:11:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'MP 10/25/2021 21:11:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'MP 10/25/2021 21:11:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'MP 10/25/2021 21:11:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'MP 10/25/2021 21:11:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'MP 10/25/2021 21:11:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'MP 10/25/2021 21:11:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'MP 10/25/2021 21:11:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'MP 10/25/2021 21:11:01'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test02 stamp: 'MP 10/25/2021 21:11:01'!
+FAILURE!
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:11:10' prior: 50915384!
+test02
+
+	| expectedLog positionLog rover |
+	rover _ MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	positionLog _ rover trackPositions.
+	
+	rover process: 'f'.
+
+	expectedLog _ OrderedCollection with: 0@1.
+	self assert: expectedLog equals: positionLog.! !
+
+!testRun: #MarsRoverObserverTest #test02 stamp: 'MP 10/25/2021 21:11:12'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test01 stamp: 'MP 10/25/2021 21:11:12'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test02 stamp: 'MP 10/25/2021 21:11:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'MP 10/25/2021 21:11:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'MP 10/25/2021 21:11:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'MP 10/25/2021 21:11:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'MP 10/25/2021 21:11:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'MP 10/25/2021 21:11:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'MP 10/25/2021 21:11:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'MP 10/25/2021 21:11:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'MP 10/25/2021 21:11:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'MP 10/25/2021 21:11:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'MP 10/25/2021 21:11:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'MP 10/25/2021 21:11:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'MP 10/25/2021 21:11:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'MP 10/25/2021 21:11:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'MP 10/25/2021 21:11:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'MP 10/25/2021 21:11:12'!
+PASSED!
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:11:59'!
+test03
+
+	| expectedLog positionLog rover |
+	rover _ MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	positionLog _ rover trackPositions.
+	
+	rover process: 'b'.
+
+	expectedLog _ OrderedCollection with: 0@1.
+	self assert: expectedLog equals: positionLog.! !
+
+!testRun: #MarsRoverObserverTest #test03 stamp: 'MP 10/25/2021 21:12:01'!
+FAILURE!
+!MarsRover methodsFor: 'command processing' stamp: 'MP 10/25/2021 21:12:27' prior: 50915441!
+processCommand: aCommand
+
+	(self isForwardCommand: aCommand) ifTrue: [ 
+		self moveForward .
+		^ positionLog add: position ].
+	(self isBackwardCommand: aCommand) ifTrue: [ 
+		self moveBackward
+		^ positionLog add: position
+		].
+	(self isRotateRightCommand: aCommand) ifTrue: [ ^ self rotateRight ].
+	(self isRotateLeftCommand: aCommand) ifTrue: [ ^ self rotateLeft ].
+
+	self signalInvalidCommand.! !
+!MarsRover methodsFor: 'command processing' stamp: 'MP 10/25/2021 21:12:28' prior: 50915741!
+processCommand: aCommand
+
+	(self isForwardCommand: aCommand) ifTrue: [ 
+		self moveForward .
+		^ positionLog add: position ].
+	(self isBackwardCommand: aCommand) ifTrue: [ 
+		self moveBackward
+		^ positionLog add: position.
+		].
+	(self isRotateRightCommand: aCommand) ifTrue: [ ^ self rotateRight ].
+	(self isRotateLeftCommand: aCommand) ifTrue: [ ^ self rotateLeft ].
+
+	self signalInvalidCommand.! !
+!MarsRover methodsFor: 'command processing' stamp: 'MP 10/25/2021 21:12:30' prior: 50915757!
+processCommand: aCommand
+
+	(self isForwardCommand: aCommand) ifTrue: [ 
+		self moveForward .
+		^ positionLog add: position ].
+	(self isBackwardCommand: aCommand) ifTrue: [ 
+		self moveBackward
+		^ positionLog add: position.
+	].
+	(self isRotateRightCommand: aCommand) ifTrue: [ ^ self rotateRight ].
+	(self isRotateLeftCommand: aCommand) ifTrue: [ ^ self rotateLeft ].
+
+	self signalInvalidCommand.! !
+!MarsRover methodsFor: 'command processing' stamp: 'MP 10/25/2021 21:12:35' prior: 50915773!
+processCommand: aCommand
+
+	(self isForwardCommand: aCommand) ifTrue: [ 
+		self moveForward .
+		^ positionLog add: position ].
+	(self isBackwardCommand: aCommand) ifTrue: [ 
+		self moveBackward.
+		^ positionLog add: position.
+	].
+	(self isRotateRightCommand: aCommand) ifTrue: [ ^ self rotateRight ].
+	(self isRotateLeftCommand: aCommand) ifTrue: [ ^ self rotateLeft ].
+
+	self signalInvalidCommand.! !
+!MarsRover methodsFor: 'command processing' stamp: 'MP 10/25/2021 21:12:37' prior: 50915789!
+processCommand: aCommand
+
+	(self isForwardCommand: aCommand) ifTrue: [ 
+		self moveForward .
+		^ positionLog add: position ].
+	(self isBackwardCommand: aCommand) ifTrue: [ 
+		self moveBackward.
+		^ positionLog add: position.
+	].
+	(self isRotateRightCommand: aCommand) ifTrue: [ ^ self rotateRight ].
+	(self isRotateLeftCommand: aCommand) ifTrue: [ ^ self rotateLeft ].
+
+	self signalInvalidCommand.! !
+!MarsRover methodsFor: 'command processing' stamp: 'MP 10/25/2021 21:12:38' prior: 50915805!
+processCommand: aCommand
+
+	(self isForwardCommand: aCommand) ifTrue: [ 
+		self moveForward .
+		^ positionLog add: position ].
+
+	(self isBackwardCommand: aCommand) ifTrue: [ 
+		self moveBackward.
+		^ positionLog add: position.
+	].
+	(self isRotateRightCommand: aCommand) ifTrue: [ ^ self rotateRight ].
+	(self isRotateLeftCommand: aCommand) ifTrue: [ ^ self rotateLeft ].
+
+	self signalInvalidCommand.! !
+!MarsRover methodsFor: 'command processing' stamp: 'MP 10/25/2021 21:12:41' prior: 50915821!
+processCommand: aCommand
+
+	(self isForwardCommand: aCommand) ifTrue: [ 
+		self moveForward .
+		^ positionLog add: position
+	].
+
+	(self isBackwardCommand: aCommand) ifTrue: [ 
+		self moveBackward.
+		^ positionLog add: position.
+	].
+	(self isRotateRightCommand: aCommand) ifTrue: [ ^ self rotateRight ].
+	(self isRotateLeftCommand: aCommand) ifTrue: [ ^ self rotateLeft ].
+
+	self signalInvalidCommand.! !
+
+!testRun: #MarsRoverObserverTest #test01 stamp: 'MP 10/25/2021 21:12:41'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test02 stamp: 'MP 10/25/2021 21:12:41'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test03 stamp: 'MP 10/25/2021 21:12:41'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'MP 10/25/2021 21:12:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'MP 10/25/2021 21:12:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'MP 10/25/2021 21:12:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'MP 10/25/2021 21:12:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'MP 10/25/2021 21:12:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'MP 10/25/2021 21:12:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'MP 10/25/2021 21:12:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'MP 10/25/2021 21:12:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'MP 10/25/2021 21:12:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'MP 10/25/2021 21:12:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'MP 10/25/2021 21:12:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'MP 10/25/2021 21:12:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'MP 10/25/2021 21:12:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'MP 10/25/2021 21:12:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'MP 10/25/2021 21:12:41'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test03 stamp: 'MP 10/25/2021 21:12:41'!
+FAILURE!
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:12:53' prior: 50915727!
+test03
+
+	| expectedLog positionLog rover |
+	rover _ MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	positionLog _ rover trackPositions.
+	
+	rover process: 'b'.
+
+	expectedLog _ OrderedCollection with: 0@-1.
+	self assert: expectedLog equals: positionLog.! !
+
+!testRun: #MarsRoverObserverTest #test03 stamp: 'MP 10/25/2021 21:12:55'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test01 stamp: 'MP 10/25/2021 21:12:55'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test02 stamp: 'MP 10/25/2021 21:12:55'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test03 stamp: 'MP 10/25/2021 21:12:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'MP 10/25/2021 21:12:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'MP 10/25/2021 21:12:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'MP 10/25/2021 21:12:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'MP 10/25/2021 21:12:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'MP 10/25/2021 21:12:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'MP 10/25/2021 21:12:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'MP 10/25/2021 21:12:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'MP 10/25/2021 21:12:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'MP 10/25/2021 21:12:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'MP 10/25/2021 21:12:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'MP 10/25/2021 21:12:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'MP 10/25/2021 21:12:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'MP 10/25/2021 21:12:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'MP 10/25/2021 21:12:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'MP 10/25/2021 21:12:55'!
+PASSED!
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:17:02'!
+test04
+
+	| expectedLog rover directionLog |
+	rover _ MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	directionLog _ rover trackDirections.
+
+	expectedLog _ OrderedCollection new.
+	self assert: expectedLog equals: directionLog.! !
+
+!testRun: #MarsRoverObserverTest #test04 stamp: 'MP 10/25/2021 21:17:07'!
+ERROR!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:17:11'!
+trackDirections
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:17:21' prior: 50916007!
+trackDirections
+	
+	^ OrderedCollection new.! !
+
+!testRun: #MarsRoverObserverTest #test04 stamp: 'MP 10/25/2021 21:17:22'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test01 stamp: 'MP 10/25/2021 21:17:22'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test02 stamp: 'MP 10/25/2021 21:17:22'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test03 stamp: 'MP 10/25/2021 21:17:22'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test04 stamp: 'MP 10/25/2021 21:17:22'!
+PASSED!
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:17:43'!
+test05
+
+	| expectedLog rover directionLog |
+	rover _ MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	directionLog _ rover trackDirections.
+	
+	rover process: 'l'.
+
+	expectedLog _ OrderedCollection with: MarsRoverHeadingWest.
+	self assert: expectedLog equals: directionLog.! !
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:18:12' prior: 50916030!
+test05
+
+	| expectedLog rover directionLog |
+	rover _ MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	directionLog _ rover trackDirections.
+	
+	rover process: 'l'.
+
+	expectedLog _ OrderedCollection with: 'West'.
+	self assert: expectedLog equals: directionLog.! !
+
+!testRun: #MarsRoverObserverTest #test05 stamp: 'MP 10/25/2021 21:18:16'!
+FAILURE!
+
+!testRun: #MarsRoverObserverTest #test05 stamp: 'MP 10/25/2021 21:19:13'!
+FAILURE!
+
+!classDefinition: #MarsRover category: 'MarsRover-WithHeading' stamp: 'MP 10/25/2021 21:19:47'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head positionLog directionLog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:19:46' prior: 50916012!
+trackDirections
+	
+	^ directionLog.! !
+!MarsRover methodsFor: 'initialization' stamp: 'MP 10/25/2021 21:20:01' prior: 50915518!
+initializeAt: aPosition heading: aHeadingType
+
+	position _ aPosition.
+	head _ aHeadingType for: self.
+	positionLog _ OrderedCollection new.
+	directionLog _ OrderedCollection new.! !
+!MarsRover methodsFor: 'command processing' stamp: 'MP 10/25/2021 21:20:28' prior: 50915837!
+processCommand: aCommand
+
+	(self isForwardCommand: aCommand) ifTrue: [ 
+		self moveForward .
+		^ positionLog add: position
+	].
+
+	(self isBackwardCommand: aCommand) ifTrue: [ 
+		self moveBackward.
+		^ positionLog add: position.
+	].
+	(self isRotateRightCommand: aCommand) ifTrue: [ ^ self rotateRight ].
+	(self isRotateLeftCommand: aCommand) ifTrue: [ ^ self rotateLeft ].
+
+	self signalInvalidCommand.! !
+!MarsRover methodsFor: 'command processing' stamp: 'MP 10/25/2021 21:20:30' prior: 50916081!
+processCommand: aCommand
+
+	(self isForwardCommand: aCommand) ifTrue: [ 
+		self moveForward .
+		^ positionLog add: position
+	].
+
+	(self isBackwardCommand: aCommand) ifTrue: [ 
+		self moveBackward.
+		^ positionLog add: position.
+	].
+
+	(self isRotateRightCommand: aCommand) ifTrue: [ ^ self rotateRight ].
+	(self isRotateLeftCommand: aCommand) ifTrue: [ ^ self rotateLeft ].
+
+	self signalInvalidCommand.! !
+!MarsRover methodsFor: 'command processing' stamp: 'MP 10/25/2021 21:20:50' prior: 50916097!
+processCommand: aCommand
+
+	(self isForwardCommand: aCommand) ifTrue: [ 
+		self moveForward .
+		^ positionLog add: position
+	].
+
+	(self isBackwardCommand: aCommand) ifTrue: [ 
+		self moveBackward.
+		^ positionLog add: position.
+	].
+
+	(self isRotateRightCommand: aCommand) ifTrue: [ 
+		^ self rotateRight 
+	
+	].
+
+	(self isRotateLeftCommand: aCommand) ifTrue: [
+		^ self rotateLeft
+		
+	].
+
+	self signalInvalidCommand.! !
+!MarsRover methodsFor: 'command processing' stamp: 'MP 10/25/2021 21:20:51' prior: 50916113!
+processCommand: aCommand
+
+	(self isForwardCommand: aCommand) ifTrue: [ 
+		self moveForward .
+		^ positionLog add: position
+	].
+
+	(self isBackwardCommand: aCommand) ifTrue: [ 
+		self moveBackward.
+		^ positionLog add: position.
+	].
+
+	(self isRotateRightCommand: aCommand) ifTrue: [ 
+		^ self rotateRight
+	
+	].
+
+	(self isRotateLeftCommand: aCommand) ifTrue: [
+		^ self rotateLeft
+		
+	].
+
+	self signalInvalidCommand.! !
+!MarsRover methodsFor: 'command processing' stamp: 'MP 10/25/2021 21:21:18' prior: 50916129!
+processCommand: aCommand
+
+	(self isForwardCommand: aCommand) ifTrue: [ 
+		self moveForward .
+		^ positionLog add: position
+	].
+
+	(self isBackwardCommand: aCommand) ifTrue: [ 
+		self moveBackward.
+		^ positionLog add: position.
+	].
+
+	(self isRotateRightCommand: aCommand) ifTrue: [ 
+		^ self rotateRight
+		^ directionLog add: nil.
+	].
+
+	(self isRotateLeftCommand: aCommand) ifTrue: [
+		^ self rotateLeft
+		
+	].
+
+	self signalInvalidCommand.! !
+!MarsRover methodsFor: 'command processing' stamp: 'MP 10/25/2021 21:22:58' prior: 50916145!
+processCommand: aCommand
+
+	(self isForwardCommand: aCommand) ifTrue: [ 
+		self moveForward .
+		^ positionLog add: position
+	].
+
+	(self isBackwardCommand: aCommand) ifTrue: [ 
+		self moveBackward.
+		^ positionLog add: position.
+	].
+
+	(self isRotateRightCommand: aCommand) ifTrue: [ 
+		self rotateRight.
+		^ directionLog add: head asString.
+	].
+
+	(self isRotateLeftCommand: aCommand) ifTrue: [
+		^ self rotateLeft
+		
+	].
+
+	self signalInvalidCommand.! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'MP 10/25/2021 21:23:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'MP 10/25/2021 21:23:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'MP 10/25/2021 21:23:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'MP 10/25/2021 21:23:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'MP 10/25/2021 21:23:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'MP 10/25/2021 21:23:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'MP 10/25/2021 21:23:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'MP 10/25/2021 21:23:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'MP 10/25/2021 21:23:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'MP 10/25/2021 21:23:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'MP 10/25/2021 21:23:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'MP 10/25/2021 21:23:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'MP 10/25/2021 21:23:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'MP 10/25/2021 21:23:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'MP 10/25/2021 21:23:02'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test05 stamp: 'MP 10/25/2021 21:23:07'!
+FAILURE!
+
+!testRun: #MarsRoverObserverTest #test01 stamp: 'MP 10/25/2021 21:23:26'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test02 stamp: 'MP 10/25/2021 21:23:26'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test03 stamp: 'MP 10/25/2021 21:23:26'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test04 stamp: 'MP 10/25/2021 21:23:26'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test05 stamp: 'MP 10/25/2021 21:23:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'MP 10/25/2021 21:23:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'MP 10/25/2021 21:23:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'MP 10/25/2021 21:23:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'MP 10/25/2021 21:23:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'MP 10/25/2021 21:23:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'MP 10/25/2021 21:23:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'MP 10/25/2021 21:23:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'MP 10/25/2021 21:23:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'MP 10/25/2021 21:23:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'MP 10/25/2021 21:23:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'MP 10/25/2021 21:23:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'MP 10/25/2021 21:23:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'MP 10/25/2021 21:23:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'MP 10/25/2021 21:23:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'MP 10/25/2021 21:23:26'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test05 stamp: 'MP 10/25/2021 21:23:26'!
+FAILURE!
+
+!testRun: #MarsRoverObserverTest #test01 stamp: 'MP 10/25/2021 21:23:40'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test02 stamp: 'MP 10/25/2021 21:23:40'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test03 stamp: 'MP 10/25/2021 21:23:40'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test04 stamp: 'MP 10/25/2021 21:23:40'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test05 stamp: 'MP 10/25/2021 21:23:40'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'MP 10/25/2021 21:23:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'MP 10/25/2021 21:23:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'MP 10/25/2021 21:23:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'MP 10/25/2021 21:23:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'MP 10/25/2021 21:23:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'MP 10/25/2021 21:23:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'MP 10/25/2021 21:23:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'MP 10/25/2021 21:23:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'MP 10/25/2021 21:23:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'MP 10/25/2021 21:23:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'MP 10/25/2021 21:23:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'MP 10/25/2021 21:23:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'MP 10/25/2021 21:23:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'MP 10/25/2021 21:23:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'MP 10/25/2021 21:23:40'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test05 stamp: 'MP 10/25/2021 21:23:40'!
+FAILURE!
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:24:08' prior: 50916043!
+test05
+
+	| expectedLog rover directionLog |
+	rover _ MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	directionLog _ rover trackDirections.
+	
+	rover process: 'r'.
+
+	expectedLog _ OrderedCollection with: 'East'.
+	self assert: expectedLog equals: directionLog.! !
+
+!testRun: #MarsRoverObserverTest #test05 stamp: 'MP 10/25/2021 21:24:09'!
+FAILURE!
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:24:30' prior: 50916378!
+test05
+
+	| expectedLog rover directionLog |
+	rover _ MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	directionLog _ rover trackDirections.
+	
+	rover process: 'r'.
+
+	expectedLog _ OrderedCollection with: 'a MarsRoverHeadingEast'.
+	self assert: expectedLog equals: directionLog.! !
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:24:46' prior: 50916393!
+test05
+
+	| expectedLog rover directionLog |
+	rover _ MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	directionLog _ rover trackDirections.
+	
+	rover process: 'r'.
+
+	expectedLog _ OrderedCollection with: 'a MarsRoverHeadingEast'. "TODO: cambiar esta porqueria"
+	self assert: expectedLog equals: directionLog.! !
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:24:59'!
+test06
+
+	| expectedLog rover directionLog |
+	rover _ MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	directionLog _ rover trackDirections.
+	
+	rover process: 'l'.
+
+	expectedLog _ OrderedCollection with: 'a MarsRoverHeadingWest'. "TODO: cambiar esta porqueria"
+	self assert: expectedLog equals: directionLog.! !
+!MarsRover methodsFor: 'command processing' stamp: 'MP 10/25/2021 21:25:16' prior: 50916162!
+processCommand: aCommand
+
+	(self isForwardCommand: aCommand) ifTrue: [ 
+		self moveForward .
+		^ positionLog add: position
+	].
+
+	(self isBackwardCommand: aCommand) ifTrue: [ 
+		self moveBackward.
+		^ positionLog add: position.
+	].
+
+	(self isRotateRightCommand: aCommand) ifTrue: [ 
+		self rotateRight.
+		^ directionLog add: head asString.
+	].
+
+	(self isRotateLeftCommand: aCommand) ifTrue: [
+		self rotateLeft.
+		^ directionLog add: head asString.
+	].
+
+	self signalInvalidCommand.! !
+
+!testRun: #MarsRoverObserverTest #test01 stamp: 'MP 10/25/2021 21:26:07'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test02 stamp: 'MP 10/25/2021 21:26:07'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test03 stamp: 'MP 10/25/2021 21:26:07'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test04 stamp: 'MP 10/25/2021 21:26:07'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test05 stamp: 'MP 10/25/2021 21:26:07'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test06 stamp: 'MP 10/25/2021 21:26:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'MP 10/25/2021 21:26:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'MP 10/25/2021 21:26:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'MP 10/25/2021 21:26:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'MP 10/25/2021 21:26:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'MP 10/25/2021 21:26:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'MP 10/25/2021 21:26:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'MP 10/25/2021 21:26:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'MP 10/25/2021 21:26:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'MP 10/25/2021 21:26:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'MP 10/25/2021 21:26:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'MP 10/25/2021 21:26:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'MP 10/25/2021 21:26:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'MP 10/25/2021 21:26:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'MP 10/25/2021 21:26:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'MP 10/25/2021 21:26:07'!
+PASSED!
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:27:40'!
+test07
+
+	| expectedLog rover directionLog |
+	rover _ MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	directionLog _ rover trackPositionsAndDirections.
+	
+	rover process: 'f'.
+
+	expectedLog _ OrderedCollection with: 0@1 and: 'a MarsRoverHeadingNorth'. "TODO: cambiar esta porqueria"
+	self assert: expectedLog equals: directionLog.! !
+
+!testRun: #MarsRoverObserverTest #test07 stamp: 'MP 10/25/2021 21:27:45'!
+ERROR!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:27:51'!
+trackPositionsAndDirections
+	self shouldBeImplemented.! !
+
+!classDefinition: #MarsRover category: 'MarsRover-WithHeading' stamp: 'MP 10/25/2021 21:29:06'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head positionLog directionLog positionsAndDirectionsLog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:29:04' prior: 50916537!
+trackPositionsAndDirections
+	
+	^ positionsAndDirectionsLog! !
+!MarsRover methodsFor: 'command processing' stamp: 'MP 10/25/2021 21:29:42' prior: 50916432!
+processCommand: aCommand
+
+	(self isForwardCommand: aCommand) ifTrue: [ 
+		self moveForward .
+		positionLog add: position.
+		^ positionsAndDirectionsLog add: position.
+	].
+
+	(self isBackwardCommand: aCommand) ifTrue: [ 
+		self moveBackward.
+		^ positionLog add: position.
+	].
+
+	(self isRotateRightCommand: aCommand) ifTrue: [ 
+		self rotateRight.
+		^ directionLog add: head asString.
+	].
+
+	(self isRotateLeftCommand: aCommand) ifTrue: [
+		self rotateLeft.
+		^ directionLog add: head asString.
+	].
+
+	self signalInvalidCommand.! !
+
+!classDefinition: #MarsRover category: 'MarsRover-WithHeading' stamp: 'MP 10/25/2021 21:29:47'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head positionLog directionLog positionAndDirectionsLog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:29:47' prior: 50916557!
+processCommand: aCommand
+
+	(self isForwardCommand: aCommand) ifTrue: [ 
+		self moveForward .
+		positionLog add: position.
+		^ positionAndDirectionsLog add: position.
+	].
+
+	(self isBackwardCommand: aCommand) ifTrue: [ 
+		self moveBackward.
+		^ positionLog add: position.
+	].
+
+	(self isRotateRightCommand: aCommand) ifTrue: [ 
+		self rotateRight.
+		^ directionLog add: head asString.
+	].
+
+	(self isRotateLeftCommand: aCommand) ifTrue: [
+		self rotateLeft.
+		^ directionLog add: head asString.
+	].
+
+	self signalInvalidCommand.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:29:47' prior: 50916552!
+trackPositionsAndDirections
+	
+	^ positionAndDirectionsLog! !
+
+!classDefinition: #MarsRover category: 'MarsRover-WithHeading' stamp: 'MP 10/25/2021 21:29:51'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head positionLog directionLog positionAndDirectionLog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:29:51' prior: 50916586!
+processCommand: aCommand
+
+	(self isForwardCommand: aCommand) ifTrue: [ 
+		self moveForward .
+		positionLog add: position.
+		^ positionAndDirectionLog add: position.
+	].
+
+	(self isBackwardCommand: aCommand) ifTrue: [ 
+		self moveBackward.
+		^ positionLog add: position.
+	].
+
+	(self isRotateRightCommand: aCommand) ifTrue: [ 
+		self rotateRight.
+		^ directionLog add: head asString.
+	].
+
+	(self isRotateLeftCommand: aCommand) ifTrue: [
+		self rotateLeft.
+		^ directionLog add: head asString.
+	].
+
+	self signalInvalidCommand.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:29:51' prior: 50916606!
+trackPositionsAndDirections
+	
+	^ positionAndDirectionLog! !
+!MarsRover methodsFor: 'command processing' stamp: 'MP 10/25/2021 21:30:44' prior: 50916621!
+processCommand: aCommand
+
+	(self isForwardCommand: aCommand) ifTrue: [ 
+		self moveForward .
+		positionLog add: position.
+		positionAndDirectionLog add: position.
+		^ positionAndDirectionLog add: head asString.
+	].
+
+	(self isBackwardCommand: aCommand) ifTrue: [ 
+		self moveBackward.
+		positionLog add: position.
+		positionAndDirectionLog add: position.
+		^ positionAndDirectionLog add: head asString.
+	].
+
+	(self isRotateRightCommand: aCommand) ifTrue: [ 
+		self rotateRight.
+		directionLog add: head asString.
+		positionAndDirectionLog add: position.
+		^ positionAndDirectionLog add: head asString.
+	].
+
+	(self isRotateLeftCommand: aCommand) ifTrue: [
+		self rotateLeft.
+		directionLog add: head asString.
+		positionAndDirectionLog add: position.
+		^ positionAndDirectionLog add: head asString.
+	].
+
+	self signalInvalidCommand.! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'MP 10/25/2021 21:30:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'MP 10/25/2021 21:30:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'MP 10/25/2021 21:30:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'MP 10/25/2021 21:30:47'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'MP 10/25/2021 21:30:47'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'MP 10/25/2021 21:30:47'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'MP 10/25/2021 21:30:47'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'MP 10/25/2021 21:30:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'MP 10/25/2021 21:30:47'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'MP 10/25/2021 21:30:47'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'MP 10/25/2021 21:30:47'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'MP 10/25/2021 21:30:47'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'MP 10/25/2021 21:30:47'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'MP 10/25/2021 21:30:47'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'MP 10/25/2021 21:30:47'!
+ERROR!
+!MarsRover methodsFor: 'initialization' stamp: 'MP 10/25/2021 21:31:03' prior: 50916072!
+initializeAt: aPosition heading: aHeadingType
+
+	position _ aPosition.
+	head _ aHeadingType for: self.
+	positionLog _ OrderedCollection new.
+	directionLog _ OrderedCollection new.
+	positionAndDirectionLog _ OrderedCollection new.! !
+
+!testRun: #MarsRoverObserverTest #test01 stamp: 'MP 10/25/2021 21:31:05'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test02 stamp: 'MP 10/25/2021 21:31:05'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test03 stamp: 'MP 10/25/2021 21:31:05'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test04 stamp: 'MP 10/25/2021 21:31:05'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test05 stamp: 'MP 10/25/2021 21:31:05'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test06 stamp: 'MP 10/25/2021 21:31:05'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test07 stamp: 'MP 10/25/2021 21:31:05'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'MP 10/25/2021 21:31:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'MP 10/25/2021 21:31:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'MP 10/25/2021 21:31:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'MP 10/25/2021 21:31:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'MP 10/25/2021 21:31:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'MP 10/25/2021 21:31:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'MP 10/25/2021 21:31:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'MP 10/25/2021 21:31:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'MP 10/25/2021 21:31:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'MP 10/25/2021 21:31:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'MP 10/25/2021 21:31:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'MP 10/25/2021 21:31:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'MP 10/25/2021 21:31:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'MP 10/25/2021 21:31:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'MP 10/25/2021 21:31:05'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test07 stamp: 'MP 10/25/2021 21:31:05'!
+ERROR!
+!MarsRoverObserverTest methodsFor: 'as yet unclassified' stamp: 'MP 10/25/2021 21:31:24' prior: 50916521!
+test07
+
+	| expectedLog rover directionLog |
+	rover _ MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	directionLog _ rover trackPositionsAndDirections.
+	
+	rover process: 'f'.
+
+	expectedLog _ OrderedCollection with: 0@1 with: 'a MarsRoverHeadingNorth'. "TODO: cambiar esta porqueria"
+	self assert: expectedLog equals: directionLog.! !
+
+!testRun: #MarsRoverObserverTest #test07 stamp: 'MP 10/25/2021 21:31:27'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test01 stamp: 'MP 10/25/2021 21:31:27'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test02 stamp: 'MP 10/25/2021 21:31:27'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test03 stamp: 'MP 10/25/2021 21:31:27'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test04 stamp: 'MP 10/25/2021 21:31:27'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test05 stamp: 'MP 10/25/2021 21:31:27'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test06 stamp: 'MP 10/25/2021 21:31:27'!
+PASSED!
+
+!testRun: #MarsRoverObserverTest #test07 stamp: 'MP 10/25/2021 21:31:27'!
+PASSED!
+
+----SNAPSHOT----(25 October 2021 21:33:02) CuisUniversity-4913.image priorSource: 18661997!
