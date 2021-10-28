@@ -829,7 +829,7 @@ applyChangeInPosition: aPosition
 MarsRoverObserver class
 	instanceVariableNames: ''!
 
-!MarsRoverObserver class methodsFor: 'as yet unclassified' stamp: 'MP 10/28/2021 00:41:06'!
+!MarsRoverObserver class methodsFor: 'instance creation' stamp: 'MP 10/28/2021 00:41:06'!
 of: aMarsRover tracking: aListOfTrackers
 
 	^self new initializeFor: aMarsRover tracking: aListOfTrackers.! !
