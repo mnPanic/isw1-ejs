@@ -1,0 +1,436 @@
+
+
+----QUIT----(13 October 2021 15:20:10) CuisUniversity-4913.image priorSource: 14638157!
+
+----STARTUP---- (13 October 2021 15:20:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-4913.image!
+
+
+----QUIT----(13 October 2021 15:20:10) CuisUniversity-4913.image priorSource: 18661767!
+
+----STARTUP---- (13 October 2021 15:21:02) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-4913.image!
+
+
+----QUIT----(13 October 2021 15:21:02) CuisUniversity-4913.image priorSource: 18661997!
+
+----QUIT----(13 October 2021 15:26:07) CuisUniversity-4913.image priorSource: 14638157!
+
+----STARTUP---- (13 October 2021 15:26:08) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-4913.image!
+
+
+----QUIT----(13 October 2021 15:26:08) CuisUniversity-4913.image priorSource: 18661767!
+
+----STARTUP---- (28 October 2021 16:20:21) as /home/agus/Documents/inge1/linux64/CuisUniversity-4913.image!
+
+
+----End fileIn of /home/agus/Documents/inge1/isw1-ejs/19-MarsRover-ElRegreso/MarsRover-WithHeading.st----!
+
+Object subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+
+!classDefinition: #CartTest category: 'TusLibros-It1' stamp: 'AF 10/28/2021 21:01:23'!
+Object subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+
+!classDefinition: #CartTest category: 'TusLibros-It1' stamp: 'AF 10/28/2021 21:01:53'!
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+
+!classDefinition: #Cart category: 'TusLibros-It1' stamp: 'AF 10/28/2021 21:03:04'!
+Object subclass: #Cart
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+!CartTest methodsFor: 'nil' stamp: 'AF 10/28/2021 21:02:51'!
+test01
+
+	| cart |
+	cart _ Cart new.
+	self assert: cart isEmpty.! !
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:03:40'!
+ERROR!
+!Cart methodsFor: 'as yet unclasifed' stamp: 'AF 10/28/2021 21:03:53'!
+isEmpty
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'as yet unclasifed' stamp: 'AF 10/28/2021 21:03:59' prior: 50915920!
+isEmpty
+	^true.! !
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:01'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:01'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:34'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:34'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:36'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:36'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:36'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:36'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:37'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:37'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:37'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:37'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:37'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:37'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:37'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:37'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:38'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:38'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:38'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:38'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:38'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:38'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:06:56'!
+test02
+
+	| cart |
+	cart _ Cart new.
+	cart addBook: 'growing object-oriented software guided by tests'.
+	self deny: cart isEmpty ! !
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:07:02'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:07:07'!
+addBook: aString 
+	self shouldBeImplemented.! !
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:08:15'!
+ERROR!
+
+!classDefinition: #Cart category: 'TusLibros-It1' stamp: 'AF 10/28/2021 21:08:59'!
+Object subclass: #Cart
+	instanceVariableNames: 'contents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:08:56' prior: 50915985!
+addBook: aBook
+
+	contents add: aBook.! !
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:09:02'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:09:02'!
+ERROR!
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:09:02'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:09:33' overrides: 16896425!
+initialize
+
+	contents _ OrderedCollection new.! !
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:09:33'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:09:33'!
+FAILURE!
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:09:33'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:09:53' prior: 50915924!
+isEmpty
+	
+	^contents isEmpty.! !
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:09:56'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:09:56'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:11:09'!
+test03
+
+	| cart aBook |
+	cart _ Cart new.
+	aBook _ 'growing object-oriented software guided by tests'.
+	cart addBook: aBook.
+	self assert: (cart contains: aBook).! !
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:11:42'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:11:42'!
+PASSED!
+
+!testRun: #CartTest #test03 stamp: 'AF 10/28/2021 21:11:42'!
+ERROR!
+
+!testRun: #CartTest #test03 stamp: 'AF 10/28/2021 21:11:42'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:11:48'!
+contains: aString 
+	self shouldBeImplemented.! !
+
+----End fileIn of /home/agus/Documents/inge1/linux64/Packages/TerseGuide.pck.st----!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:12:41' prior: 50916046!
+contains: aBook 
+	
+	contents contains: aBook.! !
+
+!testRun: #CartTest #test03 stamp: 'AF 10/28/2021 21:12:42'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:12:50' prior: 50918976!
+contains: aBook 
+	
+	contents includes: aBook.! !
+
+!testRun: #CartTest #test03 stamp: 'AF 10/28/2021 21:12:52'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:13:24' prior: 50918983!
+contains: aBook 
+	
+	^contents includes: aBook.! !
+
+!testRun: #CartTest #test03 stamp: 'AF 10/28/2021 21:13:25'!
+PASSED!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:13:47'!
+includes: aBook 
+	
+	^contents includes: aBook.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:13:47' prior: 50916029!
+test03
+
+	| cart aBook |
+	cart _ Cart new.
+	aBook _ 'growing object-oriented software guided by tests'.
+	cart addBook: aBook.
+	self assert: (cart includes: aBook).! !
+
+!methodRemoval: Cart #contains: stamp: 'AF 10/28/2021 21:13:47'!
+contains: aBook 
+	
+	^contents includes: aBook.!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:19:15'!
+test04
+
+	| cart aBook aCatalog |
+	aCatalog _ OrderedCollection new.
+	cart _ Cart with: aCatalog.
+	aBook _ 'growing object-oriented software guided by tests'.
+	cart addBook: aBook.
+	self assert: (cart includes: aBook).! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:24:39' prior: 50919014!
+test04
+
+	| cart aBook aCatalog |
+	
+	aCatalog _ OrderedCollection new.
+	cart _ Cart with: aCatalog.
+	aBook _ 'growing object-oriented software guided by tests'.
+	
+	self should: [ cart addBook: aBook ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: Cart bookNotInCatalogErrorDescription equals: anError messageText.
+			self deny: (cart includes: aBook) ].! !
+
+!testRun: #CartTest #test04 stamp: 'AF 10/28/2021 21:24:42'!
+ERROR!
+!Cart class methodsFor: 'instance creation' stamp: 'AF 10/28/2021 21:24:51'!
+with: anOrderedCollection 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWith: anOrderedCollection ! !
+!Cart class methodsFor: 'instance creation' stamp: 'AF 10/28/2021 21:25:46' prior: 50919041!
+with: aCatalog
+	
+	^self new initializeWith: aCatalog ! !
+
+!testRun: #CartTest #test04 stamp: 'AF 10/28/2021 21:25:48'!
+ERROR!
+
+!classDefinition: #Cart category: 'TusLibros-It1' stamp: 'AF 10/28/2021 21:25:53'!
+Object subclass: #Cart
+	instanceVariableNames: 'contents catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+!Cart methodsFor: 'initialization' stamp: 'AF 10/28/2021 21:25:53'!
+initializeWith: aCatalog 
+	self shouldBeImplemented.
+	catalog := aCatalog.! !
+!Cart methodsFor: 'initialization' stamp: 'AF 10/28/2021 21:26:03' prior: 50919064!
+initializeWith: aCatalog 
+	
+	catalog _ aCatalog.! !
+
+!testRun: #CartTest #test04 stamp: 'AF 10/28/2021 21:26:06'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:27:39' prior: 50915999!
+addBook: aBook
+	
+	(catalog includes: aBook) ifFalse: [self error: self class bookNotInCatalogErrorDescription].
+	contents add: aBook.! !
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:27:44'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:27:44'!
+ERROR!
+
+!testRun: #CartTest #test03 stamp: 'AF 10/28/2021 21:27:44'!
+ERROR!
+
+!testRun: #CartTest #test04 stamp: 'AF 10/28/2021 21:27:44'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:27:56' prior: 50919077!
+addBook: aBook
+	
+	(catalog includes: aBook) ifFalse: [ self error: self class bookNotInCatalogErrorDescription ].
+	contents add: aBook.! !
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:27:56'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:27:56'!
+ERROR!
+
+!testRun: #CartTest #test03 stamp: 'AF 10/28/2021 21:27:56'!
+ERROR!
+
+!testRun: #CartTest #test04 stamp: 'AF 10/28/2021 21:27:56'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:28:54' prior: 50915976!
+test02
+
+	| cart aBook aCatalog |
+	aBook _ 'growing object-oriented software guided by tests'.
+	aCatalog _ OrderedCollection with:  aBook.
+	cart _ Cart with: aCatalog.
+	
+	cart addBook: 'growing object-oriented software guided by tests'.
+	self deny: cart isEmpty ! !
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:28:59'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:28:59'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:28:59'!
+PASSED!
+
+!testRun: #CartTest #test03 stamp: 'AF 10/28/2021 21:28:59'!
+ERROR!
+
+!testRun: #CartTest #test04 stamp: 'AF 10/28/2021 21:28:59'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:29:11' prior: 50919109!
+test02
+
+	| cart aBook aCatalog |
+	aBook _ 'growing object-oriented software guided by tests'.
+	aCatalog _ OrderedCollection with:  aBook.
+	cart _ Cart with: aCatalog.
+	cart addBook: 'growing object-oriented software guided by tests'.
+	self deny: cart isEmpty ! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:29:23' prior: 50919002!
+test03
+
+	| cart aBook aCatalog |
+	aBook _ 'growing object-oriented software guided by tests'.
+	aCatalog _ OrderedCollection with:  aBook.
+	cart _ Cart with: aCatalog.
+	cart addBook: aBook.
+	self assert: (cart includes: aBook).! !
+
+!testRun: #CartTest #test03 stamp: 'AF 10/28/2021 21:29:28'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:29:28'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:29:28'!
+PASSED!
+
+!testRun: #CartTest #test03 stamp: 'AF 10/28/2021 21:29:28'!
+PASSED!
+
+!testRun: #CartTest #test04 stamp: 'AF 10/28/2021 21:29:28'!
+ERROR!
+
+!testRun: #CartTest #test04 stamp: 'AF 10/28/2021 21:29:28'!
+ERROR!
+!Cart class methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:29:48'!
+bookNotInCatalogErrorDescription
+	self shouldBeImplemented.! !
+!Cart class methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:30:29' prior: 50919167!
+bookNotInCatalogErrorDescription
+	
+	^'Book not in catalog'! !
+
+!testRun: #CartTest #test04 stamp: 'AF 10/28/2021 21:30:34'!
+FAILURE!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:30:47'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:30:47'!
+PASSED!
+
+!testRun: #CartTest #test03 stamp: 'AF 10/28/2021 21:30:47'!
+PASSED!
+
+!testRun: #CartTest #test04 stamp: 'AF 10/28/2021 21:30:47'!
+PASSED!
+
+----SNAPSHOT----(28 October 2021 21:43:37) CuisUniversity-4913.image priorSource: 18661997!
