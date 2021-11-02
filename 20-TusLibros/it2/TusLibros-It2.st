@@ -102,27 +102,35 @@ TestCase subclass: #CheckoutTest
 	poolDictionaries: ''
 	category: 'TusLibros-It2'!
 
-!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:56:29'!
+!CheckoutTest methodsFor: 'assertions' stamp: 'MP 11/2/2021 02:48:21'!
+assertCheckout: aCart charging: aCard raises: anErrorMessage
+	
+	| cashier |
+	cashier _ testObjectFactory createCashier.
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier 
+				checkout: aCart 
+				charging: aCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: anErrorMessage equals: anException messageText ].! !
+
+
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/1/2021 23:56:29'!
 setUp
 
 	testObjectFactory _ TestObjectFactory new.! !
 
-!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:18:30'!
-test01
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:49:58'!
+test01CannotCheckoutWithEmptyCart
 
-	| cart cashier |
-	cart _ testObjectFactory createCart. 
-	cashier _ testObjectFactory createCashier.
-	
-	self should: [ cashier 
-				checkout: cart 
-				charging: testObjectFactory validCard 
-				on: testObjectFactory fixedDate ]
-		raise: Error - MessageNotUnderstood
-		withExceptionDo: [ :anError | self assert: Cashier emptyCartErrorDescription equals: anError messageText ].! !
+	self assertCheckout: testObjectFactory createCart
+		charging: testObjectFactory validCard
+		raises: Cashier emptyCartErrorDescription.! !
 
-!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:40:45'!
-test02
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 01:58:14'!
+test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice
 
 	| cart cashier |
 	cart _ testObjectFactory createCart.
@@ -137,8 +145,8 @@ test02
 			charging: testObjectFactory validCard 
 			on: testObjectFactory fixedDate).! !
 
-!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:18:52'!
-test03
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 01:59:20'!
+test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice
 
 	| cart cashier quantity |
 	cart _ testObjectFactory createCart.
@@ -154,8 +162,8 @@ test03
 			charging: testObjectFactory validCard 
 			on: testObjectFactory fixedDate).! !
 
-!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:18:55'!
-test04
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 01:59:35'!
+test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices
 
 	| cart cashier quantity expectedRecepit |
 	cart _ testObjectFactory createCart.
@@ -176,37 +184,34 @@ test04
 			charging: testObjectFactory validCard 
 			on: testObjectFactory fixedDate).! !
 
-!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:13:32'!
-test05
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:52:02'!
+test05CannotCheckoutWithExpiredCard
 
-	| cart cashier |
-	cart _ testObjectFactory createCart.
-	cashier _ testObjectFactory createCashier.
-	cart add: testObjectFactory firstProductSoldByTheStore.
-	
-	"TODO: assert de cosas que no tienen que pasar"
-	self should: [ cashier 
-				checkout: cart 
-				charging: testObjectFactory expiredCard 
-				on: testObjectFactory fixedDate ]
-		raise: Error - MessageNotUnderstood
-		withExceptionDo: [ :anException | self assert: Cashier expiredCardErrorDescription equals: anException messageText ].! !
+	self assertCheckout: testObjectFactory createCartWithSingleProduct 
+		charging: testObjectFactory expiredCard
+		raises: Cashier expiredCardErrorDescription.! !
 
-!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:25:51'!
-test06
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:52:16'!
+test06CannotCheckoutWithInvalidNumberCard
 
-	| cart cashier |
-	cart _ testObjectFactory createCart.
-	cashier _ testObjectFactory createCashier.
-	cart add: testObjectFactory firstProductSoldByTheStore.
-	
-	"TODO: assert de cosas que no tienen que pasar"
-	self should: [ cashier 
-				checkout: cart 
-				charging: testObjectFactory invalidNumberCard 
-				on: testObjectFactory fixedDate ]
-		raise: Error - MessageNotUnderstood
-		withExceptionDo: [ :anException | self assert: Cashier invalidCardNumberErrorDescription equals: anException messageText ].! !
+	self assertCheckout: testObjectFactory createCartWithSingleProduct 
+		charging: testObjectFactory invalidNumberCard
+		raises: Cashier invalidCardNumberErrorDescription.! !
+
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:52:25'!
+test07CannotCheckoutWithCardWithoutFunds
+
+	self assertCheckout: testObjectFactory createCartWithSingleProduct
+		charging: testObjectFactory cardWithoutFunds
+		raises: SimulatedMP cardWithoutFundsErrorDescription.
+! !
+
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:52:39'!
+test08CannotCheckoutWithStolenCard
+
+	self assertCheckout: testObjectFactory createCartWithSingleProduct
+		charging: testObjectFactory stolenCard
+		raises: SimulatedMP stolenCardErrorDescription.! !
 
 
 !classDefinition: #Card category: 'TusLibros-It2'!
@@ -216,21 +221,23 @@ Object subclass: #Card
 	poolDictionaries: ''
 	category: 'TusLibros-It2'!
 
-!Card methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:36:22'!
+!Card methodsFor: 'accessing' stamp: 'MP 11/2/2021 01:40:36'!
+number
+
+	^ number.! !
+
+
+!Card methodsFor: 'initialization' stamp: 'MP 11/2/2021 01:36:22'!
 initializeWithNumber: aCardNumber expiringAt: anExpirationDate
 
 	expirationMonthOfYear _ anExpirationDate.
 	number _ aCardNumber.! !
 
-!Card methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:10:53'!
+
+!Card methodsFor: 'testing' stamp: 'MP 11/2/2021 01:10:53'!
 isExpiredOn: aDate
 
 	^ aDate > expirationMonthOfYear.! !
-
-!Card methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:40:36'!
-number
-
-	^ number.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -238,10 +245,10 @@ number
 Card class
 	instanceVariableNames: ''!
 
-!Card class methodsFor: 'instance creation' stamp: 'MP 11/2/2021 01:32:16'!
-withNumber: aCardNumber expiringAt: anExpiryDate 
+!Card class methodsFor: 'instance creation' stamp: 'MP 11/2/2021 02:55:39'!
+withNumber: aCardNumber expiringAt: anExpirationDate 
 
-	^self new initializeWithNumber: aCardNumber expiringAt: anExpiryDate ! !
+	^ self new initializeWithNumber: aCardNumber expiringAt: anExpirationDate.! !
 
 
 !classDefinition: #Cart category: 'TusLibros-It2'!
@@ -319,10 +326,10 @@ isEmpty
 Cart class
 	instanceVariableNames: ''!
 
-!Cart class methodsFor: 'instance creation' stamp: 'IAR 11/1/2021 19:40:06'!
+!Cart class methodsFor: 'instance creation' stamp: 'MP 11/2/2021 02:55:49'!
 acceptingProductsFrom: aCatalog
 	
-	^self new initializeWith: aCatalog ! !
+	^ self new initializeWith: aCatalog.! !
 
 
 !Cart class methodsFor: 'error descriptions' stamp: 'MP 11/2/2021 00:24:48'!
@@ -338,36 +345,52 @@ productNotInCatalogErrorDescription
 
 !classDefinition: #Cashier category: 'TusLibros-It2'!
 Object subclass: #Cashier
-	instanceVariableNames: 'priceList'
+	instanceVariableNames: 'merchantProcessor'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros-It2'!
 
-!Cashier methodsFor: 'error descriptions' stamp: 'MP 11/2/2021 01:43:21'!
+!Cashier methodsFor: 'assertions' stamp: 'MP 11/2/2021 01:43:21'!
 assertCard: aCreditCard isNotExpiredOn: aDate
 
 	^ (aCreditCard isExpiredOn: aDate) ifTrue: [ self error: self class expiredCardErrorDescription ]! !
 
-!Cashier methodsFor: 'error descriptions' stamp: 'MP 11/2/2021 01:43:57'!
+!Cashier methodsFor: 'assertions' stamp: 'MP 11/2/2021 02:57:21'!
 assertCardNumberIsValid: aCreditCard
 
-	^ (aCreditCard number size < 16) ifTrue: [ self error: self class invalidCardNumberErrorDescription ]! !
+	^ (aCreditCard number size ~= self validCardNumberSize) ifTrue: [ self error: self class invalidCardNumberErrorDescription ]! !
 
-!Cashier methodsFor: 'error descriptions' stamp: 'MP 11/2/2021 00:21:24'!
+!Cashier methodsFor: 'assertions' stamp: 'MP 11/2/2021 00:21:24'!
 assertCartIsNotEmpty: aCart
 
 	^ aCart isEmpty ifTrue: [ self error: self class emptyCartErrorDescription ]! !
 
+!Cashier methodsFor: 'assertions' stamp: 'MP 11/2/2021 02:56:54'!
+validCardNumberSize
 
-!Cashier methodsFor: 'checkout' stamp: 'MP 11/2/2021 01:44:13'!
+	^ 16! !
+
+
+!Cashier methodsFor: 'checkout' stamp: 'MP 11/2/2021 02:26:00'!
 checkout: aCart charging: aCreditCard on: aDate
-	
+
+	| totalPrice |
 	self assertCartIsNotEmpty: aCart.
 	self assertCard: aCreditCard isNotExpiredOn: aDate.
 	self assertCardNumberIsValid: aCreditCard.
 
-	^ aCart totalPrice.
+	totalPrice _ aCart totalPrice.
+	
+	merchantProcessor charge: totalPrice to: aCreditCard.
+	
+	^ totalPrice
 ! !
+
+
+!Cashier methodsFor: 'initialization' stamp: 'MP 11/2/2021 02:53:45'!
+initializeWithMerchantProcessor: aMerchantProcessor 
+
+	merchantProcessor _ aMerchantProcessor.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -390,6 +413,76 @@ invalidCardNumberErrorDescription
 	
 	^ 'cannot charge a card with an invalid card number'.! !
 
+
+!Cashier class methodsFor: 'instance creation' stamp: 'MP 11/2/2021 02:54:11'!
+withMerchantProcessor: aMerchantProcessor 
+
+	^self new initializeWithMerchantProcessor: aMerchantProcessor ! !
+
+
+!classDefinition: #SimulatedMP category: 'TusLibros-It2'!
+Object subclass: #SimulatedMP
+	instanceVariableNames: 'noFundsCardNumber stolenCardNumber'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It2'!
+
+!SimulatedMP methodsFor: 'assertions' stamp: 'MP 11/2/2021 02:58:50'!
+assertCardHasFunds: aCreditCard
+
+	^ (self hasNoFunds: aCreditCard) ifTrue: [ self error: self class cardWithoutFundsErrorDescription ]! !
+
+!SimulatedMP methodsFor: 'assertions' stamp: 'MP 11/2/2021 02:59:09'!
+assertCardIsntStolen: aCreditCard
+
+	^ (self isStolen: aCreditCard) ifTrue: [ self error: self class stolenCardErrorDescription ]! !
+
+!SimulatedMP methodsFor: 'assertions' stamp: 'MP 11/2/2021 02:58:50'!
+hasNoFunds: aCreditCard
+
+	^ aCreditCard number = noFundsCardNumber! !
+
+!SimulatedMP methodsFor: 'assertions' stamp: 'MP 11/2/2021 02:59:09'!
+isStolen: aCreditCard
+
+	^ aCreditCard number = stolenCardNumber! !
+
+
+!SimulatedMP methodsFor: 'payment processing' stamp: 'MP 11/2/2021 02:33:15'!
+charge: anAmount to: aCreditCard
+
+	self assertCardHasFunds: aCreditCard.
+	self assertCardIsntStolen: aCreditCard.! !
+
+
+!SimulatedMP methodsFor: 'initialization' stamp: 'MP 11/2/2021 02:29:44'!
+initializeWithNoFundsCard: aNoFundsCardNumber stolenCard: aStolenCardNumber
+
+	noFundsCardNumber _ aNoFundsCardNumber.
+	stolenCardNumber _ aStolenCardNumber.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'SimulatedMP class' category: 'TusLibros-It2'!
+SimulatedMP class
+	instanceVariableNames: 'noFundsCardNumber'!
+
+!SimulatedMP class methodsFor: 'error descriptions' stamp: 'MP 11/2/2021 02:24:33'!
+cardWithoutFundsErrorDescription
+
+	^ 'card has no funds'! !
+
+!SimulatedMP class methodsFor: 'error descriptions' stamp: 'MP 11/2/2021 02:31:01'!
+stolenCardErrorDescription
+	
+	^ 'stolen card'.! !
+
+
+!SimulatedMP class methodsFor: 'instance creation' stamp: 'MP 11/2/2021 03:00:18'!
+withNoFundsCard: aNoFundsCardNumber stolenCard: aStolenCardNumber
+
+	^ self new initializeWithNoFundsCard: aNoFundsCardNumber stolenCard: aStolenCardNumber.! !
+
 
 !classDefinition: #TestObjectFactory category: 'TusLibros-It2'!
 Object subclass: #TestObjectFactory
@@ -397,6 +490,58 @@ Object subclass: #TestObjectFactory
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros-It2'!
+
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:36:21'!
+cardWithoutFunds
+	
+	^ Card withNumber: self cardWithoutFundsNumber expiringAt: self notExpiredMonthOfYear.! !
+
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:15:51'!
+cardWithoutFundsNumber
+	
+	^ '4509790000006789'! !
+
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:36:15'!
+expiredCard
+	
+	^ Card withNumber: '4509790000001234' expiringAt: self expiredMonthOfYear.! !
+
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:36:26'!
+invalidNumberCard
+	
+	^ Card withNumber: '450979000000' expiringAt: self notExpiredMonthOfYear.! !
+
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:36:31'!
+stolenCard
+	
+	^ Card withNumber: self stolenCardNumber expiringAt: self notExpiredMonthOfYear.! !
+
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:32:02'!
+stolenCardNumber
+	
+	^ '4509790000000000'! !
+
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:36:36'!
+validCard
+	
+	^ Card withNumber: '4509790000001234' expiringAt: self notExpiredMonthOfYear.! !
+
+
+!TestObjectFactory methodsFor: 'dates' stamp: 'MP 11/2/2021 02:36:10'!
+expiredMonthOfYear
+
+	^ September of: 2021! !
+
+!TestObjectFactory methodsFor: 'dates' stamp: 'MP 11/2/2021 01:13:32'!
+fixedDate
+
+	^ November / 2 / 2021.! !
+
+!TestObjectFactory methodsFor: 'dates' stamp: 'MP 11/2/2021 02:36:03'!
+notExpiredMonthOfYear
+
+	^ December of: 2021! !
+
 
 !TestObjectFactory methodsFor: 'products' stamp: 'MP 11/2/2021 00:09:21'!
 defaultCatalog
@@ -438,33 +583,27 @@ secondProductSoldByTheStorePrice
 ! !
 
 
-!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 01:31:31'!
-expiredCard
-	
-	^ Card withNumber: '4509790000001234' expiringAt: (September of: 2021).! !
-
-!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 01:31:19'!
-invalidNumberCard
-	
-	^ Card withNumber: '450979000000' expiringAt: (December of: 2021).! !
-
-!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 01:31:25'!
-validCard
-	
-	^ Card withNumber: '4509790000001234' expiringAt: (December of: 2021).! !
-
-
-!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:45:48'!
+!TestObjectFactory methodsFor: 'store creation' stamp: 'MP 11/1/2021 23:45:48'!
 createCart
 
 	^ Cart acceptingProductsFrom: self defaultCatalog.! !
 
-!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:53:01'!
+!TestObjectFactory methodsFor: 'store creation' stamp: 'MP 11/2/2021 02:51:39'!
+createCartWithSingleProduct
+
+	^ self createCart
+		add: self firstProductSoldByTheStore;
+		yourself.! !
+
+!TestObjectFactory methodsFor: 'store creation' stamp: 'MP 11/2/2021 02:54:11'!
 createCashier
 
-	^ Cashier new.! !
+	^ Cashier withMerchantProcessor: self defaultSimulatedMP.! !
 
-!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:13:32'!
-fixedDate
+!TestObjectFactory methodsFor: 'store creation' stamp: 'MP 11/2/2021 02:30:11'!
+defaultSimulatedMP
 
-	^ November / 2 / 2021.! !
+	^ SimulatedMP
+		withNoFundsCard: self cardWithoutFundsNumber
+		stolenCard: self stolenCardNumber.
+! !

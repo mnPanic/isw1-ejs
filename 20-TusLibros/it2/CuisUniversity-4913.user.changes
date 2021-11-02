@@ -4617,3 +4617,2245 @@ m1: asdf m2: asd
 ----SNAPSHOT----(2 November 2021 01:46:10) CuisUniversity-4913.image priorSource: 18851140!
 
 ----SNAPSHOT----(2 November 2021 01:46:26) CuisUniversity-4913.image priorSource: 18867704!
+!Cashier methodsFor: 'checkout' stamp: 'MP 11/2/2021 01:51:09' prior: 50921210!
+checkout: aCart charging: aCreditCard on: aDate
+
+	self assertCartIsNotEmpty: aCart.
+	self assertCard: aCreditCard isNotExpiredOn: aDate.
+	self assertCardNumberIsValid: aCreditCard.
+
+	^ aCart totalPrice.
+! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:57:05'!
+test07
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory invalidNumberCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: Cashier invalidCardNumberErrorDescription equals: anException messageText ].! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:57:22'!
+test01CannotCheckoutWithEmptyCart
+
+	| cart cashier |
+	cart _ testObjectFactory createCart. 
+	cashier _ testObjectFactory createCashier.
+	
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory validCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError | self assert: Cashier emptyCartErrorDescription equals: anError messageText ].! !
+
+!methodRemoval: CheckoutTest #test01 stamp: 'MP 11/2/2021 01:57:22'!
+test01
+
+	| cart cashier |
+	cart _ testObjectFactory createCart. 
+	cashier _ testObjectFactory createCashier.
+	
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory validCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError | self assert: Cashier emptyCartErrorDescription equals: anError messageText ].!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:58:14'!
+test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self
+		assert: testObjectFactory firstProductSoldByTheStorePrice
+		equals: (cashier 
+			checkout: cart 
+			charging: testObjectFactory validCard 
+			on: testObjectFactory fixedDate).! !
+
+!methodRemoval: CheckoutTest #test02 stamp: 'MP 11/2/2021 01:58:14'!
+test02
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self
+		assert: testObjectFactory firstProductSoldByTheStorePrice
+		equals: (cashier 
+			checkout: cart 
+			charging: testObjectFactory validCard 
+			on: testObjectFactory fixedDate).!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:58:42'!
+test03CheckoutOfCartWithMultipleItemsReturnsAReceiptWithASumOfTheirPrices
+
+	| cart cashier quantity |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	
+	self 
+		assert: (quantity * testObjectFactory firstProductSoldByTheStorePrice)
+		equals: (cashier 
+			checkout: cart 
+			charging: testObjectFactory validCard 
+			on: testObjectFactory fixedDate).! !
+
+!methodRemoval: CheckoutTest #test03 stamp: 'MP 11/2/2021 01:58:42'!
+test03
+
+	| cart cashier quantity |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	
+	self 
+		assert: (quantity * testObjectFactory firstProductSoldByTheStorePrice)
+		equals: (cashier 
+			checkout: cart 
+			charging: testObjectFactory validCard 
+			on: testObjectFactory fixedDate).!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:59:20'!
+test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice
+
+	| cart cashier quantity |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	
+	self 
+		assert: (quantity * testObjectFactory firstProductSoldByTheStorePrice)
+		equals: (cashier 
+			checkout: cart 
+			charging: testObjectFactory validCard 
+			on: testObjectFactory fixedDate).! !
+
+!methodRemoval: CheckoutTest #test03CheckoutOfCartWithMultipleItemsReturnsAReceiptWithASumOfTheirPrices stamp: 'MP 11/2/2021 01:59:20'!
+test03CheckoutOfCartWithMultipleItemsReturnsAReceiptWithASumOfTheirPrices
+
+	| cart cashier quantity |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	
+	self 
+		assert: (quantity * testObjectFactory firstProductSoldByTheStorePrice)
+		equals: (cashier 
+			checkout: cart 
+			charging: testObjectFactory validCard 
+			on: testObjectFactory fixedDate).!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:59:31'!
+test04CheckoutOfCartWithMultipleItemsReturnsAReceiptWithASumOfTheirPrices
+
+	| cart cashier quantity expectedRecepit |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	cart add: testObjectFactory secondProductSoldByTheStore.
+	
+	expectedRecepit _
+		(quantity * testObjectFactory firstProductSoldByTheStorePrice) +
+		(testObjectFactory secondProductSoldByTheStorePrice).
+	
+	self 
+		assert: expectedRecepit
+		equals: (cashier 
+			checkout: cart 
+			charging: testObjectFactory validCard 
+			on: testObjectFactory fixedDate).! !
+
+!methodRemoval: CheckoutTest #test04 stamp: 'MP 11/2/2021 01:59:31'!
+test04
+
+	| cart cashier quantity expectedRecepit |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	cart add: testObjectFactory secondProductSoldByTheStore.
+	
+	expectedRecepit _
+		(quantity * testObjectFactory firstProductSoldByTheStorePrice) +
+		(testObjectFactory secondProductSoldByTheStorePrice).
+	
+	self 
+		assert: expectedRecepit
+		equals: (cashier 
+			checkout: cart 
+			charging: testObjectFactory validCard 
+			on: testObjectFactory fixedDate).!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:59:35'!
+test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices
+
+	| cart cashier quantity expectedRecepit |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	cart add: testObjectFactory secondProductSoldByTheStore.
+	
+	expectedRecepit _
+		(quantity * testObjectFactory firstProductSoldByTheStorePrice) +
+		(testObjectFactory secondProductSoldByTheStorePrice).
+	
+	self 
+		assert: expectedRecepit
+		equals: (cashier 
+			checkout: cart 
+			charging: testObjectFactory validCard 
+			on: testObjectFactory fixedDate).! !
+
+!methodRemoval: CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsAReceiptWithASumOfTheirPrices stamp: 'MP 11/2/2021 01:59:35'!
+test04CheckoutOfCartWithMultipleItemsReturnsAReceiptWithASumOfTheirPrices
+
+	| cart cashier quantity expectedRecepit |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	cart add: testObjectFactory secondProductSoldByTheStore.
+	
+	expectedRecepit _
+		(quantity * testObjectFactory firstProductSoldByTheStorePrice) +
+		(testObjectFactory secondProductSoldByTheStorePrice).
+	
+	self 
+		assert: expectedRecepit
+		equals: (cashier 
+			checkout: cart 
+			charging: testObjectFactory validCard 
+			on: testObjectFactory fixedDate).!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:00:16'!
+test05CannotCheckoutExpiredCard
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory expiredCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: Cashier expiredCardErrorDescription equals: anException messageText ].! !
+
+!methodRemoval: CheckoutTest #test05 stamp: 'MP 11/2/2021 02:00:16'!
+test05
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory expiredCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: Cashier expiredCardErrorDescription equals: anException messageText ].!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:00:21'!
+test05CannotCheckoutWithExpiredCard
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory expiredCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: Cashier expiredCardErrorDescription equals: anException messageText ].! !
+
+!methodRemoval: CheckoutTest #test05CannotCheckoutExpiredCard stamp: 'MP 11/2/2021 02:00:21'!
+test05CannotCheckoutExpiredCard
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory expiredCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: Cashier expiredCardErrorDescription equals: anException messageText ].!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:00:29'!
+test06CannotCheckoutWithInvalidNumberCard
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory invalidNumberCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: Cashier invalidCardNumberErrorDescription equals: anException messageText ].! !
+
+!methodRemoval: CheckoutTest #test06 stamp: 'MP 11/2/2021 02:00:29'!
+test06
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory invalidNumberCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: Cashier invalidCardNumberErrorDescription equals: anException messageText ].!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:02:51' prior: 50921282!
+test07
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory cardWithoutFunds
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: Cashier invalidCardNumberErrorDescription equals: anException messageText ].! !
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:06:22'!
+cardWithoutFunds
+	
+	^ Card withNumber: self cardNumberWithoutFunds expiringAt: (December of: 2021).! !
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:06:38'!
+cardNumberWithoutFunds
+	
+	^ '4509790000006789'! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:08:03' prior: 50915453!
+createCashier
+
+	^ Cashier withMerchantProcessorXX: self defaultSimulatedMP.! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:08:07' prior: 50921662!
+createCashier
+
+	^ Cashier withMerchantProcessorXX: self defaultSimulatedMP.! !
+
+!classDefinition: #SimulatedMP category: 'TusLibros-It2' stamp: 'MP 11/2/2021 02:12:58'!
+Object subclass: #SimulatedMP
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It2'!
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:12:54'!
+defaultSimulatedMP
+
+	^ SimulatedMP .! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:15:38' prior: 50921681!
+defaultSimulatedMP
+
+	^ SimulatedMP withNoFundsCard: self cardWithoutFundsNumber.
+! !
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:15:51'!
+cardWithoutFundsNumber
+	
+	^ '4509790000006789'! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:15:51' prior: 50921651!
+cardWithoutFunds
+	
+	^ Card withNumber: self cardWithoutFundsNumber expiringAt: (December of: 2021).! !
+
+!methodRemoval: TestObjectFactory #cardNumberWithoutFunds stamp: 'MP 11/2/2021 02:15:51'!
+cardNumberWithoutFunds
+	
+	^ '4509790000006789'!
+
+!classDefinition: 'SimulatedMP class' category: 'TusLibros-It2' stamp: 'MP 11/2/2021 02:16:20'!
+SimulatedMP class
+	instanceVariableNames: 'noFundsCardNumber'!
+!SimulatedMP class methodsFor: 'nil' stamp: 'MP 11/2/2021 02:16:19'!
+withNoFundsCard: aNoFundsCardNumber
+
+	noFundsCardNumber _ aNoFundsCardNumber! !
+!SimulatedMP class methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:16:42' prior: 50921711!
+withNoFundsCard: aNoFundsCardNumber
+
+	^self new initializeWithNoFundsCard: aNoFundsCardNumber.! !
+
+!classDefinition: #SimulatedMP category: 'TusLibros-It2' stamp: 'MP 11/2/2021 02:17:05'!
+Object subclass: #SimulatedMP
+	instanceVariableNames: 'noFundsCardNumber'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It2'!
+!SimulatedMP methodsFor: 'nil' stamp: 'MP 11/2/2021 02:17:04'!
+initializeWithNoFundsCard: aNoFundsCardNumber
+
+	noFundsCardNumber _ aNoFundsCardNumber! !
+!SimulatedMP methodsFor: 'nil' stamp: 'MP 11/2/2021 02:19:44'!
+charge: anAmount to: aCreditCard
+
+	aCreditCard number = noFundsCardNumber ifTrue: [ self error: self class cardWithoutFundsErrorDescription ]! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:19:54' prior: 50921634!
+test07
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory cardWithoutFunds
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: Cashier invalidCardNumberErrorDescription equals: anException messageText ].! !
+!Cashier methodsFor: 'checkout' stamp: 'MP 11/2/2021 02:20:22' prior: 50921273!
+checkout: aCart charging: aCreditCard on: aDate
+
+	| totalPrice |
+	self assertCartIsNotEmpty: aCart.
+	self assertCard: aCreditCard isNotExpiredOn: aDate.
+	self assertCardNumberIsValid: aCreditCard.
+
+	totalPrice _ aCart totalPrice.
+	
+	
+	
+	^ totalPrice
+! !
+
+Object subclass: #Cashier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It2'!
+
+!classDefinition: #Cashier category: 'TusLibros-It2' stamp: 'MP 11/2/2021 02:20:34'!
+Object subclass: #Cashier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It2'!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 02:20:49'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 02:20:49'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 02:20:49'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 02:20:49'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 02:20:49'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 02:20:49'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 02:20:49'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'MP 11/2/2021 02:20:49'!
+ERROR!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'MP 11/2/2021 02:20:49'!
+ERROR!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'MP 11/2/2021 02:20:49'!
+ERROR!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'MP 11/2/2021 02:20:49'!
+ERROR!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'MP 11/2/2021 02:20:49'!
+ERROR!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'MP 11/2/2021 02:20:49'!
+ERROR!
+
+!testRun: #CheckoutTest #test07 stamp: 'MP 11/2/2021 02:20:49'!
+ERROR!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'MP 11/2/2021 02:20:55'!
+ERROR!
+!Cashier class methodsFor: 'instance creation' stamp: 'MP 11/2/2021 02:21:02'!
+withMerchantProcessorXX: aSimulatedMP 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithMerchantProcessorXX: aSimulatedMP ! !
+!Cashier class methodsFor: 'instance creation' stamp: 'MP 11/2/2021 02:21:14' prior: 50921832!
+withMerchantProcessorXX: aMerchantProcessor 
+
+	^self new initializeWithMerchantProcessorXX: aMerchantProcessor ! !
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'MP 11/2/2021 02:21:15'!
+ERROR!
+
+!classDefinition: #Cashier category: 'TusLibros-It2' stamp: 'MP 11/2/2021 02:21:28'!
+Object subclass: #Cashier
+	instanceVariableNames: 'merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It2'!
+!Cashier methodsFor: 'initialization' stamp: 'MP 11/2/2021 02:21:28'!
+initializeWithMerchantProcessorXX: aMerchantProcessor 
+	self shouldBeImplemented.
+	merchantProcessor := aMerchantProcessor.! !
+!Cashier methodsFor: 'initialization' stamp: 'MP 11/2/2021 02:21:31' prior: 50921859!
+initializeWithMerchantProcessorXX: aMerchantProcessor 
+
+	merchantProcessor := aMerchantProcessor.! !
+!Cashier methodsFor: 'initialization' stamp: 'MP 11/2/2021 02:21:41' prior: 50921866!
+initializeWithMerchantProcessorXX: aMerchantProcessor 
+
+	merchantProcessor _ aMerchantProcessor.! !
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'MP 11/2/2021 02:21:42'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'MP 11/2/2021 02:21:45'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 02:21:46'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 02:21:46'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 02:21:46'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 02:21:46'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 02:21:46'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 02:21:46'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 02:21:46'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'MP 11/2/2021 02:21:46'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'MP 11/2/2021 02:21:46'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'MP 11/2/2021 02:21:46'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'MP 11/2/2021 02:21:46'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'MP 11/2/2021 02:21:46'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'MP 11/2/2021 02:21:46'!
+PASSED!
+
+!testRun: #CheckoutTest #test07 stamp: 'MP 11/2/2021 02:21:46'!
+FAILURE!
+
+!testRun: #CheckoutTest #test07 stamp: 'MP 11/2/2021 02:21:46'!
+FAILURE!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:22:31' prior: 50921743!
+test07
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory cardWithoutFunds
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: Cashier cardWithNoFundsErrorDescription equals: anException messageText ].! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:23:45' prior: 50921934!
+test07
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory cardWithoutFunds
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: SimulatedMP  equals: anException messageText ].! !
+!SimulatedMP class methodsFor: 'nil' stamp: 'MP 11/2/2021 02:24:33'!
+cardWithoutFundsErrorDescription
+
+	^ 'card has no funds'! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:24:42' prior: 50921952!
+test07
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory cardWithoutFunds
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: SimulatedMP cardWithoutFundsErrorDescription equals: anException messageText ].! !
+
+!testRun: #CheckoutTest #test07 stamp: 'MP 11/2/2021 02:24:43'!
+FAILURE!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:25:06' prior: 50921973!
+test07
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	cashier 
+		checkout: cart 
+		charging: testObjectFactory cardWithoutFunds
+		on: testObjectFactory fixedDate.
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory cardWithoutFunds
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: SimulatedMP cardWithoutFundsErrorDescription equals: anException messageText ].! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:25:11' prior: 50921993!
+test07
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	cashier 
+		checkout: cart 
+		charging: testObjectFactory cardWithoutFunds
+		on: testObjectFactory fixedDate.
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory cardWithoutFunds
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: SimulatedMP cardWithoutFundsErrorDescription equals: anException messageText ].! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:25:22' prior: 50922015!
+test07
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	cashier 
+		checkout: cart 
+		charging: testObjectFactory cardWithoutFunds
+		on: testObjectFactory fixedDate.
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory cardWithoutFunds
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: SimulatedMP cardWithoutFundsErrorDescription equals: anException messageText ].! !
+!Cashier methodsFor: 'checkout' stamp: 'MP 11/2/2021 02:26:00' prior: 50921761!
+checkout: aCart charging: aCreditCard on: aDate
+
+	| totalPrice |
+	self assertCartIsNotEmpty: aCart.
+	self assertCard: aCreditCard isNotExpiredOn: aDate.
+	self assertCardNumberIsValid: aCreditCard.
+
+	totalPrice _ aCart totalPrice.
+	
+	merchantProcessor charge: totalPrice to: aCreditCard.
+	
+	^ totalPrice
+! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 02:26:01'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 02:26:01'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 02:26:01'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 02:26:01'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 02:26:01'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 02:26:01'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 02:26:01'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'MP 11/2/2021 02:26:01'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'MP 11/2/2021 02:26:01'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'MP 11/2/2021 02:26:01'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'MP 11/2/2021 02:26:01'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'MP 11/2/2021 02:26:01'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'MP 11/2/2021 02:26:01'!
+PASSED!
+
+!testRun: #CheckoutTest #test07 stamp: 'MP 11/2/2021 02:26:01'!
+ERROR!
+
+!testRun: #CheckoutTest #test07 stamp: 'MP 11/2/2021 02:26:01'!
+ERROR!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:26:11' prior: 50922037!
+test07
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory cardWithoutFunds
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: SimulatedMP cardWithoutFundsErrorDescription equals: anException messageText ].! !
+
+!testRun: #CheckoutTest #test07 stamp: 'MP 11/2/2021 02:26:12'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 02:26:14'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 02:26:14'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 02:26:14'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 02:26:14'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 02:26:14'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 02:26:14'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 02:26:14'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'MP 11/2/2021 02:26:14'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'MP 11/2/2021 02:26:14'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'MP 11/2/2021 02:26:14'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'MP 11/2/2021 02:26:14'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'MP 11/2/2021 02:26:14'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'MP 11/2/2021 02:26:14'!
+PASSED!
+
+!testRun: #CheckoutTest #test07 stamp: 'MP 11/2/2021 02:26:14'!
+PASSED!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:27:21'!
+test08
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory startWizard
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: SimulatedMP stolenCardErrorDescription equals: anException messageText ].! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:27:28' prior: 50922185!
+test08
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory stolenCard
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: SimulatedMP stolenCardErrorDescription equals: anException messageText ].! !
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:27:51'!
+stolenCard
+	
+	^ Card withNumber: self stolenCardNumber expiringAt: (December of: 2021).! !
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:28:04'!
+stolenCardNumber
+	
+	^ '450979000000000'! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:28:25' prior: 50921686!
+defaultSimulatedMP
+
+	^ SimulatedMP
+		withNoFundsCard: self cardWithoutFundsNumber
+		withStolenCard: self stolenCardNumber.
+! !
+
+!classDefinition: #SimulatedMP category: 'TusLibros-It2' stamp: 'MP 11/2/2021 02:28:49'!
+Object subclass: #SimulatedMP
+	instanceVariableNames: 'noFundsCardNumber stolenCardNumber'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It2'!
+!SimulatedMP methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:28:47'!
+initializeWithNoFundsCard: aNoFundsCardNumber stolenCard: aStolenCardNumber
+
+	noFundsCardNumber _ aNoFundsCardNumber.
+	stolenCardNumber _ aStolenCardNumber.! !
+
+!methodRemoval: SimulatedMP #initializeWithNoFundsCard: stamp: 'MP 11/2/2021 02:28:51'!
+initializeWithNoFundsCard: aNoFundsCardNumber
+
+	noFundsCardNumber _ aNoFundsCardNumber!
+!SimulatedMP class methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:29:11'!
+withNoFundsCard: aNoFundsCardNumber stolenCardNumber: aStolenCardNumber
+
+	^self new initializeWithNoFundsCard: aNoFundsCardNumber stolenCard: aStolenCardNumber .! !
+
+!methodRemoval: SimulatedMP class #withNoFundsCard: stamp: 'MP 11/2/2021 02:29:13'!
+withNoFundsCard: aNoFundsCardNumber
+
+	^self new initializeWithNoFundsCard: aNoFundsCardNumber.!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 02:29:16'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 02:29:16'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 02:29:16'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 02:29:16'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 02:29:16'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 02:29:16'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 02:29:16'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'MP 11/2/2021 02:29:16'!
+ERROR!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'MP 11/2/2021 02:29:16'!
+ERROR!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'MP 11/2/2021 02:29:16'!
+ERROR!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'MP 11/2/2021 02:29:16'!
+ERROR!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'MP 11/2/2021 02:29:16'!
+ERROR!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'MP 11/2/2021 02:29:16'!
+ERROR!
+
+!testRun: #CheckoutTest #test07 stamp: 'MP 11/2/2021 02:29:16'!
+ERROR!
+
+!testRun: #CheckoutTest #test08 stamp: 'MP 11/2/2021 02:29:16'!
+ERROR!
+!SimulatedMP class methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:29:21' prior: 50922260!
+withNoFundsCard: aNoFundsCardNumber stolenCardNumber: aStolenCardNumber
+
+	^self new initializeWithNoFundsCard: aNoFundsCardNumber stolenCard: aStolenCardNumber.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 02:29:22'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 02:29:22'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 02:29:22'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 02:29:22'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 02:29:22'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 02:29:22'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 02:29:22'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'MP 11/2/2021 02:29:22'!
+ERROR!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'MP 11/2/2021 02:29:23'!
+ERROR!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'MP 11/2/2021 02:29:23'!
+ERROR!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'MP 11/2/2021 02:29:23'!
+ERROR!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'MP 11/2/2021 02:29:23'!
+ERROR!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'MP 11/2/2021 02:29:23'!
+ERROR!
+
+!testRun: #CheckoutTest #test07 stamp: 'MP 11/2/2021 02:29:23'!
+ERROR!
+
+!testRun: #CheckoutTest #test08 stamp: 'MP 11/2/2021 02:29:23'!
+ERROR!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'MP 11/2/2021 02:29:25'!
+ERROR!
+!SimulatedMP methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:29:44' prior: 50922246!
+initializeWithNoFundsCard: aNoFundsCardNumber stolenCard: aStolenCardNumber
+
+	noFundsCardNumber _ aNoFundsCardNumber.
+	stolenCardNumber _ aStolenCardNumber.! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:30:11' prior: 50922231!
+defaultSimulatedMP
+
+	^ SimulatedMP
+		withNoFundsCard: self cardWithoutFundsNumber
+		stolenCard: self stolenCardNumber.
+! !
+!SimulatedMP class methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:30:27'!
+withNoFundsCard: aNoFundsCardNumber stolenCard: aStolenCardNumber
+
+	^self new initializeWithNoFundsCard: aNoFundsCardNumber stolenCard: aStolenCardNumber.! !
+
+!methodRemoval: SimulatedMP class #withNoFundsCard:stolenCardNumber: stamp: 'MP 11/2/2021 02:30:27'!
+withNoFundsCard: aNoFundsCardNumber stolenCardNumber: aStolenCardNumber
+
+	^self new initializeWithNoFundsCard: aNoFundsCardNumber stolenCard: aStolenCardNumber.!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 02:30:36'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 02:30:36'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 02:30:36'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 02:30:36'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 02:30:36'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 02:30:36'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 02:30:36'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'MP 11/2/2021 02:30:36'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'MP 11/2/2021 02:30:36'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'MP 11/2/2021 02:30:36'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'MP 11/2/2021 02:30:36'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'MP 11/2/2021 02:30:36'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'MP 11/2/2021 02:30:36'!
+PASSED!
+
+!testRun: #CheckoutTest #test07 stamp: 'MP 11/2/2021 02:30:36'!
+PASSED!
+
+!testRun: #CheckoutTest #test08 stamp: 'MP 11/2/2021 02:30:36'!
+ERROR!
+
+!testRun: #CheckoutTest #test08 stamp: 'MP 11/2/2021 02:30:36'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 02:30:44'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 02:30:44'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 02:30:44'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 02:30:44'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 02:30:44'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 02:30:44'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 02:30:44'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'MP 11/2/2021 02:30:44'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'MP 11/2/2021 02:30:44'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'MP 11/2/2021 02:30:44'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'MP 11/2/2021 02:30:44'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'MP 11/2/2021 02:30:44'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'MP 11/2/2021 02:30:44'!
+PASSED!
+
+!testRun: #CheckoutTest #test07 stamp: 'MP 11/2/2021 02:30:44'!
+PASSED!
+
+!testRun: #CheckoutTest #test08 stamp: 'MP 11/2/2021 02:30:44'!
+ERROR!
+
+!testRun: #CheckoutTest #test08 stamp: 'MP 11/2/2021 02:30:44'!
+ERROR!
+!SimulatedMP class methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:30:53'!
+stolenCardErrorDescription
+	self shouldBeImplemented.! !
+!SimulatedMP class methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:31:00' prior: 50922517!
+stolenCardErrorDescription
+	
+	^ 'stolen card'! !
+!SimulatedMP class methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:31:01' prior: 50922522!
+stolenCardErrorDescription
+	
+	^ 'stolen card'.! !
+
+!testRun: #CheckoutTest #test08 stamp: 'MP 11/2/2021 02:31:02'!
+FAILURE!
+
+!testRun: #CheckoutTest #test08 stamp: 'MP 11/2/2021 02:31:21'!
+FAILURE!
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:31:46' prior: 50922226!
+stolenCardNumber
+	
+	^ '45097900000000'! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 02:31:47'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 02:31:47'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 02:31:47'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 02:31:47'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 02:31:47'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 02:31:47'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 02:31:47'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'MP 11/2/2021 02:31:47'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'MP 11/2/2021 02:31:47'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'MP 11/2/2021 02:31:47'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'MP 11/2/2021 02:31:47'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'MP 11/2/2021 02:31:47'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'MP 11/2/2021 02:31:47'!
+PASSED!
+
+!testRun: #CheckoutTest #test07 stamp: 'MP 11/2/2021 02:31:47'!
+PASSED!
+
+!testRun: #CheckoutTest #test08 stamp: 'MP 11/2/2021 02:31:47'!
+FAILURE!
+
+!testRun: #CheckoutTest #test08 stamp: 'MP 11/2/2021 02:31:47'!
+FAILURE!
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:32:02' prior: 50922536!
+stolenCardNumber
+	
+	^ '4509790000000000'! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 02:32:02'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 02:32:02'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 02:32:02'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 02:32:02'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 02:32:02'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 02:32:02'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 02:32:02'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'MP 11/2/2021 02:32:02'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'MP 11/2/2021 02:32:02'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'MP 11/2/2021 02:32:02'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'MP 11/2/2021 02:32:02'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'MP 11/2/2021 02:32:02'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'MP 11/2/2021 02:32:02'!
+PASSED!
+
+!testRun: #CheckoutTest #test07 stamp: 'MP 11/2/2021 02:32:02'!
+PASSED!
+
+!testRun: #CheckoutTest #test08 stamp: 'MP 11/2/2021 02:32:02'!
+FAILURE!
+
+!testRun: #CheckoutTest #test08 stamp: 'MP 11/2/2021 02:32:02'!
+FAILURE!
+!SimulatedMP methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:32:38' prior: 50921735!
+charge: anAmount to: aCreditCard
+
+	aCreditCard number = noFundsCardNumber ifTrue: [ self error: self class cardWithoutFundsErrorDescription ].
+	aCreditCard number = stolenCardNumber ifTrue: [ self error: self class stolenCardErrorDescription ].! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 02:32:39'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 02:32:39'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 02:32:39'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 02:32:39'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 02:32:39'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 02:32:39'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 02:32:39'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'MP 11/2/2021 02:32:39'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'MP 11/2/2021 02:32:39'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'MP 11/2/2021 02:32:39'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'MP 11/2/2021 02:32:39'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'MP 11/2/2021 02:32:39'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'MP 11/2/2021 02:32:39'!
+PASSED!
+
+!testRun: #CheckoutTest #test07 stamp: 'MP 11/2/2021 02:32:39'!
+PASSED!
+
+!testRun: #CheckoutTest #test08 stamp: 'MP 11/2/2021 02:32:39'!
+PASSED!
+!SimulatedMP methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:33:06'!
+assertCardHasFunds: aCreditCard
+
+	^ aCreditCard number = noFundsCardNumber ifTrue: [ self error: self class cardWithoutFundsErrorDescription ]! !
+!SimulatedMP methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:33:06' prior: 50922647!
+charge: anAmount to: aCreditCard
+
+	self assertCardHasFunds: aCreditCard.
+	aCreditCard number = stolenCardNumber ifTrue: [ self error: self class stolenCardErrorDescription ].! !
+!SimulatedMP methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:33:15'!
+assertCardIsntStolen: aCreditCard
+
+	^ aCreditCard number = stolenCardNumber ifTrue: [ self error: self class stolenCardErrorDescription ]! !
+!SimulatedMP methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:33:15' prior: 50922714!
+charge: anAmount to: aCreditCard
+
+	self assertCardHasFunds: aCreditCard.
+	self assertCardIsntStolen: aCreditCard.! !
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:36:03'!
+notExpiredMonthOfYear
+
+	^ December of: 2021! !
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:36:03' prior: 50922220!
+stolenCard
+	
+	^ Card withNumber: self stolenCardNumber expiringAt: (self notExpiredMonthOfYear).! !
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:36:03' prior: 50920783!
+validCard
+	
+	^ Card withNumber: '4509790000001234' expiringAt: (self notExpiredMonthOfYear).! !
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:36:03' prior: 50920777!
+invalidNumberCard
+	
+	^ Card withNumber: '450979000000' expiringAt: (self notExpiredMonthOfYear).! !
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:36:03' prior: 50921696!
+cardWithoutFunds
+	
+	^ Card withNumber: self cardWithoutFundsNumber expiringAt: (self notExpiredMonthOfYear).! !
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:36:10'!
+expiredMonthOfYear
+
+	^ September of: 2021! !
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:36:10' prior: 50920789!
+expiredCard
+	
+	^ Card withNumber: '4509790000001234' expiringAt: (self expiredMonthOfYear).! !
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:36:15' prior: 50922771!
+expiredCard
+	
+	^ Card withNumber: '4509790000001234' expiringAt: self expiredMonthOfYear.! !
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:36:21' prior: 50922760!
+cardWithoutFunds
+	
+	^ Card withNumber: self cardWithoutFundsNumber expiringAt: self notExpiredMonthOfYear.! !
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:36:26' prior: 50922754!
+invalidNumberCard
+	
+	^ Card withNumber: '450979000000' expiringAt: self notExpiredMonthOfYear.! !
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:36:31' prior: 50922742!
+stolenCard
+	
+	^ Card withNumber: self stolenCardNumber expiringAt: self notExpiredMonthOfYear.! !
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 02:36:36' prior: 50922748!
+validCard
+	
+	^ Card withNumber: '4509790000001234' expiringAt: self notExpiredMonthOfYear.! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:38:08'!
+test07CannotCheckoutCardWithoutFunds
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory cardWithoutFunds
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: SimulatedMP cardWithoutFundsErrorDescription equals: anException messageText ].! !
+
+!methodRemoval: CheckoutTest #test07 stamp: 'MP 11/2/2021 02:38:08'!
+test07
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory cardWithoutFunds
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: SimulatedMP cardWithoutFundsErrorDescription equals: anException messageText ].!
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:38:14'!
+test08CannotcheckoutWithStolenCard
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory stolenCard
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: SimulatedMP stolenCardErrorDescription equals: anException messageText ].! !
+
+!methodRemoval: CheckoutTest #test08 stamp: 'MP 11/2/2021 02:38:14'!
+test08
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory stolenCard
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: SimulatedMP stolenCardErrorDescription equals: anException messageText ].!
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:38:20'!
+test07CannotCheckoutWithCardWithoutFunds
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory cardWithoutFunds
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: SimulatedMP cardWithoutFundsErrorDescription equals: anException messageText ].! !
+
+!methodRemoval: CheckoutTest #test07CannotCheckoutCardWithoutFunds stamp: 'MP 11/2/2021 02:38:20'!
+test07CannotCheckoutCardWithoutFunds
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory cardWithoutFunds
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: SimulatedMP cardWithoutFundsErrorDescription equals: anException messageText ].!
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:38:23'!
+test08CannotCheckoutWithStolenCard
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory stolenCard
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: SimulatedMP stolenCardErrorDescription equals: anException messageText ].! !
+
+!methodRemoval: CheckoutTest #test08CannotcheckoutWithStolenCard stamp: 'MP 11/2/2021 02:38:23'!
+test08CannotcheckoutWithStolenCard
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory stolenCard
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: SimulatedMP stolenCardErrorDescription equals: anException messageText ].!
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'MP 11/2/2021 02:38:30'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 02:38:30'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 02:38:30'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 02:38:30'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 02:38:30'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 02:38:30'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 02:38:30'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 02:38:30'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'MP 11/2/2021 02:38:30'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'MP 11/2/2021 02:38:30'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'MP 11/2/2021 02:38:30'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'MP 11/2/2021 02:38:30'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'MP 11/2/2021 02:38:30'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'MP 11/2/2021 02:38:30'!
+PASSED!
+
+!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'MP 11/2/2021 02:38:30'!
+PASSED!
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'MP 11/2/2021 02:38:30'!
+PASSED!
+
+----SNAPSHOT----(2 November 2021 02:38:33) CuisUniversity-4913.image priorSource: 18867797!
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:41:55'!
+assertCheckingOutCharging: aCard raises: anErrorMessage
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier 
+				checkout: cart 
+				charging: aCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: anErrorMessage equals: anException messageText ].! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:41:58' prior: 50923005!
+assertCheckingOutCharging: aCard raises: anErrorMessage
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier 
+				checkout: cart 
+				charging: aCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: anErrorMessage equals: anException messageText ].! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:42:36' prior: 50921556!
+test05CannotCheckoutWithExpiredCard
+
+	
+	self assertCheckingOutCharging: testObjectFactory expiredCard raises: Cashier expiredCardErrorDescription.! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:42:43' prior: 50923043!
+test05CannotCheckoutWithExpiredCard
+	
+	self assertCheckingOutCharging: testObjectFactory expiredCard raises: Cashier expiredCardErrorDescription.! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:43:20'!
+assertCheckoutCharging: aCard raises: anErrorMessage
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier 
+				checkout: cart 
+				charging: aCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: anErrorMessage equals: anException messageText ].! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:43:20' prior: 50923051!
+test05CannotCheckoutWithExpiredCard
+	
+	self assertCheckoutCharging: testObjectFactory expiredCard raises: Cashier expiredCardErrorDescription.! !
+
+!methodRemoval: CheckoutTest #assertCheckingOutCharging:raises: stamp: 'MP 11/2/2021 02:43:20'!
+assertCheckingOutCharging: aCard raises: anErrorMessage
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier 
+				checkout: cart 
+				charging: aCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: anErrorMessage equals: anException messageText ].!
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:43:29' prior: 50923077!
+test05CannotCheckoutWithExpiredCard
+	
+	self 
+		assertCheckoutCharging: testObjectFactory expiredCard
+		raises: Cashier expiredCardErrorDescription.! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:43:31' prior: 50923103!
+test05CannotCheckoutWithExpiredCard
+	
+	self assertCheckoutCharging: testObjectFactory expiredCard
+		raises: Cashier expiredCardErrorDescription.! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:43:46' prior: 50923111!
+test05CannotCheckoutWithExpiredCard
+	
+	self assertCheckoutCharging: testObjectFactory expiredCard
+		raises: Cashier expiredCardErrorDescription.! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:43:49' prior: 50923119!
+test05CannotCheckoutWithExpiredCard
+	
+	self
+		assertCheckoutCharging: testObjectFactory expiredCard
+		raises: Cashier expiredCardErrorDescription.! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:43:50' prior: 50923127!
+test05CannotCheckoutWithExpiredCard
+	
+	self
+assertCheckoutCharging: testObjectFactory expiredCard
+		raises: Cashier expiredCardErrorDescription.! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:43:52' prior: 50923135!
+test05CannotCheckoutWithExpiredCard
+	
+	self assertCheckoutCharging: testObjectFactory expiredCard
+		raises: Cashier expiredCardErrorDescription.! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:44:10' prior: 50921595!
+test06CannotCheckoutWithInvalidNumberCard
+
+	self assertCheckoutCharging: testObjectFactory invalidNumberCard
+		raises: Cashier invalidCardNumberErrorDescription! !
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'MP 11/2/2021 02:44:11'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 02:44:11'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 02:44:11'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 02:44:11'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 02:44:11'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 02:44:11'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 02:44:11'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 02:44:11'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'MP 11/2/2021 02:44:11'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'MP 11/2/2021 02:44:11'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'MP 11/2/2021 02:44:11'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'MP 11/2/2021 02:44:11'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'MP 11/2/2021 02:44:11'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'MP 11/2/2021 02:44:11'!
+PASSED!
+
+!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'MP 11/2/2021 02:44:11'!
+PASSED!
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'MP 11/2/2021 02:44:11'!
+PASSED!
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:44:32' prior: 50922876!
+test07CannotCheckoutWithCardWithoutFunds
+
+	self assertCheckoutCharging: testObjectFactory cardWithoutFunds
+		raises: SimulatedMP cardWithoutFundsErrorDescription
+! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:44:47' prior: 50922913!
+test08CannotCheckoutWithStolenCard
+
+	self assertCheckoutCharging: testObjectFactory stolenCard
+		raises: SimulatedMP stolenCardErrorDescription.! !
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'MP 11/2/2021 02:44:48'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 02:44:48'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 02:44:48'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 02:44:48'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 02:44:48'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 02:44:48'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 02:44:48'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 02:44:48'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'MP 11/2/2021 02:44:48'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'MP 11/2/2021 02:44:48'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'MP 11/2/2021 02:44:49'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'MP 11/2/2021 02:44:49'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'MP 11/2/2021 02:44:49'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'MP 11/2/2021 02:44:49'!
+PASSED!
+
+!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'MP 11/2/2021 02:44:49'!
+PASSED!
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'MP 11/2/2021 02:44:49'!
+PASSED!
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:44:52' prior: 50923213!
+test07CannotCheckoutWithCardWithoutFunds
+
+	self assertCheckoutCharging: testObjectFactory cardWithoutFunds
+		raises: SimulatedMP cardWithoutFundsErrorDescription.
+! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:44:54' prior: 50923151!
+test06CannotCheckoutWithInvalidNumberCard
+
+	self assertCheckoutCharging: testObjectFactory invalidNumberCard
+		raises: Cashier invalidCardNumberErrorDescription.! !
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'MP 11/2/2021 02:44:56'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 02:44:56'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 02:44:56'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 02:44:56'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 02:44:56'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 02:44:56'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 02:44:56'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 02:44:56'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'MP 11/2/2021 02:44:56'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'MP 11/2/2021 02:44:56'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'MP 11/2/2021 02:44:56'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'MP 11/2/2021 02:44:56'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'MP 11/2/2021 02:44:56'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'MP 11/2/2021 02:44:56'!
+PASSED!
+
+!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'MP 11/2/2021 02:44:56'!
+PASSED!
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'MP 11/2/2021 02:44:56'!
+PASSED!
+!CheckoutTest methodsFor: 'assertions' stamp: 'MP 11/2/2021 02:45:57'!
+assertCashier: aCashier checkout: aCart charging: aCard raises: anErrorMessage
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ aCashier 
+				checkout: aCart 
+				charging: aCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: anErrorMessage equals: anException messageText ].! !
+!CheckoutTest methodsFor: 'assertions' stamp: 'MP 11/2/2021 02:47:18' prior: 50923058!
+assertCheckoutCharging: aCard raises: anErrorMessage
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+
+	cashier _ testObjectFactory createCashier.
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier 
+				checkout: cart 
+				charging: aCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: anErrorMessage equals: anException messageText ].! !
+!CheckoutTest methodsFor: 'assertions' stamp: 'MP 11/2/2021 02:47:47'!
+assertCheckout: aCart charging: aCard raises: anErrorMessage
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ | cashier | cashier 
+				checkout: aCart 
+				charging: aCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: anErrorMessage equals: anException messageText ].! !
+!CheckoutTest methodsFor: 'assertions' stamp: 'MP 11/2/2021 02:47:58' prior: 50923366!
+assertCheckoutCharging: aCard raises: anErrorMessage
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	cashier _ testObjectFactory createCashier.
+
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier 
+				checkout: cart 
+				charging: aCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: anErrorMessage equals: anException messageText ].! !
+!CheckoutTest methodsFor: 'assertions' stamp: 'MP 11/2/2021 02:48:16' prior: 50923385!
+assertCheckout: aCart charging: aCard raises: anErrorMessage
+	
+		| cashier |
+	cashier _ testObjectFactory createCashier.
+
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier 
+				checkout: aCart 
+				charging: aCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: anErrorMessage equals: anException messageText ].! !
+!CheckoutTest methodsFor: 'assertions' stamp: 'MP 11/2/2021 02:48:19' prior: 50923419!
+assertCheckout: aCart charging: aCard raises: anErrorMessage
+	
+	| cashier |
+	cashier _ testObjectFactory createCashier.
+
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier 
+				checkout: aCart 
+				charging: aCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: anErrorMessage equals: anException messageText ].! !
+!CheckoutTest methodsFor: 'assertions' stamp: 'MP 11/2/2021 02:48:21' prior: 50923435!
+assertCheckout: aCart charging: aCard raises: anErrorMessage
+	
+	| cashier |
+	cashier _ testObjectFactory createCashier.
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier 
+				checkout: aCart 
+				charging: aCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: anErrorMessage equals: anException messageText ].! !
+
+!methodRemoval: CheckoutTest #assertCheckoutCharging:raises: stamp: 'MP 11/2/2021 02:48:57'!
+assertCheckoutCharging: aCard raises: anErrorMessage
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	cashier _ testObjectFactory createCashier.
+
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier 
+				checkout: cart 
+				charging: aCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: anErrorMessage equals: anException messageText ].!
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:49:38' prior: 50921300!
+test01CannotCheckoutWithEmptyCart
+
+	| cart |
+	cart _ testObjectFactory createCart. 
+
+	self assertCheckout: cart charging: testObjectFactory validCard raises: Cashier emptyCartErrorDescription.! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:49:55' prior: 50923486!
+test01CannotCheckoutWithEmptyCart
+
+	
+
+	self assertCheckout: testObjectFactory createCart
+		charging: testObjectFactory validCard
+		raises: Cashier emptyCartErrorDescription.! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:49:58' prior: 50923495!
+test01CannotCheckoutWithEmptyCart
+
+
+	self assertCheckout: testObjectFactory createCart
+		charging: testObjectFactory validCard
+		raises: Cashier emptyCartErrorDescription.! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:49:58' prior: 50923504!
+test01CannotCheckoutWithEmptyCart
+
+	self assertCheckout: testObjectFactory createCart
+		charging: testObjectFactory validCard
+		raises: Cashier emptyCartErrorDescription.! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:50:16' prior: 50923143!
+test05CannotCheckoutWithExpiredCard
+	
+	
+	| cart |
+	cart _ testObjectFactory createCart.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self assertCheckoutCharging: testObjectFactory expiredCard
+		raises: Cashier expiredCardErrorDescription.! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:50:22' prior: 50923521!
+test05CannotCheckoutWithExpiredCard
+	
+	
+	| cart |
+	cart _ testObjectFactory createCart.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self assertCheckout: cart charging: testObjectFactory expiredCard
+		raises: Cashier expiredCardErrorDescription.! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:50:43' prior: 50923532!
+test05CannotCheckoutWithExpiredCard
+	
+	| cart |
+	cart _ testObjectFactory createCart.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self assertCheckout: cart charging: testObjectFactory expiredCard
+		raises: Cashier expiredCardErrorDescription.! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:50:45' prior: 50923543!
+test05CannotCheckoutWithExpiredCard
+
+	| cart |
+	cart _ testObjectFactory createCart.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self assertCheckout: cart charging: testObjectFactory expiredCard
+		raises: Cashier expiredCardErrorDescription.! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:50:49' prior: 50923554!
+test05CannotCheckoutWithExpiredCard
+
+	| cart |
+	cart _ testObjectFactory createCart.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+
+	self assertCheckout: cart charging: testObjectFactory expiredCard
+		raises: Cashier expiredCardErrorDescription.! !
+!TestObjectFactory methodsFor: 'store creation' stamp: 'MP 11/2/2021 02:51:36'!
+createCartWithSingleProduct
+
+	^self createCart
+		add: self firstProductSoldByTheStore;
+		yourself.! !
+!TestObjectFactory methodsFor: 'store creation' stamp: 'MP 11/2/2021 02:51:39' prior: 50923576!
+createCartWithSingleProduct
+
+	^ self createCart
+		add: self firstProductSoldByTheStore;
+		yourself.! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:52:01' prior: 50923565!
+test05CannotCheckoutWithExpiredCard
+
+	self assertCheckout: testObjectFactory createCartWithSingleProduct charging: testObjectFactory expiredCard
+		raises: Cashier expiredCardErrorDescription.! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:52:02' prior: 50923589!
+test05CannotCheckoutWithExpiredCard
+
+	self assertCheckout: testObjectFactory createCartWithSingleProduct 
+		charging: testObjectFactory expiredCard
+		raises: Cashier expiredCardErrorDescription.! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:52:16' prior: 50923290!
+test06CannotCheckoutWithInvalidNumberCard
+
+	self assertCheckout: testObjectFactory createCartWithSingleProduct 
+		charging: testObjectFactory invalidNumberCard
+		raises: Cashier invalidCardNumberErrorDescription.! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:52:24' prior: 50923282!
+test07CannotCheckoutWithCardWithoutFunds
+
+	self assertCheckout: testObjectFactory createCartWithSingleProduct 
+		charging: testObjectFactory cardWithoutFunds
+		raises: SimulatedMP cardWithoutFundsErrorDescription.
+! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:52:25' prior: 50923617!
+test07CannotCheckoutWithCardWithoutFunds
+
+	self assertCheckout: testObjectFactory createCartWithSingleProduct
+		charging: testObjectFactory cardWithoutFunds
+		raises: SimulatedMP cardWithoutFundsErrorDescription.
+! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:52:37' prior: 50923221!
+test08CannotCheckoutWithStolenCard
+
+	self assertCheckout: testObjectFactory createCartWithSingleProduct 
+		charging: testObjectFactory stolenCard
+		raises: SimulatedMP stolenCardErrorDescription.! !
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:52:39' prior: 50923637!
+test08CannotCheckoutWithStolenCard
+
+	self assertCheckout: testObjectFactory createCartWithSingleProduct
+		charging: testObjectFactory stolenCard
+		raises: SimulatedMP stolenCardErrorDescription.! !
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'MP 11/2/2021 02:52:40'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 02:52:40'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 02:52:40'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 02:52:40'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 02:52:40'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 02:52:40'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 02:52:40'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 02:52:40'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'MP 11/2/2021 02:52:40'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'MP 11/2/2021 02:52:40'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'MP 11/2/2021 02:52:40'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'MP 11/2/2021 02:52:40'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'MP 11/2/2021 02:52:40'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'MP 11/2/2021 02:52:40'!
+PASSED!
+
+!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'MP 11/2/2021 02:52:40'!
+PASSED!
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'MP 11/2/2021 02:52:40'!
+PASSED!
+
+----SNAPSHOT----(2 November 2021 02:52:43) CuisUniversity-4913.image priorSource: 18923259!
+
+!methodRemoval: CheckoutTest #assertCashier:checkout:charging:raises: stamp: 'MP 11/2/2021 02:52:57'!
+assertCashier: aCashier checkout: aCart charging: aCard raises: anErrorMessage
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ aCashier 
+				checkout: aCart 
+				charging: aCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: anErrorMessage equals: anException messageText ].!
+!Cashier methodsFor: 'initialization' stamp: 'MP 11/2/2021 02:53:45'!
+initializeWithMerchantProcessor: aMerchantProcessor 
+
+	merchantProcessor _ aMerchantProcessor.! !
+!Cashier class methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:53:45' prior: 50921842!
+withMerchantProcessorXX: aMerchantProcessor 
+
+	^self new initializeWithMerchantProcessor: aMerchantProcessor ! !
+
+!methodRemoval: Cashier #initializeWithMerchantProcessorXX: stamp: 'MP 11/2/2021 02:53:45'!
+initializeWithMerchantProcessorXX: aMerchantProcessor 
+
+	merchantProcessor _ aMerchantProcessor.!
+!Cashier class methodsFor: 'instance creation' stamp: 'MP 11/2/2021 02:54:11'!
+withMerchantProcessor: aMerchantProcessor 
+
+	^self new initializeWithMerchantProcessor: aMerchantProcessor ! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 02:54:11' prior: 50921668!
+createCashier
+
+	^ Cashier withMerchantProcessor: self defaultSimulatedMP.! !
+
+!methodRemoval: Cashier class #withMerchantProcessorXX: stamp: 'MP 11/2/2021 02:54:11'!
+withMerchantProcessorXX: aMerchantProcessor 
+
+	^self new initializeWithMerchantProcessor: aMerchantProcessor !
+!Card class methodsFor: 'instance creation' stamp: 'MP 11/2/2021 02:55:31' prior: 50920795!
+withNumber: aCardNumber expiringAt: anExpiryDate 
+
+	^ self new initializeWithNumber: aCardNumber expiringAt: anExpiryDate .! !
+!Card class methodsFor: 'instance creation' stamp: 'MP 11/2/2021 02:55:32' prior: 50923764!
+withNumber: aCardNumber expiringAt: anExpiryDate 
+
+	^ self new initializeWithNumber: aCardNumber expiringAt: anExpiryDate.! !
+!Card class methodsFor: 'instance creation' stamp: 'MP 11/2/2021 02:55:36' prior: 50923771!
+withNumber: aCardNumber expiringAt: anExpirationDAte 
+
+	^ self new initializeWithNumber: aCardNumber expiringAt: anExpirationDAte.! !
+!Card class methodsFor: 'instance creation' stamp: 'MP 11/2/2021 02:55:39' prior: 50923778!
+withNumber: aCardNumber expiringAt: anExpirationDate 
+
+	^ self new initializeWithNumber: aCardNumber expiringAt: anExpirationDate.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 02:55:41'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 02:55:41'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 02:55:41'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 02:55:41'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 02:55:41'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 02:55:41'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 02:55:41'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'MP 11/2/2021 02:55:41'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'MP 11/2/2021 02:55:41'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'MP 11/2/2021 02:55:41'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'MP 11/2/2021 02:55:41'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'MP 11/2/2021 02:55:41'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'MP 11/2/2021 02:55:41'!
+PASSED!
+
+!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'MP 11/2/2021 02:55:41'!
+PASSED!
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'MP 11/2/2021 02:55:41'!
+PASSED!
+!Cart class methodsFor: 'instance creation' stamp: 'MP 11/2/2021 02:55:49' prior: 50915124!
+acceptingProductsFrom: aCatalog
+	
+	^ self new initializeWith: aCatalog.! !
+!Cashier methodsFor: 'assertions' stamp: 'MP 11/2/2021 02:56:54'!
+validCardNumberSize
+
+	^ 16! !
+!Cashier methodsFor: 'assertions' stamp: 'MP 11/2/2021 02:56:54' prior: 50921107!
+assertCardNumberIsValid: aCreditCard
+
+	^ (aCreditCard number size < self validCardNumberSize) ifTrue: [ self error: self class invalidCardNumberErrorDescription ]! !
+!Cashier methodsFor: 'assertions' stamp: 'MP 11/2/2021 02:57:21' prior: 50923853!
+assertCardNumberIsValid: aCreditCard
+
+	^ (aCreditCard number size ~= self validCardNumberSize) ifTrue: [ self error: self class invalidCardNumberErrorDescription ]! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 02:57:22'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 02:57:22'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 02:57:22'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 02:57:22'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 02:57:22'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 02:57:22'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 02:57:22'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'MP 11/2/2021 02:57:22'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'MP 11/2/2021 02:57:22'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'MP 11/2/2021 02:57:22'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'MP 11/2/2021 02:57:22'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'MP 11/2/2021 02:57:22'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'MP 11/2/2021 02:57:22'!
+PASSED!
+
+!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'MP 11/2/2021 02:57:22'!
+PASSED!
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'MP 11/2/2021 02:57:22'!
+PASSED!
+!SimulatedMP methodsFor: 'assertions' stamp: 'MP 11/2/2021 02:58:50'!
+hasNoFunds: aCreditCard
+
+	^ aCreditCard number = noFundsCardNumber! !
+!SimulatedMP methodsFor: 'assertions' stamp: 'MP 11/2/2021 02:58:50' prior: 50922706!
+assertCardHasFunds: aCreditCard
+
+	^ (self hasNoFunds: aCreditCard) ifTrue: [ self error: self class cardWithoutFundsErrorDescription ]! !
+!SimulatedMP methodsFor: 'assertions' stamp: 'MP 11/2/2021 02:59:09'!
+isStolen: aCreditCard
+
+	^ aCreditCard number = stolenCardNumber! !
+!SimulatedMP methodsFor: 'assertions' stamp: 'MP 11/2/2021 02:59:09' prior: 50922723!
+assertCardIsntStolen: aCreditCard
+
+	^ (self isStolen: aCreditCard) ifTrue: [ self error: self class stolenCardErrorDescription ]! !
+!SimulatedMP class methodsFor: 'instance creation' stamp: 'MP 11/2/2021 02:59:32' prior: 50922399!
+withNoFundsCard: aNoFundsCardNumber stolenCard: aStolenCardNumber
+
+	^ self new initializeWithNoFundsCard: aNoFundsCardNumber stolenCard: aStolenCardNumber.! !
+
+----SNAPSHOT----(2 November 2021 02:59:42) CuisUniversity-4913.image priorSource: 18945847!
+!SimulatedMP class methodsFor: 'instance creation' stamp: 'MP 11/2/2021 03:00:18' prior: 50923944!
+withNoFundsCard: aNoFundsCardNumber stolenCard: aStolenCardNumber
+
+	^ self new initializeWithNoFundsCard: aNoFundsCardNumber stolenCard: aStolenCardNumber.! !
+
+----SNAPSHOT----(2 November 2021 03:01:28) CuisUniversity-4913.image priorSource: 18953630!
