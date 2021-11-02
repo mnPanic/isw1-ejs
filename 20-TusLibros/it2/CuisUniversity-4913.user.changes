@@ -1,0 +1,1565 @@
+
+
+----QUIT----(13 October 2021 15:20:10) CuisUniversity-4913.image priorSource: 14638157!
+
+----STARTUP---- (13 October 2021 15:20:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-4913.image!
+
+
+----QUIT----(13 October 2021 15:20:10) CuisUniversity-4913.image priorSource: 18661767!
+
+----STARTUP---- (13 October 2021 15:21:02) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-4913.image!
+
+
+----QUIT----(13 October 2021 15:21:02) CuisUniversity-4913.image priorSource: 18661997!
+
+----QUIT----(13 October 2021 15:26:07) CuisUniversity-4913.image priorSource: 14638157!
+
+----STARTUP---- (13 October 2021 15:26:08) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-4913.image!
+
+
+----QUIT----(13 October 2021 15:26:08) CuisUniversity-4913.image priorSource: 18661767!
+
+----STARTUP---- (28 October 2021 16:20:21) as /home/agus/Documents/inge1/linux64/CuisUniversity-4913.image!
+
+
+----End fileIn of /home/agus/Documents/inge1/isw1-ejs/19-MarsRover-ElRegreso/MarsRover-WithHeading.st----!
+
+Object subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+
+!classDefinition: #CartTest category: 'TusLibros-It1' stamp: 'AF 10/28/2021 21:01:23'!
+Object subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+
+!classDefinition: #CartTest category: 'TusLibros-It1' stamp: 'AF 10/28/2021 21:01:53'!
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+
+!classDefinition: #Cart category: 'TusLibros-It1' stamp: 'AF 10/28/2021 21:03:04'!
+Object subclass: #Cart
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+!CartTest methodsFor: 'nil' stamp: 'AF 10/28/2021 21:02:51'!
+test01
+
+	| cart |
+	cart _ Cart new.
+	self assert: cart isEmpty.! !
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:03:40'!
+ERROR!
+!Cart methodsFor: 'as yet unclasifed' stamp: 'AF 10/28/2021 21:03:53'!
+isEmpty
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'as yet unclasifed' stamp: 'AF 10/28/2021 21:03:59' prior: 50915920!
+isEmpty
+	^true.! !
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:01'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:01'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:34'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:34'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:36'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:36'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:36'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:36'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:37'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:37'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:37'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:37'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:37'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:37'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:37'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:37'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:38'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:38'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:38'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:38'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:38'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:04:38'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:06:56'!
+test02
+
+	| cart |
+	cart _ Cart new.
+	cart addBook: 'growing object-oriented software guided by tests'.
+	self deny: cart isEmpty ! !
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:07:02'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:07:07'!
+addBook: aString 
+	self shouldBeImplemented.! !
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:08:15'!
+ERROR!
+
+!classDefinition: #Cart category: 'TusLibros-It1' stamp: 'AF 10/28/2021 21:08:59'!
+Object subclass: #Cart
+	instanceVariableNames: 'contents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:08:56' prior: 50915985!
+addBook: aBook
+
+	contents add: aBook.! !
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:09:02'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:09:02'!
+ERROR!
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:09:02'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:09:33' overrides: 16896425!
+initialize
+
+	contents _ OrderedCollection new.! !
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:09:33'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:09:33'!
+FAILURE!
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:09:33'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:09:53' prior: 50915924!
+isEmpty
+	
+	^contents isEmpty.! !
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:09:56'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:09:56'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:11:09'!
+test03
+
+	| cart aBook |
+	cart _ Cart new.
+	aBook _ 'growing object-oriented software guided by tests'.
+	cart addBook: aBook.
+	self assert: (cart contains: aBook).! !
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:11:42'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:11:42'!
+PASSED!
+
+!testRun: #CartTest #test03 stamp: 'AF 10/28/2021 21:11:42'!
+ERROR!
+
+!testRun: #CartTest #test03 stamp: 'AF 10/28/2021 21:11:42'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:11:48'!
+contains: aString 
+	self shouldBeImplemented.! !
+
+----End fileIn of /home/agus/Documents/inge1/linux64/Packages/TerseGuide.pck.st----!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:12:41' prior: 50916046!
+contains: aBook 
+	
+	contents contains: aBook.! !
+
+!testRun: #CartTest #test03 stamp: 'AF 10/28/2021 21:12:42'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:12:50' prior: 50918976!
+contains: aBook 
+	
+	contents includes: aBook.! !
+
+!testRun: #CartTest #test03 stamp: 'AF 10/28/2021 21:12:52'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:13:24' prior: 50918983!
+contains: aBook 
+	
+	^contents includes: aBook.! !
+
+!testRun: #CartTest #test03 stamp: 'AF 10/28/2021 21:13:25'!
+PASSED!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:13:47'!
+includes: aBook 
+	
+	^contents includes: aBook.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:13:47' prior: 50916029!
+test03
+
+	| cart aBook |
+	cart _ Cart new.
+	aBook _ 'growing object-oriented software guided by tests'.
+	cart addBook: aBook.
+	self assert: (cart includes: aBook).! !
+
+!methodRemoval: Cart #contains: stamp: 'AF 10/28/2021 21:13:47'!
+contains: aBook 
+	
+	^contents includes: aBook.!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:19:15'!
+test04
+
+	| cart aBook aCatalog |
+	aCatalog _ OrderedCollection new.
+	cart _ Cart with: aCatalog.
+	aBook _ 'growing object-oriented software guided by tests'.
+	cart addBook: aBook.
+	self assert: (cart includes: aBook).! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:24:39' prior: 50919014!
+test04
+
+	| cart aBook aCatalog |
+	
+	aCatalog _ OrderedCollection new.
+	cart _ Cart with: aCatalog.
+	aBook _ 'growing object-oriented software guided by tests'.
+	
+	self should: [ cart addBook: aBook ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: Cart bookNotInCatalogErrorDescription equals: anError messageText.
+			self deny: (cart includes: aBook) ].! !
+
+!testRun: #CartTest #test04 stamp: 'AF 10/28/2021 21:24:42'!
+ERROR!
+!Cart class methodsFor: 'instance creation' stamp: 'AF 10/28/2021 21:24:51'!
+with: anOrderedCollection 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWith: anOrderedCollection ! !
+!Cart class methodsFor: 'instance creation' stamp: 'AF 10/28/2021 21:25:46' prior: 50919041!
+with: aCatalog
+	
+	^self new initializeWith: aCatalog ! !
+
+!testRun: #CartTest #test04 stamp: 'AF 10/28/2021 21:25:48'!
+ERROR!
+
+!classDefinition: #Cart category: 'TusLibros-It1' stamp: 'AF 10/28/2021 21:25:53'!
+Object subclass: #Cart
+	instanceVariableNames: 'contents catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+!Cart methodsFor: 'initialization' stamp: 'AF 10/28/2021 21:25:53'!
+initializeWith: aCatalog 
+	self shouldBeImplemented.
+	catalog := aCatalog.! !
+!Cart methodsFor: 'initialization' stamp: 'AF 10/28/2021 21:26:03' prior: 50919064!
+initializeWith: aCatalog 
+	
+	catalog _ aCatalog.! !
+
+!testRun: #CartTest #test04 stamp: 'AF 10/28/2021 21:26:06'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:27:39' prior: 50915999!
+addBook: aBook
+	
+	(catalog includes: aBook) ifFalse: [self error: self class bookNotInCatalogErrorDescription].
+	contents add: aBook.! !
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:27:44'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:27:44'!
+ERROR!
+
+!testRun: #CartTest #test03 stamp: 'AF 10/28/2021 21:27:44'!
+ERROR!
+
+!testRun: #CartTest #test04 stamp: 'AF 10/28/2021 21:27:44'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:27:56' prior: 50919077!
+addBook: aBook
+	
+	(catalog includes: aBook) ifFalse: [ self error: self class bookNotInCatalogErrorDescription ].
+	contents add: aBook.! !
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:27:56'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:27:56'!
+ERROR!
+
+!testRun: #CartTest #test03 stamp: 'AF 10/28/2021 21:27:56'!
+ERROR!
+
+!testRun: #CartTest #test04 stamp: 'AF 10/28/2021 21:27:56'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:28:54' prior: 50915976!
+test02
+
+	| cart aBook aCatalog |
+	aBook _ 'growing object-oriented software guided by tests'.
+	aCatalog _ OrderedCollection with:  aBook.
+	cart _ Cart with: aCatalog.
+	
+	cart addBook: 'growing object-oriented software guided by tests'.
+	self deny: cart isEmpty ! !
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:28:59'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:28:59'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:28:59'!
+PASSED!
+
+!testRun: #CartTest #test03 stamp: 'AF 10/28/2021 21:28:59'!
+ERROR!
+
+!testRun: #CartTest #test04 stamp: 'AF 10/28/2021 21:28:59'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:29:11' prior: 50919109!
+test02
+
+	| cart aBook aCatalog |
+	aBook _ 'growing object-oriented software guided by tests'.
+	aCatalog _ OrderedCollection with:  aBook.
+	cart _ Cart with: aCatalog.
+	cart addBook: 'growing object-oriented software guided by tests'.
+	self deny: cart isEmpty ! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:29:23' prior: 50919002!
+test03
+
+	| cart aBook aCatalog |
+	aBook _ 'growing object-oriented software guided by tests'.
+	aCatalog _ OrderedCollection with:  aBook.
+	cart _ Cart with: aCatalog.
+	cart addBook: aBook.
+	self assert: (cart includes: aBook).! !
+
+!testRun: #CartTest #test03 stamp: 'AF 10/28/2021 21:29:28'!
+PASSED!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:29:28'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:29:28'!
+PASSED!
+
+!testRun: #CartTest #test03 stamp: 'AF 10/28/2021 21:29:28'!
+PASSED!
+
+!testRun: #CartTest #test04 stamp: 'AF 10/28/2021 21:29:28'!
+ERROR!
+
+!testRun: #CartTest #test04 stamp: 'AF 10/28/2021 21:29:28'!
+ERROR!
+!Cart class methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:29:48'!
+bookNotInCatalogErrorDescription
+	self shouldBeImplemented.! !
+!Cart class methodsFor: 'as yet unclassified' stamp: 'AF 10/28/2021 21:30:29' prior: 50919167!
+bookNotInCatalogErrorDescription
+	
+	^'Book not in catalog'! !
+
+!testRun: #CartTest #test04 stamp: 'AF 10/28/2021 21:30:34'!
+FAILURE!
+
+!testRun: #CartTest #test01 stamp: 'AF 10/28/2021 21:30:47'!
+PASSED!
+
+!testRun: #CartTest #test02 stamp: 'AF 10/28/2021 21:30:47'!
+PASSED!
+
+!testRun: #CartTest #test03 stamp: 'AF 10/28/2021 21:30:47'!
+PASSED!
+
+!testRun: #CartTest #test04 stamp: 'AF 10/28/2021 21:30:47'!
+PASSED!
+
+----SNAPSHOT----(28 October 2021 21:43:37) CuisUniversity-4913.image priorSource: 18661997!
+
+----SNAPSHOT----(30 October 2021 13:55:06) CuisUniversity-4913.image priorSource: 18821382!
+
+----STARTUP---- (1 November 2021 19:16:23) as /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-it2-vm/CuisUniversity-4913.image!
+
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1-ejs/20-TusLibros/it1/TusLibros-It1.st----!
+
+TestCase subclass: #CheckoutTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+
+!classDefinition: #CheckoutTest category: 'TusLibros-It1' stamp: 'IAR 11/1/2021 19:21:22'!
+TestCase subclass: #CheckoutTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+!Cart methodsFor: 'adding' stamp: 'IAR 11/1/2021 19:22:24'!
+quantity: aQuantity addBook: aBook 
+	
+	self assertBookIncludedInCatalog: aBook.
+	self assertQuantityIsPositive: aQuantity.
+	
+	contents add: aBook withOccurrences: aQuantity .! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:22:24' prior: 50914893!
+test05CartIncludesAllOccurrencesOfBookAfterAdding
+
+	| cart book catalog quantity |
+	
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with:  book.
+	quantity _ 5.
+	
+	cart _ Cart with: catalog.
+	cart quantity: book addBook: quantity.
+	
+	self assert: quantity equals: (cart occurrencesOf: book).! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:22:24' prior: 50914943!
+assertAdding: aBook withQuantity: aQuantity to: aCart raises: anErrorMessage.
+
+	self should: [ aCart quantity: aBook addBook: aQuantity ]
+		raise: Error -  MessageNotUnderstood
+		withExceptionDo: [ :anError | 
+			self assert: anErrorMessage equals: anError messageText .
+			self deny: (aCart includes: aBook) ] ! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:22:24' prior: 50914873!
+test03CartIncludesBookAfterAdding
+
+	| cart book catalog |
+
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with:  book.
+	cart _ Cart with: catalog.
+	cart quantity: book addBook: 1.
+	
+	self assert: (cart includes: book).! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:22:24' prior: 50914905!
+test06CartContainsTotalOccurrencesAfterAddingItMultipleTimes
+
+	"paso de una pero lo dejamos porque no sabiamos como funcioanaba el bag"
+	| cart book catalog quantity |
+	
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with:  book.
+	quantity _ 5.
+	
+	cart _ Cart with: catalog.
+	cart quantity: book addBook: quantity.
+	cart quantity: book addBook: quantity.
+	
+	self assert: (quantity*2) equals: (cart occurrencesOf: book).! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:22:24' prior: 50914863!
+test02CartWithABookShouldNotBeEmpty
+
+	| cart book catalog |
+	
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with:  book.
+	cart _ Cart with: catalog.
+	cart quantity: book addBook: 1.
+	
+	self deny: cart isEmpty ! !
+
+!methodRemoval: Cart #addBook:quantity: stamp: 'IAR 11/1/2021 19:22:24'!
+addBook: aBook quantity: aQuantity 
+	
+	self assertBookIncludedInCatalog: aBook.
+	self assertQuantityIsPositive: aQuantity.
+	
+	contents add: aBook withOccurrences: aQuantity .!
+!Cart methodsFor: 'adding' stamp: 'IAR 11/1/2021 19:22:34' prior: 50915046!
+quantity: aQuantity addBook: aProduct 
+	
+	self assertBookIncludedInCatalog: aProduct.
+	self assertQuantityIsPositive: aQuantity.
+	
+	contents add: aProduct withOccurrences: aQuantity .! !
+!Cart methodsFor: 'adding' stamp: 'IAR 11/1/2021 19:22:53'!
+add: aQuantity of: aProduct 
+	
+	self assertBookIncludedInCatalog: aProduct.
+	self assertQuantityIsPositive: aQuantity.
+	
+	contents add: aProduct withOccurrences: aQuantity .! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:22:53' prior: 50915068!
+assertAdding: aBook withQuantity: aQuantity to: aCart raises: anErrorMessage.
+
+	self should: [ aCart add: aBook of: aQuantity ]
+		raise: Error -  MessageNotUnderstood
+		withExceptionDo: [ :anError | 
+			self assert: anErrorMessage equals: anError messageText .
+			self deny: (aCart includes: aBook) ] ! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:22:53' prior: 50915109!
+test02CartWithABookShouldNotBeEmpty
+
+	| cart book catalog |
+	
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with:  book.
+	cart _ Cart with: catalog.
+	cart add: book of: 1.
+	
+	self deny: cart isEmpty ! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:22:53' prior: 50915055!
+test05CartIncludesAllOccurrencesOfBookAfterAdding
+
+	| cart book catalog quantity |
+	
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with:  book.
+	quantity _ 5.
+	
+	cart _ Cart with: catalog.
+	cart add: book of: quantity.
+	
+	self assert: quantity equals: (cart occurrencesOf: book).! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:22:54' prior: 50915081!
+test03CartIncludesBookAfterAdding
+
+	| cart book catalog |
+
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with:  book.
+	cart _ Cart with: catalog.
+	cart add: book of: 1.
+	
+	self assert: (cart includes: book).! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:22:54' prior: 50915092!
+test06CartContainsTotalOccurrencesAfterAddingItMultipleTimes
+
+	"paso de una pero lo dejamos porque no sabiamos como funcioanaba el bag"
+	| cart book catalog quantity |
+	
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with:  book.
+	quantity _ 5.
+	
+	cart _ Cart with: catalog.
+	cart add: book of: quantity.
+	cart add: book of: quantity.
+	
+	self assert: (quantity*2) equals: (cart occurrencesOf: book).! !
+
+!methodRemoval: Cart #quantity:addBook: stamp: 'IAR 11/1/2021 19:22:54'!
+quantity: aQuantity addBook: aProduct 
+	
+	self assertBookIncludedInCatalog: aProduct.
+	self assertQuantityIsPositive: aQuantity.
+	
+	contents add: aProduct withOccurrences: aQuantity .!
+
+!classDefinition: #Cashier category: 'TusLibros-It1' stamp: 'IAR 11/1/2021 19:30:56'!
+Object subclass: #Cashier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+!CheckoutTest methodsFor: 'nil' stamp: 'IAR 11/1/2021 19:30:42'!
+test01
+
+	| cart cashier catalog |
+	cart _ self createCartWith: catalog. 
+	cashier _ self createCashier.
+	
+	self should: [ cashier checkout: cart ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError | self assert: Cashier emptyCartErrorDescription equals: anError messageText ].! !
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 19:32:00'!
+ERROR!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:32:09'!
+createCartWith: anUndefinedObject 
+	self shouldBeImplemented.! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:34:53' prior: 50915220!
+test01
+
+	| cart cashier |
+	cart _ self createCart. 
+	cashier _ self createCashier.
+	
+	self should: [ cashier checkout: cart ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError | self assert: Cashier emptyCartErrorDescription equals: anError messageText ].! !
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 19:35:00'!
+ERROR!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:35:05'!
+createCart
+	self shouldBeImplemented.! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:35:25' prior: 50915255!
+createCart
+	
+	^ Cart with: self defaultCatalog.! !
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 19:35:27'!
+ERROR!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:35:37'!
+defaultCatalog
+	self shouldBeImplemented.! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:36:02' prior: 50915267!
+defaultCatalog
+	
+	^ {self validBook}.! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:36:27' prior: 50915272!
+defaultCatalog
+	
+	^ Set with: self validBook.! !
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 19:36:28'!
+ERROR!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:36:34'!
+validBook
+	self shouldBeImplemented.! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:36:46' prior: 50915284!
+validBook
+	
+	^ 'validBook'.! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:37:08'!
+productSoldByTheStore
+	
+	^ 'validBook'.! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:37:08' prior: 50915277!
+defaultCatalog
+	
+	^ Set with: self productSoldByTheStore.! !
+
+!methodRemoval: CheckoutTest #validBook stamp: 'IAR 11/1/2021 19:37:08'!
+validBook
+	
+	^ 'validBook'.!
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 19:37:17'!
+ERROR!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:37:23'!
+createCashier
+	self shouldBeImplemented.! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:37:31' prior: 50915308!
+createCashier
+	
+	^ Cashier new.! !
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 19:37:32'!
+ERROR!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:37:44'!
+checkout: aCart 
+	self shouldBeImplemented.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:38:20' prior: 50915319!
+checkout: aCart 
+	
+	self error: self class emptyCartErrorDescription.! !
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 19:38:21'!
+ERROR!
+!Cashier class methodsFor: 'error descriptions' stamp: 'IAR 11/1/2021 19:38:50'!
+emptyCartErrorDescription
+	self shouldBeImplemented.! !
+!Cashier class methodsFor: 'error descriptions' stamp: 'IAR 11/1/2021 19:39:15' prior: 50915332!
+emptyCartErrorDescription
+	
+	^ 'Cannot checkout empty cart'! !
+!Cashier class methodsFor: 'error descriptions' stamp: 'IAR 11/1/2021 19:39:22' prior: 50915337!
+emptyCartErrorDescription
+	
+	^ 'Cannot checkout empty cart'.! !
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 19:39:23'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 19:39:23'!
+PASSED!
+!Cart class methodsFor: 'instance creation' stamp: 'IAR 11/1/2021 19:40:06'!
+acceptingProductsFrom: aCatalog
+	
+	^self new initializeWith: aCatalog ! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:40:06' prior: 50915298!
+defaultCatalog
+	
+	^ Set acceptingProductsFrom: self productSoldByTheStore.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:40:06' prior: 50914883!
+test04CantAddBookNotIncludedInCatalog
+
+	| cart catalog |
+	
+	catalog _ OrderedCollection new.
+	cart _ Cart acceptingProductsFrom: catalog.
+	
+	self assertAdding: self bookGrowingOOSoft 
+		withQuantity: 1 
+		to: cart 
+		raises: Cart bookNotInCatalogErrorDescription.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:40:06' prior: 50914921!
+test07CantAddBookWithZeroQuantity
+
+	| cart book catalog |
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection acceptingProductsFrom: book.
+	cart _ Cart acceptingProductsFrom: catalog.
+	
+	self assertAdding: book 
+		withQuantity: 0 
+		to: cart 
+		raises: Cart invalidQuantityErrorDescription.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:40:06' prior: 50915167!
+test05CartIncludesAllOccurrencesOfBookAfterAdding
+
+	| cart book catalog quantity |
+	
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection acceptingProductsFrom:  book.
+	quantity _ 5.
+	
+	cart _ Cart acceptingProductsFrom: catalog.
+	cart add: book of: quantity.
+	
+	self assert: quantity equals: (cart occurrencesOf: book).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:40:06' prior: 50915260!
+createCart
+	
+	^ Cart acceptingProductsFrom: self defaultCatalog.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:40:06' prior: 50915180!
+test03CartIncludesBookAfterAdding
+
+	| cart book catalog |
+
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection acceptingProductsFrom:  book.
+	cart _ Cart acceptingProductsFrom: catalog.
+	cart add: book of: 1.
+	
+	self assert: (cart includes: book).! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:40:06' prior: 50914932!
+test08CantAddBookWithNegativeQuantity
+
+	| cart book catalog |
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection acceptingProductsFrom: book.
+	cart _ Cart acceptingProductsFrom: catalog.
+	
+	self assertAdding: book 
+		withQuantity: -1 
+		to: cart 
+		raises: Cart invalidQuantityErrorDescription.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:40:06' prior: 50915157!
+test02CartWithABookShouldNotBeEmpty
+
+	| cart book catalog |
+	
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection acceptingProductsFrom:  book.
+	cart _ Cart acceptingProductsFrom: catalog.
+	cart add: book of: 1.
+	
+	self deny: cart isEmpty ! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:40:06' prior: 50915190!
+test06CartContainsTotalOccurrencesAfterAddingItMultipleTimes
+
+	"paso de una pero lo dejamos porque no sabiamos como funcioanaba el bag"
+	| cart book catalog quantity |
+	
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection acceptingProductsFrom:  book.
+	quantity _ 5.
+	
+	cart _ Cart acceptingProductsFrom: catalog.
+	cart add: book of: quantity.
+	cart add: book of: quantity.
+	
+	self assert: (quantity*2) equals: (cart occurrencesOf: book).! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:40:06' prior: 50914856!
+test01NewCartIsEmpty
+
+	| cart catalog |
+
+	catalog _ OrderedCollection new.
+	cart _ Cart acceptingProductsFrom: catalog.
+	
+	self assert: cart isEmpty.! !
+
+!methodRemoval: Cart class #with: stamp: 'IAR 11/1/2021 19:40:06'!
+with: aCatalog
+	
+	^self new initializeWith: aCatalog !
+!Cart methodsFor: 'assertions' stamp: 'IAR 11/1/2021 19:40:32' prior: 50914990!
+assertQuantityIsPositive: aQuantity
+
+	^aQuantity strictlyPositive ifTrue: [ self error: self class invalidQuantityErrorDescription ]! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'IAR 11/1/2021 19:40:37'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'IAR 11/1/2021 19:40:37'!
+ERROR!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'IAR 11/1/2021 19:40:37'!
+ERROR!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'IAR 11/1/2021 19:40:37'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'IAR 11/1/2021 19:40:37'!
+ERROR!
+
+!testRun: #CartTest #test06CartContainsTotalOccurrencesAfterAddingItMultipleTimes stamp: 'IAR 11/1/2021 19:40:37'!
+ERROR!
+
+!testRun: #CartTest #test07CantAddBookWithZeroQuantity stamp: 'IAR 11/1/2021 19:40:37'!
+ERROR!
+
+!testRun: #CartTest #test08CantAddBookWithNegativeQuantity stamp: 'IAR 11/1/2021 19:40:37'!
+ERROR!
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 19:40:37'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'IAR 11/1/2021 19:42:15' prior: 50915434!
+test02CartWithABookShouldNotBeEmpty
+
+	| cart book catalog |
+	
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with: book.
+	cart _ Cart acceptingProductsFrom: catalog.
+	cart add: book of: 1.
+	
+	self deny: cart isEmpty ! !
+!CartTest methodsFor: 'tests' stamp: 'IAR 11/1/2021 19:42:28' prior: 50915409!
+test03CartIncludesBookAfterAdding
+
+	| cart book catalog |
+
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with: book.
+	cart _ Cart acceptingProductsFrom: catalog.
+	cart add: book of: 1.
+	
+	self assert: (cart includes: book).! !
+!CartTest methodsFor: 'tests' stamp: 'IAR 11/1/2021 19:42:44' prior: 50915389!
+test05CartIncludesAllOccurrencesOfBookAfterAdding
+
+	| cart book catalog quantity |
+	
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with: book.
+	quantity _ 5.
+	
+	cart _ Cart acceptingProductsFrom: catalog.
+	cart add: book of: quantity.
+	
+	self assert: quantity equals: (cart occurrencesOf: book).! !
+!CartTest methodsFor: 'tests' stamp: 'IAR 11/1/2021 19:42:51' prior: 50915445!
+test06CartContainsTotalOccurrencesAfterAddingItMultipleTimes
+
+	"paso de una pero lo dejamos porque no sabiamos como funcioanaba el bag"
+	| cart book catalog quantity |
+	
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with: book.
+	quantity _ 5.
+	
+	cart _ Cart acceptingProductsFrom: catalog.
+	cart add: book of: quantity.
+	cart add: book of: quantity.
+	
+	self assert: (quantity*2) equals: (cart occurrencesOf: book).! !
+!CartTest methodsFor: 'tests' stamp: 'IAR 11/1/2021 19:43:01' prior: 50915376!
+test07CantAddBookWithZeroQuantity
+
+	| cart book catalog |
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with: book.
+	cart _ Cart acceptingProductsFrom: catalog.
+	
+	self assertAdding: book 
+		withQuantity: 0 
+		to: cart 
+		raises: Cart invalidQuantityErrorDescription.! !
+!CartTest methodsFor: 'tests' stamp: 'IAR 11/1/2021 19:43:08' prior: 50915421!
+test08CantAddBookWithNegativeQuantity
+
+	| cart book catalog |
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with: book.
+	cart _ Cart acceptingProductsFrom: catalog.
+	
+	self assertAdding: book 
+		withQuantity: -1 
+		to: cart 
+		raises: Cart invalidQuantityErrorDescription.! !
+
+!testRun: #CartTest #test08CantAddBookWithNegativeQuantity stamp: 'IAR 11/1/2021 19:43:12'!
+FAILURE!
+
+!testRun: #CartTest #test08CantAddBookWithNegativeQuantity stamp: 'IAR 11/1/2021 19:43:16'!
+FAILURE!
+
+!testRun: #CartTest #test08CantAddBookWithNegativeQuantity stamp: 'IAR 11/1/2021 19:44:45'!
+FAILURE!
+
+!testRun: #CartTest #test07CantAddBookWithZeroQuantity stamp: 'IAR 11/1/2021 19:45:35'!
+FAILURE!
+
+!testRun: #CartTest #test06CartContainsTotalOccurrencesAfterAddingItMultipleTimes stamp: 'IAR 11/1/2021 19:45:43'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'IAR 11/1/2021 19:46:32'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'IAR 11/1/2021 19:46:32'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'IAR 11/1/2021 19:46:32'!
+ERROR!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'IAR 11/1/2021 19:46:32'!
+ERROR!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'IAR 11/1/2021 19:46:32'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'IAR 11/1/2021 19:46:32'!
+ERROR!
+
+!testRun: #CartTest #test06CartContainsTotalOccurrencesAfterAddingItMultipleTimes stamp: 'IAR 11/1/2021 19:46:32'!
+ERROR!
+
+!testRun: #CartTest #test07CantAddBookWithZeroQuantity stamp: 'IAR 11/1/2021 19:46:32'!
+FAILURE!
+
+!testRun: #CartTest #test08CantAddBookWithNegativeQuantity stamp: 'IAR 11/1/2021 19:46:32'!
+FAILURE!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'IAR 11/1/2021 19:46:40'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'IAR 11/1/2021 19:46:45'!
+ERROR!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'IAR 11/1/2021 19:46:45'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'IAR 11/1/2021 19:48:51' prior: 50915509!
+test02CartWithABookShouldNotBeEmpty
+
+	| cart book catalog |
+	
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with: book.
+	cart _ Cart acceptingProductsFrom: catalog.
+	cart add: 1 of: book.
+	
+	self deny: cart isEmpty ! !
+!CartTest methodsFor: 'tests' stamp: 'IAR 11/1/2021 19:49:03' prior: 50915519!
+test03CartIncludesBookAfterAdding
+
+	| cart book catalog |
+
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with: book.
+	cart _ Cart acceptingProductsFrom: catalog.
+	cart add: 1 of: book.
+	
+	self assert: (cart includes: book).! !
+!CartTest methodsFor: 'tests' stamp: 'IAR 11/1/2021 19:49:25' prior: 50915530!
+test05CartIncludesAllOccurrencesOfBookAfterAdding
+
+	| cart book catalog quantity |
+	
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with: book.
+	quantity _ 5.
+	
+	cart _ Cart acceptingProductsFrom: catalog.
+	cart add: quantity of: book.
+	
+	self assert: quantity equals: (cart occurrencesOf: book).! !
+!CartTest methodsFor: 'tests' stamp: 'IAR 11/1/2021 19:49:33' prior: 50915543!
+test06CartContainsTotalOccurrencesAfterAddingItMultipleTimes
+
+	"paso de una pero lo dejamos porque no sabiamos como funcioanaba el bag"
+	| cart book catalog quantity |
+	
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with: book.
+	quantity _ 5.
+	
+	cart _ Cart acceptingProductsFrom: catalog.
+	cart add: quantity of: book.
+	cart add: book of: quantity.
+	
+	self assert: (quantity*2) equals: (cart occurrencesOf: book).! !
+!CartTest methodsFor: 'tests' stamp: 'IAR 11/1/2021 19:49:43' prior: 50915670!
+test06CartContainsTotalOccurrencesAfterAddingItMultipleTimes
+
+	"paso de una pero lo dejamos porque no sabiamos como funcioanaba el bag"
+	| cart book catalog quantity |
+	
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with: book.
+	quantity _ 5.
+	
+	cart _ Cart acceptingProductsFrom: catalog.
+	cart add: quantity of: book.
+	cart add: quantity of: book.
+	
+	self assert: (quantity*2) equals: (cart occurrencesOf: book).! !
+!CartTest methodsFor: 'assertions' stamp: 'IAR 11/1/2021 19:50:04' prior: 50915144!
+assertAdding: aBook withQuantity: aQuantity to: aCart raises: anErrorMessage.
+
+	self should: [ aCart add: aQuantity of: aBook]
+		raise: Error -  MessageNotUnderstood
+		withExceptionDo: [ :anError | 
+			self assert: anErrorMessage equals: anError messageText .
+			self deny: (aCart includes: aBook) ] ! !
+!CartTest methodsFor: 'assertions' stamp: 'IAR 11/1/2021 19:50:10' prior: 50915703!
+assertAdding: aBook withQuantity: aQuantity to: aCart raises: anErrorMessage.
+
+	self should: [ aCart add: aQuantity of: aBook ]
+		raise: Error -  MessageNotUnderstood
+		withExceptionDo: [ :anError | 
+			self assert: anErrorMessage equals: anError messageText .
+			self deny: (aCart includes: aBook) ] ! !
+!CartTest methodsFor: 'books' stamp: 'IAR 11/1/2021 19:50:18' prior: 50914955!
+bookGrowingOOSoft
+
+	^'growing object-oriented software guided by tests'.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'IAR 11/1/2021 19:50:22'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'IAR 11/1/2021 19:50:22'!
+ERROR!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'IAR 11/1/2021 19:50:22'!
+ERROR!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'IAR 11/1/2021 19:50:22'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'IAR 11/1/2021 19:50:22'!
+ERROR!
+
+!testRun: #CartTest #test06CartContainsTotalOccurrencesAfterAddingItMultipleTimes stamp: 'IAR 11/1/2021 19:50:22'!
+ERROR!
+
+!testRun: #CartTest #test07CantAddBookWithZeroQuantity stamp: 'IAR 11/1/2021 19:50:22'!
+FAILURE!
+
+!testRun: #CartTest #test08CantAddBookWithNegativeQuantity stamp: 'IAR 11/1/2021 19:50:22'!
+FAILURE!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'IAR 11/1/2021 19:50:27'!
+ERROR!
+!Cart methodsFor: 'assertions' stamp: 'IAR 11/1/2021 19:50:44' prior: 50915474!
+assertQuantityIsPositive: aQuantity
+
+	^aQuantity strictlyPositive ifFalse: [ self error: self class invalidQuantityErrorDescription ]! !
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'IAR 11/1/2021 19:50:45'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'IAR 11/1/2021 19:50:46'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'IAR 11/1/2021 19:50:46'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'IAR 11/1/2021 19:50:46'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'IAR 11/1/2021 19:50:46'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'IAR 11/1/2021 19:50:46'!
+PASSED!
+
+!testRun: #CartTest #test06CartContainsTotalOccurrencesAfterAddingItMultipleTimes stamp: 'IAR 11/1/2021 19:50:46'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithZeroQuantity stamp: 'IAR 11/1/2021 19:50:46'!
+PASSED!
+
+!testRun: #CartTest #test08CantAddBookWithNegativeQuantity stamp: 'IAR 11/1/2021 19:50:46'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 19:50:58'!
+ERROR!
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 19:51:10'!
+ERROR!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:51:31' prior: 50915358!
+defaultCatalog
+	
+	^ Set with: self productSoldByTheStore.! !
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 19:51:39'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 19:51:39'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 19:51:43'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 19:51:43'!
+PASSED!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:52:07'!
+test02
+
+	| cart cashier |
+	cart _ self createCart. 
+	cashier _ self createCashier.
+	
+	self should: [ cashier checkout: cart ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError | self assert: Cashier emptyCartErrorDescription equals: anError messageText ].! !
+
+!methodRemoval: CheckoutTest #createCartWith: stamp: 'IAR 11/1/2021 19:53:07'!
+createCartWith: anUndefinedObject 
+	self shouldBeImplemented.!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:56:10' prior: 50915313!
+createCashier
+	
+	^ Cashier sourcingPricesFrom: self defaultPriceList.! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:58:05' prior: 50915817!
+test02
+
+	| cart cashier |
+	cart _ self createCart. 
+	cashier _ self createCashier.
+	
+	self assert: 100 equals: cashier checkout: cart.! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:58:13' prior: 50915840!
+test02
+
+	| cart cashier |
+	cart _ self createCart. 
+	cashier _ self createCashier.
+	
+	self assert: 100 equals: (cashier checkout: cart).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:59:18' prior: 50915848!
+test02
+
+	| cart cashier |
+	cart _ self createCart. 
+	cashier _ self createCashier.
+	
+	self assert: self productSoldByTheStorePrice equals: (cashier checkout: cart).! !
+
+!testRun: #CheckoutTest #test02 stamp: 'IAR 11/1/2021 19:59:22'!
+ERROR!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 19:59:28'!
+defaultPriceList
+	self shouldBeImplemented.! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:00:04' prior: 50915834!
+createCashier
+	
+	"^ Cashier sourcingPricesFrom: self defaultPriceList."
+	^ Cashier new.! !
+
+!testRun: #CheckoutTest #test02 stamp: 'IAR 11/1/2021 20:00:09'!
+ERROR!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:00:15'!
+productSoldByTheStorePrice
+	self shouldBeImplemented.! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:00:33' prior: 50915880!
+productSoldByTheStorePrice
+	
+	^ 100.! !
+
+!testRun: #CheckoutTest #test02 stamp: 'IAR 11/1/2021 20:00:35'!
+ERROR!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:00:50' prior: 50915856!
+test02
+
+	| cart cashier |
+	cart _ self createCart.
+	cashier _ self createCashier.
+	
+	self assert: self productSoldByTheStorePrice equals: (cashier checkout: cart).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:01:20' prior: 50915892!
+test02
+
+	| cart cashier |
+	cart _ self createCart.
+	cashier _ self createCashier.
+	
+	cart add: 1 of: self productSoldByTheStore.
+	self assert: self productSoldByTheStorePrice equals: (cashier checkout: cart).! !
+
+!testRun: #CheckoutTest #test02 stamp: 'IAR 11/1/2021 20:01:28'!
+ERROR!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:02:11' prior: 50915324!
+checkout: aCart 
+	
+	aCart isEmpty ifTrue: [ self error: self class emptyCartErrorDescription ].! !
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 20:02:15'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'IAR 11/1/2021 20:02:15'!
+FAILURE!
+
+!testRun: #CheckoutTest #test02 stamp: 'IAR 11/1/2021 20:02:15'!
+FAILURE!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:03:07' prior: 50915913!
+checkout: aCart 
+	
+	aCart isEmpty ifTrue: [ self error: self class emptyCartErrorDescription ].
+	^ 100.! !
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 20:03:17'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'IAR 11/1/2021 20:03:17'!
+PASSED!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:03:33' prior: 50915901!
+test02
+
+	| cart cashier |
+	cart _ self createCart.
+	cashier _ self createCashier.
+	
+	cart add: 1 of: self productSoldByTheStore.
+	
+	self assert: self productSoldByTheStorePrice equals: (cashier checkout: cart).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:05:42'!
+test03
+
+	| cart cashier quantity |
+	cart _ self createCart.
+	cashier _ self createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: self productSoldByTheStore.
+	
+	self assert: (quantity * self productSoldByTheStorePrice) equals: (cashier checkout: cart).! !
+
+!testRun: #CheckoutTest #test03 stamp: 'IAR 11/1/2021 20:05:45'!
+FAILURE!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:13:38' prior: 50915926!
+checkout: aCart 
+	
+	aCart isEmpty ifTrue: [ self error: self class emptyCartErrorDescription ].
+	^ aCart totalPriceXX: 100.! !
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 20:13:46'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'IAR 11/1/2021 20:13:46'!
+ERROR!
+
+!testRun: #CheckoutTest #test03 stamp: 'IAR 11/1/2021 20:13:46'!
+ERROR!
+
+!testRun: #CheckoutTest #test02 stamp: 'IAR 11/1/2021 20:13:55'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:14:09'!
+totalPriceXX: aSmallInteger 
+	self shouldBeImplemented.! !
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-it2-vm/Packages/TerseGuide.pck.st----!
+!Cart methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:17:35' prior: 50915977!
+totalPriceXX: aPrice
+
+	^ contents sum: [ :aProduct | aPrice ].! !
+
+!testRun: #CheckoutTest #test02 stamp: 'IAR 11/1/2021 20:17:36'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'IAR 11/1/2021 20:17:41'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 20:17:43'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'IAR 11/1/2021 20:17:43'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'IAR 11/1/2021 20:17:43'!
+PASSED!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:20:46'!
+test04
+
+	| cart cashier quantity |
+	cart _ self createCart.
+	cashier _ self createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: self productSoldByTheStore.
+	cart add: 1 of: 'otherProductSoldByTheStore'.
+
+	
+	self assert: 550 equals: (cashier checkout: cart).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:21:06'!
+otherProductSoldByTheStore
+
+	^ 'otherProductSoldByTheStore'! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:21:06' prior: 50918925!
+test04
+
+	| cart cashier quantity |
+	cart _ self createCart.
+	cashier _ self createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: self productSoldByTheStore.
+	cart add: 1 of: self otherProductSoldByTheStore.
+
+	
+	self assert: 550 equals: (cashier checkout: cart).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:21:24' prior: 50918936!
+otherProductSoldByTheStore
+
+	^ 'Platero y Yo'.! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:21:31'!
+otherProductSoldByTheStorePrice
+
+	^ 50.! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:21:51' prior: 50915803!
+defaultCatalog
+	
+	^ Set
+		with: self productSoldByTheStore
+		with: self otherProductSoldByTheStore.! !
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 20:21:55'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'IAR 11/1/2021 20:21:55'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'IAR 11/1/2021 20:21:55'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'IAR 11/1/2021 20:21:55'!
+FAILURE!
+
+!testRun: #CheckoutTest #test04 stamp: 'IAR 11/1/2021 20:21:55'!
+FAILURE!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:24:51' prior: 50915872!
+createCashier
+	
+	^ Cashier sourcingPricesFrom: self defaultPriceList.! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:26:03' prior: 50915867!
+defaultPriceList
+	
+	^ { self productSoldByTheStore -> self productSoldByTheStorePrice }.! !
+
+{ self productSoldByTheStore -> self productSoldByTheStorePrice }!
+
+self productSoldByTheStore -> self productSoldByTheStorePrice !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:28:02' prior: 50918987!
+defaultPriceList
+	
+	^ self productSoldByTheStore! !
+
+	^ self productSoldByTheStore!
+
+self productSoldByTheStore.!
+
+'hola' -> 100!
+
+{'hola' -> 100}!
+
+{'hola' -> 100. 'hola' -> 100}!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:31:04' prior: 50918998!
+defaultPriceList
+	
+	^ Dictionary new add: (self productSoldByTheStore -> self productSoldByTheStorePrice )! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:31:57' prior: 50919007!
+defaultPriceList
+	
+	^ Dictionary new add: (self productSoldByTheStore -> self productSoldByTheStorePrice);
+		add: (self otherProductSoldByTheStore -> self otherProductSoldByTheStorePrice); yourself! !
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 20:32:13'!
+ERROR!
+
+!testRun: #CheckoutTest #test02 stamp: 'IAR 11/1/2021 20:32:13'!
+ERROR!
+
+!testRun: #CheckoutTest #test03 stamp: 'IAR 11/1/2021 20:32:13'!
+ERROR!
+
+!testRun: #CheckoutTest #test04 stamp: 'IAR 11/1/2021 20:32:13'!
+ERROR!
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 20:32:19'!
+ERROR!
+!Cashier class methodsFor: 'instance creation' stamp: 'IAR 11/1/2021 20:32:25'!
+sourcingPricesFrom: aDictionary 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeSourcingPricesFrom: aDictionary ! !
+!Cashier class methodsFor: 'instance creation' stamp: 'IAR 11/1/2021 20:32:46' prior: 50919035!
+sourcingPricesFrom: aPriceList 
+
+	^self new initializeSourcingPricesFrom: aPriceList ! !
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 20:32:47'!
+ERROR!
+
+!classDefinition: #Cashier category: 'TusLibros-It1' stamp: 'IAR 11/1/2021 20:33:00'!
+Object subclass: #Cashier
+	instanceVariableNames: 'priceList'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+!Cashier methodsFor: 'initialization' stamp: 'IAR 11/1/2021 20:33:00'!
+initializeSourcingPricesFrom: aPriceList 
+	self shouldBeImplemented.
+	priceList := aPriceList.! !
+!Cashier methodsFor: 'initialization' stamp: 'IAR 11/1/2021 20:33:07' prior: 50919059!
+initializeSourcingPricesFrom: aPriceList 
+	
+	priceList := aPriceList.! !
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 20:33:08'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 20:33:10'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'IAR 11/1/2021 20:33:10'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'IAR 11/1/2021 20:33:10'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'IAR 11/1/2021 20:33:10'!
+FAILURE!
+
+!testRun: #CheckoutTest #test04 stamp: 'IAR 11/1/2021 20:33:10'!
+FAILURE!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:33:29' prior: 50915961!
+checkout: aCart 
+	
+	aCart isEmpty ifTrue: [ self error: self class emptyCartErrorDescription ].
+	^ aCart totalPriceXX: priceList.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:33:42' prior: 50918908!
+totalPriceXX: aPriceList
+
+	^ contents sum: [ :aProduct | aPriceList ].! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'IAR 11/1/2021 20:36:23' prior: 50919092!
+totalPriceXX: aPriceList
+
+	^ contents sum: [ :aProduct | aPriceList at: aProduct 
+		ifAbsent: [ self error: 'Producto no en catalogo' ] ].! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'IAR 11/1/2021 20:36:26'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'IAR 11/1/2021 20:36:26'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'IAR 11/1/2021 20:36:26'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'IAR 11/1/2021 20:36:26'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'IAR 11/1/2021 20:36:26'!
+PASSED!
+
+!testRun: #CartTest #test06CartContainsTotalOccurrencesAfterAddingItMultipleTimes stamp: 'IAR 11/1/2021 20:36:26'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithZeroQuantity stamp: 'IAR 11/1/2021 20:36:26'!
+PASSED!
+
+!testRun: #CartTest #test08CantAddBookWithNegativeQuantity stamp: 'IAR 11/1/2021 20:36:26'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'IAR 11/1/2021 20:36:29'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'IAR 11/1/2021 20:36:29'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'IAR 11/1/2021 20:36:29'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'IAR 11/1/2021 20:36:29'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'IAR 11/1/2021 20:36:29'!
+PASSED!
+
+!testRun: #CartTest #test06CartContainsTotalOccurrencesAfterAddingItMultipleTimes stamp: 'IAR 11/1/2021 20:36:29'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithZeroQuantity stamp: 'IAR 11/1/2021 20:36:29'!
+PASSED!
+
+!testRun: #CartTest #test08CantAddBookWithNegativeQuantity stamp: 'IAR 11/1/2021 20:36:29'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'IAR 11/1/2021 20:36:29'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'IAR 11/1/2021 20:36:29'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'IAR 11/1/2021 20:36:29'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'IAR 11/1/2021 20:36:29'!
+PASSED!
