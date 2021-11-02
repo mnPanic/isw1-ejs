@@ -1565,3 +1565,3055 @@ PASSED!
 PASSED!
 
 ----QUIT----(1 November 2021 21:44:12) CuisUniversity-4913.image priorSource: 18661997!
+
+----STARTUP---- (1 November 2021 23:34:07) as /home/mnpanic/Documents/dc/ing1/cuis/cuis-tuslibros/CuisUniversity-4913.image!
+
+
+----End fileIn of /home/mnpanic/repos/uba/ing1-repos/isw1-ejs/20-TusLibros/it2/TusLibros-It2.st----!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/1/2021 23:37:25'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/1/2021 23:37:25'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/1/2021 23:37:25'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/1/2021 23:37:25'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/1/2021 23:37:25'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/1/2021 23:37:27'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/1/2021 23:37:27'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/1/2021 23:37:27'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/1/2021 23:37:27'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/1/2021 23:37:27'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/1/2021 23:37:27'!
+PASSED!
+
+!testRun: #CartTest #test06CartContainsTotalOccurrencesAfterAddingItMultipleTimes stamp: 'MP 11/1/2021 23:37:27'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithZeroQuantity stamp: 'MP 11/1/2021 23:37:27'!
+PASSED!
+
+!testRun: #CartTest #test08CantAddBookWithNegativeQuantity stamp: 'MP 11/1/2021 23:37:27'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/1/2021 23:37:27'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/1/2021 23:37:27'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/1/2021 23:37:27'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/1/2021 23:37:27'!
+PASSED!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:38:52' prior: 50915049!
+test04
+
+	| cart cashier quantity |
+	cart _ self createCart.
+	cashier _ self createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: self productSoldByTheStore.
+	cart add: 1 of: self otherProductSoldByTheStore.
+
+	
+	self assert: 550 equals: (cashier checkout: cart).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:38:55' prior: 50915234!
+test04
+
+	| cart cashier quantity |
+	cart _ self createCart.
+	cashier _ self createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: self productSoldByTheStore.
+	cart add: 1 of: self otherProductSoldByTheStore.
+	
+	self assert: 550 equals: (cashier checkout: cart).! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:39:43' prior: 50915151!
+checkout: aCart 
+	
+	aCart isEmpty ifTrue: [ self error: self class emptyCartErrorDescription ].
+	^ aCart totalPrice.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:40:07'!
+totalPrice
+
+	^ contents sum: [ :aProduct | catalog at: aProduct 
+		ifAbsent: [ self error: 'Producto no en catalogo' ] ].! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:41:23' prior: 50915264!
+totalPrice
+
+	^ contents sum: [
+		:aProduct | catalog at: aProduct ifAbsent: [ self error: 'Producto no en catalogo' ]
+	].! !
+
+!methodRemoval: Cart #totalPriceXX: stamp: 'MP 11/1/2021 23:41:38'!
+totalPriceXX: aPriceList
+
+	^ contents sum: [ :aProduct | aPriceList at: aProduct 
+		ifAbsent: [ self error: 'Producto no en catalogo' ] ].!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/1/2021 23:41:46'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/1/2021 23:41:46'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/1/2021 23:41:46'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/1/2021 23:41:46'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/1/2021 23:41:46'!
+PASSED!
+
+!testRun: #CartTest #test06CartContainsTotalOccurrencesAfterAddingItMultipleTimes stamp: 'MP 11/1/2021 23:41:46'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithZeroQuantity stamp: 'MP 11/1/2021 23:41:46'!
+PASSED!
+
+!testRun: #CartTest #test08CantAddBookWithNegativeQuantity stamp: 'MP 11/1/2021 23:41:46'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/1/2021 23:41:46'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/1/2021 23:41:46'!
+ERROR!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/1/2021 23:41:46'!
+ERROR!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/1/2021 23:41:46'!
+ERROR!
+
+Object subclass: #TestObjectFactory
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+
+!classDefinition: #TestObjectFactory category: 'TusLibros-It1' stamp: 'MP 11/1/2021 23:43:10'!
+Object subclass: #TestObjectFactory
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+!TestObjectFactory methodsFor: 'nil' stamp: 'MP 11/1/2021 23:43:42'!
+createCart
+
+	^Cart acceptingProductsFrom: self defaultCatalog.! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:45:37'!
+defaultCatalog
+
+	^Dictionary new;
+		at: self firstProductSoldByTheStore put: self firstProductSoldByTheStorePrice;
+		at: self secondProductSoldByTheStore put: self secondProductSoldByTheStore;
+		yourself.! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:45:40' prior: 50915335!
+defaultCatalog
+
+	^Dictionary new;
+		at: self firstProductSoldByTheStore put: self firstProductSoldByTheStorePrice;
+		at: self secondProductSoldByTheStore put: self secondProductSoldByTheStore;
+		yourself.
+! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:45:45' prior: 50915345!
+defaultCatalog
+
+	^ Dictionary new;
+		at: self firstProductSoldByTheStore put: self firstProductSoldByTheStorePrice;
+		at: self secondProductSoldByTheStore put: self secondProductSoldByTheStore;
+		yourself.
+! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:45:48' prior: 50915330!
+createCart
+
+	^ Cart acceptingProductsFrom: self defaultCatalog.! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:46:03'!
+firstProductSoldByTheStore
+
+	^ 'firstBook'
+! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:46:12'!
+firstProductSoldByTheStorePrice
+
+	^ 100.! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:46:37'!
+secondProductSoldByTheStorePrice
+
+	^ 50.
+! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:46:48'!
+secondProductSoldByTheStore
+
+	^ 'second book'.
+! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:47:00' prior: 50915385!
+secondProductSoldByTheStore
+
+	^ 'da baibol'.
+! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:47:08' prior: 50915390!
+secondProductSoldByTheStore
+
+	^ ''.
+! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:47:10' prior: 50915395!
+secondProductSoldByTheStore
+
+	^ 'The Bible.'.
+! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:47:10' prior: 50915400!
+secondProductSoldByTheStore
+
+	^ 'The Bible'.
+! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:47:31' prior: 50915370!
+firstProductSoldByTheStore
+
+	^ ''
+! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:47:57' prior: 50915410!
+firstProductSoldByTheStore
+
+	^ ''
+! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:48:10' prior: 50915415!
+firstProductSoldByTheStore
+
+	^ 'growing object-oriented software guided by tests'
+! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:48:12' prior: 50915420!
+firstProductSoldByTheStore
+
+	^ 'growing object-oriented software guided by tests'
+! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:48:19' prior: 50915426!
+firstProductSoldByTheStore
+
+	"The one true way of designing systems."
+	^ 'growing object-oriented software guided by tests'
+! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:48:37' prior: 50915432!
+firstProductSoldByTheStore
+
+	"The one true way of designing systems."
+	^ 'growing object-oriented software guided by tests'
+! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:49:04'!
+createCashier
+
+	^ Cashier sourcingPricesFrom: self defaultCatalog.! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:53:01' prior: 50915447!
+createCashier
+
+	^ Cashier new.! !
+
+!methodRemoval: Cashier class #sourcingPricesFrom: stamp: 'MP 11/1/2021 23:53:09'!
+sourcingPricesFrom: aPriceList 
+
+	^self new initializeSourcingPricesFrom: aPriceList !
+
+!methodRemoval: Cashier #initializeSourcingPricesFrom: stamp: 'MP 11/1/2021 23:53:15'!
+initializeSourcingPricesFrom: aPriceList 
+	
+	priceList := aPriceList.!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:53:28' prior: 50915258!
+checkout: aCart 
+	
+	aCart isEmpty ifTrue: [ self error: self class emptyCartErrorDescription ].
+
+	^ aCart totalPrice.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:53:30' prior: 50915468!
+checkout: aCart 
+	
+	aCart isEmpty ifTrue: [ self error: self class emptyCartErrorDescription ].
+
+	^ aCart totalPrice.
+! !
+
+!methodRemoval: CheckoutTest #createCart stamp: 'MP 11/1/2021 23:55:53'!
+createCart
+	
+	^ Cart acceptingProductsFrom: self defaultCatalog.!
+
+!methodRemoval: CheckoutTest #createCashier stamp: 'MP 11/1/2021 23:55:55'!
+createCashier
+	
+	^ Cashier sourcingPricesFrom: self defaultPriceList.!
+
+!classDefinition: #CheckoutTest category: 'TusLibros-It1' stamp: 'MP 11/1/2021 23:56:31'!
+TestCase subclass: #CheckoutTest
+	instanceVariableNames: 'testObjectFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:56:29' overrides: 16927572!
+setUp
+
+	testObjectFactory _ TestObjectFactory new.! !
+
+!methodRemoval: CheckoutTest #defaultPriceList stamp: 'MP 11/1/2021 23:59:25'!
+defaultPriceList
+	
+	^ Dictionary new add: (self productSoldByTheStore -> self productSoldByTheStorePrice);
+		add: (self otherProductSoldByTheStore -> self otherProductSoldByTheStorePrice); yourself!
+
+!methodRemoval: CheckoutTest #defaultCatalog stamp: 'MP 11/1/2021 23:59:29'!
+defaultCatalog
+	
+	^ Set
+		with: self productSoldByTheStore
+		with: self otherProductSoldByTheStore.!
+
+!methodRemoval: CheckoutTest #otherProductSoldByTheStore stamp: 'MP 11/1/2021 23:59:34'!
+otherProductSoldByTheStore
+
+	^ 'Platero y Yo'.!
+
+!methodRemoval: CheckoutTest #otherProductSoldByTheStorePrice stamp: 'MP 11/1/2021 23:59:36'!
+otherProductSoldByTheStorePrice
+
+	^ 50.!
+
+!methodRemoval: CheckoutTest #productSoldByTheStore stamp: 'MP 11/1/2021 23:59:38'!
+productSoldByTheStore
+	
+	^ 'validBook'.!
+
+!methodRemoval: CheckoutTest #productSoldByTheStorePrice stamp: 'MP 11/1/2021 23:59:40'!
+productSoldByTheStorePrice
+	
+	^ 100.!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:59:45' prior: 50915016!
+test01
+
+	| cart cashier |
+	cart _ testObjectFactory createCart. 
+	cashier _ self createCashier.
+	
+	self should: [ cashier checkout: cart ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError | self assert: Cashier emptyCartErrorDescription equals: anError messageText ].! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:59:47' prior: 50915535!
+test01
+
+	| cart cashier |
+	cart _ testObjectFactory createCart. 
+	cashier _ testObjectFactory createCashier.
+	
+	self should: [ cashier checkout: cart ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError | self assert: Cashier emptyCartErrorDescription equals: anError messageText ].! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:59:54' prior: 50915028!
+test02
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	
+	cart add: 1 of: testObjectFactory productSoldByTheStore.
+	
+	self assert: testObjectFactory productSoldByTheStorePrice equals: (cashier checkout: cart).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/1/2021 23:59:58' prior: 50915561!
+test02
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	
+	cart add: 1 of: testObjectFactory firstProductSoldByTheStore.
+	
+	self assert: testObjectFactory productSoldByTheStorePrice equals: (cashier checkout: cart).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:00:02' prior: 50915573!
+test02
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	
+	cart add: 1 of: testObjectFactory firstProductSoldByTheStore.
+	
+	self assert: testObjectFactory firstProductSoldByTheStorePrice equals: (cashier checkout: cart).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:00:08' prior: 50915038!
+test03
+
+	| cart cashier quantity |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	
+	self assert: (quantity * self productSoldByTheStorePrice) equals: (cashier checkout: cart).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:00:12' prior: 50915597!
+test03
+
+	| cart cashier quantity |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	
+	self assert: (quantity * testObjectFactory firstProductSoldByTheStorePrice) equals: (cashier checkout: cart).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:00:20' prior: 50915246!
+test04
+
+	| cart cashier quantity |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	cart add: 1 of: testObjectFactory otherProductSoldByTheStore.
+	
+	self assert: 550 equals: (cashier checkout: cart).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:00:24' prior: 50915623!
+test04
+
+	| cart cashier quantity |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	cart add: 1 of: testObjectFactory secondProductSoldByTheStore.
+	
+	self assert: 550 equals: (cashier checkout: cart).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:03:46' prior: 50915637!
+test04
+
+	| cart cashier quantity expectedPrice |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	cart add: 1 of: testObjectFactory secondProductSoldByTheStore.
+	
+	expectedPrice _
+		(quantity * testObjectFactory firstProductSoldByTheStorePrice) +
+		(testObjectFactory secondProductSoldByTheStorePrice)
+	
+	self assert: expectedPrice equals: (cashier checkout: cart).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:04:00' prior: 50915651!
+test04
+
+	| cart cashier quantity expectedRecepit |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	cart add: 1 of: testObjectFactory secondProductSoldByTheStore.
+	
+	expectedRecepit _
+		(quantity * testObjectFactory firstProductSoldByTheStorePrice) +
+		(testObjectFactory secondProductSoldByTheStorePrice)
+	
+	self assert: expectedRecepit equals: (cashier checkout: cart).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:04:12' prior: 50915670!
+test04
+
+	| cart cashier quantity expectedRecepit |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	cart add: 1 of: testObjectFactory secondProductSoldByTheStore.
+	
+	expectedRecepit _
+		(quantity * testObjectFactory firstProductSoldByTheStorePrice) +
+		(testObjectFactory secondProductSoldByTheStorePrice).
+	
+	self assert: expectedRecepit equals: (cashier checkout: cart).! !
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 00:04:15'!
+ERROR!
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:04:32' prior: 50915355!
+defaultCatalog
+
+	^ Dictionary new
+		at: self firstProductSoldByTheStore put: self firstProductSoldByTheStorePrice;
+		at: self secondProductSoldByTheStore put: self secondProductSoldByTheStore;
+		yourself.
+! !
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 00:04:35'!
+ERROR!
+
+d _ Dictionary new at: 'a' put: 1; at: 'b' put: 2;yourself.!
+
+d includes: 'a'.!
+
+d includes: 1.!
+
+d includesKey: 'a'.!
+
+----End fileIn of /home/mnpanic/Documents/dc/ing1/cuis/cuis-tuslibros/Packages/TerseGuide.pck.st----!
+!Cart methodsFor: 'assertions' stamp: 'MP 11/2/2021 00:08:14' prior: 50915083!
+assertBookIncludedInCatalog: aBook
+
+	^ (catalog includesKey: aBook) ifFalse: [ self error: self class bookNotInCatalogErrorDescription ]! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 00:08:15'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 00:08:15'!
+ERROR!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 00:08:15'!
+ERROR!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 00:08:15'!
+ERROR!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 00:08:15'!
+ERROR!
+
+!testRun: #CartTest #test06CartContainsTotalOccurrencesAfterAddingItMultipleTimes stamp: 'MP 11/2/2021 00:08:15'!
+ERROR!
+
+!testRun: #CartTest #test07CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 00:08:15'!
+ERROR!
+
+!testRun: #CartTest #test08CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 00:08:15'!
+ERROR!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 00:08:15'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 00:08:15'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 00:08:15'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 00:08:15'!
+ERROR!
+!Cart methodsFor: 'assertions' stamp: 'MP 11/2/2021 00:08:19' prior: 50918651!
+assertBookIncludedInCatalog: aBook
+
+	^ (catalog includesKey: aBook) ifFalse: [ self error: self class bookNotInCatalogErrorDescription ].! !
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 00:08:24'!
+ERROR!
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:09:21' prior: 50915710!
+defaultCatalog
+
+	^ Dictionary new
+		at: self firstProductSoldByTheStore put: self firstProductSoldByTheStorePrice;
+		at: self secondProductSoldByTheStore put: self secondProductSoldByTheStorePrice;
+		yourself.
+! !
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 00:09:22'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 00:09:22'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 00:09:22'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 00:09:22'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 00:09:26'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 00:09:26'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 00:09:26'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 00:09:26'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 00:09:26'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 00:09:27'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 00:09:27'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 00:09:27'!
+ERROR!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 00:09:27'!
+ERROR!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 00:09:27'!
+ERROR!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 00:09:27'!
+ERROR!
+
+!testRun: #CartTest #test06CartContainsTotalOccurrencesAfterAddingItMultipleTimes stamp: 'MP 11/2/2021 00:09:27'!
+ERROR!
+
+!testRun: #CartTest #test07CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 00:09:27'!
+ERROR!
+
+!testRun: #CartTest #test08CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 00:09:27'!
+ERROR!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 00:09:27'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 00:09:27'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 00:09:27'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 00:09:27'!
+PASSED!
+
+!classDefinition: #CartTest category: 'TusLibros-It1' stamp: 'MP 11/2/2021 00:10:19'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'testObjectFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+!CartTest methodsFor: 'tests' stamp: 'MP 11/2/2021 00:10:17' overrides: 16927572!
+setUp
+
+	testObjectFactory _ TestObjectFactory new.! !
+!CartTest methodsFor: 'tests' stamp: 'MP 11/2/2021 00:11:04' prior: 50914856!
+test01NewCartIsEmpty
+
+	| cart |
+
+	cart _ testObjectFactory createCart.
+	
+	self assert: cart isEmpty.! !
+
+!methodRemoval: CartTest #bookGrowingOOSoft stamp: 'MP 11/2/2021 00:11:16'!
+bookGrowingOOSoft
+
+	^'growing object-oriented software guided by tests'.!
+!CartTest methodsFor: 'tests' stamp: 'MP 11/2/2021 00:11:28' prior: 50914863!
+test02CartWithABookShouldNotBeEmpty
+
+	| cart book catalog |
+	
+	cart _ testObjectFactory createCart.
+	cart add: 1 of: book.
+	
+	self deny: cart isEmpty ! !
+!CartTest methodsFor: 'tests' stamp: 'MP 11/2/2021 00:11:42' prior: 50918792!
+test02CartWithABookShouldNotBeEmpty
+
+	| cart book |
+	
+	cart _ testObjectFactory createCart.
+	cart add: book.
+	
+	self deny: cart isEmpty ! !
+!CartTest methodsFor: 'tests' stamp: 'MP 11/2/2021 00:11:59' prior: 50918800!
+test02CartWithABookShouldNotBeEmpty
+
+	| cart |
+	
+	cart _ testObjectFactory createCart.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self deny: cart isEmpty ! !
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 00:12:02'!
+ERROR!
+!Cart methodsFor: 'adding' stamp: 'MP 11/2/2021 00:12:15'!
+add: aProduct 
+	
+	self assertBookIncludedInCatalog: aProduct.
+	
+	contents add: aProduct withOccurrences: 1 .! !
+!Cart methodsFor: 'adding' stamp: 'MP 11/2/2021 00:12:23' prior: 50918818!
+add: aProduct 
+	
+	self add: 1 of: aProduct.! !
+!CartTest methodsFor: 'tests' stamp: 'MP 11/2/2021 00:12:49' prior: 50914873!
+test03CartIncludesBookAfterAdding
+
+	| cart book |
+
+	cart _ testObjectFactory createCart.
+	cart add: testObjectFactory firstProductSoldByTheStore .
+	
+	self assert: (cart includes: book).! !
+!CartTest methodsFor: 'tests' stamp: 'MP 11/2/2021 00:13:01' prior: 50918828!
+test03CartIncludesBookAfterAdding
+
+	| cart |
+
+	cart _ testObjectFactory createCart.
+	cart add: testObjectFactory firstProductSoldByTheStore .
+	
+	self assert: (cart includes: testObjectFactory firstProductSoldByTheStore).! !
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 00:13:03'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 00:13:03'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 00:13:03'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 00:13:03'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 00:13:03'!
+ERROR!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 00:13:03'!
+ERROR!
+
+!testRun: #CartTest #test06CartContainsTotalOccurrencesAfterAddingItMultipleTimes stamp: 'MP 11/2/2021 00:13:03'!
+ERROR!
+
+!testRun: #CartTest #test07CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 00:13:03'!
+ERROR!
+
+!testRun: #CartTest #test08CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 00:13:03'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'MP 11/2/2021 00:13:10' prior: 50914883!
+test04CantAddBookNotIncludedInCatalog
+
+	| cart |
+	
+	cart _ testObjectFactory createCart.
+	
+	self assertAdding: self bookGrowingOOSoft 
+		withQuantity: 1 
+		to: cart 
+		raises: Cart bookNotInCatalogErrorDescription.! !
+!CartTest methodsFor: 'tests' stamp: 'MP 11/2/2021 00:14:06' prior: 50918875!
+test04CantAddBookNotIncludedInCatalog
+
+	| cart |
+	
+	cart _ testObjectFactory createCart.
+	
+	self assertAdding: testObjectFactory productNotSoldByTheStore
+		withQuantity: 1 
+		to: cart 
+		raises: Cart bookNotInCatalogErrorDescription.! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:14:46'!
+productNotSoldByTheStore
+
+	^ 'El Cormen.'
+! !
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 00:15:04'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 00:15:04'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 00:15:04'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 00:15:04'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 00:15:04'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 00:15:04'!
+ERROR!
+
+!testRun: #CartTest #test06CartContainsTotalOccurrencesAfterAddingItMultipleTimes stamp: 'MP 11/2/2021 00:15:04'!
+ERROR!
+
+!testRun: #CartTest #test07CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 00:15:04'!
+ERROR!
+
+!testRun: #CartTest #test08CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 00:15:04'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'MP 11/2/2021 00:15:34' prior: 50914894!
+test05CartIncludesAllOccurrencesOfBookAfterAdding
+
+	| cart quantity |
+
+	cart _ testObjectFactory createCart.
+	quantity _ 5.
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	
+	self assert: quantity equals: (cart occurrencesOf: testObjectFactory firstProductSoldByTheStore).! !
+!CartTest methodsFor: 'tests' stamp: 'MP 11/2/2021 00:15:53' prior: 50914906!
+test06CartContainsTotalOccurrencesAfterAddingItMultipleTimes
+
+	| cart book catalog quantity |
+	
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with: book.
+	quantity _ 5.
+	
+	cart _ Cart acceptingProductsFrom: catalog.
+	cart add: quantity of: book.
+	cart add: quantity of: book.
+	
+	self assert: (quantity*2) equals: (cart occurrencesOf: book).! !
+!CartTest methodsFor: 'tests' stamp: 'MP 11/2/2021 00:16:15' prior: 50918941!
+test06CartContainsTotalOccurrencesAfterAddingItMultipleTimes
+
+	| cart book quantity |
+	
+	quantity _ 5.
+	
+	cart _ testObjectFactory createCart.
+	cart add: quantity of: book.
+	cart add: quantity of: book.
+	
+	self assert: (quantity*2) equals: (cart occurrencesOf: book).! !
+
+!methodRemoval: CartTest #test06CartContainsTotalOccurrencesAfterAddingItMultipleTimes stamp: 'MP 11/2/2021 00:16:21'!
+test06CartContainsTotalOccurrencesAfterAddingItMultipleTimes
+
+	| cart book quantity |
+	
+	quantity _ 5.
+	
+	cart _ testObjectFactory createCart.
+	cart add: quantity of: book.
+	cart add: quantity of: book.
+	
+	self assert: (quantity*2) equals: (cart occurrencesOf: book).!
+!CartTest methodsFor: 'tests' stamp: 'MP 11/2/2021 00:16:28'!
+test06CantAddBookWithZeroQuantity
+
+	| cart book catalog |
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with: book.
+	cart _ Cart acceptingProductsFrom: catalog.
+	
+	self assertAdding: book 
+		withQuantity: 0 
+		to: cart 
+		raises: Cart invalidQuantityErrorDescription.! !
+
+!methodRemoval: CartTest #test07CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 00:16:28'!
+test07CantAddBookWithZeroQuantity
+
+	| cart book catalog |
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with: book.
+	cart _ Cart acceptingProductsFrom: catalog.
+	
+	self assertAdding: book 
+		withQuantity: 0 
+		to: cart 
+		raises: Cart invalidQuantityErrorDescription.!
+!CartTest methodsFor: 'tests' stamp: 'MP 11/2/2021 00:16:34'!
+test07CantAddBookWithNegativeQuantity
+
+	| cart book catalog |
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with: book.
+	cart _ Cart acceptingProductsFrom: catalog.
+	
+	self assertAdding: book 
+		withQuantity: -1 
+		to: cart 
+		raises: Cart invalidQuantityErrorDescription.! !
+
+!methodRemoval: CartTest #test08CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 00:16:34'!
+test08CantAddBookWithNegativeQuantity
+
+	| cart book catalog |
+	book _ self bookGrowingOOSoft.
+	catalog _ OrderedCollection with: book.
+	cart _ Cart acceptingProductsFrom: catalog.
+	
+	self assertAdding: book 
+		withQuantity: -1 
+		to: cart 
+		raises: Cart invalidQuantityErrorDescription.!
+!CartTest methodsFor: 'tests' stamp: 'MP 11/2/2021 00:17:19' prior: 50919001!
+test07CantAddBookWithNegativeQuantity
+
+	| cart |
+	cart _ testObjectFactory createCart.
+	
+	self assertAdding: testObjectFactory firstProductSoldByTheStore
+		withQuantity: -1 
+		to: cart 
+		raises: Cart invalidQuantityErrorDescription.! !
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 00:17:23'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 00:17:23'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 00:17:23'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 00:17:23'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 00:17:23'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 00:17:23'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 00:17:23'!
+ERROR!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 00:17:23'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 00:17:23'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'MP 11/2/2021 00:17:33' prior: 50919025!
+test07CantAddBookWithNegativeQuantity
+
+	| cart |
+	cart _ testObjectFactory createCart.
+
+	self assertAdding: testObjectFactory firstProductSoldByTheStore
+		withQuantity: -1 
+		to: cart 
+		raises: Cart invalidQuantityErrorDescription.! !
+!CartTest methodsFor: 'tests' stamp: 'MP 11/2/2021 00:17:55' prior: 50918978!
+test06CantAddBookWithZeroQuantity
+
+	| cart |
+	cart _ testObjectFactory createCart.
+	
+	self assertAdding: testObjectFactory secondProductSoldByTheStore 
+		withQuantity: 0 
+		to: cart 
+		raises: Cart invalidQuantityErrorDescription.! !
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 00:17:58'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 00:17:58'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 00:17:58'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 00:17:58'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 00:17:58'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 00:17:58'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 00:17:58'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 00:17:58'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'MP 11/2/2021 00:19:26' prior: 50919073!
+test06CantAddBookWithZeroQuantity
+
+	| cart |
+	cart _ testObjectFactory createCart.
+	
+	self assertAdding: testObjectFactory secondProductSoldByTheStore 
+		withQuantity: 0
+		to: cart 
+		raises: Cart invalidQuantityErrorDescription.! !
+!CartTest methodsFor: 'tests' stamp: 'MP 11/2/2021 00:19:27' prior: 50919108!
+test06CantAddBookWithZeroQuantity
+
+	| cart |
+	cart _ testObjectFactory createCart.
+	
+	self assertAdding: testObjectFactory secondProductSoldByTheStore 
+		withQuantity: 0
+		to: cart
+		raises: Cart invalidQuantityErrorDescription.! !
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 00:19:27'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 00:19:27'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 00:19:27'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 00:19:27'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 00:19:27'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 00:19:27'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 00:19:27'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 00:19:27'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 00:19:33'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 00:19:33'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 00:19:33'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 00:19:34'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 00:19:34'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 00:19:34'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 00:19:34'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 00:19:34'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 00:19:34'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 00:19:34'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 00:19:34'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 00:19:34'!
+PASSED!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:20:36' prior: 50915689!
+test04
+
+	| cart cashier quantity expectedRecepit |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	cart add: testObjectFactory secondProductSoldByTheStore.
+	
+	expectedRecepit _
+		(quantity * testObjectFactory firstProductSoldByTheStorePrice) +
+		(testObjectFactory secondProductSoldByTheStorePrice).
+	
+	self assert: expectedRecepit equals: (cashier checkout: cart).! !
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 00:20:39'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 00:20:39'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 00:20:39'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 00:20:39'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 00:20:39'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 00:20:41'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 00:20:41'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 00:20:41'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 00:20:41'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 00:20:41'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 00:20:41'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 00:20:41'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 00:20:41'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 00:20:41'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 00:20:41'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 00:20:41'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 00:20:41'!
+PASSED!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:21:24'!
+assertCartIsNotEmpty: aCart
+
+	^ aCart isEmpty ifTrue: [ self error: self class emptyCartErrorDescription ]! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:21:24' prior: 50915475!
+checkout: aCart 
+	
+	self assertCartIsNotEmpty: aCart.
+
+	^ aCart totalPrice.
+! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:22:57' prior: 50915271!
+totalPrice
+
+	^ contents sum: [
+		:aProduct | catalog at: aProduct ifAbsent: [ self error: 'Producto no en catalogo' ]
+	].! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:23:54'!
+priceOf: aProduct
+
+	^ catalog at: aProduct ifAbsent: [ self error: 'Producto no en catalogo' ]! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:23:54' prior: 50919261!
+totalPrice
+
+	^ contents sum: [
+		:aProduct | self priceOf: aProduct
+	].! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:24:00' prior: 50919274!
+totalPrice
+
+	^ contents sum: [ :aProduct | self priceOf: aProduct ].! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:24:21' prior: 50919268!
+priceOf: aProduct
+
+	^ catalog at: aProduct
+		ifAbsent: [ self error: self class productNotInCatalogErrorDescription ]! !
+!Cart class methodsFor: 'error descriptions' stamp: 'MP 11/2/2021 00:24:45'!
+productNotInCatalogErrorDescription
+	
+	^ 'product not in catalog'! !
+!Cart class methodsFor: 'error descriptions' stamp: 'MP 11/2/2021 00:24:48' prior: 50915134!
+invalidQuantityErrorDescription
+	
+	^ 'cant add a book with less than 1 quantity'! !
+!Cart class methodsFor: 'error descriptions' stamp: 'MP 11/2/2021 00:24:51' prior: 50915129!
+bookNotInCatalogErrorDescription
+	
+	^ 'Book not in catalog'! !
+!Cart class methodsFor: 'error descriptions' stamp: 'MP 11/2/2021 00:24:51' prior: 50919304!
+bookNotInCatalogErrorDescription
+	
+	^ 'book not in catalog'! !
+
+!methodRemoval: Cart class #bookNotInCatalogErrorDescription stamp: 'MP 11/2/2021 00:24:59'!
+bookNotInCatalogErrorDescription
+	
+	^ 'book not in catalog'!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 00:25:06'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 00:25:06'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 00:25:06'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 00:25:06'!
+ERROR!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 00:25:06'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 00:25:06'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 00:25:06'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 00:25:06'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 00:25:06'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 00:25:06'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 00:25:06'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 00:25:06'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'MP 11/2/2021 00:25:10' prior: 50918885!
+test04CantAddBookNotIncludedInCatalog
+
+	| cart |
+	
+	cart _ testObjectFactory createCart.
+	
+	self assertAdding: testObjectFactory productNotSoldByTheStore
+		withQuantity: 1 
+		to: cart 
+		raises: Cart productNotInCatalogErrorDescription.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 00:25:14'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 00:25:14'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 00:25:14'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 00:25:14'!
+ERROR!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 00:25:14'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 00:25:14'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 00:25:14'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 00:25:14'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 00:25:14'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 00:25:14'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 00:25:14'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 00:25:14'!
+ERROR!
+!Cart methodsFor: 'assertions' stamp: 'MP 11/2/2021 00:25:19' prior: 50918692!
+assertBookIncludedInCatalog: aBook
+
+	^ (catalog includesKey: aBook) ifFalse: [ self error: self class productNotInCatalogErrorDescription ].! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 00:25:21'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 00:25:21'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 00:25:21'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 00:25:21'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 00:25:21'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 00:25:21'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 00:25:21'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 00:25:21'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 00:25:21'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 00:25:21'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 00:25:21'!
+PASSED!
+!Cart methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:25:38' prior: 50919285!
+priceOf: aProduct
+
+	^ catalog at: aProduct! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 00:25:39'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 00:25:39'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 00:25:39'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 00:25:39'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 00:25:39'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 00:25:39'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 00:25:39'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 00:25:39'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 00:25:39'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 00:25:39'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 00:25:39'!
+PASSED!
+
+!classDefinition: #Cart category: 'TusLibros-It1' stamp: 'MP 11/2/2021 00:29:51'!
+Object subclass: #Cart
+	instanceVariableNames: 'contents catalog subTotal'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+!Cart methodsFor: 'adding' stamp: 'MP 11/2/2021 00:29:48' prior: 50915075!
+add: aQuantity of: aProduct 
+	
+	| productPrice |
+	self assertQuantityIsPositive: aQuantity.
+	
+	productPrice _ catalog at: aProduct
+		ifAbsent: [ self error: self class productNotInCatalogErrorDescription ].
+	
+	contents add: aProduct withOccurrences: aQuantity .
+	subTotal _ subTotal + productPrice.! !
+
+!methodRemoval: Cart #priceOf: stamp: 'MP 11/2/2021 00:30:11'!
+priceOf: aProduct
+
+	^ catalog at: aProduct!
+!Cart methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:30:20' prior: 50919280!
+totalPrice
+
+	^ subTotal.! !
+
+!classDefinition: #Cart category: 'TusLibros-It1' stamp: 'MP 11/2/2021 00:30:35'!
+Object subclass: #Cart
+	instanceVariableNames: 'contents catalog totalPrice'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:30:35' prior: 50919476!
+add: aQuantity of: aProduct 
+	
+	| productPrice |
+	self assertQuantityIsPositive: aQuantity.
+	
+	productPrice _ catalog at: aProduct
+		ifAbsent: [ self error: self class productNotInCatalogErrorDescription ].
+	
+	contents add: aProduct withOccurrences: aQuantity .
+	totalPrice _ totalPrice + productPrice.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:30:36' prior: 50919492!
+totalPrice
+
+	^ totalPrice.! !
+!Cart methodsFor: 'accessing' stamp: 'MP 11/2/2021 00:30:46' prior: 50915071!
+occurrencesOf: aBook
+
+	^ contents occurrencesOf: aBook.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 00:30:48'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 00:30:48'!
+ERROR!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 00:30:48'!
+ERROR!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 00:30:48'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 00:30:48'!
+ERROR!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 00:30:48'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 00:30:48'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 00:30:48'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 00:30:48'!
+ERROR!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 00:30:48'!
+ERROR!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 00:30:48'!
+ERROR!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 00:30:58'!
+ERROR!
+!Cart methodsFor: 'initialization' stamp: 'MP 11/2/2021 00:31:11' prior: 50915097!
+initializeWith: aCatalog 
+	
+	catalog _ aCatalog.
+	contents _ Bag new.
+	totalPrice _ 0.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 00:31:14'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 00:31:14'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 00:31:14'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 00:31:14'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 00:31:14'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 00:31:14'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 00:31:14'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 00:31:14'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 00:31:14'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 00:31:14'!
+FAILURE!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 00:31:14'!
+FAILURE!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 00:31:18'!
+FAILURE!
+!Cart methodsFor: 'adding' stamp: 'MP 11/2/2021 00:31:38' prior: 50919503!
+add: aQuantity of: aProduct 
+	
+	| productPrice |
+	self assertQuantityIsPositive: aQuantity.
+	
+	productPrice _ catalog at: aProduct
+		ifAbsent: [ self error: self class productNotInCatalogErrorDescription ].
+	
+	contents add: aProduct withOccurrences: aQuantity .
+	totalPrice _ totalPrice + productPrice * aQuantity .! !
+!Cart methodsFor: 'adding' stamp: 'MP 11/2/2021 00:31:39' prior: 50919597!
+add: aQuantity of: aProduct 
+	
+	| productPrice |
+	self assertQuantityIsPositive: aQuantity.
+	
+	productPrice _ catalog at: aProduct
+		ifAbsent: [ self error: self class productNotInCatalogErrorDescription ].
+	
+	contents add: aProduct withOccurrences: aQuantity .
+	totalPrice _ totalPrice + productPrice * aQuantity.! !
+!Cart methodsFor: 'adding' stamp: 'MP 11/2/2021 00:31:44' prior: 50919610!
+add: quantity of: aProduct 
+	
+	| productPrice |
+	self assertQuantityIsPositive: quantity.
+	
+	productPrice _ catalog at: aProduct
+		ifAbsent: [ self error: self class productNotInCatalogErrorDescription ].
+	
+	contents add: aProduct withOccurrences: quantity .
+	totalPrice _ totalPrice + productPrice * quantity.! !
+!Cart methodsFor: 'adding' stamp: 'MP 11/2/2021 00:31:48' prior: 50919623!
+add: quantity of: product 
+	
+	| productPrice |
+	self assertQuantityIsPositive: quantity.
+	
+	productPrice _ catalog at: product
+		ifAbsent: [ self error: self class productNotInCatalogErrorDescription ].
+	
+	contents add: product withOccurrences: quantity .
+	totalPrice _ totalPrice + productPrice * quantity.! !
+!Cart methodsFor: 'adding' stamp: 'MP 11/2/2021 00:31:50' prior: 50919636!
+add: quantity of: product 
+	
+	| productPrice |
+	self assertQuantityIsPositive: quantity.
+	
+	productPrice _ catalog at: product
+		ifAbsent: [ self error: self class productNotInCatalogErrorDescription ].
+	
+	contents add: product withOccurrences: quantity .
+
+	totalPrice _ totalPrice + productPrice * quantity.! !
+!Cart methodsFor: 'adding' stamp: 'MP 11/2/2021 00:34:02' prior: 50919649!
+add: quantity of: product 
+	
+	| productPrice |
+	self assertQuantityIsPositive: quantity.
+	
+	productPrice _ catalog at: product
+		ifAbsent: [ self error: self class productNotInCatalogErrorDescription ].
+	
+	contents add: product withOccurrences: quantity .
+
+	totalPrice _ totalPrice + productPrice * quantity.! !
+!Cart methodsFor: 'adding' stamp: 'MP 11/2/2021 00:34:57'!
+add2: quantity of: product 
+	
+	
+	self assertProductInCatalog: product.
+	self assertQuantityIsPositive: quantity.
+	
+	contents add: product withOccurrences: quantity .
+
+	totalPrice _ totalPrice + (self priceOf: product)  * quantity.! !
+!Cart methodsFor: 'adding' stamp: 'MP 11/2/2021 00:35:03' prior: 50919674!
+add2: quantity of: product 
+
+	self assertProductInCatalog: product.
+	self assertQuantityIsPositive: quantity.
+	
+	contents add: product withOccurrences: quantity .
+
+	totalPrice _ totalPrice + (self priceOf: product)  * quantity.! !
+!Cart methodsFor: 'adding' stamp: 'MP 11/2/2021 00:36:52' prior: 50919662!
+add: quantity of: product 
+	
+	| productPrice |
+	self assertQuantityIsPositive: quantity.
+	
+	productPrice _ catalog at: product
+		ifAbsent: [ self error: self class productNotInCatalogErrorDescription ].
+	
+	contents add: product withOccurrences: quantity .
+
+	totalPrice _ totalPrice + productPrice * quantity.! !
+!Cart methodsFor: 'adding' stamp: 'MP 11/2/2021 00:37:57' prior: 50919684!
+add2: quantity of: product 
+
+	self assertProductInCatalog: product.
+	self assertQuantityIsPositive: quantity.
+	
+	contents add: product withOccurrences: quantity .
+
+	totalPrice _ totalPrice + (self priceOf: product) * quantity.! !
+!Cart methodsFor: 'adding' stamp: 'MP 11/2/2021 00:38:42' prior: 50919694!
+add: quantity of: product 
+	
+	self assertProductInCatalog: product.
+	self assertQuantityIsPositive: quantity.
+	
+	contents add: product withOccurrences: quantity .
+
+	totalPrice _ totalPrice + (self priceOf: product) * quantity.! !
+!Cart methodsFor: 'adding' stamp: 'MP 11/2/2021 00:38:45' prior: 50919717!
+add: quantity of: product 
+	
+	self assertProductInCatalog: product.
+	self assertQuantityIsPositive: quantity.
+
+	contents add: product withOccurrences: quantity .
+
+	totalPrice _ totalPrice + (self priceOf: product) * quantity.! !
+!Cart methodsFor: 'assertions' stamp: 'MP 11/2/2021 00:39:00' prior: 50915090!
+assertQuantityIsPositive: aQuantity
+
+	^ aQuantity strictlyPositive ifFalse: [ self error: self class invalidQuantityErrorDescription ]! !
+
+!methodRemoval: Cart #add2:of: stamp: 'MP 11/2/2021 00:39:13'!
+add2: quantity of: product 
+
+	self assertProductInCatalog: product.
+	self assertQuantityIsPositive: quantity.
+	
+	contents add: product withOccurrences: quantity .
+
+	totalPrice _ totalPrice + (self priceOf: product) * quantity.!
+!Cart methodsFor: 'assertions' stamp: 'MP 11/2/2021 00:39:23'!
+assertProductIncludedInCatalog: aBook
+
+	^ (catalog includesKey: aBook) ifFalse: [ self error: self class productNotInCatalogErrorDescription ].! !
+
+!methodRemoval: Cart #assertBookIncludedInCatalog: stamp: 'MP 11/2/2021 00:39:23'!
+assertBookIncludedInCatalog: aBook
+
+	^ (catalog includesKey: aBook) ifFalse: [ self error: self class productNotInCatalogErrorDescription ].!
+!Cart methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:39:35' prior: 50919727!
+add: quantity of: product 
+	
+	self assertProductIncludedInCatalog: product.
+	self assertQuantityIsPositive: quantity.
+
+	contents add: product withOccurrences: quantity .
+
+	totalPrice _ totalPrice + (self priceOf: product) * quantity.! !
+!Cart methodsFor: 'assertions' stamp: 'MP 11/2/2021 00:39:46' prior: 50919753!
+assertProductIncludedInCatalog: aProduct
+
+	^ (catalog includesKey: aProduct) ifFalse: [ self error: self class productNotInCatalogErrorDescription ].! !
+!Cart methodsFor: 'adding' stamp: 'MP 11/2/2021 00:39:55' prior: 50918824!
+add: product 
+	
+	self add: 1 of: product.! !
+!Cart methodsFor: 'testing' stamp: 'MP 11/2/2021 00:40:05' prior: 50915102!
+includes: product 
+	
+	^contents includes: product.! !
+!Cart methodsFor: 'adding - private' stamp: 'MP 11/2/2021 00:40:53'!
+priceOf: product
+
+	^ catalog at: product.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 00:40:54'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 00:40:54'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 00:40:54'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 00:40:54'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 00:40:54'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 00:40:54'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 00:40:54'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 00:40:54'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 00:40:54'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 00:40:54'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 00:40:54'!
+PASSED!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:43:31'!
+checkout: aCart charging: aCreditCard
+	
+	self assertCartIsNotEmpty: aCart.
+
+	^ aCart totalPrice.
+! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:44:16'!
+checkout: aCart charging: aCreditCard on: aDate
+	
+	self assertCartIsNotEmpty: aCart.
+	aCreditCard isExpiredOn: aDate ifTrue: [ self error: self class expiredCardErrorDescription ].
+
+	^ aCart totalPrice.
+! !
+
+!methodRemoval: Cashier #checkout:charging: stamp: 'MP 11/2/2021 00:44:19'!
+checkout: aCart charging: aCreditCard
+	
+	self assertCartIsNotEmpty: aCart.
+
+	^ aCart totalPrice.
+!
+!Cashier class methodsFor: 'error descriptions' stamp: 'MP 11/2/2021 00:44:36'!
+expiredCardErrorDescription
+	
+	^ 'Cannot charge expired card'.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:44:48' prior: 50919835!
+checkout: aCart charging: aCreditCard on: aDate
+	
+	self assertCartIsNotEmpty: aCart.
+	(aCreditCard isExpiredOn: aDate) ifTrue: [ self error: self class expiredCardErrorDescription ].
+
+	^ aCart totalPrice.
+! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:44:58' prior: 50919855!
+checkout: aCart charging: aCreditCard on: aDate
+	
+	self assertCartIsNotEmpty: aCart.
+
+	^ aCart totalPrice.
+! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:48:12'!
+test05
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier checkout: cart charging: testObjectFactory expiredCard on: testObjectFactory today ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: Cashier expiredCardErrorDescription equals: anException messageText ].! !
+
+!testRun: #CheckoutTest #test05 stamp: 'MP 11/2/2021 00:48:17'!
+ERROR!
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:48:22'!
+expiredCard
+	self shouldBeImplemented.! !
+
+!classDefinition: #Card category: 'TusLibros-It1' stamp: 'MP 11/2/2021 00:50:31'!
+Object subclass: #Card
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:50:22' prior: 50919892!
+expiredCard
+	
+	^ Card expiringAt: nil.! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:50:37' prior: 50919871!
+test05
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier checkout: cart charging: testObjectFactory expiredCard on: testObjectFactory today ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: Cashier expiredCardErrorDescription equals: anException messageText ].! !
+
+!testRun: #CheckoutTest #test05 stamp: 'MP 11/2/2021 00:50:37'!
+ERROR!
+!Card class methodsFor: 'instance creation' stamp: 'MP 11/2/2021 00:50:44'!
+expiringAt: anUndefinedObject 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeExpiringAt: anUndefinedObject ! !
+!Card class methodsFor: 'instance creation' stamp: 'MP 11/2/2021 00:50:47' prior: 50919928!
+expiringAt: anUndefinedObject 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+
+	^self new initializeExpiringAt: anUndefinedObject ! !
+!Card class methodsFor: 'instance creation' stamp: 'MP 11/2/2021 00:50:54' prior: 50919937!
+expiringAt: anUndefinedObject 
+
+	^self new initializeExpiringAt: anUndefinedObject ! !
+!Card class methodsFor: 'instance creation' stamp: 'MP 11/2/2021 00:51:02' prior: 50919945!
+expiringAt: anExpiryDate 
+
+	^self new initializeExpiringAt: anExpiryDate ! !
+
+!classDefinition: #Card category: 'TusLibros-It1' stamp: 'MP 11/2/2021 00:51:26'!
+Object subclass: #Card
+	instanceVariableNames: 'expirationDate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+!Card methodsFor: 'no messages' stamp: 'MP 11/2/2021 00:51:25'!
+initializeExpiringAt: anExpirationDate
+
+	expirationDate _ anExpirationDate! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 00:51:31'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 00:51:31'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 00:51:31'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 00:51:31'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 00:51:31'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 00:51:31'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 00:51:31'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 00:51:31'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 00:51:31'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 00:51:31'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 00:51:31'!
+PASSED!
+
+!testRun: #CheckoutTest #test05 stamp: 'MP 11/2/2021 00:51:31'!
+ERROR!
+
+!testRun: #CheckoutTest #test05 stamp: 'MP 11/2/2021 00:51:31'!
+ERROR!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:51:46' prior: 50919865!
+checkout: aCart charging: aCreditCard on: aDate
+	
+	self assertCartIsNotEmpty: aCart.
+		(aCreditCard isExpiredOn: aDate) ifTrue: [ self error: self class expiredCardErrorDescription ].
+
+
+	^ aCart totalPrice.
+! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:51:47' prior: 50920004!
+checkout: aCart charging: aCreditCard on: aDate
+	
+	self assertCartIsNotEmpty: aCart.
+	(aCreditCard isExpiredOn: aDate) ifTrue: [ self error: self class expiredCardErrorDescription ].
+
+
+	^ aCart totalPrice.
+! !
+
+!methodRemoval: Cashier #checkout: stamp: 'MP 11/2/2021 00:51:50'!
+checkout: aCart 
+	
+	self assertCartIsNotEmpty: aCart.
+
+	^ aCart totalPrice.
+!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 00:51:52'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 00:51:52'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 00:51:52'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 00:51:52'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 00:51:52'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 00:51:52'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 00:51:52'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 00:51:52'!
+ERROR!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 00:51:52'!
+ERROR!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 00:51:52'!
+ERROR!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 00:51:52'!
+ERROR!
+
+!testRun: #CheckoutTest #test05 stamp: 'MP 11/2/2021 00:51:52'!
+ERROR!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:52:27'!
+checkout: aCart
+	
+	self assertCartIsNotEmpty: aCart.
+
+
+	^ aCart totalPrice.
+! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:52:30' prior: 50920014!
+checkout: aCart charging: aCreditCard on: aDate
+	
+	self assertCartIsNotEmpty: aCart.
+	(aCreditCard isExpiredOn: aDate) ifTrue: [ self error: self class expiredCardErrorDescription ].
+
+	^ aCart totalPrice.
+! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 00:52:46'!
+today
+
+	^ DateAndTime today.! !
+
+Months!
+
+September / 10!
+
+September / 10!
+
+September / 10 / 21!
+
+September / 10 / 21!
+
+September of: 2021!
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:07:39' prior: 50920077!
+today
+
+	^ November / 2 / 2021.! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:07:56' prior: 50919903!
+expiredCard
+	
+	^ Card expiringAt: (September of: 2021).! !
+
+!testRun: #CheckoutTest #test05 stamp: 'MP 11/2/2021 01:08:33'!
+ERROR!
+
+aDate _ September / 10 / 2021.
+
+anExpiryDate _ August of: 2021.
+
+aDate > anExpiryDate!
+
+aDate _ September / 10 / 2021.
+
+anExpiryDate _ October of: 2021.
+
+aDate > anExpiryDate!
+
+aDate _ September / 10 / 2021.
+
+anExpiryDate _ September of: 2021.
+
+aDate > anExpiryDate!
+
+aDate _ September / 10 / 2021.
+
+anExpiryDate _ September of: 2021.
+
+aDate >= anExpiryDate!
+
+aDate _ September / 10 / 2021.
+
+anExpiryDate _ September of: 2021.
+
+aDate >= anExpiryDate!
+
+aDate _ September / 10 / 2021.
+
+anExpiryDate _ September of: 2021.
+
+aDate > anExpiryDate!
+!Card methodsFor: 'nil' stamp: 'MP 11/2/2021 01:10:31'!
+isExpiredOn: aDate
+
+	aDate > expirationDate ! !
+
+!classDefinition: #Card category: 'TusLibros-It1' stamp: 'MP 11/2/2021 01:10:34'!
+Object subclass: #Card
+	instanceVariableNames: 'expirationDateOfMonth'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+!Card methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:10:34' prior: 50920113!
+isExpiredOn: aDate
+
+	aDate > expirationDateOfMonth ! !
+!Card methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:10:34' prior: 50919963!
+initializeExpiringAt: anExpirationDate
+
+	expirationDateOfMonth _ anExpirationDate! !
+
+!classDefinition: #Card category: 'TusLibros-It1' stamp: 'MP 11/2/2021 01:10:40'!
+Object subclass: #Card
+	instanceVariableNames: 'expirationMonthOfYear'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It1'!
+!Card methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:10:40' prior: 50920125!
+isExpiredOn: aDate
+
+	aDate > expirationMonthOfYear ! !
+!Card methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:10:40' prior: 50920130!
+initializeExpiringAt: anExpirationDate
+
+	expirationMonthOfYear _ anExpirationDate! !
+!Card methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:10:45' prior: 50920143!
+isExpiredOn: aDate
+
+	^aDate > expirationMonthOfYear ! !
+!Card methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:10:49' prior: 50920154!
+isExpiredOn: aDate
+
+	^ aDate > expirationMonthOfYear ! !
+!Card methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:10:52' prior: 50920159!
+isExpiredOn: aDate
+
+	^ aDate > expirationMonthOfYear! !
+!Card methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:10:53' prior: 50920164!
+isExpiredOn: aDate
+
+	^ aDate > expirationMonthOfYear.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 01:10:55'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 01:10:55'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 01:10:55'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 01:10:55'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 01:10:55'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 01:10:55'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 01:10:55'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 01:10:55'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 01:10:55'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 01:10:55'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 01:10:55'!
+PASSED!
+
+!testRun: #CheckoutTest #test05 stamp: 'MP 11/2/2021 01:10:55'!
+PASSED!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:11:44' prior: 50919908!
+test05
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier checkout: cart 
+				charging: testObjectFactory expiredCard 
+				on: testObjectFactory today ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: Cashier expiredCardErrorDescription equals: anException messageText ].! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:12:50' prior: 50920207!
+test05
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier checkout: cart 
+				charging: testObjectFactory expiredCard 
+				on: testObjectFactory today ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: Cashier expiredCardErrorDescription equals: anException messageText ].! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:12:56' prior: 50920226!
+test05
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier 
+			checkout: cart 
+			charging: testObjectFactory expiredCard 
+			on: testObjectFactory today ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: Cashier expiredCardErrorDescription equals: anException messageText ].! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:12:58' prior: 50920245!
+test05
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory expiredCard 
+				on: testObjectFactory today ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: Cashier expiredCardErrorDescription equals: anException messageText ].! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:13:17' prior: 50920264!
+test05
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self 
+should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory expiredCard 
+				on: testObjectFactory today ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: Cashier expiredCardErrorDescription equals: anException messageText ].! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:13:18' prior: 50920283!
+test05
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory expiredCard 
+				on: testObjectFactory today ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: Cashier expiredCardErrorDescription equals: anException messageText ].! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:13:32'!
+fixedDate
+
+	^ November / 2 / 2021.! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:13:32' prior: 50920302!
+test05
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory expiredCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: Cashier expiredCardErrorDescription equals: anException messageText ].! !
+
+!methodRemoval: TestObjectFactory #today stamp: 'MP 11/2/2021 01:13:32'!
+today
+
+	^ November / 2 / 2021.!
+
+!testRun: #CheckoutTest #test05 stamp: 'MP 11/2/2021 01:13:36'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 01:13:36'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 01:13:36'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 01:13:36'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 01:13:36'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 01:13:36'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 01:13:36'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 01:13:36'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 01:13:36'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 01:13:36'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 01:13:36'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 01:13:36'!
+PASSED!
+
+!testRun: #CheckoutTest #test05 stamp: 'MP 11/2/2021 01:13:36'!
+PASSED!
+
+!methodRemoval: Cashier #checkout: stamp: 'MP 11/2/2021 01:13:54'!
+checkout: aCart
+	
+	self assertCartIsNotEmpty: aCart.
+
+
+	^ aCart totalPrice.
+!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 01:14:02'!
+ERROR!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:16:32' prior: 50919186!
+test04
+
+	| cart cashier quantity expectedRecepit |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	cart add: testObjectFactory secondProductSoldByTheStore.
+	
+	expectedRecepit _
+		(quantity * testObjectFactory firstProductSoldByTheStorePrice) +
+		(testObjectFactory secondProductSoldByTheStorePrice).
+	
+	self assert: expectedRecepit equals: (cashier checkout: cart charging: testObjectFactory validCard on: testObjectFactory fixedDate ).! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:16:46'!
+validCard
+	
+	^ Card expiringAt: (December of: 2021).! !
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 01:16:54'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 01:16:54'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 01:16:54'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 01:16:54'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 01:16:54'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 01:16:54'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 01:16:54'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 01:16:54'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 01:16:54'!
+ERROR!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 01:16:54'!
+ERROR!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 01:16:54'!
+ERROR!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 01:16:54'!
+PASSED!
+
+!testRun: #CheckoutTest #test05 stamp: 'MP 11/2/2021 01:16:54'!
+PASSED!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:16:58' prior: 50920390!
+test04
+
+	| cart cashier quantity expectedRecepit |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	cart add: testObjectFactory secondProductSoldByTheStore.
+	
+	expectedRecepit _
+		(quantity * testObjectFactory firstProductSoldByTheStorePrice) +
+		(testObjectFactory secondProductSoldByTheStorePrice).
+	
+	self assert: expectedRecepit equals: (cashier checkout: cart charging: testObjectFactory validCard on: testObjectFactory fixedDate ).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:17:15' prior: 50920451!
+test04
+
+	| cart cashier quantity expectedRecepit |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	cart add: testObjectFactory secondProductSoldByTheStore.
+	
+	expectedRecepit _
+		(quantity * testObjectFactory firstProductSoldByTheStorePrice) +
+		(testObjectFactory secondProductSoldByTheStorePrice).
+	
+	self assert: expectedRecepit equals: (cashier checkout: cart charging: testObjectFactory validCard on: testObjectFactory fixedDate ).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:17:29' prior: 50920472!
+test04
+
+	| cart cashier quantity expectedRecepit |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	cart add: testObjectFactory secondProductSoldByTheStore.
+	
+	expectedRecepit _
+		(quantity * testObjectFactory firstProductSoldByTheStorePrice) +
+		(testObjectFactory secondProductSoldByTheStorePrice).
+	
+	self assert: expectedRecepit
+		equals: (cashier 
+			checkout: cart 
+			charging: testObjectFactory validCard 
+			on: testObjectFactory fixedDate ).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:17:52' prior: 50915610!
+test03
+
+	| cart cashier quantity |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	
+	self assert: (quantity * testObjectFactory firstProductSoldByTheStorePrice)
+		equals: (cashier 
+			checkout: cart 
+			charging: testObjectFactory validCard 
+			on: testObjectFactory fixedDate )..! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:17:54' prior: 50920514!
+test03
+
+	| cart cashier quantity |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	
+	self assert: (quantity * testObjectFactory firstProductSoldByTheStorePrice)
+		equals: (cashier 
+			checkout: cart 
+			charging: testObjectFactory validCard 
+			on: testObjectFactory fixedDate ).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:17:56' prior: 50920530!
+test03
+
+	| cart cashier quantity |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	
+	self 
+		assert: (quantity * testObjectFactory firstProductSoldByTheStorePrice)
+		equals: (cashier 
+			checkout: cart 
+			charging: testObjectFactory validCard 
+			on: testObjectFactory fixedDate ).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:18:04' prior: 50920493!
+test04
+
+	| cart cashier quantity expectedRecepit |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	cart add: testObjectFactory secondProductSoldByTheStore.
+	
+	expectedRecepit _
+		(quantity * testObjectFactory firstProductSoldByTheStorePrice) +
+		(testObjectFactory secondProductSoldByTheStorePrice).
+	
+	self 
+		assert: expectedRecepit
+		equals: (cashier 
+			checkout: cart 
+			charging: testObjectFactory validCard 
+			on: testObjectFactory fixedDate ).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:18:13' prior: 50915585!
+test02
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	
+	cart add: 1 of: testObjectFactory firstProductSoldByTheStore.
+	
+	self
+		assert: testObjectFactory firstProductSoldByTheStorePrice
+		equals: (cashier 
+			checkout: cart 
+			charging: testObjectFactory validCard 
+			on: testObjectFactory fixedDate ).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:18:18' prior: 50915548!
+test01
+
+	| cart cashier |
+	cart _ testObjectFactory createCart. 
+	cashier _ testObjectFactory createCashier.
+	
+	self should: [(cashier 
+			checkout: cart 
+			charging: testObjectFactory validCard 
+			on: testObjectFactory fixedDate ). ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError | self assert: Cashier emptyCartErrorDescription equals: anError messageText ].! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:18:24' prior: 50920599!
+test01
+
+	| cart cashier |
+	cart _ testObjectFactory createCart. 
+	cashier _ testObjectFactory createCashier.
+	
+	self should: [cashier 
+			checkout: cart 
+			charging: testObjectFactory validCard 
+			on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError | self assert: Cashier emptyCartErrorDescription equals: anError messageText ].! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:18:26' prior: 50920615!
+test01
+
+	| cart cashier |
+	cart _ testObjectFactory createCart. 
+	cashier _ testObjectFactory createCashier.
+	
+	self should: [cashier 
+				checkout: cart 
+				charging: testObjectFactory validCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError | self assert: Cashier emptyCartErrorDescription equals: anError messageText ].! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:18:30' prior: 50920630!
+test01
+
+	| cart cashier |
+	cart _ testObjectFactory createCart. 
+	cashier _ testObjectFactory createCashier.
+	
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory validCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError | self assert: Cashier emptyCartErrorDescription equals: anError messageText ].! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:18:49' prior: 50920584!
+test02
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	
+	cart add: 1 of: testObjectFactory firstProductSoldByTheStore.
+	
+	self
+		assert: testObjectFactory firstProductSoldByTheStorePrice
+		equals: (cashier 
+			checkout: cart 
+			charging: testObjectFactory validCard 
+			on: testObjectFactory fixedDate).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:18:52' prior: 50920546!
+test03
+
+	| cart cashier quantity |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	
+	self 
+		assert: (quantity * testObjectFactory firstProductSoldByTheStorePrice)
+		equals: (cashier 
+			checkout: cart 
+			charging: testObjectFactory validCard 
+			on: testObjectFactory fixedDate).! !
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:18:55' prior: 50920562!
+test04
+
+	| cart cashier quantity expectedRecepit |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	quantity _ 5.
+	
+	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
+	cart add: testObjectFactory secondProductSoldByTheStore.
+	
+	expectedRecepit _
+		(quantity * testObjectFactory firstProductSoldByTheStorePrice) +
+		(testObjectFactory secondProductSoldByTheStorePrice).
+	
+	self 
+		assert: expectedRecepit
+		equals: (cashier 
+			checkout: cart 
+			charging: testObjectFactory validCard 
+			on: testObjectFactory fixedDate).! !
+
+!testRun: #CheckoutTest #test05 stamp: 'MP 11/2/2021 01:19:00'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 01:19:00'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 01:19:00'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 01:19:00'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 01:19:00'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 01:19:00'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 01:19:00'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 01:19:00'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 01:19:00'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 01:19:00'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 01:19:00'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 01:19:00'!
+PASSED!
+
+!testRun: #CheckoutTest #test05 stamp: 'MP 11/2/2021 01:19:00'!
+PASSED!
+
+----SNAPSHOT----(2 November 2021 01:19:03) CuisUniversity-4913.image priorSource: 18661997!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:25:51'!
+test06
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	"TODO: assert de cosas que no tienen que pasar"
+	self should: [ cashier 
+				checkout: cart 
+				charging: testObjectFactory invalidNumberCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: Cashier invalidCardNumberErrorDescription equals: anException messageText ].! !
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 01:31:07'!
+invalidNumberCard
+	
+	^ Card withNumber: '4509790000001234' expiringAt: (December of: 2021).! !
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 01:31:19' prior: 50920771!
+invalidNumberCard
+	
+	^ Card withNumber: '450979000000' expiringAt: (December of: 2021).! !
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 01:31:25' prior: 50920411!
+validCard
+	
+	^ Card withNumber: '4509790000001234' expiringAt: (December of: 2021).! !
+!TestObjectFactory methodsFor: 'cards' stamp: 'MP 11/2/2021 01:31:31' prior: 50920090!
+expiredCard
+	
+	^ Card withNumber: '4509790000001234' expiringAt: (September of: 2021).! !
+!Card class methodsFor: 'instance creation' stamp: 'MP 11/2/2021 01:32:16'!
+withNumber: aCardNumber expiringAt: anExpiryDate 
+
+	^self new initializeWithNumber: aCardNumber expiringAt: anExpiryDate ! !
+
+!methodRemoval: Card class #expiringAt: stamp: 'MP 11/2/2021 01:32:19'!
+expiringAt: anExpiryDate 
+
+	^self new initializeExpiringAt: anExpiryDate !
+
+!classDefinition: #Card category: 'TusLibros-It2' stamp: 'MP 11/2/2021 01:32:47'!
+Object subclass: #Card
+	instanceVariableNames: 'expirationMonthOfYear number'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-It2'!
+!Card methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:32:45'!
+initializeWithNumber: aCardNumber expiringAt: anExpirationDate
+
+	expirationMonthOfYear _ anExpirationDate.
+	number _ aCardNumber.! !
+!Card methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:36:16' prior: 50920814!
+initializeWithNumber: aPAN expiringAt: anExpirationDate
+
+	expirationMonthOfYear _ anExpirationDate.
+	number _ aPAN.! !
+!Card methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:36:22' prior: 50920821!
+initializeWithNumber: aCardNumber expiringAt: anExpirationDate
+
+	expirationMonthOfYear _ anExpirationDate.
+	number _ aCardNumber.! !
+
+!methodRemoval: Card #initializeExpiringAt: stamp: 'MP 11/2/2021 01:36:39'!
+initializeExpiringAt: anExpirationDate
+
+	expirationMonthOfYear _ anExpirationDate!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 01:36:41'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 01:36:41'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 01:36:41'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 01:36:41'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 01:36:41'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 01:36:41'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 01:36:41'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 01:36:41'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 01:36:41'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 01:36:41'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 01:36:41'!
+PASSED!
+
+!testRun: #CheckoutTest #test05 stamp: 'MP 11/2/2021 01:36:41'!
+PASSED!
+
+!testRun: #CheckoutTest #test06 stamp: 'MP 11/2/2021 01:36:41'!
+FAILURE!
+
+!testRun: #CheckoutTest #test06 stamp: 'MP 11/2/2021 01:36:41'!
+FAILURE!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:39:09' prior: 50920067!
+checkout: aCart charging: aCreditCard on: aDate
+	
+	self assertCartIsNotEmpty: aCart.
+	(aCreditCard isExpiredOn: aDate) ifTrue: [ self error: self class expiredCardErrorDescription ].
+	(aCreditCard number length < 16) IfTrue: [ self error: self class ].
+
+	^ aCart totalPrice.
+! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:39:25' prior: 50920878!
+checkout: aCart charging: aCreditCard on: aDate
+	
+	self assertCartIsNotEmpty: aCart.
+	(aCreditCard isExpiredOn: aDate) ifTrue: [ self error: self class expiredCardErrorDescription ].
+	(aCreditCard number length < 16) ifTrue: [ self error: self class ].
+
+	^ aCart totalPrice.
+! !
+!Cashier class methodsFor: 'error descriptions' stamp: 'MP 11/2/2021 01:39:49'!
+invalidCardErrorDescription
+	
+	^ 'cannot charge a card with an invalid card number'.! !
+!Cashier class methodsFor: 'error descriptions' stamp: 'MP 11/2/2021 01:39:55'!
+invalidCardNumberErrorDescription
+	
+	^ 'cannot charge a card with an invalid card number'.! !
+
+!methodRemoval: Cashier class #invalidCardErrorDescription stamp: 'MP 11/2/2021 01:39:56'!
+invalidCardErrorDescription
+	
+	^ 'cannot charge a card with an invalid card number'.!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:40:16' prior: 50920890!
+checkout: aCart charging: aCreditCard on: aDate
+	
+	self assertCartIsNotEmpty: aCart.
+	(aCreditCard isExpiredOn: aDate) ifTrue: [ self error: self class expiredCardErrorDescription ].
+	(aCreditCard number length < 16) ifTrue: [ self error: self class invalidCardNumberErrorDescription ].
+
+	^ aCart totalPrice.
+! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 01:40:18'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 01:40:18'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 01:40:18'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 01:40:18'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 01:40:18'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 01:40:18'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 01:40:18'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 01:40:18'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 01:40:18'!
+ERROR!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 01:40:18'!
+ERROR!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 01:40:18'!
+ERROR!
+
+!testRun: #CheckoutTest #test05 stamp: 'MP 11/2/2021 01:40:18'!
+PASSED!
+
+!testRun: #CheckoutTest #test06 stamp: 'MP 11/2/2021 01:40:18'!
+ERROR!
+!Card methodsFor: 'nil' stamp: 'MP 11/2/2021 01:40:35'!
+number
+
+	^ number! !
+!Card methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:40:36' prior: 50920967!
+number
+
+	^ number.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 01:40:37'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 01:40:37'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 01:40:37'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 01:40:37'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 01:40:37'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 01:40:37'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 01:40:37'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 01:40:37'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 01:40:37'!
+ERROR!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 01:40:37'!
+ERROR!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 01:40:37'!
+ERROR!
+
+!testRun: #CheckoutTest #test05 stamp: 'MP 11/2/2021 01:40:37'!
+PASSED!
+
+!testRun: #CheckoutTest #test06 stamp: 'MP 11/2/2021 01:40:37'!
+ERROR!
+!CheckoutTest methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:40:45' prior: 50920662!
+test02
+
+	| cart cashier |
+	cart _ testObjectFactory createCart.
+	cashier _ testObjectFactory createCashier.
+	
+	cart add: testObjectFactory firstProductSoldByTheStore.
+	
+	self
+		assert: testObjectFactory firstProductSoldByTheStorePrice
+		equals: (cashier 
+			checkout: cart 
+			charging: testObjectFactory validCard 
+			on: testObjectFactory fixedDate).! !
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 01:41:00'!
+ERROR!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:41:26' prior: 50920920!
+checkout: aCart charging: aCreditCard on: aDate
+	
+	self assertCartIsNotEmpty: aCart.
+	(aCreditCard isExpiredOn: aDate) ifTrue: [ self error: self class expiredCardErrorDescription ].
+	(aCreditCard number size < 16) ifTrue: [ self error: self class invalidCardNumberErrorDescription ].
+
+	^ aCart totalPrice.
+! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 01:41:29'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 01:41:29'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 01:41:29'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 01:41:29'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 01:41:29'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 01:41:29'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 01:41:29'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 01:41:29'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 01:41:29'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 01:41:29'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 01:41:29'!
+PASSED!
+
+!testRun: #CheckoutTest #test05 stamp: 'MP 11/2/2021 01:41:29'!
+PASSED!
+
+!testRun: #CheckoutTest #test06 stamp: 'MP 11/2/2021 01:41:29'!
+PASSED!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:41:46' prior: 50921027!
+checkout: aCart charging: aCreditCard on: aDate
+	
+	self assertCartIsNotEmpty: aCart.
+	(aCreditCard isExpiredOn: aDate) ifTrue: [ self error: self class expiredCardErrorDescription ].
+	(aCreditCard number size < 16) ifTrue: [ self error: self class invalidCardNumberErrorDescription ].
+
+	^ aCart totalPrice.
+! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:43:21'!
+assertCard: aCreditCard isNotExpiredOn: aDate
+
+	^ (aCreditCard isExpiredOn: aDate) ifTrue: [ self error: self class expiredCardErrorDescription ]! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:43:21' prior: 50921075!
+checkout: aCart charging: aCreditCard on: aDate
+	
+	self assertCartIsNotEmpty: aCart.
+	self assertCard: aCreditCard isNotExpiredOn: aDate.
+	(aCreditCard number size < 16) ifTrue: [ self error: self class invalidCardNumberErrorDescription ].
+
+	^ aCart totalPrice.
+! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:43:57'!
+assertCardNumberIsValid: aCreditCard
+
+	^ (aCreditCard number size < 16) ifTrue: [ self error: self class invalidCardNumberErrorDescription ]! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:43:57' prior: 50921096!
+checkout: aCart charging: aCreditCard on: aDate
+	
+	self assertCartIsNotEmpty: aCart.
+	self assertCard: aCreditCard isNotExpiredOn: aDate.
+	self assertCardNumberIsValid: aCreditCard.
+
+	^ aCart totalPrice.
+! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 01:44:01'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 01:44:01'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 01:44:01'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 01:44:01'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 01:44:01'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 01:44:01'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 01:44:01'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 01:44:01'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 01:44:01'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 01:44:01'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 01:44:01'!
+PASSED!
+
+!testRun: #CheckoutTest #test05 stamp: 'MP 11/2/2021 01:44:01'!
+PASSED!
+
+!testRun: #CheckoutTest #test06 stamp: 'MP 11/2/2021 01:44:01'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 01:44:04'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 01:44:04'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 01:44:04'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 01:44:04'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 01:44:04'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 01:44:04'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 01:44:04'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 01:44:04'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 01:44:04'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 01:44:04'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 01:44:04'!
+PASSED!
+
+!testRun: #CheckoutTest #test05 stamp: 'MP 11/2/2021 01:44:04'!
+PASSED!
+
+!testRun: #CheckoutTest #test06 stamp: 'MP 11/2/2021 01:44:04'!
+PASSED!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:44:09'!
+m1: aDate m2: aCreditCard
+
+	self assertCard: aCreditCard isNotExpiredOn: aDate.
+	self assertCardNumberIsValid: aCreditCard! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:44:09' prior: 50921115!
+checkout: aCart charging: aCreditCard on: aDate
+	
+	self assertCartIsNotEmpty: aCart.
+	self m1: aDate m2: aCreditCard.
+
+	^ aCart totalPrice.
+! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:44:13' prior: 50921202!
+checkout: aCart charging: aCreditCard on: aDate
+	
+	self assertCartIsNotEmpty: aCart.
+	self assertCard: aCreditCard isNotExpiredOn: aDate.
+	self assertCardNumberIsValid: aCreditCard.
+
+	^ aCart totalPrice.
+! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'MP 11/2/2021 01:44:15'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'MP 11/2/2021 01:44:15'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'MP 11/2/2021 01:44:15'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'MP 11/2/2021 01:44:15'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'MP 11/2/2021 01:44:15'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'MP 11/2/2021 01:44:15'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'MP 11/2/2021 01:44:15'!
+PASSED!
+
+!testRun: #CheckoutTest #test01 stamp: 'MP 11/2/2021 01:44:15'!
+PASSED!
+
+!testRun: #CheckoutTest #test02 stamp: 'MP 11/2/2021 01:44:15'!
+PASSED!
+
+!testRun: #CheckoutTest #test03 stamp: 'MP 11/2/2021 01:44:15'!
+PASSED!
+
+!testRun: #CheckoutTest #test04 stamp: 'MP 11/2/2021 01:44:15'!
+PASSED!
+
+!testRun: #CheckoutTest #test05 stamp: 'MP 11/2/2021 01:44:15'!
+PASSED!
+
+!testRun: #CheckoutTest #test06 stamp: 'MP 11/2/2021 01:44:15'!
+PASSED!
+
+!methodRemoval: Cashier #m1:m2: stamp: 'MP 11/2/2021 01:44:23'!
+m1: aDate m2: aCreditCard
+
+	self assertCard: aCreditCard isNotExpiredOn: aDate.
+	self assertCardNumberIsValid: aCreditCard!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'MP 11/2/2021 01:44:38'!
+m1: asdf m2: asd
+
+	self.
+! !
+
+!methodRemoval: Cashier #m1:m2: stamp: 'MP 11/2/2021 01:45:37'!
+m1: asdf m2: asd
+
+	self.
+!
+
+----SNAPSHOT----(2 November 2021 01:46:10) CuisUniversity-4913.image priorSource: 18851140!
+
+----SNAPSHOT----(2 November 2021 01:46:26) CuisUniversity-4913.image priorSource: 18867704!
