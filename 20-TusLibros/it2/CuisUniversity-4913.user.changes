@@ -6876,3 +6876,5 @@ assertCheckout: aCart charging: aCard raises: anErrorMessage
 				on: testObjectFactory fixedDate ]
 		raise: Error - MessageNotUnderstood
 		withExceptionDo: [ :anException | self assert: anErrorMessage equals: anException messageText ].! !
+
+----QUIT----(3 November 2021 23:35:43) CuisUniversity-4913.image priorSource: 18801479!
