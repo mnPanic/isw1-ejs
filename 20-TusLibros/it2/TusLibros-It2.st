@@ -102,13 +102,12 @@ TestCase subclass: #CheckoutTest
 	poolDictionaries: ''
 	category: 'TusLibros-It2'!
 
-!CheckoutTest methodsFor: 'assertions' stamp: 'MP 11/2/2021 02:48:21'!
+!CheckoutTest methodsFor: 'assertions' stamp: 'IAR 11/3/2021 23:26:02'!
 assertCheckout: aCart charging: aCard raises: anErrorMessage
 	
 	| cashier |
 	cashier _ testObjectFactory createCashier.
 	
-	"TODO: assert de cosas que no tienen que pasar"
 	self should: [ cashier 
 				checkout: aCart 
 				charging: aCard 

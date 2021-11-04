@@ -6859,3 +6859,20 @@ withNoFundsCard: aNoFundsCardNumber stolenCard: aStolenCardNumber
 	^ self new initializeWithNoFundsCard: aNoFundsCardNumber stolenCard: aStolenCardNumber.! !
 
 ----SNAPSHOT----(2 November 2021 03:01:28) CuisUniversity-4913.image priorSource: 18953630!
+
+----STARTUP---- (3 November 2021 23:20:03) as /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-it2-vm/CuisUniversity-4913.image!
+
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1-ejs/20-TusLibros/it2/TusLibros-It2.st----!
+!CheckoutTest methodsFor: 'assertions' stamp: 'IAR 11/3/2021 23:26:02' prior: 50919311!
+assertCheckout: aCart charging: aCard raises: anErrorMessage
+	
+	| cashier |
+	cashier _ testObjectFactory createCashier.
+	
+	self should: [ cashier 
+				checkout: aCart 
+				charging: aCard 
+				on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anException | self assert: anErrorMessage equals: anException messageText ].! !
