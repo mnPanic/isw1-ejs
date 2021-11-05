@@ -6879,7 +6879,7 @@ assertCheckout: aCart charging: aCard raises: anErrorMessage
 
 ----QUIT----(3 November 2021 23:35:43) CuisUniversity-4913.image priorSource: 18801479!
 
-----STARTUP---- (4 November 2021 19:49:36) as /home/agus/Documents/inge1/linux64/CuisUniversity-4913.image!
+----STARTUP---- (4 November 2021 23:19:04) as /home/agus/Documents/inge1/linux64/CuisUniversity-4913.image!
 
 
 ----End fileIn of /home/agus/Documents/inge1/linux64/TusLibros-It2.st----!
@@ -6890,7 +6890,7 @@ Object subclass: #MerchantProcessor
 	poolDictionaries: ''
 	category: 'TusLibros-It2'!
 
-!classDefinition: #MerchantProcessor category: 'TusLibros-It2' stamp: 'AF 11/4/2021 19:54:33'!
+!classDefinition: #MerchantProcessor category: 'TusLibros-It2' stamp: 'AF 11/4/2021 23:21:32'!
 Object subclass: #MerchantProcessor
 	instanceVariableNames: ''
 	classVariableNames: ''
@@ -6901,710 +6901,1373 @@ MerchantProcessor subclass: #SimulatedMP
 	instanceVariableNames: 'noFundsCardNumber stolenCardNumber'
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'TusLibros-It2'!
+	category: 'TusLibros'!
 
-!classDefinition: #SimulatedMP category: 'TusLibros-It2' stamp: 'AF 11/4/2021 19:54:52'!
+!classDefinition: #SimulatedMP category: 'TusLibros' stamp: 'AF 11/4/2021 23:22:54'!
 MerchantProcessor subclass: #SimulatedMP
 	instanceVariableNames: 'noFundsCardNumber stolenCardNumber'
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'TusLibros-It2'!
-!MerchantProcessor methodsFor: 'nil' stamp: 'AF 11/4/2021 19:55:10'!
-charge: anAmount to: aCreditCard
-
-	self subclassResponsibility .! !
-!MerchantProcessor methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 19:55:11' prior: 50915501!
-charge: anAmount to: aCreditCard
-
-	self subclassResponsibility.! !
-!MerchantProcessor class methodsFor: 'error descriptions' stamp: 'AF 11/4/2021 19:55:51'!
+	category: 'TusLibros'!
+!MerchantProcessor class methodsFor: 'error descriptions' stamp: 'AF 11/4/2021 23:23:08'!
 cardWithoutFundsErrorDescription
 
 	^ 'card has no funds'! !
 
-!methodRemoval: SimulatedMP class #cardWithoutFundsErrorDescription stamp: 'AF 11/4/2021 19:55:51'!
+!methodRemoval: SimulatedMP class #cardWithoutFundsErrorDescription stamp: 'AF 11/4/2021 23:23:08'!
 cardWithoutFundsErrorDescription
 
 	^ 'card has no funds'!
-!MerchantProcessor class methodsFor: 'error descriptions' stamp: 'AF 11/4/2021 19:56:00'!
+!MerchantProcessor class methodsFor: 'error descriptions' stamp: 'AF 11/4/2021 23:23:13'!
 stolenCardErrorDescription
 	
 	^ 'stolen card'.! !
 
-!methodRemoval: SimulatedMP class #stolenCardErrorDescription stamp: 'AF 11/4/2021 19:56:00'!
+!methodRemoval: SimulatedMP class #stolenCardErrorDescription stamp: 'AF 11/4/2021 23:23:13'!
 stolenCardErrorDescription
 	
 	^ 'stolen card'.!
+!MerchantProcessor methodsFor: 'nil' stamp: 'AF 11/4/2021 23:23:32'!
+charge: anAmount to: aCreditCard
 
-!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'AF 11/4/2021 19:56:32'!
-PASSED!
+	self subclassResponsibility .! !
+!MerchantProcessor methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:23:33' prior: 50915521!
+charge: anAmount to: aCreditCard
 
-!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'AF 11/4/2021 19:56:32'!
-PASSED!
-
-!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'AF 11/4/2021 19:56:32'!
-PASSED!
-
-!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'AF 11/4/2021 19:56:32'!
-PASSED!
-
-!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'AF 11/4/2021 19:56:32'!
-PASSED!
-
-!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'AF 11/4/2021 19:56:32'!
-PASSED!
-
-!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'AF 11/4/2021 19:56:32'!
-PASSED!
-
-!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'AF 11/4/2021 19:56:32'!
-PASSED!
-
-!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'AF 11/4/2021 19:56:32'!
-PASSED!
-!CheckoutTest methodsFor: 'tests' stamp: 'AF 11/4/2021 19:56:39' prior: 50915052!
+	self subclassResponsibility.! !
+!CheckoutTest methodsFor: 'tests' stamp: 'AF 11/4/2021 23:24:31' prior: 50915052!
 test07CannotCheckoutWithCardWithoutFunds
 
 	self assertCheckout: testObjectFactory createCartWithSingleProduct
 		charging: testObjectFactory cardWithoutFunds
 		raises: MerchantProcessor cardWithoutFundsErrorDescription.
 ! !
-
-!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'AF 11/4/2021 19:56:39'!
-PASSED!
-
-!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'AF 11/4/2021 19:56:39'!
-PASSED!
-
-!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'AF 11/4/2021 19:56:39'!
-PASSED!
-
-!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'AF 11/4/2021 19:56:39'!
-PASSED!
-
-!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'AF 11/4/2021 19:56:39'!
-PASSED!
-
-!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'AF 11/4/2021 19:56:39'!
-PASSED!
-
-!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'AF 11/4/2021 19:56:39'!
-PASSED!
-
-!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'AF 11/4/2021 19:56:39'!
-PASSED!
-
-!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'AF 11/4/2021 19:56:39'!
-PASSED!
-
-!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'AF 11/4/2021 19:56:45'!
-PASSED!
-
-!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'AF 11/4/2021 19:56:45'!
-PASSED!
-
-!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'AF 11/4/2021 19:56:45'!
-PASSED!
-
-!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'AF 11/4/2021 19:56:45'!
-PASSED!
-
-!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'AF 11/4/2021 19:56:45'!
-PASSED!
-
-!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'AF 11/4/2021 19:56:45'!
-PASSED!
-
-!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'AF 11/4/2021 19:56:45'!
-PASSED!
-
-!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'AF 11/4/2021 19:56:45'!
-PASSED!
-
-!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'AF 11/4/2021 19:56:45'!
-PASSED!
-!CheckoutTest methodsFor: 'tests' stamp: 'AF 11/4/2021 19:56:48' prior: 50915061!
+!CheckoutTest methodsFor: 'tests' stamp: 'AF 11/4/2021 23:24:38' prior: 50915061!
 test08CannotCheckoutWithStolenCard
 
 	self assertCheckout: testObjectFactory createCartWithSingleProduct
 		charging: testObjectFactory stolenCard
 		raises: MerchantProcessor stolenCardErrorDescription.! !
 
-!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'AF 11/4/2021 19:56:48'!
-PASSED!
-
-!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'AF 11/4/2021 19:56:48'!
-PASSED!
-
-!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'AF 11/4/2021 19:56:48'!
-PASSED!
-
-!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'AF 11/4/2021 19:56:48'!
-PASSED!
-
-!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'AF 11/4/2021 19:56:48'!
-PASSED!
-
-!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'AF 11/4/2021 19:56:48'!
-PASSED!
-
-!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'AF 11/4/2021 19:56:48'!
-PASSED!
-
-!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'AF 11/4/2021 19:56:48'!
-PASSED!
-
-!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'AF 11/4/2021 19:56:48'!
-PASSED!
-
-!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'AF 11/4/2021 19:57:48'!
-PASSED!
-
-!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'AF 11/4/2021 19:57:48'!
-PASSED!
-
-!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'AF 11/4/2021 19:57:48'!
-PASSED!
-
-!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'AF 11/4/2021 19:57:48'!
-PASSED!
-
-!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'AF 11/4/2021 19:57:48'!
-PASSED!
-
-!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'AF 11/4/2021 19:57:48'!
-PASSED!
-
-!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'AF 11/4/2021 19:57:48'!
-PASSED!
-
-!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'AF 11/4/2021 19:57:48'!
-PASSED!
-
-!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'AF 11/4/2021 19:57:48'!
-PASSED!
-
-TestCase subclass: #RequestHandlerTestXXX
+Object subclass: #TusLibrosSystemFacade
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'TusLibros-It2'!
+	category: 'TusLibros'!
 
-!classDefinition: #RequestHandlerTestXXX category: 'TusLibros-It2' stamp: 'AF 11/4/2021 20:03:10'!
-TestCase subclass: #RequestHandlerTestXXX
+!classDefinition: #TusLibrosSystemFacade category: 'TusLibros' stamp: 'AF 11/4/2021 23:26:07'!
+Object subclass: #TusLibrosSystemFacade
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'TusLibros-It2'!
+	category: 'TusLibros'!
 
-!classDefinition: #RequestHandlerXXX category: 'TusLibros-It2' stamp: 'AF 11/4/2021 20:06:50'!
-Object subclass: #RequestHandlerXXX
+Object subclass: #TusLibrosSystemFacadeTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'TusLibros-It2'!
-!RequestHandlerTestXXX methodsFor: 'nil' stamp: 'AF 11/4/2021 20:07:03'!
-test01
-	
-	
-	| handler |
-	handler _ RequestHandlerXXX authenticatingWith: nil.! !
+	category: 'TusLibros'!
 
-!classDefinition: #RequestHandlerTestXXX category: 'TusLibros-It2' stamp: 'AF 11/4/2021 20:07:53'!
-TestCase subclass: #RequestHandlerTestXXX
+!classDefinition: #TusLibrosSystemFacadeTest category: 'TusLibros' stamp: 'AF 11/4/2021 23:26:13'!
+Object subclass: #TusLibrosSystemFacadeTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #TusLibrosSystemFacadeTest category: 'TusLibros' stamp: 'AF 11/4/2021 23:35:10'!
+Object subclass: #TusLibrosSystemFacadeTest
 	instanceVariableNames: 'testObjectFactory'
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'TusLibros-It2'!
-!RequestHandlerTestXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 20:07:47' overrides: 16927572!
+	category: 'TusLibros'!
+!TusLibrosSystemFacadeTest methodsFor: 'nil' stamp: 'AF 11/4/2021 23:35:04'!
+test01
+
+	| tusLibros |
+	tusLibros _ TusLibrosSystemFacade authenticatingWith: testObjectFactory unsuccesfulAuthSystemXXX.
+	self should: [ tusLibros createCartFor: testObjectFactory  ] raise: nil withMessageText: nil.! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:37:06' prior: 50915583!
+test01
+
+	| tusLibros |
+	tusLibros _ TusLibrosSystemFacade authenticatingWith: testObjectFactory unsuccesfulAuthSystemXXX.
+	self should: [ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: nil.! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:38:12' prior: 50915594!
+test01
+
+	| tusLibros |
+	tusLibros _ TusLibrosSystemFacade authenticatingWith: testObjectFactory unsuccesfulAuthSystemXXX.
+	self should: [ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: TusLibrosSystemFacade invalidCredentialsErrorDescription.! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:38:43'!
 setUp
 
 	testObjectFactory _ TestObjectFactory new.! !
-!RequestHandlerTestXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 20:09:23' prior: 50915731!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:40:18' prior: 50915608!
 test01
-	
-	
-	| handler |
-	handler _ RequestHandlerXXX authenticatingWith: testObjectFactory authSystemWithSuccesfulLogin.! !
 
-!classDefinition: #AuthenticationSystem category: 'TusLibros-It2' stamp: 'AF 11/4/2021 20:15:20'!
-Object subclass: #AuthenticationSystem
-	instanceVariableNames: ''
+	| tusLibros |
+	
+	tusLibros _ TusLibrosSystemFacade authenticatingWith: testObjectFactory unsuccesfulAuthSystemXXX.
+	
+	self should: [ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: TusLibrosSystemFacade invalidCredentialsErrorDescription.! !
+
+TestCase subclass: #TusLibrosSystemFacadeTest
+	instanceVariableNames: 'testObjectFactory'
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'TusLibros-It2'!
-!RequestHandlerTestXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 20:15:05' prior: 50915751!
-test01
-	
-	
-	| handler |
-	handler _ RequestHandlerXXX authenticatingWith: testObjectFactory authSystemWithUnsuccesfulLogin.
-	self
-		should: [ handler createCartFor: testObjectFactory defaultUser with: testObjectFactory defaultPassword ]
-		raise: Error - MessageNotUnderstood 
-		withMessageText: AuthenticationSystem unseccesfulLoginErrorDescription.
-		! !
+	category: 'TusLibros'!
 
-!testRun: #RequestHandlerTestXXX #test01 stamp: 'AF 11/4/2021 20:15:27'!
+!classDefinition: #TusLibrosSystemFacadeTest category: 'TusLibros' stamp: 'AF 11/4/2021 23:40:33'!
+TestCase subclass: #TusLibrosSystemFacadeTest
+	instanceVariableNames: 'testObjectFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/4/2021 23:40:36'!
 ERROR!
-!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 20:16:02'!
-authSystemWithUnsuccesfulLogin
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:40:48'!
+unsuccesfulAuthSystemXXX
 	self shouldBeImplemented.! !
 
-!classDefinition: #SimulatedAuthSystem category: 'TusLibros-It2' stamp: 'AF 11/4/2021 20:20:00'!
-Object subclass: #SimulatedAuthSystem
+----QUIT----(4 November 2021 23:44:00) CuisUniversity-4913.image priorSource: 18661997!
+
+----STARTUP---- (4 November 2021 23:45:33) as /home/agus/Documents/inge1/cuis-tusLibros/CuisUniversity-4913.image!
+
+
+!classDefinition: #SimulatedAuthenticationSystem category: 'TusLibros' stamp: 'AF 11/4/2021 23:46:50'!
+Object subclass: #SimulatedAuthenticationSystem
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'TusLibros-It2'!
-!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 20:19:40' prior: 50915783!
-authSystemWithUnsuccesfulLogin
+	category: 'TusLibros'!
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:46:42' prior: 50915660!
+unsuccesfulAuthSystemXXX
 	
-	^ SimulatedAuthSystem withErrorOnAuthentication: [ AuthenticationSystem invalidCredentialsErrorDescription ].! !
-
-Object subclass: #AuthSystem
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros-It2'!
-
-!classDefinition: #AuthSystem category: 'TusLibros-It2' stamp: 'AF 11/4/2021 20:20:28'!
-Object subclass: #AuthSystem
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros-It2'!
-
-!classRemoval: #AuthSystem stamp: 'AF 11/4/2021 20:21:00'!
-Object subclass: #AuthSystem
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros-It2'!
-
-AuthenticationSystem subclass: #SimulatedAuthSystem
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros-It2'!
-
-!classDefinition: #SimulatedAuthSystem category: 'TusLibros-It2' stamp: 'AF 11/4/2021 20:21:08'!
-AuthenticationSystem subclass: #SimulatedAuthSystem
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros-It2'!
-
-!testRun: #RequestHandlerTestXXX #test01 stamp: 'AF 11/4/2021 20:21:37'!
-ERROR!
-!RequestHandlerTestXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 20:22:26' prior: 50915766!
+	^ SimulatedAuthenticationSystem withUnsuccesfulAuthentication.! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:48:33' prior: 50915680!
+unsuccesfulAuthSystemXXX
+	
+	^ SimulatedAuthenticationSystem newUnsuccesful.! !
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:49:02'!
+unsuccesfulAuthenticationSystem
+	
+	^ SimulatedAuthenticationSystem newUnsuccesful.! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:49:02' prior: 50915629!
 test01
-	
-	
-	| handler |
-	handler _ RequestHandlerXXX authenticatingWith: testObjectFactory authSystemWithUnsuccesfulLogin.
-	self
-		should: [ handler createCartFor: testObjectFactory defaultUser with: testObjectFactory defaultPassword ]
-		raise: Error - MessageNotUnderstood 
-		withMessageText: AuthenticationSystem invalidCredentialsErrorDescription.
-		! !
 
-!testRun: #RequestHandlerTestXXX #test01 stamp: 'AF 11/4/2021 20:22:26'!
+	| tusLibros |
+	
+	tusLibros _ TusLibrosSystemFacade authenticatingWith: testObjectFactory unsuccesfulAuthenticationSystem.
+	
+	self should: [ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: TusLibrosSystemFacade invalidCredentialsErrorDescription.! !
+
+!methodRemoval: TestObjectFactory #unsuccesfulAuthSystemXXX stamp: 'AF 11/4/2021 23:49:02'!
+unsuccesfulAuthSystemXXX
+	
+	^ SimulatedAuthenticationSystem newUnsuccesful.!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AF 11/4/2021 23:49:06'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'AF 11/4/2021 23:49:06'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'AF 11/4/2021 23:49:06'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'AF 11/4/2021 23:49:06'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'AF 11/4/2021 23:49:06'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'AF 11/4/2021 23:49:06'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'AF 11/4/2021 23:49:06'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'AF 11/4/2021 23:49:06'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'AF 11/4/2021 23:49:06'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'AF 11/4/2021 23:49:06'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'AF 11/4/2021 23:49:06'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'AF 11/4/2021 23:49:06'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'AF 11/4/2021 23:49:06'!
+PASSED!
+
+!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'AF 11/4/2021 23:49:06'!
+PASSED!
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'AF 11/4/2021 23:49:06'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/4/2021 23:49:06'!
 ERROR!
-!SimulatedAuthSystem class methodsFor: 'instance creation' stamp: 'AF 11/4/2021 20:23:49'!
-withErrorOnAuthentication: aBlockClosure 
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/4/2021 23:49:06'!
+ERROR!
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:52:08'!
+denyAllAuthenticationSystem
+	
+	^ SimulatedAuthenticationSystem newUnsuccesful.! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:52:08' prior: 50915700!
+test01
+
+	| tusLibros |
+	
+	tusLibros _ TusLibrosSystemFacade authenticatingWith: testObjectFactory denyAllAuthenticationSystem.
+	
+	self should: [ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: TusLibrosSystemFacade invalidCredentialsErrorDescription.! !
+
+!methodRemoval: TestObjectFactory #unsuccesfulAuthenticationSystem stamp: 'AF 11/4/2021 23:52:08'!
+unsuccesfulAuthenticationSystem
+	
+	^ SimulatedAuthenticationSystem newUnsuccesful.!
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:53:22'!
+authSystemDenyingAllxxx
+	
+	^ SimulatedAuthenticationSystem newUnsuccesful.! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:53:22' prior: 50915782!
+test01
+
+	| tusLibros |
+	
+	tusLibros _ TusLibrosSystemFacade authenticatingWith: testObjectFactory authSystemDenyingAllxxx.
+	
+	self should: [ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: TusLibrosSystemFacade invalidCredentialsErrorDescription.! !
+
+!methodRemoval: TestObjectFactory #denyAllAuthenticationSystem stamp: 'AF 11/4/2021 23:53:22'!
+denyAllAuthenticationSystem
+	
+	^ SimulatedAuthenticationSystem newUnsuccesful.!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/4/2021 23:53:30'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AF 11/4/2021 23:53:30'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'AF 11/4/2021 23:53:30'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'AF 11/4/2021 23:53:30'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'AF 11/4/2021 23:53:30'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'AF 11/4/2021 23:53:30'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'AF 11/4/2021 23:53:30'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'AF 11/4/2021 23:53:30'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'AF 11/4/2021 23:53:30'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'AF 11/4/2021 23:53:30'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'AF 11/4/2021 23:53:30'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'AF 11/4/2021 23:53:30'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'AF 11/4/2021 23:53:30'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'AF 11/4/2021 23:53:30'!
+PASSED!
+
+!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'AF 11/4/2021 23:53:30'!
+PASSED!
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'AF 11/4/2021 23:53:30'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/4/2021 23:53:30'!
+ERROR!
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:53:58'!
+authSystemAllowingAllxxx
+	
+	^ SimulatedAuthenticationSystem newSuccesful.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/4/2021 23:54:01'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AF 11/4/2021 23:54:01'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'AF 11/4/2021 23:54:01'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'AF 11/4/2021 23:54:01'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'AF 11/4/2021 23:54:01'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'AF 11/4/2021 23:54:01'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'AF 11/4/2021 23:54:01'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'AF 11/4/2021 23:54:01'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'AF 11/4/2021 23:54:01'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'AF 11/4/2021 23:54:01'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'AF 11/4/2021 23:54:01'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'AF 11/4/2021 23:54:01'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'AF 11/4/2021 23:54:01'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'AF 11/4/2021 23:54:01'!
+PASSED!
+
+!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'AF 11/4/2021 23:54:01'!
+PASSED!
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'AF 11/4/2021 23:54:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/4/2021 23:54:01'!
+ERROR!
+!SimulatedAuthenticationSystem class methodsFor: 'instance creation' stamp: 'AF 11/4/2021 23:54:10'!
+newUnsuccesful
 	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
 	self shouldBeImplemented.
-	^self new initializeWithErrorOnAuthentication: aBlockClosure ! !
-!SimulatedAuthSystem class methodsFor: 'instance creation' stamp: 'AF 11/4/2021 20:24:44' prior: 50915853!
-withErrorOnAuthentication: anErrorDescription 
-	
-	^self new initializeWithErrorOnAuthentication: anErrorDescription ! !
+	^self new initializeNewUnsuccesful! !
+!SimulatedAuthenticationSystem class methodsFor: 'instance creation' stamp: 'AF 11/4/2021 23:54:14' prior: 50915947!
+newUnsuccesful
 
-!testRun: #RequestHandlerTestXXX #test01 stamp: 'AF 11/4/2021 20:24:46'!
+	^self new initializeNewUnsuccesful! !
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/4/2021 23:54:16'!
 ERROR!
+!SimulatedAuthenticationSystem methodsFor: 'initialization' stamp: 'AF 11/4/2021 23:54:24'!
+initializeNewUnsuccesful
+	self shouldBeImplemented.! !
 
-!classDefinition: #SimulatedAuthSystem category: 'TusLibros-It2' stamp: 'AF 11/4/2021 20:25:04'!
-AuthenticationSystem subclass: #SimulatedAuthSystem
-	instanceVariableNames: 'errorDescription'
+!classDefinition: #SimulatedAuthenticationSystem category: 'TusLibros' stamp: 'AF 11/4/2021 23:54:40'!
+Object subclass: #SimulatedAuthenticationSystem
+	instanceVariableNames: 'result'
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'TusLibros-It2'!
-!SimulatedAuthSystem methodsFor: 'initialization' stamp: 'AF 11/4/2021 20:25:04'!
-initializeWithErrorOnAuthentication: anErrorDescription 
-	self shouldBeImplemented.
-	errorDescription := anErrorDescription.! !
-!SimulatedAuthSystem methodsFor: 'initialization' stamp: 'AF 11/4/2021 20:25:10' prior: 50915881!
-initializeWithErrorOnAuthentication: anErrorDescription 
+	category: 'TusLibros'!
+!SimulatedAuthenticationSystem methodsFor: 'initialization' stamp: 'AF 11/4/2021 23:54:38' prior: 50915964!
+initializeNewUnsuccesful
 	
-	errorDescription := anErrorDescription.! !
+	result _ false.! !
 
-!testRun: #RequestHandlerTestXXX #test01 stamp: 'AF 11/4/2021 20:25:12'!
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/4/2021 23:54:41'!
 ERROR!
-!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 20:25:52' prior: 50915796!
-authSystemWithUnsuccesfulLogin
-	
-	^ SimulatedAuthSystem withErrorOnAuthentication: AuthenticationSystem invalidCredentialsErrorDescription.! !
-
-!testRun: #RequestHandlerTestXXX #test01 stamp: 'AF 11/4/2021 20:25:59'!
-ERROR!
-!AuthenticationSystem class methodsFor: 'error descriptions' stamp: 'AF 11/4/2021 20:26:26'!
-invalidCredentialsErrorDescription
-	self shouldBeImplemented.! !
-!AuthenticationSystem class methodsFor: 'error descriptions' stamp: 'AF 11/4/2021 20:26:41' prior: 50915908!
-invalidCredentialsErrorDescription
-	
-	^'invalid credentials'.! !
-
-!testRun: #RequestHandlerTestXXX #test01 stamp: 'AF 11/4/2021 20:26:43'!
-ERROR!
-!RequestHandlerXXX class methodsFor: 'instance creation' stamp: 'AF 11/4/2021 20:26:59'!
-authenticatingWith: aSimulatedAuthSystem 
+!TusLibrosSystemFacade class methodsFor: 'instance creation' stamp: 'AF 11/4/2021 23:55:12'!
+authenticatingWith: aSimulatedAuthenticationSystem 
 	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
 	self shouldBeImplemented.
-	^self new initializeAuthenticatingWith: aSimulatedAuthSystem ! !
-!RequestHandlerXXX class methodsFor: 'instance creation' stamp: 'AF 11/4/2021 20:27:29' prior: 50915922!
+	^self new initializeAuthenticatingWith: aSimulatedAuthenticationSystem ! !
+!TusLibrosSystemFacade class methodsFor: 'instance creation' stamp: 'AF 11/4/2021 23:55:52' prior: 50915986!
 authenticatingWith: anAuthenticationSystem 
-	
-	^self new initializeAuthenticatingWith: anAuthenticationSystem ! !
 
-!testRun: #RequestHandlerTestXXX #test01 stamp: 'AF 11/4/2021 20:27:30'!
+	^self new initializeAuthenticatingWith: anAuthenticationSystem.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/4/2021 23:55:52'!
 ERROR!
 
-!classDefinition: #RequestHandlerXXX category: 'TusLibros-It2' stamp: 'AF 11/4/2021 20:27:37'!
-Object subclass: #RequestHandlerXXX
+!classDefinition: #TusLibrosSystemFacade category: 'TusLibros' stamp: 'AF 11/4/2021 23:55:59'!
+Object subclass: #TusLibrosSystemFacade
 	instanceVariableNames: 'authenticationSystem'
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'TusLibros-It2'!
-!RequestHandlerXXX methodsFor: 'initialization' stamp: 'AF 11/4/2021 20:27:37'!
+	category: 'TusLibros'!
+!TusLibrosSystemFacade methodsFor: 'initialization' stamp: 'AF 11/4/2021 23:55:59'!
 initializeAuthenticatingWith: anAuthenticationSystem 
 	self shouldBeImplemented.
 	authenticationSystem := anAuthenticationSystem.! !
-!RequestHandlerXXX methodsFor: 'initialization' stamp: 'AF 11/4/2021 20:27:49' prior: 50915949!
+!TusLibrosSystemFacade methodsFor: 'initialization' stamp: 'AF 11/4/2021 23:56:04' prior: 50916014!
 initializeAuthenticatingWith: anAuthenticationSystem 
 
 	authenticationSystem := anAuthenticationSystem.! !
 
-!testRun: #RequestHandlerTestXXX #test01 stamp: 'AF 11/4/2021 20:27:50'!
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/4/2021 23:56:05'!
 ERROR!
-!TestObjectFactory methodsFor: '*Cuis-University-Model' stamp: 'AF 11/4/2021 20:27:58'!
+!TusLibrosSystemFacade class methodsFor: 'error descriptions' stamp: 'AF 11/4/2021 23:56:43'!
+invalidCredentialsErrorDescription
+	self shouldBeImplemented.! !
+!TusLibrosSystemFacade class methodsFor: 'error descriptions' stamp: 'AF 11/4/2021 23:57:17' prior: 50916031!
+invalidCredentialsErrorDescription
+	
+	^'invalid credentials'! !
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/4/2021 23:57:19'!
+ERROR!
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:57:31'!
 defaultUser
 	self shouldBeImplemented.! !
-!TestObjectFactory methodsFor: '*Cuis-University-Model' stamp: 'AF 11/4/2021 20:28:37' prior: 50915966!
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:57:41' prior: 50916045!
 defaultUser
 	
 	^'HAW'! !
 
-!testRun: #RequestHandlerTestXXX #test01 stamp: 'AF 11/4/2021 20:28:40'!
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/4/2021 23:57:42'!
 ERROR!
-!TestObjectFactory methodsFor: 'category-name' stamp: 'AF 11/4/2021 20:28:56'!
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:57:48'!
 defaultPassword
 	self shouldBeImplemented.! !
-
-!testRun: #RequestHandlerTestXXX #test01 stamp: 'AF 11/4/2021 20:30:39'!
-FAILURE!
-!TestObjectFactory methodsFor: 'category-name' stamp: 'AF 11/4/2021 20:31:15' prior: 50915977!
+!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:58:01' prior: 50916057!
 defaultPassword
 	
 	^'hunter2'! !
 
-!testRun: #RequestHandlerTestXXX #test01 stamp: 'AF 11/4/2021 20:32:48'!
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/4/2021 23:58:02'!
 ERROR!
-
-!testRun: #RequestHandlerTestXXX #test01 stamp: 'AF 11/4/2021 20:33:35'!
-ERROR!
-
-!testRun: #RequestHandlerTestXXX #test01 stamp: 'AF 11/4/2021 20:33:35'!
-ERROR!
-!RequestHandlerXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 20:34:03'!
-createCartFor: aString with: aString2 
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:58:18'!
+createCartFor: aString authenticatedBy: aString2 
 	self shouldBeImplemented.! !
-!RequestHandlerXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 20:41:34' prior: 50915996!
-createCartFor: aUser with: aPassword
-	
-	(authenticationSystem can: aUser beAuthenticatedWith: aPassword) 
-		ifFalse: [ self error: RequestHandlerXXX invalidCredentialsErrorDescription ].! !
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:01:52' prior: 50916069!
+createCartFor: aUser authenticatedBy: aPassword 
 
-!testRun: #RequestHandlerTestXXX #test01 stamp: 'AF 11/4/2021 20:41:44'!
-ERROR!
+	(authenticationSystem can: aUser beAuthenticatedBy: aPassword)  ifFalse: [ self error: TusLibrosSystemFacade invalidCredentialsErrorDescription ].! !
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:01:59' prior: 50916075!
+createCartFor: aUser authenticatedBy: aPassword 
 
-!classRenamed: #RequestHandlerXXX as: #TusLibrosSystemFacade stamp: 'AF 11/4/2021 20:43:13'!
-Smalltalk renameClassNamed: #RequestHandlerXXX as: #TusLibrosSystemFacade!
-!RequestHandlerTestXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 20:43:14' prior: 50915836!
-test01
-	
-	
-	| handler |
-	handler _ TusLibrosSystemFacade authenticatingWith: testObjectFactory authSystemWithUnsuccesfulLogin.
-	self
-		should: [ handler createCartFor: testObjectFactory defaultUser with: testObjectFactory defaultPassword ]
-		raise: Error - MessageNotUnderstood 
-		withMessageText: AuthenticationSystem invalidCredentialsErrorDescription.
-		! !
-!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 20:43:14' prior: 50916002!
-createCartFor: aUser with: aPassword
-	
-	(authenticationSystem can: aUser beAuthenticatedWith: aPassword) 
+	(authenticationSystem can: aUser beAuthenticatedBy: aPassword)  
+		ifFalse: [ self error: TusLibrosSystemFacade invalidCredentialsErrorDescription ].! !
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:02:13' prior: 50916085!
+createCartFor: aUser authenticatedBy: aPassword 
+
+	(authenticationSystem can: aUser beAuthenticatedBy: aPassword)
 		ifFalse: [ self error: TusLibrosSystemFacade invalidCredentialsErrorDescription ].! !
 
-!classRenamed: #RequestHandlerTestXXX as: #TusLibrosSystemFacadeTest stamp: 'AF 11/4/2021 20:43:34'!
-Smalltalk renameClassNamed: #RequestHandlerTestXXX as: #TusLibrosSystemFacadeTest!
-
-!methodRemoval: AuthenticationSystem class #invalidCredentialsErrorDescription stamp: 'AF 11/4/2021 20:44:01'!
-invalidCredentialsErrorDescription
-	
-	^'invalid credentials'.!
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 20:44:31' prior: 50916020!
-test01
-	
-	
-	| handler |
-	handler _ TusLibrosSystemFacade authenticatingWith: testObjectFactory authSystemWithUnsuccesfulLogin.
-	self
-		should: [ handler createCartFor: testObjectFactory defaultUser with: testObjectFactory defaultPassword ]
-		raise: Error - MessageNotUnderstood 
-		withMessageText: TusLibrosSystemFacade invalidCredentialsErrorDescription.
-		! !
-!TusLibrosSystemFacade class methodsFor: 'nil' stamp: 'AF 11/4/2021 20:44:40'!
-invalidCredentialsErrorDescription
-	
-	^'invalid credentials'.! !
-
-!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/4/2021 20:45:05'!
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/5/2021 00:02:17'!
 ERROR!
-!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 20:46:37' prior: 50915898!
-authSystemWithUnsuccesfulLogin
-	
-	^ SimulatedAuthSystem withUnsuccesfulAuthentication.! !
-
-!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'AF 11/4/2021 20:46:49'!
-PASSED!
-
-!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'AF 11/4/2021 20:46:49'!
-PASSED!
-
-!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'AF 11/4/2021 20:46:49'!
-PASSED!
-
-!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'AF 11/4/2021 20:46:49'!
-PASSED!
-
-!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'AF 11/4/2021 20:46:49'!
-PASSED!
-
-!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'AF 11/4/2021 20:46:49'!
-PASSED!
-
-!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'AF 11/4/2021 20:46:49'!
-PASSED!
-
-!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'AF 11/4/2021 20:46:49'!
-PASSED!
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AF 11/4/2021 20:46:49'!
-PASSED!
-
-!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'AF 11/4/2021 20:46:49'!
-PASSED!
-
-!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'AF 11/4/2021 20:46:49'!
-PASSED!
-
-!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'AF 11/4/2021 20:46:49'!
-PASSED!
-
-!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'AF 11/4/2021 20:46:49'!
-PASSED!
-
-!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'AF 11/4/2021 20:46:49'!
-PASSED!
-
-!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'AF 11/4/2021 20:46:49'!
-PASSED!
-
-!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/4/2021 20:46:49'!
-ERROR!
-
-!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/4/2021 20:46:49'!
-ERROR!
-!SimulatedAuthSystem class methodsFor: 'instance creation' stamp: 'AF 11/4/2021 20:46:57'!
-withUnsuccesfulAuthentication
-	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
-	self shouldBeImplemented.
-	^self new initializeWithUnsuccesfulAuthentication! !
-!SimulatedAuthSystem class methodsFor: 'instance creation' stamp: 'AF 11/4/2021 20:47:06' prior: 50916140!
-withUnsuccesfulAuthentication
-
-	^self new initializeWithUnsuccesfulAuthentication! !
-
-!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/4/2021 20:47:08'!
-ERROR!
-!SimulatedAuthSystem methodsFor: 'initialization' stamp: 'AF 11/4/2021 20:47:16'!
-initializeWithUnsuccesfulAuthentication
+!SimulatedAuthenticationSystem methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:02:29'!
+can: aString beAuthenticatedBy: aString2 
 	self shouldBeImplemented.! !
-
-!classDefinition: #SimulatedAuthSystem category: 'TusLibros-It2' stamp: 'AF 11/4/2021 20:47:43'!
-AuthenticationSystem subclass: #SimulatedAuthSystem
-	instanceVariableNames: 'errorDescription result'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros-It2'!
-!SimulatedAuthSystem methodsFor: 'initialization' stamp: 'AF 11/4/2021 20:47:41' prior: 50916157!
-initializeWithUnsuccesfulAuthentication
-	
-	result _ false.! !
-
-!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/4/2021 20:47:44'!
-ERROR!
-!SimulatedAuthSystem methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 20:47:56'!
-can: aString beAuthenticatedWith: aString2 
-	self shouldBeImplemented.! !
-!SimulatedAuthSystem methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 20:48:41' prior: 50916179!
-can: aUser beAuthenticatedWith: aPassword 
+!SimulatedAuthenticationSystem methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:02:49' prior: 50916107!
+can: aUser beAuthenticatedBy: aPassword 
 	
 	^result.! !
 
-!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/4/2021 20:48:41'!
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/5/2021 00:02:52'!
 PASSED!
 
-!methodRemoval: SimulatedAuthSystem class #withErrorOnAuthentication: stamp: 'AF 11/4/2021 20:48:54'!
-withErrorOnAuthentication: anErrorDescription 
-	
-	^self new initializeWithErrorOnAuthentication: anErrorDescription !
-
-!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/4/2021 20:49:02'!
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/5/2021 00:02:57'!
 PASSED!
 
-!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/4/2021 20:49:02'!
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AF 11/5/2021 00:02:57'!
 PASSED!
 
-!methodRemoval: SimulatedAuthSystem #initializeWithErrorOnAuthentication: stamp: 'AF 11/4/2021 20:49:22'!
-initializeWithErrorOnAuthentication: anErrorDescription 
-	
-	errorDescription := anErrorDescription.!
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 20:50:13' prior: 50916056!
-test01
-	
-	| handler |
-	handler _ TusLibrosSystemFacade authenticatingWith: testObjectFactory authSystemWithUnsuccesfulLogin.
-	self
-		should: [ handler createCartFor: testObjectFactory defaultUser with: testObjectFactory defaultPassword ]
-		raise: Error - MessageNotUnderstood 
-		withMessageText: TusLibrosSystemFacade invalidCredentialsErrorDescription.
-		! !
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 20:50:19' prior: 50916212!
-test01
-	
-	| handler |
-	
-	handler _ TusLibrosSystemFacade authenticatingWith: testObjectFactory authSystemWithUnsuccesfulLogin.
-	self
-		should: [ handler createCartFor: testObjectFactory defaultUser with: testObjectFactory defaultPassword ]
-		raise: Error - MessageNotUnderstood 
-		withMessageText: TusLibrosSystemFacade invalidCredentialsErrorDescription.
-		! !
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 20:54:12'!
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'AF 11/5/2021 00:02:57'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'AF 11/5/2021 00:02:57'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'AF 11/5/2021 00:02:57'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'AF 11/5/2021 00:02:57'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'AF 11/5/2021 00:02:57'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'AF 11/5/2021 00:02:57'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'AF 11/5/2021 00:02:57'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'AF 11/5/2021 00:02:57'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'AF 11/5/2021 00:02:57'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'AF 11/5/2021 00:02:57'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'AF 11/5/2021 00:02:57'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'AF 11/5/2021 00:02:57'!
+PASSED!
+
+!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'AF 11/5/2021 00:02:57'!
+PASSED!
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'AF 11/5/2021 00:02:57'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/5/2021 00:03:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/5/2021 00:03:01'!
+PASSED!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:05:35'!
 test02
+
+	| tusLibros cartId |
 	
-	| handler cartId |
+	tusLibros _ TusLibrosSystemFacade authenticatingWith: testObjectFactory authSystemAllowingAllXXX.
+	cartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
 	
-	handler _ TusLibrosSystemFacade authenticatingWith: testObjectFactory authSystemWithSuccesfulLogin.
-	cartId _ handler createCartFor: testObjectFactory defaultUser with: testObjectFactory defaultPassword.
-	self assert: (handler listCart: cartId) isEmpty.! !
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 20:54:24' prior: 50916242!
+	self assert: (tusLibros listCart: cartId) isEmpty.! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:06:03' prior: 50916179!
 test02
-	
-	| handler cartId |
-	
-	handler _ TusLibrosSystemFacade authenticatingWith: testObjectFactory authSystemWithSuccesfulLogin.
-	cartId _ handler createCartFor: testObjectFactory defaultUser with: testObjectFactory defaultPassword.
-	
-	self assert: (handler listCart: cartId) isEmpty.! !
 
-!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/4/2021 20:54:24'!
-ERROR!
-!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 20:54:39'!
-authSystemWithSuccesfulLogin
-	self shouldBeImplemented.! !
-!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 20:55:30' prior: 50916270!
-authSystemWithSuccesfulLogin
+	| tusLibros cartId |
 	
-	^SimulatedAuthSystem withSuccesfulAuthentication.! !
+	tusLibros _ TusLibrosSystemFacade authenticatingWith: testObjectFactory authSystemAllowingAllxxx.
+	cartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	
+	self assert: (tusLibros listCart: cartId) isEmpty.! !
 
-!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/4/2021 20:55:33'!
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:06:05'!
 ERROR!
-!SimulatedAuthSystem class methodsFor: 'instance creation' stamp: 'AF 11/4/2021 20:55:45'!
-withSuccesfulAuthentication
+!SimulatedAuthenticationSystem class methodsFor: 'instance creation' stamp: 'AF 11/5/2021 00:06:17'!
+newSuccesful
 	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
 	self shouldBeImplemented.
-	^self new initializeWithSuccesfulAuthentication! !
-!SimulatedAuthSystem class methodsFor: 'instance creation' stamp: 'AF 11/4/2021 20:55:51' prior: 50916284!
-withSuccesfulAuthentication
+	^self new initializeNewSuccesful! !
+!SimulatedAuthenticationSystem class methodsFor: 'instance creation' stamp: 'AF 11/5/2021 00:06:21' prior: 50916208!
+newSuccesful
 	
-	^self new initializeWithSuccesfulAuthentication! !
-!SimulatedAuthSystem class methodsFor: 'instance creation' stamp: 'AF 11/4/2021 20:55:54' prior: 50916293!
-withSuccesfulAuthentication
-	
-	^self new initializeWithSuccesfulAuthentication.! !
+	^self new initializeNewSuccesful! !
 
-!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/4/2021 20:55:55'!
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:06:22'!
 ERROR!
-!SimulatedAuthSystem methodsFor: 'initialization' stamp: 'AF 11/4/2021 20:56:02'!
-initializeWithSuccesfulAuthentication
+!SimulatedAuthenticationSystem methodsFor: 'initialization' stamp: 'AF 11/5/2021 00:06:29'!
+initializeNewSuccesful
 	self shouldBeImplemented.! !
-!SimulatedAuthSystem methodsFor: 'initialization' stamp: 'AF 11/4/2021 20:56:10' prior: 50916307!
-initializeWithSuccesfulAuthentication
+!SimulatedAuthenticationSystem methodsFor: 'initialization' stamp: 'AF 11/5/2021 00:06:41' prior: 50916225!
+initializeNewSuccesful
 	
 	result _ true.! !
 
-!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/4/2021 20:56:11'!
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:06:43'!
 ERROR!
-!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 20:56:18'!
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:06:55'!
 listCart: aTusLibrosSystemFacade 
 	self shouldBeImplemented.! !
-!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 20:56:26' prior: 50916321!
-listCart: aTusLibrosSystemFacade 
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:07:14' prior: 50916238!
+listCart: aCartId
 	
 	^OrderedCollection new.! !
 
-!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/4/2021 20:56:27'!
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:07:15'!
 PASSED!
 
-!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/4/2021 20:56:27'!
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/5/2021 00:07:15'!
 PASSED!
 
-!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/4/2021 20:56:27'!
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:07:15'!
 PASSED!
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 21:00:12'!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:07:46'!
 test03
-	
-	| handler cartId aQuantity |
-	
-	handler _ TusLibrosSystemFacade authenticatingWith: testObjectFactory authSystemWithSuccesfulLogin.
-	cartId _ handler createCartFor: testObjectFactory defaultUser with: testObjectFactory defaultPassword.
-	aQuantity _ 1.
-	handler add: aQuantity of: testObjectFactory firstProductSoldByTheStore to: cartId.
-	self assert: (handler listCart: cartId) isEmpty.! !
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 21:03:49' prior: 50916340!
-test03
-	
-	| handler cartId aQuantity |
-	
-	handler _ TusLibrosSystemFacade authenticatingWith: testObjectFactory authSystemWithSuccesfulLogin.
-	cartId _ handler createCartFor: testObjectFactory defaultUser with: testObjectFactory defaultPassword.
-	aQuantity _ 1.
-	handler add: aQuantity ofProduct: testObjectFactory firstProductSoldByTheStore toCart: cartId.
-	self assert: (handler listCart: cartId) isEmpty.! !
 
-!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/4/2021 21:03:50'!
+	| tusLibros cartId |
+	
+	tusLibros _ TusLibrosSystemFacade authenticatingWith: testObjectFactory authSystemAllowingAllxxx.
+	cartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	
+	
+	
+	self assert: (tusLibros listCart: cartId) isEmpty.! !
+
+!methodRemoval: TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:07:54'!
+test03
+
+	| tusLibros cartId |
+	
+	tusLibros _ TusLibrosSystemFacade authenticatingWith: testObjectFactory authSystemAllowingAllxxx.
+	cartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	
+	
+	
+	self assert: (tusLibros listCart: cartId) isEmpty.!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:13:18'!
+test03
+
+	| tusLibros cartId expectedCartContents quantity |
+	
+	tusLibros _ TusLibrosSystemFacade authenticatingWith: testObjectFactory authSystemAllowingAllxxx.
+	cartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	quantity _ 1.
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: cartId.
+	
+	expectedCartContents _ OrderedCollection with: testObjectFactory firstProductSoldByTheStore.
+	self assert: expectedCartContents equals: (tusLibros listCart: cartId).! !
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:13:38'!
 ERROR!
-!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 21:04:04'!
-add: aSmallInteger ofProduct: aString toCart: aTusLibrosSystemFacade 
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:13:46'!
+add: aSmallInteger of: aString to: aTusLibrosSystemFacade 
 	self shouldBeImplemented.! !
-!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 21:04:12' prior: 50916375!
-add: aSmallInteger ofProduct: aString toCart: aTusLibrosSystemFacade 
-	
-	! !
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:16:19' prior: 50916095!
+createCartFor: aUser authenticatedBy: aPassword 
 
-----QUIT----(4 November 2021 21:25:09) CuisUniversity-4913.image priorSource: 18661997!
+	| cart |
+	(authenticationSystem can: aUser beAuthenticatedBy: aPassword)
+		ifFalse: [ self error: TusLibrosSystemFacade invalidCredentialsErrorDescription ].
+	cart _ Cart .! !
+
+!classDefinition: #TusLibrosSystemFacade category: 'TusLibros' stamp: 'AF 11/5/2021 00:17:53'!
+Object subclass: #TusLibrosSystemFacade
+	instanceVariableNames: 'authenticationSystem cart2'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #TusLibrosSystemFacade category: 'TusLibros' stamp: 'AF 11/5/2021 00:18:00'!
+Object subclass: #TusLibrosSystemFacade
+	instanceVariableNames: 'authenticationSystem cart2 catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:17:59' prior: 50916312!
+createCartFor: aUser authenticatedBy: aPassword 
+
+	(authenticationSystem can: aUser beAuthenticatedBy: aPassword)
+		ifFalse: [ self error: TusLibrosSystemFacade invalidCredentialsErrorDescription ].
+	cart2 _ Cart acceptingProductsFrom: catalog.! !
+
+!classDefinition: #TusLibrosSystemFacade category: 'TusLibros' stamp: 'AF 11/5/2021 00:18:03'!
+Object subclass: #TusLibrosSystemFacade
+	instanceVariableNames: 'authenticationSystem cart catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:18:03' prior: 50916339!
+createCartFor: aUser authenticatedBy: aPassword 
+
+	(authenticationSystem can: aUser beAuthenticatedBy: aPassword)
+		ifFalse: [ self error: TusLibrosSystemFacade invalidCredentialsErrorDescription ].
+	cart _ Cart acceptingProductsFrom: catalog.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/5/2021 00:18:09'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:18:09'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:18:09'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:18:09'!
+ERROR!
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:19:50' prior: 50916305!
+add: aQuantity of: aProduct to: aCartId 
+	
+	cart add: aQuantity of: aProduct! !
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:20:03' prior: 50916381!
+add: aQuantity of: aProduct to: aCartId 
+	
+	cart add: aQuantity of: aProduct.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:20:12'!
+ERROR!
+!TusLibrosSystemFacade class methodsFor: 'instance creation' stamp: 'AF 11/5/2021 00:21:30'!
+authenticatingWith: anAuthenticationSystem sourcingProductsFrom: aCatalog
+
+	^self new initializeAuthenticatingWith: anAuthenticationSystem sourcingProductsFrom: aCatalog.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/5/2021 00:21:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:21:34'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:21:34'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:21:34'!
+ERROR!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:22:31' prior: 50916282!
+test03
+
+	| tusLibros cartId expectedCartContents quantity |
+	
+	tusLibros _ TusLibrosSystemFacade authenticatingWith: testObjectFactory authSystemAllowingAllxxx sourcingProductsFrom: testObjectFactory defaultCatalog .
+	cartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	quantity _ 1.
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: cartId.
+	
+	expectedCartContents _ OrderedCollection with: testObjectFactory firstProductSoldByTheStore.
+	self assert: expectedCartContents equals: (tusLibros listCart: cartId).! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:22:37' prior: 50916416!
+test03
+
+	| tusLibros cartId expectedCartContents quantity |
+	
+	tusLibros _ TusLibrosSystemFacade authenticatingWith: testObjectFactory authSystemAllowingAllxxx sourcingProductsFrom: testObjectFactory defaultCatalog.
+	cartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	quantity _ 1.
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: cartId.
+	
+	expectedCartContents _ OrderedCollection with: testObjectFactory firstProductSoldByTheStore.
+	self assert: expectedCartContents equals: (tusLibros listCart: cartId).! !
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:22:40'!
+ERROR!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:24:05' prior: 50916439!
+test03
+
+	| tusLibros cartId expectedCartContents quantity |
+	
+	tusLibros _ testObjectFactory defaultTusLibrosSystemFacade.
+	cartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	quantity _ 1.
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: cartId.
+	
+	expectedCartContents _ OrderedCollection with: testObjectFactory firstProductSoldByTheStore.
+	self assert: expectedCartContents equals: (tusLibros listCart: cartId).! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:24:34' prior: 50916464!
+test03
+
+	| tusLibros cartId expectedCartContents quantity |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	cartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	quantity _ 1.
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: cartId.
+	
+	expectedCartContents _ OrderedCollection with: testObjectFactory firstProductSoldByTheStore.
+	self assert: expectedCartContents equals: (tusLibros listCart: cartId).! !
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:24:34'!
+ERROR!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:24:42'!
+defaultTusLibrosSystemFacade
+	self shouldBeImplemented.! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:24:51' prior: 50916506!
+defaultTusLibrosSystemFacade
+	
+	^TusLibrosSystemFacade authenticatingWith: testObjectFactory authSystemAllowingAllxxx sourcingProductsFrom: testObjectFactory defaultCatalog.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:24:53'!
+ERROR!
+!TusLibrosSystemFacade methodsFor: 'initialization' stamp: 'AF 11/5/2021 00:25:06'!
+initializeAuthenticatingWith: anAuthenticationSystem sourcingProductsFrom: aCatalog 
+	self shouldBeImplemented.
+	authenticationSystem := anAuthenticationSystem.
+	catalog := aCatalog.! !
+!TusLibrosSystemFacade methodsFor: 'initialization' stamp: 'AF 11/5/2021 00:25:20' prior: 50916523!
+initializeAuthenticatingWith: anAuthenticationSystem sourcingProductsFrom: aCatalog 
+	
+	authenticationSystem _ anAuthenticationSystem.
+	catalog _ aCatalog.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:25:22'!
+FAILURE!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:25:47' prior: 50916192!
+test02
+
+	| tusLibros cartId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade .
+	cartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	
+	self assert: (tusLibros listCart: cartId) isEmpty.! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:25:48' prior: 50916544!
+test02
+
+	| tusLibros cartId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	cartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	
+	self assert: (tusLibros listCart: cartId) isEmpty.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:25:48'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/5/2021 00:25:48'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:25:48'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:25:48'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:25:48'!
+FAILURE!
+!Cart methodsFor: 'accessing' stamp: 'AF 11/5/2021 00:29:58'!
+contents
+
+	^contents copy.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:30:26'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/5/2021 00:30:26'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:30:26'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:30:26'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:30:26'!
+FAILURE!
+
+----End fileIn of /home/agus/Documents/inge1/cuis-tusLibros/Packages/TerseGuide.pck.st----!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:32:30' prior: 50916484!
+test03
+
+	| tusLibros cartId expectedCartContents quantity |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	cartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	quantity _ 1.
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: cartId.
+	
+	expectedCartContents _ Bag new
+		add: testObjectFactory firstProductSoldByTheStore
+		withOccurrences: quantity.
+	self assert: expectedCartContents equals: (tusLibros listCart: cartId).! !
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:32:32'!
+FAILURE!
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:32:49' prior: 50916244!
+listCart: aCartId
+	
+	^cart contents.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/5/2021 00:32:52'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:32:52'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:32:52'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:32:52'!
+FAILURE!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:33:35' prior: 50919524!
+test03
+
+	| tusLibros cartId expectedCartContents quantity |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	cartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	quantity _ 1.
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: cartId.
+	
+	expectedCartContents _ Bag new
+		add: testObjectFactory firstProductSoldByTheStore
+		withOccurrences: quantity;
+		yourself.
+	self assert: expectedCartContents equals: (tusLibros listCart: cartId).! !
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:33:43'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/5/2021 00:33:43'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:33:43'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:33:43'!
+PASSED!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:34:24' prior: 50919563!
+test03
+
+	| tusLibros cartId expectedCartContents quantity |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	cartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	quantity _ 1.
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: cartId.
+	
+	expectedCartContents _ Bag new
+		add: testObjectFactory firstProductSoldByTheStore
+		withOccurrences: quantity;
+		yourself.
+	
+	self assert: expectedCartContents equals: (tusLibros listCart: cartId).! !
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:34:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/5/2021 00:34:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:34:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:34:25'!
+PASSED!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:36:38' prior: 50919594!
+test03
+
+	| tusLibros expectedCartContents quantity firstCartId secondCartId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	firstCartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	secondCartId _ tusLibros createCartFor: 'nacho' authenticatedBy: 'pinga'.
+	quantity _ 1.
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: firstCartId.
+
+	
+	expectedCartContents _ Bag new
+		add: testObjectFactory firstProductSoldByTheStore
+		withOccurrences: quantity;
+		yourself.
+	
+	self assert: expectedCartContents equals: (tusLibros listCart: firstCartId).! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:37:22' prior: 50919625!
+test03
+
+	| tusLibros expectedCartContents quantity firstCartId secondCartId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	firstCartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	secondCartId _ tusLibros createCartFor: 'nacho' authenticatedBy: 'pinga'.
+	quantity _ 1.
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: firstCartId.
+
+	
+	expectedCartContents _ Bag new
+		add: testObjectFactory firstProductSoldByTheStore
+		withOccurrences: quantity;
+		yourself.
+	
+	self assert: expectedCartContents equals: (tusLibros listCart: firstCartId).
+	self assert: (secondCartId listCart: secondCartId) isEmpty.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:40:13'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:40:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/5/2021 00:40:13'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:40:13'!
+FAILURE!
+
+!classDefinition: #TusLibrosSystemFacade category: 'TusLibros' stamp: 'AF 11/5/2021 00:43:01'!
+Object subclass: #TusLibrosSystemFacade
+	instanceVariableNames: 'authenticationSystem cart catalog carts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #TusLibrosSystemFacade category: 'TusLibros' stamp: 'AF 11/5/2021 00:44:03'!
+Object subclass: #TusLibrosSystemFacade
+	instanceVariableNames: 'authenticationSystem cart catalog carts cartId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:44:36' prior: 50916359!
+createCartFor: aUser authenticatedBy: aPassword 
+
+	(authenticationSystem can: aUser beAuthenticatedBy: aPassword)
+		ifFalse: [ self error: TusLibrosSystemFacade invalidCredentialsErrorDescription ].
+	
+	cartId _ self nextCartId.
+	carts at: cartId put: Cart acceptingProductsFrom: catalog.
+	^cartId! !
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:44:58' prior: 50919703!
+createCartFor: aUser authenticatedBy: aPassword 
+
+	(authenticationSystem can: aUser beAuthenticatedBy: aPassword)
+		ifFalse: [ self error: TusLibrosSystemFacade invalidCredentialsErrorDescription ].
+	
+	cartId _ self nextCartId.
+	carts at: cartId put: (Cart acceptingProductsFrom: catalog).
+	
+	^cartId! !
+
+Object subclass: #TusLibrosSystemFacade
+	instanceVariableNames: 'authenticationSystem cart catalog carts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #TusLibrosSystemFacade category: 'TusLibros' stamp: 'AF 11/5/2021 00:45:04'!
+Object subclass: #TusLibrosSystemFacade
+	instanceVariableNames: 'authenticationSystem cart catalog carts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:45:17' prior: 50919716!
+createCartFor: aUser authenticatedBy: aPassword 
+	
+	| cartId |
+	
+	(authenticationSystem can: aUser beAuthenticatedBy: aPassword)
+		ifFalse: [ self error: TusLibrosSystemFacade invalidCredentialsErrorDescription ].
+	
+	cartId _ self nextCartId.
+	carts at: cartId put: (Cart acceptingProductsFrom: catalog).
+	
+	^cartId! !
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/5/2021 00:45:20'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:45:20'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:45:20'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/5/2021 00:45:25'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:45:25'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:45:25'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:45:27'!
+ERROR!
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:45:34'!
+nextCartId
+	self shouldBeImplemented.! !
+
+!classDefinition: #TusLibrosSystemFacade category: 'TusLibros' stamp: 'AF 11/5/2021 00:46:22'!
+Object subclass: #TusLibrosSystemFacade
+	instanceVariableNames: 'authenticationSystem cart catalog carts lastCartId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:46:19' prior: 50919775!
+nextCartId
+	
+	lastCartId _ lastCartId + 1.
+	^lastCartId! !
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:46:26'!
+ERROR!
+!TusLibrosSystemFacade methodsFor: 'initialization' stamp: 'AF 11/5/2021 00:46:52' prior: 50916532!
+initializeAuthenticatingWith: anAuthenticationSystem sourcingProductsFrom: aCatalog 
+	
+	authenticationSystem _ anAuthenticationSystem.
+	catalog _ aCatalog.
+	carts _ Dictionary new.! !
+!TusLibrosSystemFacade methodsFor: 'initialization' stamp: 'AF 11/5/2021 00:47:02' prior: 50919797!
+initializeAuthenticatingWith: anAuthenticationSystem sourcingProductsFrom: aCatalog 
+	
+	authenticationSystem _ anAuthenticationSystem.
+	catalog _ aCatalog.
+	carts _ Dictionary new.
+	lastCartId _ 0! !
+!TusLibrosSystemFacade methodsFor: 'initialization' stamp: 'AF 11/5/2021 00:47:04' prior: 50919806!
+initializeAuthenticatingWith: anAuthenticationSystem sourcingProductsFrom: aCatalog 
+	
+	authenticationSystem _ anAuthenticationSystem.
+	catalog _ aCatalog.
+	carts _ Dictionary new.
+	lastCartId _ 0.! !
+
+!methodRemoval: TusLibrosSystemFacade #initializeAuthenticatingWith: stamp: 'AF 11/5/2021 00:47:23'!
+initializeAuthenticatingWith: anAuthenticationSystem 
+
+	authenticationSystem := anAuthenticationSystem.!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:47:58' prior: 50915809!
+test01
+
+	| tusLibros |
+	
+	tusLibros _ TusLibrosSystemFacade authenticatingWith: testObjectFactory authSystemDenyingAllxxx sourcingProductsFrom: testObjectFactory defaultCatalog.
+	
+	self should: [ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: TusLibrosSystemFacade invalidCredentialsErrorDescription.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/5/2021 00:47:59'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/5/2021 00:47:59'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:47:59'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:47:59'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:48:03'!
+ERROR!
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:48:45' prior: 50919547!
+listCart: aCartId
+	
+	^(carts at: aCartId) contents.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/5/2021 00:48:47'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:48:47'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:48:47'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:48:47'!
+ERROR!
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:49:12' prior: 50916387!
+add: aQuantity of: aProduct to: aCartId 
+	
+	(carts at: aCartId) add: aQuantity of: aProduct.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:49:13'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/5/2021 00:50:11'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:50:11'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:50:11'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:50:11'!
+ERROR!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:51:42' prior: 50919649!
+test03
+
+	| tusLibros expectedCartContents quantity firstCartId secondCartId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	firstCartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	secondCartId _ tusLibros createCartFor: 'nacho' authenticatedBy: 'pinga'.
+	quantity _ 1.
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: firstCartId.
+
+	
+	expectedCartContents _ Bag new
+		add: testObjectFactory firstProductSoldByTheStore
+		withOccurrences: quantity;
+		yourself.
+	
+	self assert: expectedCartContents equals: (tusLibros listCart: firstCartId).
+	self assert: (tusLibros listCart: secondCartId) isEmpty.! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:51:45' prior: 50919899!
+test03
+
+	| tusLibros expectedCartContents quantity firstCartId secondCartId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	firstCartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	secondCartId _ tusLibros createCartFor: 'nacho' authenticatedBy: 'pinga'.
+	quantity _ 1.
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: firstCartId.
+
+	
+	expectedCartContents _ Bag new
+		add: testObjectFactory firstProductSoldByTheStore
+		withOccurrences: quantity;
+		yourself.
+	
+	self assert: expectedCartContents equals: (tusLibros listCart: firstCartId).
+	self assert: (tusLibros listCart: secondCartId) isEmpty.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:51:46'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/5/2021 00:51:46'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 00:51:46'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 00:51:46'!
+PASSED!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:52:23' prior: 50919925!
+test03
+
+	| tusLibros expectedCartContents quantity firstCartId secondCartId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	firstCartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	secondCartId _ tusLibros createCartFor: 'nacho' authenticatedBy: 'elRetorico'.
+	quantity _ 1.
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: firstCartId.
+
+	
+	expectedCartContents _ Bag new
+		add: testObjectFactory firstProductSoldByTheStore
+		withOccurrences: quantity;
+		yourself.
+	
+	self assert: expectedCartContents equals: (tusLibros listCart: firstCartId).
+	self assert: (tusLibros listCart: secondCartId) isEmpty.! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:56:54'!
+test04
+
+	| tusLibros quantity firstCartId secondCartId invalidId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	firstCartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	quantity _ 1.
+	invalidId _ 0.
+	self should: (tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: invalidId)
+		raise: Error - MessageNotUnderstood
+		withMessageText: TusLibrosSystemFacade invalidCartIdErrorDescription.
+	
+! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:57:21' prior: 50919987!
+test04
+
+	| tusLibros quantity invalidId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	quantity _ 1.
+	invalidId _ 0.
+	self should: (tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: invalidId)
+		raise: Error - MessageNotUnderstood
+		withMessageText: TusLibrosSystemFacade invalidCartIdErrorDescription.
+	
+! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:57:30' prior: 50920006!
+test04
+
+	| tusLibros quantity invalidId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	quantity _ 1.
+	invalidId _ 0.
+	self should: (tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: invalidId)
+		raise: Error - MessageNotUnderstood
+		withMessageText: TusLibrosSystemFacade invalidCartIdErrorDescription.
+	
+! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:57:50' prior: 50920024!
+test04
+
+	| tusLibros invalidId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	invalidId _ 0.
+	self should: (tusLibros add: 1 of: testObjectFactory firstProductSoldByTheStore to: invalidId)
+		raise: Error - MessageNotUnderstood
+		withMessageText: TusLibrosSystemFacade invalidCartIdErrorDescription.
+	
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test04 stamp: 'AF 11/5/2021 00:57:53'!
+ERROR!
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 01:00:13' prior: 50919879!
+add: aQuantity of: aProduct to: aCartId 
+	
+	(carts includesKey: aCartId) ifFalse: [ self error: self class invalidCartIdErrorDescription ].
+	(carts at: aCartId) add: aQuantity of: aProduct.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/5/2021 01:00:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 01:00:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 01:00:19'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04 stamp: 'AF 11/5/2021 01:00:19'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test04 stamp: 'AF 11/5/2021 01:00:19'!
+ERROR!
+!TusLibrosSystemFacade class methodsFor: 'error descriptions' stamp: 'AF 11/5/2021 01:00:27'!
+invalidCartIdErrorDescription
+	self shouldBeImplemented.! !
+!TusLibrosSystemFacade class methodsFor: 'error descriptions' stamp: 'AF 11/5/2021 01:00:54' prior: 50920078!
+invalidCartIdErrorDescription
+	
+	^ 'invalid cart id'.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test04 stamp: 'AF 11/5/2021 01:00:56'!
+ERROR!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 01:01:21' prior: 50920039!
+test04
+
+	| tusLibros invalidId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	invalidId _ 0.
+	self should: [tusLibros add: 1 of: testObjectFactory firstProductSoldByTheStore to: invalidId]
+		raise: Error - MessageNotUnderstood
+		withMessageText: TusLibrosSystemFacade invalidCartIdErrorDescription.
+	
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test04 stamp: 'AF 11/5/2021 01:01:22'!
+PASSED!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 01:01:30' prior: 50920092!
+test04
+
+	| tusLibros invalidId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	invalidId _ 0.
+	self should: [ tusLibros add: 1 of: testObjectFactory firstProductSoldByTheStore to: invalidId ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: TusLibrosSystemFacade invalidCartIdErrorDescription.
+	
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test04 stamp: 'AF 11/5/2021 01:01:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'AF 11/5/2021 01:01:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'AF 11/5/2021 01:01:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'AF 11/5/2021 01:01:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04 stamp: 'AF 11/5/2021 01:01:40'!
+PASSED!
+
+----SNAPSHOT----(5 November 2021 01:02:04) CuisUniversity-4913.image priorSource: 18688438!
