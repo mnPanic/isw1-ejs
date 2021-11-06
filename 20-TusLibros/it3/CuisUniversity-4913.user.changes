@@ -8271,3 +8271,1511 @@ PASSED!
 PASSED!
 
 ----SNAPSHOT----(5 November 2021 01:02:04) CuisUniversity-4913.image priorSource: 18688438!
+
+----STARTUP---- (5 November 2021 23:25:03) as /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-it3/CuisUniversity-4913.image!
+
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1-ejs/20-TusLibros/it3/TusLibros.st----!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/5/2021 23:37:22'!
+test05
+
+	| tusLibros invalidId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	invalidId _ 0.
+	self should: [ tusLibros listCart: invalidId ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: TusLibrosSystemFacade invalidCartIdErrorDescription.
+	
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test05 stamp: 'IAR 11/5/2021 23:37:25'!
+FAILURE!
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/5/2021 23:38:53' prior: 50915712!
+listCart: aCartId
+	
+	(carts includesKey: aCartId) ifFalse: [self error: self class invalidCartIdErrorDescription ].
+	^(carts at: aCartId) contents.! !
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/5/2021 23:38:55' prior: 50915776!
+listCart: aCartId
+	
+	(carts includesKey: aCartId) ifFalse: [ self error: self class invalidCartIdErrorDescription ].
+	^(carts at: aCartId) contents.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test05 stamp: 'IAR 11/5/2021 23:39:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'IAR 11/5/2021 23:39:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'IAR 11/5/2021 23:39:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'IAR 11/5/2021 23:39:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04 stamp: 'IAR 11/5/2021 23:39:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05 stamp: 'IAR 11/5/2021 23:39:03'!
+PASSED!
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/5/2021 23:40:31'!
+findCart: aCartId
+
+	^ (carts includesKey: aCartId) ifFalse: [ self error: self class invalidCartIdErrorDescription ]! !
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/5/2021 23:40:31' prior: 50915785!
+listCart: aCartId
+	
+	self findCart: aCartId.
+	^(carts at: aCartId) contents.! !
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/5/2021 23:40:31' prior: 50915690!
+add: aQuantity of: aProduct to: aCartId 
+	
+	self findCart: aCartId.
+	(carts at: aCartId) add: aQuantity of: aProduct.! !
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/5/2021 23:40:42' prior: 50915823!
+add: aQuantity of: aProduct to: aCartId 
+	
+	(self findCart: aCartId) add: aQuantity of: aProduct.! !
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/5/2021 23:41:28' prior: 50915817!
+listCart: aCartId
+	
+	^ (self findCart: aCartId) contents.! !
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/5/2021 23:41:32' prior: 50915838!
+listCart: aCartId
+	
+	^(self findCart: aCartId) contents.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'IAR 11/5/2021 23:41:36'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'IAR 11/5/2021 23:41:36'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'IAR 11/5/2021 23:41:36'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'IAR 11/5/2021 23:41:36'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'IAR 11/5/2021 23:41:36'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'IAR 11/5/2021 23:41:36'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'IAR 11/5/2021 23:41:36'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'IAR 11/5/2021 23:41:36'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'IAR 11/5/2021 23:41:36'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'IAR 11/5/2021 23:41:36'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'IAR 11/5/2021 23:41:36'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'IAR 11/5/2021 23:41:36'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'IAR 11/5/2021 23:41:36'!
+PASSED!
+
+!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'IAR 11/5/2021 23:41:36'!
+PASSED!
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'IAR 11/5/2021 23:41:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'IAR 11/5/2021 23:41:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'IAR 11/5/2021 23:41:36'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'IAR 11/5/2021 23:41:36'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test04 stamp: 'IAR 11/5/2021 23:41:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05 stamp: 'IAR 11/5/2021 23:41:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'IAR 11/5/2021 23:41:41'!
+ERROR!
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/5/2021 23:41:59' prior: 50915809!
+findCart: aCartId
+
+	(carts includesKey: aCartId) ifFalse: [ self error: self class invalidCartIdErrorDescription ]
+	! !
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/5/2021 23:42:18' prior: 50915917!
+findCart: aCartId
+
+	(carts includesKey: aCartId) ifFalse: [ self error: self class invalidCartIdErrorDescription ].
+	^ carts at: aCartId.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'IAR 11/5/2021 23:42:20'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'IAR 11/5/2021 23:42:20'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'IAR 11/5/2021 23:42:20'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'IAR 11/5/2021 23:42:20'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'IAR 11/5/2021 23:42:20'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'IAR 11/5/2021 23:42:20'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'IAR 11/5/2021 23:42:20'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'IAR 11/5/2021 23:42:20'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'IAR 11/5/2021 23:42:20'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'IAR 11/5/2021 23:42:20'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'IAR 11/5/2021 23:42:20'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'IAR 11/5/2021 23:42:20'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'IAR 11/5/2021 23:42:20'!
+PASSED!
+
+!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'IAR 11/5/2021 23:42:20'!
+PASSED!
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'IAR 11/5/2021 23:42:20'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'IAR 11/5/2021 23:42:20'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'IAR 11/5/2021 23:42:20'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'IAR 11/5/2021 23:42:20'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04 stamp: 'IAR 11/5/2021 23:42:20'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05 stamp: 'IAR 11/5/2021 23:42:20'!
+PASSED!
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/5/2021 23:43:07' prior: 50915925!
+findCart: aCartId
+
+	^ carts at: aCartId ifAbsent: [ self error: self class invalidCartIdErrorDescription ]! !
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/5/2021 23:43:09' prior: 50915998!
+findCart: aCartId
+
+	^ carts at: aCartId ifAbsent: [ self error: self class invalidCartIdErrorDescription ].! !
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'IAR 11/5/2021 23:45:30'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'IAR 11/5/2021 23:45:30'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'IAR 11/5/2021 23:45:30'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04 stamp: 'IAR 11/5/2021 23:45:30'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05 stamp: 'IAR 11/5/2021 23:45:30'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'IAR 11/5/2021 23:45:33'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'IAR 11/5/2021 23:45:33'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'IAR 11/5/2021 23:45:33'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'IAR 11/5/2021 23:45:33'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'IAR 11/5/2021 23:45:33'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'IAR 11/5/2021 23:45:33'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'IAR 11/5/2021 23:45:33'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'IAR 11/5/2021 23:45:33'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'IAR 11/5/2021 23:45:33'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'IAR 11/5/2021 23:45:33'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'IAR 11/5/2021 23:45:33'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'IAR 11/5/2021 23:45:33'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'IAR 11/5/2021 23:45:33'!
+PASSED!
+
+!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'IAR 11/5/2021 23:45:33'!
+PASSED!
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'IAR 11/5/2021 23:45:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'IAR 11/5/2021 23:45:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'IAR 11/5/2021 23:45:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'IAR 11/5/2021 23:45:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04 stamp: 'IAR 11/5/2021 23:45:33'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05 stamp: 'IAR 11/5/2021 23:45:33'!
+PASSED!
+!TusLibrosSystemFacade methodsFor: 'initialization' stamp: 'IAR 11/5/2021 23:48:03' prior: 50915680!
+initializeAuthenticatingWith: anAuthenticationSystem sourcingProductsFrom: aCatalog 
+	
+	authenticationSystem _ anAuthenticationSystem.
+	catalog _ aCatalog.
+	carts _ Dictionary new.
+	lastCartId _ 0.! !
+!Cashier class methodsFor: 'instance creation' stamp: 'IAR 11/5/2021 23:48:20' prior: 50915370!
+withMerchantProcessor: aMerchantProcessor 
+
+	^self new initializeWithMerchantProcessor: aMerchantProcessor.! !
+
+!methodRemoval: TusLibrosSystemFacade class #authenticatingWith: stamp: 'IAR 11/5/2021 23:54:32'!
+authenticatingWith: anAuthenticationSystem 
+
+	^self new initializeAuthenticatingWith: anAuthenticationSystem.!
+!TusLibrosSystemFacade class methodsFor: 'instance creation' stamp: 'IAR 11/5/2021 23:56:21'!
+authenticatingWith: anAuthenticationSystem sourcingProductsFrom: aCatalog chargingTrough: aMerchantProcessor
+
+	^self new initializeAuthenticatingWith: anAuthenticationSystem sourcingProductsFrom: aCatalog chargingThrough: aMerchantProcessor.! !
+
+!methodRemoval: TusLibrosSystemFacade class #authenticatingWith:sourcingProductsFrom: stamp: 'IAR 11/5/2021 23:56:31'!
+authenticatingWith: anAuthenticationSystem sourcingProductsFrom: aCatalog
+
+	^self new initializeAuthenticatingWith: anAuthenticationSystem sourcingProductsFrom: aCatalog.!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/5/2021 23:57:01' prior: 50915084!
+defaultTusLibrosSystemFacade
+	
+	^TusLibrosSystemFacade authenticatingWith: testObjectFactory authSystemAllowingAllxxx sourcingProductsFrom: testObjectFactory defaultCatalog chargingTrough: testObjectFactory defaultSimulatedMP.! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/5/2021 23:57:49' prior: 50915099!
+test01
+
+	| tusLibros |
+	
+	tusLibros _ TusLibrosSystemFacade authenticatingWith: testObjectFactory authSystemDenyingAllxxx sourcingProductsFrom: testObjectFactory defaultCatalog chargingTrough: testObjectFactory defaultSimulatedMP.
+	
+	self should: [ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: TusLibrosSystemFacade invalidCredentialsErrorDescription.! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/5/2021 23:58:06' prior: 50916145!
+test01
+
+	| tusLibros |
+	
+	tusLibros _ TusLibrosSystemFacade
+		authenticatingWith: testObjectFactory authSystemDenyingAllxxx
+		sourcingProductsFrom: testObjectFactory defaultCatalog
+		chargingTrough: testObjectFactory defaultSimulatedMP.
+	
+	self should: [ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: TusLibrosSystemFacade invalidCredentialsErrorDescription.! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/5/2021 23:58:20' prior: 50916134!
+defaultTusLibrosSystemFacade
+	
+	^TusLibrosSystemFacade
+		authenticatingWith: testObjectFactory authSystemAllowingAllxxx
+		sourcingProductsFrom: testObjectFactory defaultCatalog
+		chargingTrough: testObjectFactory defaultSimulatedMP.! !
+!TusLibrosSystemFacade class methodsFor: 'instance creation' stamp: 'IAR 11/5/2021 23:58:33'!
+authenticatingWith: anAuthenticationSystem sourcingProductsFrom: aCatalog chargingThrough: aMerchantProcessor
+
+	^self new initializeAuthenticatingWith: anAuthenticationSystem sourcingProductsFrom: aCatalog chargingThrough: aMerchantProcessor.! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/5/2021 23:58:33' prior: 50916183!
+defaultTusLibrosSystemFacade
+	
+	^TusLibrosSystemFacade
+		authenticatingWith: testObjectFactory authSystemAllowingAllxxx
+		sourcingProductsFrom: testObjectFactory defaultCatalog
+		chargingThrough: testObjectFactory defaultSimulatedMP.! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/5/2021 23:58:33' prior: 50916164!
+test01
+
+	| tusLibros |
+	
+	tusLibros _ TusLibrosSystemFacade
+		authenticatingWith: testObjectFactory authSystemDenyingAllxxx
+		sourcingProductsFrom: testObjectFactory defaultCatalog
+		chargingThrough: testObjectFactory defaultSimulatedMP.
+	
+	self should: [ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: TusLibrosSystemFacade invalidCredentialsErrorDescription.! !
+
+!methodRemoval: TusLibrosSystemFacade class #authenticatingWith:sourcingProductsFrom:chargingTrough: stamp: 'IAR 11/5/2021 23:58:33'!
+authenticatingWith: anAuthenticationSystem sourcingProductsFrom: aCatalog chargingTrough: aMerchantProcessor
+
+	^self new initializeAuthenticatingWith: anAuthenticationSystem sourcingProductsFrom: aCatalog chargingThrough: aMerchantProcessor.!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'IAR 11/5/2021 23:58:38'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'IAR 11/5/2021 23:58:38'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'IAR 11/5/2021 23:58:38'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test04 stamp: 'IAR 11/5/2021 23:58:38'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test05 stamp: 'IAR 11/5/2021 23:58:38'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'IAR 11/5/2021 23:58:41'!
+ERROR!
+
+!classDefinition: #TusLibrosSystemFacade category: 'TusLibros' stamp: 'IAR 11/5/2021 23:58:47'!
+Object subclass: #TusLibrosSystemFacade
+	instanceVariableNames: 'authenticationSystem cart catalog carts lastCartId merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosSystemFacade methodsFor: 'initialization' stamp: 'IAR 11/5/2021 23:58:47'!
+initializeAuthenticatingWith: anAuthenticationSystem sourcingProductsFrom: aCatalog chargingThrough: aMerchantProcessor 
+	self shouldBeImplemented.
+	authenticationSystem := anAuthenticationSystem.
+	catalog := aCatalog.
+	merchantProcessor := aMerchantProcessor.! !
+!TusLibrosSystemFacade methodsFor: 'initialization' stamp: 'IAR 11/5/2021 23:58:57' prior: 50916273!
+initializeAuthenticatingWith: anAuthenticationSystem sourcingProductsFrom: aCatalog chargingThrough: aMerchantProcessor 
+	
+	authenticationSystem := anAuthenticationSystem.
+	catalog := aCatalog.
+	merchantProcessor := aMerchantProcessor.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'IAR 11/5/2021 23:58:59'!
+PASSED!
+!TusLibrosSystemFacade methodsFor: 'initialization' stamp: 'IAR 11/5/2021 23:59:31' prior: 50916285!
+initializeAuthenticatingWith: anAuthenticationSystem sourcingProductsFrom: aCatalog chargingThrough: aMerchantProcessor 
+	
+	authenticationSystem _ anAuthenticationSystem.
+	catalog _ aCatalog.
+	carts _ Dictionary new.
+	lastCartId _ 0.
+	merchantProcessor _ aMerchantProcessor.! !
+
+!methodRemoval: TusLibrosSystemFacade #initializeAuthenticatingWith:sourcingProductsFrom: stamp: 'IAR 11/5/2021 23:59:33'!
+initializeAuthenticatingWith: anAuthenticationSystem sourcingProductsFrom: aCatalog 
+	
+	authenticationSystem _ anAuthenticationSystem.
+	catalog _ aCatalog.
+	carts _ Dictionary new.
+	lastCartId _ 0.!
+
+!testRun: #TusLibrosSystemFacadeTest #test01 stamp: 'IAR 11/5/2021 23:59:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02 stamp: 'IAR 11/5/2021 23:59:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03 stamp: 'IAR 11/5/2021 23:59:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04 stamp: 'IAR 11/5/2021 23:59:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05 stamp: 'IAR 11/5/2021 23:59:36'!
+PASSED!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:00:33'!
+test01CannotCreateCartWithInvalidCredentials
+
+	| tusLibros |
+	
+	tusLibros _ TusLibrosSystemFacade
+		authenticatingWith: testObjectFactory authSystemDenyingAllxxx
+		sourcingProductsFrom: testObjectFactory defaultCatalog
+		chargingThrough: testObjectFactory defaultSimulatedMP.
+	
+	self should: [ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: TusLibrosSystemFacade invalidCredentialsErrorDescription.! !
+
+!methodRemoval: TusLibrosSystemFacadeTest #test01 stamp: 'IAR 11/6/2021 00:00:33'!
+test01
+
+	| tusLibros |
+	
+	tusLibros _ TusLibrosSystemFacade
+		authenticatingWith: testObjectFactory authSystemDenyingAllxxx
+		sourcingProductsFrom: testObjectFactory defaultCatalog
+		chargingThrough: testObjectFactory defaultSimulatedMP.
+	
+	self should: [ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: TusLibrosSystemFacade invalidCredentialsErrorDescription.!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:01:36'!
+test02CartCreatedWithValidCredentialsIsEmpty
+
+	| tusLibros cartId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	cartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	
+	self assert: (tusLibros listCart: cartId) isEmpty.! !
+
+!methodRemoval: TusLibrosSystemFacadeTest #test02 stamp: 'IAR 11/6/2021 00:01:36'!
+test02
+
+	| tusLibros cartId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	cartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	
+	self assert: (tusLibros listCart: cartId) isEmpty.!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:05:12' prior: 50915127!
+test03
+
+	| tusLibros expectedCartContents quantity firstCartId secondCartId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	firstCartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	secondCartId _ tusLibros createCartFor: 'nacho' authenticatedBy: 'elRetorico'.
+	quantity _ 1.
+	
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: firstCartId.
+	
+	expectedCartContents _ Bag new
+		add: testObjectFactory firstProductSoldByTheStore
+		withOccurrences: quantity;
+		yourself.
+	
+	self assert: expectedCartContents equals: (tusLibros listCart: firstCartId).
+	self assert: (tusLibros listCart: secondCartId) isEmpty.! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:08:23'!
+test04CanListMultipleCarts
+
+	| tusLibros expectedCartContents quantity firstCartId secondCartId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	firstCartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	secondCartId _ tusLibros createCartFor: 'nacho' authenticatedBy: 'elRetorico'.
+	quantity _ 1.
+	
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: firstCartId.
+	
+	expectedCartContents _ Bag new
+		add: testObjectFactory firstProductSoldByTheStore
+		withOccurrences: quantity;
+		yourself.
+	
+	self assert: expectedCartContents equals: (tusLibros listCart: firstCartId).
+	self assert: (tusLibros listCart: secondCartId) isEmpty.! !
+
+!methodRemoval: TusLibrosSystemFacadeTest #test03 stamp: 'IAR 11/6/2021 00:08:23'!
+test03
+
+	| tusLibros expectedCartContents quantity firstCartId secondCartId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	firstCartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	secondCartId _ tusLibros createCartFor: 'nacho' authenticatedBy: 'elRetorico'.
+	quantity _ 1.
+	
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: firstCartId.
+	
+	expectedCartContents _ Bag new
+		add: testObjectFactory firstProductSoldByTheStore
+		withOccurrences: quantity;
+		yourself.
+	
+	self assert: expectedCartContents equals: (tusLibros listCart: firstCartId).
+	self assert: (tusLibros listCart: secondCartId) isEmpty.!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:08:32'!
+test03
+
+	| tusLibros expectedCartContents quantity firstCartId secondCartId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	firstCartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	secondCartId _ tusLibros createCartFor: 'nacho' authenticatedBy: 'elRetorico'.
+	quantity _ 1.
+	
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: firstCartId.
+	
+	expectedCartContents _ Bag new
+		add: testObjectFactory firstProductSoldByTheStore
+		withOccurrences: quantity;
+		yourself.
+	
+	self assert: expectedCartContents equals: (tusLibros listCart: firstCartId).
+	self assert: (tusLibros listCart: secondCartId) isEmpty.! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:08:35' prior: 50916472!
+test03
+
+	| tusLibros expectedCartContents quantity firstCartId secondCartId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	firstCartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	quantity _ 1.
+	
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: firstCartId.
+	
+	expectedCartContents _ Bag new
+		add: testObjectFactory firstProductSoldByTheStore
+		withOccurrences: quantity;
+		yourself.
+	
+	self assert: expectedCartContents equals: (tusLibros listCart: firstCartId).
+	self assert: (tusLibros listCart: secondCartId) isEmpty.! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:08:40' prior: 50916498!
+test03
+
+	| tusLibros expectedCartContents quantity firstCartId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	firstCartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	quantity _ 1.
+	
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: firstCartId.
+	
+	expectedCartContents _ Bag new
+		add: testObjectFactory firstProductSoldByTheStore
+		withOccurrences: quantity;
+		yourself.
+	
+	self assert: expectedCartContents equals: (tusLibros listCart: firstCartId).! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:08:58'!
+test03CanAddMultipleItemsToACart
+
+	| tusLibros expectedCartContents quantity firstCartId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	firstCartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	quantity _ 1.
+	
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: firstCartId.
+	
+	expectedCartContents _ Bag new
+		add: testObjectFactory firstProductSoldByTheStore
+		withOccurrences: quantity;
+		yourself.
+	
+	self assert: expectedCartContents equals: (tusLibros listCart: firstCartId).! !
+
+!methodRemoval: TusLibrosSystemFacadeTest #test03 stamp: 'IAR 11/6/2021 00:08:58'!
+test03
+
+	| tusLibros expectedCartContents quantity firstCartId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	firstCartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	quantity _ 1.
+	
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: firstCartId.
+	
+	expectedCartContents _ Bag new
+		add: testObjectFactory firstProductSoldByTheStore
+		withOccurrences: quantity;
+		yourself.
+	
+	self assert: expectedCartContents equals: (tusLibros listCart: firstCartId).!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:09:55'!
+test06CannotListCartWithInvalidId
+
+	| tusLibros invalidId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	invalidId _ 0.
+	self should: [ tusLibros listCart: invalidId ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: TusLibrosSystemFacade invalidCartIdErrorDescription.
+	
+! !
+
+!methodRemoval: TusLibrosSystemFacadeTest #test05 stamp: 'IAR 11/6/2021 00:09:55'!
+test05
+
+	| tusLibros invalidId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	invalidId _ 0.
+	self should: [ tusLibros listCart: invalidId ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: TusLibrosSystemFacade invalidCartIdErrorDescription.
+	
+!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:10:21'!
+test05CannotAddProductToCartWithInvalidId
+
+	| tusLibros invalidId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	invalidId _ 0.
+	self should: [ tusLibros add: 1 of: testObjectFactory firstProductSoldByTheStore to: invalidId ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: TusLibrosSystemFacade invalidCartIdErrorDescription.
+	
+! !
+
+!methodRemoval: TusLibrosSystemFacadeTest #test04 stamp: 'IAR 11/6/2021 00:10:21'!
+test04
+
+	| tusLibros invalidId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	invalidId _ 0.
+	self should: [ tusLibros add: 1 of: testObjectFactory firstProductSoldByTheStore to: invalidId ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: TusLibrosSystemFacade invalidCartIdErrorDescription.
+	
+!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:10:29'!
+test03CanAddMultipleItemsToACartXXXXXx
+
+	| tusLibros expectedCartContents quantity firstCartId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	firstCartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	quantity _ 1.
+	
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: firstCartId.
+	
+	expectedCartContents _ Bag new
+		add: testObjectFactory firstProductSoldByTheStore
+		withOccurrences: quantity;
+		yourself.
+	
+	self assert: expectedCartContents equals: (tusLibros listCart: firstCartId).! !
+
+!methodRemoval: TusLibrosSystemFacadeTest #test03CanAddMultipleItemsToACart stamp: 'IAR 11/6/2021 00:10:29'!
+test03CanAddMultipleItemsToACart
+
+	| tusLibros expectedCartContents quantity firstCartId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	firstCartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	quantity _ 1.
+	
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: firstCartId.
+	
+	expectedCartContents _ Bag new
+		add: testObjectFactory firstProductSoldByTheStore
+		withOccurrences: quantity;
+		yourself.
+	
+	self assert: expectedCartContents equals: (tusLibros listCart: firstCartId).!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:10:36'!
+test04CanListMultipleCartsXXXXx
+
+	| tusLibros expectedCartContents quantity firstCartId secondCartId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	firstCartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	secondCartId _ tusLibros createCartFor: 'nacho' authenticatedBy: 'elRetorico'.
+	quantity _ 1.
+	
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: firstCartId.
+	
+	expectedCartContents _ Bag new
+		add: testObjectFactory firstProductSoldByTheStore
+		withOccurrences: quantity;
+		yourself.
+	
+	self assert: expectedCartContents equals: (tusLibros listCart: firstCartId).
+	self assert: (tusLibros listCart: secondCartId) isEmpty.! !
+
+!methodRemoval: TusLibrosSystemFacadeTest #test04CanListMultipleCarts stamp: 'IAR 11/6/2021 00:10:36'!
+test04CanListMultipleCarts
+
+	| tusLibros expectedCartContents quantity firstCartId secondCartId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	firstCartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	secondCartId _ tusLibros createCartFor: 'nacho' authenticatedBy: 'elRetorico'.
+	quantity _ 1.
+	
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: firstCartId.
+	
+	expectedCartContents _ Bag new
+		add: testObjectFactory firstProductSoldByTheStore
+		withOccurrences: quantity;
+		yourself.
+	
+	self assert: expectedCartContents equals: (tusLibros listCart: firstCartId).
+	self assert: (tusLibros listCart: secondCartId) isEmpty.!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:11:27'!
+test07
+
+	| tusLibros invalidId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	invalidId _ 0.
+	self should: [ tusLibros listCart: invalidId ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: TusLibrosSystemFacade invalidCartIdErrorDescription.
+	
+! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:12:55' prior: 50916728!
+test07
+
+	| tusLibros invalidId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	invalidId _ 0.
+	self should: [ tusLibros checkout: invalidId ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: TusLibrosSystemFacade invalidCartIdErrorDescription.
+	
+! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:13:35'!
+test07CannotCheckoutCarWithInvalidId
+
+	| tusLibros invalidId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	invalidId _ 0.
+	self should: [ tusLibros checkout: invalidId ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: TusLibrosSystemFacade invalidCartIdErrorDescription.
+	
+! !
+
+!methodRemoval: TusLibrosSystemFacadeTest #test07 stamp: 'IAR 11/6/2021 00:13:35'!
+test07
+
+	| tusLibros invalidId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	invalidId _ 0.
+	self should: [ tusLibros checkout: invalidId ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: TusLibrosSystemFacade invalidCartIdErrorDescription.
+	
+!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:13:56'!
+test07CannotCheckoutInvalidCartId
+
+	| tusLibros invalidId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	invalidId _ 0.
+	self should: [ tusLibros checkout: invalidId ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: TusLibrosSystemFacade invalidCartIdErrorDescription.
+	
+! !
+
+!methodRemoval: TusLibrosSystemFacadeTest #test07CannotCheckoutCarWithInvalidId stamp: 'IAR 11/6/2021 00:13:56'!
+test07CannotCheckoutCarWithInvalidId
+
+	| tusLibros invalidId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	invalidId _ 0.
+	self should: [ tusLibros checkout: invalidId ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: TusLibrosSystemFacade invalidCartIdErrorDescription.
+	
+!
+
+!testRun: #TusLibrosSystemFacadeTest #test07CannotCheckoutInvalidCartId stamp: 'IAR 11/6/2021 00:14:15'!
+ERROR!
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:14:25'!
+checkout: aSmallInteger 
+	self shouldBeImplemented.! !
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:15:00' prior: 50916804!
+checkout: aCartId 
+	
+	self error: self class invalidCartIdErrorDescription.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test07CannotCheckoutInvalidCartId stamp: 'IAR 11/6/2021 00:15:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CannotCreateCartWithInvalidCredentials stamp: 'IAR 11/6/2021 00:15:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CartCreatedWithValidCredentialsIsEmpty stamp: 'IAR 11/6/2021 00:15:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanAddMultipleItemsToACartXXXXXx stamp: 'IAR 11/6/2021 00:15:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanListMultipleCartsXXXXx stamp: 'IAR 11/6/2021 00:15:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CannotAddProductToCartWithInvalidId stamp: 'IAR 11/6/2021 00:15:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CannotListCartWithInvalidId stamp: 'IAR 11/6/2021 00:15:01'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07CannotCheckoutInvalidCartId stamp: 'IAR 11/6/2021 00:15:01'!
+PASSED!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:16:27'!
+test08
+
+	| tusLibros invalidId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	invalidId _ 0.
+	self should: [ tusLibros checkout: invalidId ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: TusLibrosSystemFacade invalidCartIdErrorDescription.
+	
+! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:21:51' prior: 50916845!
+test08
+
+	| tusLibros cartId firstTransactionId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	cartId _ tusLibros createCart. 
+	
+	firstTransactionId _ tusLibros checkout: cartId charging: testObjectFactory validCard on: testObjectFactory fixedDate.
+! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:23:05' prior: 50916857!
+test08
+
+	| tusLibros cartId firstTransactionId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	cartId _ tusLibros
+		createCartFor: testObjectFactory defaultUser
+		authenticatedBy: testObjectFactory defaultPassword. 
+
+	
+	firstTransactionId _ tusLibros checkout: cartId charging: testObjectFactory validCard on: testObjectFactory fixedDate.
+! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:23:51' prior: 50916869!
+test08
+
+	| tusLibros cartId firstTransactionId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	cartId _ tusLibros
+		createCartFor: testObjectFactory defaultUser
+		authenticatedBy: testObjectFactory defaultPassword. 
+
+	
+	firstTransactionId _ tusLibros
+		checkout: cartId
+		charging: testObjectFactory validCard
+		on: testObjectFactory fixedDate.
+! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:24:02' prior: 50916884!
+test08
+
+	| tusLibros cartId firstTransactionId secondTransactionId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	cartId _ tusLibros
+		createCartFor: testObjectFactory defaultUser
+		authenticatedBy: testObjectFactory defaultPassword. 
+
+	
+	firstTransactionId _ tusLibros
+		checkout: cartId
+		charging: testObjectFactory validCard
+		on: testObjectFactory fixedDate.
+	
+	secondTransactionId _ tusLibros
+		checkout: cartId
+		charging: testObjectFactory validCard
+		on: testObjectFactory fixedDate.
+
+! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:24:41' prior: 50916899!
+test08
+
+	| tusLibros cartId firstTransactionId secondTransactionId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	cartId _ tusLibros
+		createCartFor: testObjectFactory defaultUser
+		authenticatedBy: testObjectFactory defaultPassword. 
+
+	firstTransactionId _ tusLibros
+		checkout: cartId
+		charging: testObjectFactory validCard
+		on: testObjectFactory fixedDate.
+	
+	secondTransactionId _ tusLibros
+		checkout: cartId
+		charging: testObjectFactory validCard
+		on: testObjectFactory fixedDate.
+		
+	self assert: firstTransactionId isNotEqualTo: secondTransactionId.
+
+! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:25:10'!
+test09
+
+	| tusLibros cartId firstTransactionId secondTransactionId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	cartId _ tusLibros
+		createCartFor: testObjectFactory defaultUser
+		authenticatedBy: testObjectFactory defaultPassword. 
+
+	firstTransactionId _ tusLibros
+		checkout: cartId
+		charging: testObjectFactory validCard
+		on: testObjectFactory fixedDate.
+	
+	secondTransactionId _ tusLibros
+		checkout: cartId
+		charging: testObjectFactory validCard
+		on: testObjectFactory fixedDate.
+		
+	self assert: firstTransactionId isNotEqualTo: secondTransactionId.
+
+! !
+
+!methodRemoval: TusLibrosSystemFacadeTest #test08 stamp: 'IAR 11/6/2021 00:25:10'!
+test08
+
+	| tusLibros cartId firstTransactionId secondTransactionId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	cartId _ tusLibros
+		createCartFor: testObjectFactory defaultUser
+		authenticatedBy: testObjectFactory defaultPassword. 
+
+	firstTransactionId _ tusLibros
+		checkout: cartId
+		charging: testObjectFactory validCard
+		on: testObjectFactory fixedDate.
+	
+	secondTransactionId _ tusLibros
+		checkout: cartId
+		charging: testObjectFactory validCard
+		on: testObjectFactory fixedDate.
+		
+	self assert: firstTransactionId isNotEqualTo: secondTransactionId.
+
+!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:25:40'!
+test08
+
+	| tusLibros cartId transactionId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	cartId _ tusLibros
+		createCartFor: testObjectFactory defaultUser
+		authenticatedBy: testObjectFactory defaultPassword. 
+
+	transactionId _ tusLibros
+		checkout: cartId
+		charging: testObjectFactory validCard
+		on: testObjectFactory fixedDate.
+
+	self assert: transactionId isNotNil
+
+! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:26:21' prior: 50916982!
+test08
+
+	| tusLibros cartId transactionId |
+	
+	"TODO: Assertar observando mediante listPurchases y no mediante
+	isNotNil."
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	cartId _ tusLibros
+		createCartFor: testObjectFactory defaultUser
+		authenticatedBy: testObjectFactory defaultPassword. 
+
+	transactionId _ tusLibros
+		checkout: cartId
+		charging: testObjectFactory validCard
+		on: testObjectFactory fixedDate.
+
+	self assert: transactionId isNotNil
+
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test08 stamp: 'IAR 11/6/2021 00:26:25'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test08 stamp: 'IAR 11/6/2021 00:26:53'!
+ERROR!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:27:58' prior: 50916775!
+test07CannotCheckoutInvalidCartId
+
+	| tusLibros invalidId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	invalidId _ 0.
+	self should: [ tusLibros checkout: invalidId charging: testObjectFactory validCard on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: TusLibrosSystemFacade invalidCartIdErrorDescription.
+	
+! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:28:09' prior: 50917022!
+test07CannotCheckoutInvalidCartId
+
+	| tusLibros invalidId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	invalidId _ 0.
+	self should: [ tusLibros
+			checkout: invalidId
+			charging: testObjectFactory validCard
+			on: testObjectFactory fixedDate ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: TusLibrosSystemFacade invalidCartIdErrorDescription.
+	
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test08 stamp: 'IAR 11/6/2021 00:28:34'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test08 stamp: 'IAR 11/6/2021 00:28:34'!
+ERROR!
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:28:45'!
+checkout: aSmallInteger charging: aCard on: aFixedGregorianDate 
+	self shouldBeImplemented.! !
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:29:27' prior: 50917057!
+checkout: aCartId charging: aCard on: aDate 
+	
+	self error: self class invalidCartIdErrorDescription.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test08 stamp: 'IAR 11/6/2021 00:29:28'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test08 stamp: 'IAR 11/6/2021 00:29:37'!
+ERROR!
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:32:10' prior: 50917064!
+checkout: aCartId charging: aCard on: aDate 
+	
+	(carts includesKey: aCartId) ifFalse: [ self error: self class invalidCartIdErrorDescription ]! !
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:32:42' prior: 50917076!
+checkout: aCartId charging: aCard on: aDate 
+	
+	(carts includesKey: aCartId) ifFalse: [ self error: self class invalidCartIdErrorDescription ].
+	^ 1.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test08 stamp: 'IAR 11/6/2021 00:32:45'!
+ERROR!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:34:05' prior: 50916998!
+test08
+
+	| tusLibros cartId transactionId |
+	
+	"TODO: Assertar observando mediante listPurchases y no mediante
+	isNotNil."
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	cartId _ tusLibros
+		createCartFor: testObjectFactory defaultUser
+		authenticatedBy: testObjectFactory defaultPassword. 
+
+	transactionId _ tusLibros
+		checkout: cartId
+		charging: testObjectFactory validCard
+		on: testObjectFactory fixedDate.
+
+	self deny: transactionId isNil. 
+
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test08 stamp: 'IAR 11/6/2021 00:34:08'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CannotCreateCartWithInvalidCredentials stamp: 'IAR 11/6/2021 00:34:08'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CartCreatedWithValidCredentialsIsEmpty stamp: 'IAR 11/6/2021 00:34:08'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanAddMultipleItemsToACartXXXXXx stamp: 'IAR 11/6/2021 00:34:08'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanListMultipleCartsXXXXx stamp: 'IAR 11/6/2021 00:34:08'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CannotAddProductToCartWithInvalidId stamp: 'IAR 11/6/2021 00:34:08'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CannotListCartWithInvalidId stamp: 'IAR 11/6/2021 00:34:08'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07CannotCheckoutInvalidCartId stamp: 'IAR 11/6/2021 00:34:08'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08 stamp: 'IAR 11/6/2021 00:34:08'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09 stamp: 'IAR 11/6/2021 00:34:08'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test09 stamp: 'IAR 11/6/2021 00:34:08'!
+ERROR!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:34:54' prior: 50916940!
+test09
+
+	| tusLibros cartId firstTransactionId secondTransactionId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	cartId _ tusLibros
+		createCartFor: testObjectFactory defaultUser
+		authenticatedBy: testObjectFactory defaultPassword. 
+
+	firstTransactionId _ tusLibros
+		checkout: cartId
+		charging: testObjectFactory validCard
+		on: testObjectFactory fixedDate.
+	
+	secondTransactionId _ tusLibros
+		checkout: cartId
+		charging: testObjectFactory validCard
+		on: testObjectFactory fixedDate.
+		
+	self assert: firstTransactionId equals: secondTransactionId.
+
+! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:36:06' prior: 50917150!
+test09
+
+	| tusLibros cartId firstTransactionId secondTransactionId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	cartId _ tusLibros
+		createCartFor: testObjectFactory defaultUser
+		authenticatedBy: testObjectFactory defaultPassword. 
+
+	firstTransactionId _ tusLibros
+		checkout: cartId
+		charging: testObjectFactory validCard
+		on: testObjectFactory fixedDate.
+	
+	secondTransactionId _ tusLibros
+		checkout: cartId
+		charging: testObjectFactory validCard
+		on: testObjectFactory fixedDate.
+		
+	self deny: firstTransactionId = secondTransactionId.
+
+! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:36:39' prior: 50917172!
+test09
+
+	| tusLibros cartId firstTransactionId secondTransactionId |
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	cartId _ tusLibros
+		createCartFor: testObjectFactory defaultUser
+		authenticatedBy: testObjectFactory defaultPassword. 
+
+	firstTransactionId _ tusLibros
+		checkout: cartId
+		charging: testObjectFactory validCard
+		on: testObjectFactory fixedDate.
+	
+	secondTransactionId _ tusLibros
+		checkout: cartId
+		charging: testObjectFactory validCard
+		on: testObjectFactory fixedDate.
+		
+	self assert: firstTransactionId isNotEqualTo: secondTransactionId.
+
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test09 stamp: 'IAR 11/6/2021 00:36:44'!
+ERROR!
+!TusLibrosSystemFacadeTest methodsFor: 'assertions' stamp: 'IAR 11/6/2021 00:36:50'!
+assert: aSmallInteger isNotEqualTo: aSmallInteger2 
+	self shouldBeImplemented.! !
+!TusLibrosSystemFacadeTest methodsFor: 'assertions' stamp: 'IAR 11/6/2021 00:37:44' prior: 50917217!
+assert: expected isNotEqualTo: actual 
+	
+	self deny: expected = actual.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test09 stamp: 'IAR 11/6/2021 00:37:45'!
+FAILURE!
+
+!methodRemoval: TusLibrosSystemFacade #checkout: stamp: 'IAR 11/6/2021 00:38:01'!
+checkout: aCartId 
+	
+	self error: self class invalidCartIdErrorDescription.!
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:38:17' prior: 50917084!
+checkout: aCartId charging: aCard on: aDate 
+	
+	(carts includesKey: aCartId) ifFalse: [ self error: self class invalidCartIdErrorDescription ].
+	^ self nextTransactionId.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'IAR 11/6/2021 00:38:21'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'IAR 11/6/2021 00:38:21'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'IAR 11/6/2021 00:38:21'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'IAR 11/6/2021 00:38:21'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'IAR 11/6/2021 00:38:21'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'IAR 11/6/2021 00:38:21'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'IAR 11/6/2021 00:38:21'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'IAR 11/6/2021 00:38:21'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'IAR 11/6/2021 00:38:21'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'IAR 11/6/2021 00:38:21'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'IAR 11/6/2021 00:38:21'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'IAR 11/6/2021 00:38:21'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'IAR 11/6/2021 00:38:21'!
+PASSED!
+
+!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'IAR 11/6/2021 00:38:21'!
+PASSED!
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'IAR 11/6/2021 00:38:21'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CannotCreateCartWithInvalidCredentials stamp: 'IAR 11/6/2021 00:38:21'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CartCreatedWithValidCredentialsIsEmpty stamp: 'IAR 11/6/2021 00:38:21'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanAddMultipleItemsToACartXXXXXx stamp: 'IAR 11/6/2021 00:38:21'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanListMultipleCartsXXXXx stamp: 'IAR 11/6/2021 00:38:21'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CannotAddProductToCartWithInvalidId stamp: 'IAR 11/6/2021 00:38:21'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CannotListCartWithInvalidId stamp: 'IAR 11/6/2021 00:38:21'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07CannotCheckoutInvalidCartId stamp: 'IAR 11/6/2021 00:38:21'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08 stamp: 'IAR 11/6/2021 00:38:21'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test09 stamp: 'IAR 11/6/2021 00:38:21'!
+ERROR!
+
+!testRun: #TusLibrosSystemFacadeTest #test08 stamp: 'IAR 11/6/2021 00:38:24'!
+ERROR!
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:38:30'!
+nextTransactionId
+	self shouldBeImplemented.! !
+
+!classDefinition: #TusLibrosSystemFacade category: 'TusLibros' stamp: 'IAR 11/6/2021 00:39:06'!
+Object subclass: #TusLibrosSystemFacade
+	instanceVariableNames: 'authenticationSystem cart catalog carts lastCartId merchantProcessor transactionId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:39:05' prior: 50917331!
+nextTransactionId
+
+	transactionId _ transactionId + 1.
+	^transactionId.! !
+
+!testRun: #TusLibrosSystemFacadeTest #test08 stamp: 'IAR 11/6/2021 00:39:23'!
+ERROR!
+!TusLibrosSystemFacade methodsFor: 'initialization' stamp: 'IAR 11/6/2021 00:39:48' prior: 50916299!
+initializeAuthenticatingWith: anAuthenticationSystem sourcingProductsFrom: aCatalog chargingThrough: aMerchantProcessor 
+	
+	authenticationSystem _ anAuthenticationSystem.
+	catalog _ aCatalog.
+	carts _ Dictionary new.
+	lastCartId _ 0.
+	transactionId _ 0.
+	merchantProcessor _ aMerchantProcessor.! !
+
+!classDefinition: #TusLibrosSystemFacade category: 'TusLibros' stamp: 'IAR 11/6/2021 00:39:59'!
+Object subclass: #TusLibrosSystemFacade
+	instanceVariableNames: 'authenticationSystem cart catalog carts lastCartId merchantProcessor lastTransactionId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:39:59' prior: 50917355!
+initializeAuthenticatingWith: anAuthenticationSystem sourcingProductsFrom: aCatalog chargingThrough: aMerchantProcessor 
+	
+	authenticationSystem _ anAuthenticationSystem.
+	catalog _ aCatalog.
+	carts _ Dictionary new.
+	lastCartId _ 0.
+	lastTransactionId _ 0.
+	merchantProcessor _ aMerchantProcessor.! !
+!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:39:59' prior: 50917346!
+nextTransactionId
+
+	lastTransactionId _ lastTransactionId + 1.
+	^lastTransactionId.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'IAR 11/6/2021 00:40:17'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'IAR 11/6/2021 00:40:18'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'IAR 11/6/2021 00:40:18'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'IAR 11/6/2021 00:40:18'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'IAR 11/6/2021 00:40:18'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'IAR 11/6/2021 00:40:18'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'IAR 11/6/2021 00:40:18'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'IAR 11/6/2021 00:40:18'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'IAR 11/6/2021 00:40:18'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'IAR 11/6/2021 00:40:18'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'IAR 11/6/2021 00:40:18'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'IAR 11/6/2021 00:40:18'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'IAR 11/6/2021 00:40:18'!
+PASSED!
+
+!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'IAR 11/6/2021 00:40:18'!
+PASSED!
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'IAR 11/6/2021 00:40:18'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CannotCreateCartWithInvalidCredentials stamp: 'IAR 11/6/2021 00:40:18'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CartCreatedWithValidCredentialsIsEmpty stamp: 'IAR 11/6/2021 00:40:18'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanAddMultipleItemsToACartXXXXXx stamp: 'IAR 11/6/2021 00:40:18'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanListMultipleCartsXXXXx stamp: 'IAR 11/6/2021 00:40:18'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CannotAddProductToCartWithInvalidId stamp: 'IAR 11/6/2021 00:40:18'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CannotListCartWithInvalidId stamp: 'IAR 11/6/2021 00:40:18'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07CannotCheckoutInvalidCartId stamp: 'IAR 11/6/2021 00:40:18'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08 stamp: 'IAR 11/6/2021 00:40:18'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09 stamp: 'IAR 11/6/2021 00:40:18'!
+PASSED!
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:40:52' prior: 50917095!
+test08
+
+	| tusLibros cartId transactionId |
+	
+	"TODO: Assertar observando mediante listPurchases y no mediante isNotNil."
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	cartId _ tusLibros
+		createCartFor: testObjectFactory defaultUser
+		authenticatedBy: testObjectFactory defaultPassword. 
+
+	transactionId _ tusLibros
+		checkout: cartId
+		charging: testObjectFactory validCard
+		on: testObjectFactory fixedDate.
+
+	self deny: transactionId isNil. 
+
+! !
+!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:41:37' prior: 50917193!
+test09
+
+	| tusLibros cartId firstTransactionId secondTransactionId |
+	
+	"TODO: Cambiar la generacion de las transactionIds."
+	
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	cartId _ tusLibros
+		createCartFor: testObjectFactory defaultUser
+		authenticatedBy: testObjectFactory defaultPassword. 
+
+	firstTransactionId _ tusLibros
+		checkout: cartId
+		charging: testObjectFactory validCard
+		on: testObjectFactory fixedDate.
+	
+	secondTransactionId _ tusLibros
+		checkout: cartId
+		charging: testObjectFactory validCard
+		on: testObjectFactory fixedDate.
+		
+	self assert: firstTransactionId isNotEqualTo: secondTransactionId.
+
+! !
+
+----QUIT----(6 November 2021 00:42:13) CuisUniversity-4913.image priorSource: 18661997!
