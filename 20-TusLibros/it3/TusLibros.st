@@ -102,7 +102,7 @@ TestCase subclass: #CheckoutTest
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!CheckoutTest methodsFor: 'assertions' stamp: 'IAR 11/3/2021 23:26:02'!
+!CheckoutTest methodsFor: 'assertions' stamp: 'MP 11/9/2021 01:34:55'!
 assertCheckout: aCart charging: aCard raises: anErrorMessage
 	
 	| cashier |
@@ -111,9 +111,12 @@ assertCheckout: aCart charging: aCard raises: anErrorMessage
 	self should: [ cashier 
 				checkout: aCart 
 				charging: aCard 
-				on: testObjectFactory fixedDate ]
+				on: testObjectFactory fixedDate 
+				]
 		raise: Error - MessageNotUnderstood
-		withExceptionDo: [ :anException | self assert: anErrorMessage equals: anException messageText ].! !
+		withExceptionDo: [ :anException | 
+			self assert: anErrorMessage equals: anException messageText.
+		].! !
 
 
 !CheckoutTest methodsFor: 'tests' stamp: 'MP 11/1/2021 23:56:29'!
@@ -128,43 +131,45 @@ test01CannotCheckoutWithEmptyCart
 		charging: testObjectFactory validCard
 		raises: Cashier emptyCartErrorDescription.! !
 
-!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 01:58:14'!
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/9/2021 01:34:12'!
 test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice
 
-	| cart cashier |
+	| cart cashier receipt |
 	cart _ testObjectFactory createCart.
 	cashier _ testObjectFactory createCashier.
 	
 	cart add: testObjectFactory firstProductSoldByTheStore.
 	
-	self
-		assert: testObjectFactory firstProductSoldByTheStorePrice
-		equals: (cashier 
-			checkout: cart 
-			charging: testObjectFactory validCard 
-			on: testObjectFactory fixedDate).! !
+	receipt _ cashier 
+		checkout: cart 
+		charging: testObjectFactory validCard 
+		on: testObjectFactory fixedDate.
 
-!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 01:59:20'!
+	self assert: testObjectFactory firstProductSoldByTheStorePrice equals: receipt.! !
+
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/9/2021 01:34:28'!
 test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice
 
-	| cart cashier quantity |
+	| cart cashier quantity receipt |
 	cart _ testObjectFactory createCart.
 	cashier _ testObjectFactory createCashier.
 	quantity _ 5.
 	
 	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
 	
+	receipt _ cashier 
+		checkout: cart 
+		charging: testObjectFactory validCard 
+		on: testObjectFactory fixedDate.
+
 	self 
 		assert: (quantity * testObjectFactory firstProductSoldByTheStorePrice)
-		equals: (cashier 
-			checkout: cart 
-			charging: testObjectFactory validCard 
-			on: testObjectFactory fixedDate).! !
+		equals: receipt.! !
 
-!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 01:59:35'!
+!CheckoutTest methodsFor: 'tests' stamp: 'MP 11/9/2021 01:34:48'!
 test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices
 
-	| cart cashier quantity expectedRecepit |
+	| cart cashier quantity expectedRecepit receipt |
 	cart _ testObjectFactory createCart.
 	cashier _ testObjectFactory createCashier.
 	quantity _ 5.
@@ -172,16 +177,18 @@ test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices
 	cart add: quantity of: testObjectFactory firstProductSoldByTheStore.
 	cart add: testObjectFactory secondProductSoldByTheStore.
 	
+	receipt _ cashier 
+		checkout: cart 
+		charging: testObjectFactory validCard 
+		on: testObjectFactory fixedDate.
+	
 	expectedRecepit _
 		(quantity * testObjectFactory firstProductSoldByTheStorePrice) +
 		(testObjectFactory secondProductSoldByTheStorePrice).
-	
+
 	self 
 		assert: expectedRecepit
-		equals: (cashier 
-			checkout: cart 
-			charging: testObjectFactory validCard 
-			on: testObjectFactory fixedDate).! !
+		equals: receipt.! !
 
 !CheckoutTest methodsFor: 'tests' stamp: 'MP 11/2/2021 02:52:02'!
 test05CannotCheckoutWithExpiredCard
@@ -220,32 +227,27 @@ TestCase subclass: #TusLibrosSystemFacadeTest
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'MP 11/8/2021 20:04:40'!
-defaultTusLibrosSystemFacade
-	
-	^self tusLibrosSystemFacadeWithClock: ManualClockXX new.! !
-
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:38:43'!
+!TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'AF 11/4/2021 23:38:43'!
 setUp
 
 	testObjectFactory _ TestObjectFactory new.! !
 
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'MP 11/8/2021 20:20:35'!
+!TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'MP 11/9/2021 02:23:05'!
 test01CannotCreateCartWithInvalidCredentials
 
 	| tusLibros |
 	
 	tusLibros _ TusLibrosSystemFacade
-		authenticatingWith: testObjectFactory authSystemDenyingAllxxx
+		authenticatingWith: testObjectFactory authSystemDenyingAll
 		sourcingProductsFrom: testObjectFactory defaultCatalog
 		chargingThrough: testObjectFactory defaultSimulatedMP
-		withClock: ManualClockXX new.
+		withClock: ManualClock new.
 	
 	self should: [ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword ] 
 		raise: Error - MessageNotUnderstood 
 		withMessageText: TusLibrosSystemFacade invalidCredentialsErrorDescription.! !
 
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:01:36'!
+!TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'IAR 11/6/2021 00:01:36'!
 test02CartCreatedWithValidCredentialsIsEmpty
 
 	| tusLibros cartId |
@@ -255,28 +257,25 @@ test02CartCreatedWithValidCredentialsIsEmpty
 	
 	self assert: (tusLibros listCart: cartId) isEmpty.! !
 
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:10:29'!
-test03CanAddMultipleItemsToACartXXXXXx
+!TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'MP 11/9/2021 02:26:20'!
+test03AddingMultipleOcurrencesOfAProductListsEachOne
 
-	| tusLibros expectedCartContents quantity firstCartId |
+	| tusLibros quantity cartId |
 	
 	tusLibros _ self defaultTusLibrosSystemFacade.
-	firstCartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
+	cartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
 	quantity _ 1.
 	
-	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: firstCartId.
+	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: cartId.
 	
-	expectedCartContents _ Bag new
-		add: testObjectFactory firstProductSoldByTheStore
-		withOccurrences: quantity;
-		yourself.
-	
-	self assert: expectedCartContents equals: (tusLibros listCart: firstCartId).! !
+	self 
+		assert: quantity
+		equals: ( (tusLibros listCart: cartId) occurrencesOf: testObjectFactory firstProductSoldByTheStore).! !
 
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:10:36'!
-test04CanListMultipleCartsXXXXx
+!TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'MP 11/9/2021 02:26:31'!
+test04AddingToACartDoesntAffectTheOthers
 
-	| tusLibros expectedCartContents quantity firstCartId secondCartId |
+	| tusLibros quantity firstCartId secondCartId |
 	
 	tusLibros _ self defaultTusLibrosSystemFacade.
 	firstCartId _ tusLibros createCartFor: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword.
@@ -285,15 +284,13 @@ test04CanListMultipleCartsXXXXx
 	
 	tusLibros add: quantity of: testObjectFactory firstProductSoldByTheStore to: firstCartId.
 	
-	expectedCartContents _ Bag new
-		add: testObjectFactory firstProductSoldByTheStore
-		withOccurrences: quantity;
-		yourself.
-	
-	self assert: expectedCartContents equals: (tusLibros listCart: firstCartId).
+	self 
+		assert: quantity
+		equals: ( (tusLibros listCart: firstCartId) occurrencesOf: testObjectFactory firstProductSoldByTheStore).
+
 	self assert: (tusLibros listCart: secondCartId) isEmpty.! !
 
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:10:21'!
+!TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'IAR 11/6/2021 00:10:21'!
 test05CannotAddProductToCartWithInvalidId
 
 	| tusLibros invalidId |
@@ -306,7 +303,7 @@ test05CannotAddProductToCartWithInvalidId
 	
 ! !
 
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:09:55'!
+!TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'IAR 11/6/2021 00:09:55'!
 test06CannotListCartWithInvalidId
 
 	| tusLibros invalidId |
@@ -319,7 +316,7 @@ test06CannotListCartWithInvalidId
 	
 ! !
 
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:28:09'!
+!TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'MP 11/9/2021 02:39:43'!
 test07CannotCheckoutInvalidCartId
 
 	| tusLibros invalidId |
@@ -328,72 +325,73 @@ test07CannotCheckoutInvalidCartId
 	invalidId _ 0.
 	self should: [ tusLibros
 			checkout: invalidId
-			charging: testObjectFactory validCard
-			on: testObjectFactory fixedDate ]
+			charging: testObjectFactory validCard ]
 		raise: Error - MessageNotUnderstood
 		withMessageText: TusLibrosSystemFacade invalidCartIdErrorDescription.
 	
 ! !
 
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:40:52'!
-test08
+!TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'MP 11/9/2021 02:12:10'!
+test08CheckoutOfCartRegistersSales
 
-	| tusLibros cartId transactionId |
-	
-	"TODO: Assertar observando mediante listPurchases y no mediante isNotNil."
+	| tusLibros cartId expectedSale userPurchases |
 	
 	tusLibros _ self defaultTusLibrosSystemFacade.
 	cartId _ tusLibros
 		createCartFor: testObjectFactory defaultUser
-		authenticatedBy: testObjectFactory defaultPassword. 
+		authenticatedBy: testObjectFactory defaultPassword.
+	
+	tusLibros add: 1 of: testObjectFactory firstProductSoldByTheStore to: cartId.
 
-	transactionId _ tusLibros
+	tusLibros
 		checkout: cartId
-		charging: testObjectFactory validCard
-		on: testObjectFactory fixedDate.
+		charging: testObjectFactory validCard.
 
-	self deny: transactionId isNil. 
+	userPurchases _ (tusLibros listPurchasesOf: testObjectFactory defaultUser authenticatedBy: testObjectFactory defaultPassword).
+	expectedSale _ Sale
+		by: testObjectFactory defaultUser
+		of: (Bag with: testObjectFactory firstProductSoldByTheStore)
+		totalling: testObjectFactory firstProductSoldByTheStorePrice.
 
-! !
+	self assert: userPurchases includes: expectedSale.
+	! !
 
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:41:37'!
-test09
+!TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'MP 11/9/2021 02:12:32'!
+test09CheckoutReturnsDifferentIdsEachTime
 
 	| tusLibros cartId firstTransactionId secondTransactionId |
 	
-	"TODO: Cambiar la generacion de las transactionIds."
-	
 	tusLibros _ self defaultTusLibrosSystemFacade.
 	cartId _ tusLibros
 		createCartFor: testObjectFactory defaultUser
 		authenticatedBy: testObjectFactory defaultPassword. 
 
+	tusLibros add: 1 of: testObjectFactory firstProductSoldByTheStore to: cartId.
+
 	firstTransactionId _ tusLibros
 		checkout: cartId
-		charging: testObjectFactory validCard
-		on: testObjectFactory fixedDate.
+		charging: testObjectFactory validCard.
 	
 	secondTransactionId _ tusLibros
 		checkout: cartId
-		charging: testObjectFactory validCard
-		on: testObjectFactory fixedDate.
+		charging: testObjectFactory validCard.
 		
 	self assert: firstTransactionId isNotEqualTo: secondTransactionId.
 
 ! !
 
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'MP 11/8/2021 20:10:18'!
-test10
+!TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'MP 11/9/2021 01:52:13'!
+test10CannotListExpiredCart
 
 	| tusLibros cartId clock |
 	
-	clock _ ManualClockXX new.
+	clock _ ManualClock new.
 	tusLibros _ self tusLibrosSystemFacadeWithClock: clock.
 	cartId _ tusLibros
 		createCartFor: testObjectFactory defaultUser
 		authenticatedBy: testObjectFactory defaultPassword. 
 
-	clock incrementTimeBy: 30.
+	clock incrementTimeBy: 31.
 
 	self should: [ tusLibros listCart: cartId ]
 		raise: Error - MessageNotUnderstood
@@ -401,12 +399,12 @@ test10
 
 ! !
 
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'MP 11/8/2021 20:17:28'!
-test11
+!TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'MP 11/9/2021 01:52:16'!
+test11CartsExpireOnlyAfterThirtyMinutes
 
 	| tusLibros clock expiredCartId nonExpiredCartId |
-	
-	clock _ ManualClockXX new.
+
+	clock _ ManualClock new.
 	tusLibros _ self tusLibrosSystemFacadeWithClock: clock.
 	
 	expiredCartId _ tusLibros
@@ -419,7 +417,7 @@ test11
 		createCartFor: testObjectFactory defaultUser
 		authenticatedBy: testObjectFactory defaultPassword. 
 
-	clock incrementTimeBy: 15.
+	clock incrementTimeBy: 16.
 
 	self should: [ tusLibros listCart: expiredCartId ]
 		raise: Error - MessageNotUnderstood
@@ -429,12 +427,12 @@ test11
 
 ! !
 
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'MP 11/8/2021 20:26:49'!
-test12
+!TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'MP 11/9/2021 01:52:19'!
+test12ListingRefreshesCart
 
 	| tusLibros clock cartId |
 	
-	clock _ ManualClockXX new.
+	clock _ ManualClock new.
 	tusLibros _ self tusLibrosSystemFacadeWithClock: clock.
 	
 	cartId _ tusLibros
@@ -445,25 +443,25 @@ test12
 
 	tusLibros listCart: cartId.
 
-	clock incrementTimeBy: 15.
+	clock incrementTimeBy: 16.
 
 	self shouldnt: [ tusLibros listCart: cartId ] raise: Error.
 
 ! !
 
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'MP 11/8/2021 20:27:32'!
-test13
+!TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'MP 11/9/2021 01:52:22'!
+test13CannotAddProductsToExpiredCart
 
 	| tusLibros clock cartId |
 	
-	clock _ ManualClockXX new.
+	clock _ ManualClock new.
 	tusLibros _ self tusLibrosSystemFacadeWithClock: clock.
 	
 	cartId _ tusLibros
 		createCartFor: testObjectFactory defaultUser
 		authenticatedBy: testObjectFactory defaultPassword. 
 
-	clock incrementTimeBy: 30.
+	clock incrementTimeBy: 31.
 
 	self should: [ tusLibros add: 1 of: testObjectFactory firstProductSoldByTheStore to: cartId ]
 		raise: Error - MessageNotUnderstood
@@ -471,31 +469,59 @@ test13
 
 ! !
 
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'MP 11/8/2021 20:30:28'!
-test14
+!TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'MP 11/9/2021 02:10:53'!
+test14CannotCheckoutExpiredCart
 
 	| tusLibros clock cartId |
 	
-	clock _ ManualClockXX new.
+	clock _ ManualClock new.
 	tusLibros _ self tusLibrosSystemFacadeWithClock: clock.
 	
 	cartId _ tusLibros
 		createCartFor: testObjectFactory defaultUser
 		authenticatedBy: testObjectFactory defaultPassword. 
 
-	clock incrementTimeBy: 30.
+	clock incrementTimeBy: 31.
 
-	self should: [ tusLibros checkout: cartId charging: testObjectFactory validCard on: testObjectFactory fixedDate ]
+	self should: [ tusLibros checkout: cartId charging: testObjectFactory validCard ]
 		raise: Error - MessageNotUnderstood
 		withMessageText: TusLibrosSystemFacade expiredCartErrorDescription.
 
 ! !
 
-!TusLibrosSystemFacadeTest methodsFor: 'as yet unclassified' stamp: 'MP 11/8/2021 20:05:22'!
+!TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'MP 11/9/2021 01:52:28'!
+test15AddingProductsRefreshesCart
+
+	| tusLibros clock cartId |
+	
+	clock _ ManualClock new.
+	tusLibros _ self tusLibrosSystemFacadeWithClock: clock.
+	
+	cartId _ tusLibros
+		createCartFor: testObjectFactory defaultUser
+		authenticatedBy: testObjectFactory defaultPassword. 
+
+	clock incrementTimeBy: 15.
+
+	tusLibros add: 1 of: testObjectFactory firstProductSoldByTheStore to: cartId.
+
+	clock incrementTimeBy: 16.
+
+	self shouldnt: [ tusLibros listCart: cartId ] raise: Error.
+
+! !
+
+
+!TusLibrosSystemFacadeTest methodsFor: 'test objects' stamp: 'MP 11/8/2021 23:42:43'!
+defaultTusLibrosSystemFacade
+	
+	^self tusLibrosSystemFacadeWithClock: ManualClock new.! !
+
+!TusLibrosSystemFacadeTest methodsFor: 'test objects' stamp: 'MP 11/9/2021 02:23:00'!
 tusLibrosSystemFacadeWithClock: aClock
 	
 	^TusLibrosSystemFacade
-		authenticatingWith: testObjectFactory authSystemAllowingAllxxx
+		authenticatingWith: testObjectFactory authSystemAllowingAll
 		sourcingProductsFrom: testObjectFactory defaultCatalog
 		chargingThrough: testObjectFactory defaultSimulatedMP
 		withClock: aClock.! !
@@ -505,6 +531,155 @@ tusLibrosSystemFacadeWithClock: aClock
 assert: expected isNotEqualTo: actual 
 	
 	self deny: expected = actual.! !
+
+
+!classDefinition: #ActiveCart category: 'TusLibros'!
+Object subclass: #ActiveCart
+	instanceVariableNames: 'cart lastAccessedAt clock id user'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!ActiveCart methodsFor: 'cart protocol' stamp: 'MP 11/9/2021 02:14:39'!
+add: aQuantity of: aProduct
+
+	cart add: aQuantity of: aProduct.
+	self refreshLastAccessedAt.! !
+
+!ActiveCart methodsFor: 'cart protocol' stamp: 'MP 11/9/2021 02:14:39'!
+contents
+
+	self refreshLastAccessedAt.
+	^ cart contents! !
+
+!ActiveCart methodsFor: 'cart protocol' stamp: 'MP 11/9/2021 02:15:54'!
+isEmpty
+
+	^ cart isEmpty.! !
+
+!ActiveCart methodsFor: 'cart protocol' stamp: 'MP 11/9/2021 02:15:12'!
+totalPrice
+
+	^ cart totalPrice.! !
+
+
+!ActiveCart methodsFor: 'private' stamp: 'MP 11/9/2021 02:18:05'!
+refreshLastAccessedAt
+
+	lastAccessedAt _ clock now.! !
+
+
+!ActiveCart methodsFor: 'testing - private' stamp: 'MP 11/9/2021 02:18:12'!
+cartLifetime
+
+	^ lastAccessedAt distanceTo: clock now! !
+
+!ActiveCart methodsFor: 'testing - private' stamp: 'MP 11/9/2021 02:17:45'!
+cartMaximumLifetime
+
+	^ 30 * minute! !
+
+
+!ActiveCart methodsFor: 'testing' stamp: 'MP 11/9/2021 02:18:15'!
+isExpired
+
+	^ self cartLifetime > self cartMaximumLifetime! !
+
+
+!ActiveCart methodsFor: 'initialization' stamp: 'MP 11/9/2021 02:18:05'!
+initializeAcceptingProductsFrom: aCatalog
+keepingTimeWith: aClock
+createdBy: aUser
+identifiedBy: anId
+
+	clock _ aClock.
+	id _ anId.
+	user _ aUser.
+
+	cart _ Cart acceptingProductsFrom: aCatalog.
+	lastAccessedAt _ clock now.! !
+
+
+!ActiveCart methodsFor: 'accessing' stamp: 'MP 11/9/2021 02:35:48'!
+id
+
+	^ id.! !
+
+!ActiveCart methodsFor: 'accessing' stamp: 'MP 11/9/2021 01:47:16'!
+user
+
+	^ user.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'ActiveCart class' category: 'TusLibros'!
+ActiveCart class
+	instanceVariableNames: ''!
+
+!ActiveCart class methodsFor: 'instance creation' stamp: 'MP 11/9/2021 01:46:49'!
+acceptingProductsFrom: aCatalog
+keepingTimeWith: aClock
+createdBy: aUser
+identifiedBy: anId 
+
+	^self new 
+		initializeAcceptingProductsFrom: aCatalog
+		keepingTimeWith: aClock
+		createdBy: aUser
+		identifiedBy: anId.! !
+
+
+!classDefinition: #AuthenticationSystem category: 'TusLibros'!
+Object subclass: #AuthenticationSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!AuthenticationSystem methodsFor: 'authentication' stamp: 'MP 11/9/2021 02:21:47'!
+can: aUser beAuthenticatedBy: aPassword 
+	
+	self subclassResponsibility.! !
+
+
+!classDefinition: #SimulatedAuthenticationSystem category: 'TusLibros'!
+AuthenticationSystem subclass: #SimulatedAuthenticationSystem
+	instanceVariableNames: 'result'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!SimulatedAuthenticationSystem methodsFor: 'initialization' stamp: 'AF 11/5/2021 00:06:41'!
+initializeNewSuccesful
+	
+	result _ true.! !
+
+!SimulatedAuthenticationSystem methodsFor: 'initialization' stamp: 'AF 11/4/2021 23:54:38'!
+initializeNewUnsuccesful
+	
+	result _ false.! !
+
+
+!SimulatedAuthenticationSystem methodsFor: 'authentication' stamp: 'AF 11/5/2021 00:02:49'!
+can: aUser beAuthenticatedBy: aPassword 
+	
+	^result.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'SimulatedAuthenticationSystem class' category: 'TusLibros'!
+SimulatedAuthenticationSystem class
+	instanceVariableNames: ''!
+
+!SimulatedAuthenticationSystem class methodsFor: 'instance creation' stamp: 'AF 11/5/2021 00:06:21'!
+newSuccesful
+	
+	^self new initializeNewSuccesful! !
+
+!SimulatedAuthenticationSystem class methodsFor: 'instance creation' stamp: 'AF 11/4/2021 23:54:14'!
+newUnsuccesful
+
+	^self new initializeNewUnsuccesful! !
 
 
 !classDefinition: #Card category: 'TusLibros'!
@@ -527,10 +702,10 @@ initializeWithNumber: aCardNumber expiringAt: anExpirationDate
 	number _ aCardNumber.! !
 
 
-!Card methodsFor: 'testing' stamp: 'MP 11/2/2021 01:10:53'!
+!Card methodsFor: 'testing' stamp: 'MP 11/9/2021 01:44:09'!
 isExpiredOn: aDate
 
-	^ aDate > expirationMonthOfYear.! !
+	^ aDate monthOfYear > expirationMonthOfYear.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -669,8 +844,8 @@ validCardNumberSize
 	^ 16! !
 
 
-!Cashier methodsFor: 'checkout' stamp: 'MP 11/2/2021 02:26:00'!
-checkout: aCart charging: aCreditCard on: aDate
+!Cashier methodsFor: 'checkout' stamp: 'MP 11/9/2021 01:33:47'!
+checkout: aCart charging: aCreditCard on: aDate 
 
 	| totalPrice |
 	self assertCartIsNotEmpty: aCart.
@@ -680,13 +855,13 @@ checkout: aCart charging: aCreditCard on: aDate
 	totalPrice _ aCart totalPrice.
 	
 	merchantProcessor charge: totalPrice to: aCreditCard.
-	
+
 	^ totalPrice
 ! !
 
 
-!Cashier methodsFor: 'initialization' stamp: 'MP 11/2/2021 02:53:45'!
-initializeWithMerchantProcessor: aMerchantProcessor 
+!Cashier methodsFor: 'initialization' stamp: 'MP 11/9/2021 01:26:54'!
+initializeChargingThrough: aMerchantProcessor 
 
 	merchantProcessor _ aMerchantProcessor.! !
 
@@ -712,30 +887,45 @@ invalidCardNumberErrorDescription
 	^ 'cannot charge a card with an invalid card number'.! !
 
 
-!Cashier class methodsFor: 'instance creation' stamp: 'IAR 11/5/2021 23:48:20'!
-withMerchantProcessor: aMerchantProcessor 
+!Cashier class methodsFor: 'instance creation' stamp: 'MP 11/9/2021 01:26:54'!
+chargingThrough: aMerchantProcessor 
 
-	^self new initializeWithMerchantProcessor: aMerchantProcessor.! !
+	^self new initializeChargingThrough: aMerchantProcessor.! !
 
 
-!classDefinition: #ManualClockXX category: 'TusLibros'!
-Object subclass: #ManualClockXX
+!classDefinition: #Clock category: 'TusLibros'!
+Object subclass: #Clock
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!Clock methodsFor: 'timekeeping' stamp: 'MP 11/8/2021 23:39:53'!
+now
+
+	self subclassResponsibility.! !
+
+
+!classDefinition: #ManualClock category: 'TusLibros'!
+Clock subclass: #ManualClock
 	instanceVariableNames: 'time'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!ManualClockXX methodsFor: 'as yet unclassified' stamp: 'MP 11/8/2021 20:10:02'!
-incrementTimeBy: aNumber
+!ManualClock methodsFor: 'time manipulation' stamp: 'MP 11/9/2021 01:51:30'!
+incrementTimeBy: aNumberOfMinutes
 
-	time _ time + aNumber.! !
+	time _ time next: aNumberOfMinutes * minute.! !
 
-!ManualClockXX methodsFor: 'as yet unclassified' stamp: 'MP 11/8/2021 20:10:36'!
+
+!ManualClock methodsFor: 'initialization' stamp: 'MP 11/9/2021 01:37:06'!
 initialize
 
-	time _ 0.! !
+	time _ GregorianDateTime now.! !
 
-!ManualClockXX methodsFor: 'as yet unclassified' stamp: 'MP 11/8/2021 20:08:01'!
+
+!ManualClock methodsFor: 'timekeeping' stamp: 'MP 11/8/2021 20:08:01'!
 now
 
 	^ time! !
@@ -823,44 +1013,54 @@ withNoFundsCard: aNoFundsCardNumber stolenCard: aStolenCardNumber
 	^ self new initializeWithNoFundsCard: aNoFundsCardNumber stolenCard: aStolenCardNumber.! !
 
 
-!classDefinition: #SimulatedAuthenticationSystem category: 'TusLibros'!
-Object subclass: #SimulatedAuthenticationSystem
-	instanceVariableNames: 'result'
+!classDefinition: #Sale category: 'TusLibros'!
+Object subclass: #Sale
+	instanceVariableNames: 'collectionOfContents totalPrice contents user amount'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!SimulatedAuthenticationSystem methodsFor: 'initialization' stamp: 'AF 11/5/2021 00:06:41'!
-initializeNewSuccesful
-	
-	result _ true.! !
+!Sale methodsFor: 'initialization' stamp: 'MP 11/9/2021 01:48:17'!
+initializeBy: aUser of: aCollectionOfContents totalling: anAmount
 
-!SimulatedAuthenticationSystem methodsFor: 'initialization' stamp: 'AF 11/4/2021 23:54:38'!
-initializeNewUnsuccesful
-	
-	result _ false.! !
+	contents _ aCollectionOfContents.
+	totalPrice _ anAmount.
+	user _ aUser.! !
 
 
-!SimulatedAuthenticationSystem methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:02:49'!
-can: aUser beAuthenticatedBy: aPassword 
-	
-	^result.! !
+!Sale methodsFor: 'comparing' stamp: 'MP 11/9/2021 00:56:23'!
+= otherSale
+
+	^ contents = otherSale contents and: [ totalPrice = otherSale totalPrice ].
+
+	! !
+
+
+!Sale methodsFor: 'accessing' stamp: 'MP 11/9/2021 00:56:30'!
+contents
+
+	^ contents! !
+
+!Sale methodsFor: 'accessing' stamp: 'MP 11/9/2021 00:56:34'!
+totalPrice
+
+	^ totalPrice.! !
+
+!Sale methodsFor: 'accessing' stamp: 'MP 11/9/2021 01:49:14'!
+user
+
+	^user! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'SimulatedAuthenticationSystem class' category: 'TusLibros'!
-SimulatedAuthenticationSystem class
+!classDefinition: 'Sale class' category: 'TusLibros'!
+Sale class
 	instanceVariableNames: ''!
 
-!SimulatedAuthenticationSystem class methodsFor: 'instance creation' stamp: 'AF 11/5/2021 00:06:21'!
-newSuccesful
-	
-	^self new initializeNewSuccesful! !
+!Sale class methodsFor: 'instance creation' stamp: 'MP 11/9/2021 01:36:13'!
+by: aUser of: aCollectionOfContents totalling: anAmount 
 
-!SimulatedAuthenticationSystem class methodsFor: 'instance creation' stamp: 'AF 11/4/2021 23:54:14'!
-newUnsuccesful
-
-	^self new initializeNewUnsuccesful! !
+	^self new initializeBy: aUser of: aCollectionOfContents totalling: anAmount ! !
 
 
 !classDefinition: #TestObjectFactory category: 'TusLibros'!
@@ -974,10 +1174,10 @@ createCartWithSingleProduct
 		add: self firstProductSoldByTheStore;
 		yourself.! !
 
-!TestObjectFactory methodsFor: 'store creation' stamp: 'MP 11/2/2021 02:54:11'!
+!TestObjectFactory methodsFor: 'store creation' stamp: 'MP 11/9/2021 01:26:12'!
 createCashier
 
-	^ Cashier withMerchantProcessor: self defaultSimulatedMP.! !
+	^ Cashier chargingThrough: self defaultSimulatedMP.! !
 
 !TestObjectFactory methodsFor: 'store creation' stamp: 'MP 11/2/2021 02:30:11'!
 defaultSimulatedMP
@@ -988,22 +1188,22 @@ defaultSimulatedMP
 ! !
 
 
-!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:53:58'!
-authSystemAllowingAllxxx
+!TestObjectFactory methodsFor: 'authentication' stamp: 'MP 11/9/2021 02:23:00'!
+authSystemAllowingAll
 	
 	^ SimulatedAuthenticationSystem newSuccesful.! !
 
-!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:53:22'!
-authSystemDenyingAllxxx
+!TestObjectFactory methodsFor: 'authentication' stamp: 'MP 11/9/2021 02:23:05'!
+authSystemDenyingAll
 	
 	^ SimulatedAuthenticationSystem newUnsuccesful.! !
 
-!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:58:01'!
+!TestObjectFactory methodsFor: 'authentication' stamp: 'AF 11/4/2021 23:58:01'!
 defaultPassword
 	
 	^'hunter2'! !
 
-!TestObjectFactory methodsFor: 'as yet unclassified' stamp: 'AF 11/4/2021 23:57:41'!
+!TestObjectFactory methodsFor: 'authentication' stamp: 'AF 11/4/2021 23:57:41'!
 defaultUser
 	
 	^'HAW'! !
@@ -1011,12 +1211,12 @@ defaultUser
 
 !classDefinition: #TusLibrosSystemFacade category: 'TusLibros'!
 Object subclass: #TusLibrosSystemFacade
-	instanceVariableNames: 'authenticationSystem catalog carts lastCartId merchantProcessor lastTransactionId clock cartLastAccessedTimes'
+	instanceVariableNames: 'authenticationSystem catalog activeCarts lastCartId lastTransactionId clock cartLastAccessedTimes salesBook cashier'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!TusLibrosSystemFacade methodsFor: 'initialization' stamp: 'MP 11/8/2021 20:24:12'!
+!TusLibrosSystemFacade methodsFor: 'initialization' stamp: 'MP 11/9/2021 01:49:00'!
 initializeAuthenticatingWith: anAuthenticationSystem
 sourcingProductsFrom: aCatalog
 chargingThrough: aMerchantProcessor
@@ -1024,87 +1224,113 @@ withClock: aClock
 	
 	authenticationSystem _ anAuthenticationSystem.
 	catalog _ aCatalog.
-	merchantProcessor _ aMerchantProcessor.
+	cashier _ Cashier chargingThrough: aMerchantProcessor.
 	clock _ aClock.
 	
-	carts _ Dictionary new.
+	activeCarts _ Dictionary new.
 	cartLastAccessedTimes _ Dictionary new.
+	salesBook _ OrderedCollection new.
+
 	lastCartId _ 0.
 	lastTransactionId _ 0.
 ! !
 
 
-!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'MP 11/8/2021 20:29:11'!
-add: aQuantity of: aProduct to: aCartId 
-	
-	"(self findCart: aCartId) add: aQuantity of: aProduct."
-	
-	carts at: aCartId
-		ifPresent: [ :aCart |
-			clock now - (cartLastAccessedTimes at: aCartId) >= 30 ifTrue: [ self error: self class expiredCartErrorDescription ].
-			aCart add: aQuantity of: aProduct.
-		]
-		ifAbsent: [ self error: self class invalidCartIdErrorDescription ].
-! !
+!TusLibrosSystemFacade methodsFor: 'assertions' stamp: 'MP 11/9/2021 01:10:50'!
+assert: aUser canBeAuthenticatedBy: aPassword
 
-!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'MP 11/8/2021 20:31:25'!
-checkout: aCartId charging: aCard on: aDate 
+	^ (authenticationSystem can: aUser beAuthenticatedBy: aPassword)
+		ifFalse: [ self error: TusLibrosSystemFacade invalidCredentialsErrorDescription ]! !
+
+!TusLibrosSystemFacade methodsFor: 'assertions' stamp: 'MP 11/9/2021 02:30:01'!
+assertCartIsNotExpired: anActiveCart
+
+	anActiveCart isExpired ifTrue: [ self error: self class expiredCartErrorDescription ].! !
+
+
+!TusLibrosSystemFacade methodsFor: 'rest interface - private' stamp: 'MP 11/9/2021 02:36:51'!
+createCartFor: aUser
+
+	| activeCart |
+	activeCart _ ActiveCart
+		acceptingProductsFrom: catalog
+		keepingTimeWith: clock
+		createdBy: aUser
+		identifiedBy: self nextCartId.
+
+	activeCarts at: activeCart id put: activeCart.
 	
-	"(carts includesKey: aCartId) ifFalse: [ self error: self class invalidCartIdErrorDescription ].
-	^ self nextTransactionId."
-	
-	carts at: aCartId
-		ifPresent: [ :aCart |
-			clock now - (cartLastAccessedTimes at: aCartId) >= 30 ifTrue: [ self error: self class expiredCartErrorDescription ].
-			^ self nextTransactionId.
+	^ activeCart id.! !
+
+!TusLibrosSystemFacade methodsFor: 'rest interface - private' stamp: 'MP 11/9/2021 02:31:08'!
+findActiveCart: aCartId
+
+	activeCarts at: aCartId 
+		ifPresent: [ :anActiveCart |
+			self assertCartIsNotExpired: anActiveCart.
+			^ anActiveCart.
 		]
 		ifAbsent: [ self error: self class invalidCartIdErrorDescription ].! !
 
-!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'MP 11/8/2021 20:24:12'!
-createCartFor: aUser authenticatedBy: aPassword 
-	
-	| cartId |
-	
-	(authenticationSystem can: aUser beAuthenticatedBy: aPassword)
-		ifFalse: [ self error: TusLibrosSystemFacade invalidCredentialsErrorDescription ].
-	
-	cartId _ self nextCartId.
-	carts at: cartId put: (Cart acceptingProductsFrom: catalog).
-	cartLastAccessedTimes at: cartId put: clock now.
-	
-	^cartId! !
-
-!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/5/2021 23:43:09'!
-findCart: aCartId
-
-	^ carts at: aCartId ifAbsent: [ self error: self class invalidCartIdErrorDescription ].! !
-
-!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'MP 11/8/2021 20:24:12'!
-listCart: aCartId
-
-
-	"^(self findCart: aCartId) contents."
-	
-	carts at: aCartId
-		ifPresent: [ :aCart |
-			clock now - (cartLastAccessedTimes at: aCartId) >= 30 ifTrue: [ self error: self class expiredCartErrorDescription ].
-			cartLastAccessedTimes at: aCartId put: clock now.
-			^ aCart contents.
-		]
-		ifAbsent: [ self error: self class invalidCartIdErrorDescription ].
-! !
-
-!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'AF 11/5/2021 00:46:19'!
+!TusLibrosSystemFacade methodsFor: 'rest interface - private' stamp: 'AF 11/5/2021 00:46:19'!
 nextCartId
 	
 	lastCartId _ lastCartId + 1.
 	^lastCartId! !
 
-!TusLibrosSystemFacade methodsFor: 'as yet unclassified' stamp: 'IAR 11/6/2021 00:39:59'!
+!TusLibrosSystemFacade methodsFor: 'rest interface - private' stamp: 'IAR 11/6/2021 00:39:59'!
 nextTransactionId
 
 	lastTransactionId _ lastTransactionId + 1.
 	^lastTransactionId.! !
+
+!TusLibrosSystemFacade methodsFor: 'rest interface - private' stamp: 'MP 11/9/2021 02:31:01'!
+selectPurchasesOf: aUser
+
+	^ salesBook select: [ :aUserSale | aUserSale user = aUser ]! !
+
+
+!TusLibrosSystemFacade methodsFor: 'rest interface' stamp: 'MP 11/9/2021 02:07:49'!
+add: aQuantity of: aProduct to: aCartId 
+	
+	(self findActiveCart: aCartId) add: aQuantity of: aProduct.! !
+
+!TusLibrosSystemFacade methodsFor: 'rest interface' stamp: 'MP 11/9/2021 02:31:26'!
+checkout: aCartId charging: aCard 
+	
+	| anActiveCart receipt |
+
+	anActiveCart _ self findActiveCart: aCartId.
+	receipt _ cashier checkout: anActiveCart charging: aCard on: clock now.
+
+	salesBook add: (Sale
+		by: anActiveCart user
+		of: anActiveCart contents
+		totalling: receipt).
+
+	"Curiosamente, no hay comportamiento en el enunciado que nos haga relacionar el transaction id con nada.
+	Queda medio raro pero bueno."
+	^ self nextTransactionId.! !
+
+!TusLibrosSystemFacade methodsFor: 'rest interface' stamp: 'MP 11/9/2021 02:34:52'!
+createCartFor: aUser authenticatedBy: aPassword 
+	
+	self assert: aUser canBeAuthenticatedBy: aPassword.
+
+	^ self createCartFor: aUser.! !
+
+!TusLibrosSystemFacade methodsFor: 'rest interface' stamp: 'MP 11/9/2021 02:30:17'!
+listCart: aCartId
+
+	^ (self findActiveCart: aCartId) contents.
+! !
+
+!TusLibrosSystemFacade methodsFor: 'rest interface' stamp: 'MP 11/9/2021 02:31:01'!
+listPurchasesOf: aUser authenticatedBy: aPassword
+
+	self assert: aUser canBeAuthenticatedBy: aPassword.
+	
+	^ self selectPurchasesOf: aUser! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
