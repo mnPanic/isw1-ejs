@@ -20638,3 +20638,1168 @@ initializeOn: aPortNumber
 		action: [].! !
 
 ----SNAPSHOT----(11 November 2021 22:10:45) CuisUniversity-4913.image priorSource: 18662215!
+
+----STARTUP---- (13 November 2021 00:54:21) as /home/trona/Facu/ing1/20-tusLibros-It4/linux64/CuisUniversity-4913.image!
+
+
+----End fileIn of /home/trona/Facu/ing1/20-tusLibros-It4/linux64/Packages/System/Collections-CompactArrays.pck.st----!
+
+----End fileIn of /home/trona/Facu/ing1/20-tusLibros-It4/linux64/Packages/Features/Compression.pck.st----!
+
+----End fileIn of /home/trona/Facu/ing1/20-tusLibros-It4/linux64/Packages/Features/Sound.pck.st----!
+
+----End fileIn of /home/trona/Facu/ing1/20-tusLibros-It4/linux64/Packages/Features/Cryptography-DigitalSignatures.pck.st----!
+
+----End fileIn of /home/trona/Facu/ing1/20-tusLibros-It4/linux64/Packages/Features/Identities-UUID.pck.st----!
+
+----End fileIn of /home/trona/Facu/ing1/20-tusLibros-It4/linux64/Packages/System/Network-Kernel.pck.st----!
+
+----End fileIn of /home/trona/Facu/ing1/2021-2c/20-TusLibros/Iteracion 4/WebClient.pck.st----!
+
+----End fileIn of /home/trona/Facu/ing1/2021-2c/20-TusLibros/Iteracion 4/StringsServicesServer.st----!
+
+----End fileIn of /home/trona/Facu/ing1/isw1-ejs/20-TusLibros/it4/TusLibros.st----!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 00:58:24' prior: 50952944!
+initializeOn: aPortNumber
+
+	| testObjectFactory |
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [].! !
+
+!classDefinition: #TusLibrosRestApiXXX category: 'TusLibros' stamp: 'AF 11/13/2021 01:03:39'!
+Object subclass: #TusLibrosRestApiXXX
+	instanceVariableNames: 'port webServer tusLibrosSystem'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:03:36' prior: 50953140!
+initializeOn: aPortNumber
+
+	| testObjectFactory |
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: testObjectFactory authSystemAllowingAll 
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory  
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [
+			].! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:04:00' prior: 50953161!
+initializeOn: aPortNumber
+
+	| testObjectFactory |
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: testObjectFactory authSystemAllowingAll 
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory  
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [
+			].! !
+
+Object subclass: #TusLibrosRestApiXXX
+	instanceVariableNames: 'port webServer tusLibrosSystem'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #TusLibrosRestApiXXX category: 'TusLibros' stamp: 'AF 11/13/2021 01:04:18'!
+Object subclass: #TusLibrosRestApiXXX
+	instanceVariableNames: 'port webServer tusLibrosSystem'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #SystemClock category: 'TusLibros' stamp: 'AF 11/13/2021 01:04:37'!
+Object subclass: #SystemClock
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:04:29' prior: 50953181!
+initializeOn: aPortNumber
+
+	| testObjectFactory |
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: testObjectFactory authSystemAllowingAll 
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory  
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [
+			].! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:06:08' prior: 50953221!
+initializeOn: aPortNumber
+
+	| testObjectFactory |
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: testObjectFactory authSystemAllowingAll 
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	
+			].! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:08:51' prior: 50953241!
+initializeOn: aPortNumber
+
+	| testObjectFactory |
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: testObjectFactory authSystemAllowingAll 
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | |
+			].
+		! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:13:01' prior: 50953262!
+initializeOn: aPortNumber
+
+	| testObjectFactory |
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: testObjectFactory authSystemAllowingAll 
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			].
+		! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:15:21' prior: 50953284!
+initializeOn: aPortNumber
+
+	| testObjectFactory |
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: testObjectFactory authSystemAllowingAll 
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password).
+			].
+		! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:15:28' prior: 50953309!
+initializeOn: aPortNumber
+
+	| testObjectFactory |
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: testObjectFactory authSystemAllowingAll 
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password).
+		].
+		! !
+
+tusLibrosApi _ tusLibrosRestApiXXX listenOn: 8080!
+
+tusLibrosApi _ tusLibrosRestApiXXX listeningOn: 8080!
+
+tusLibrosApi _ TusLibrosRestApiXXX listeningOn: 8080!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:22:41' prior: 50953337!
+initializeOn: aPortNumber
+
+	| testObjectFactory |
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: testObjectFactory authSystemAllowingAll 
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			
+			"user _ request fields at: 'user'.
+			password _ request fields at: 'password'."
+			 
+			"request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password)."
+			request send200Response: (WebUtils )
+		].
+	
+	
+	
+	
+		! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:24:22' prior: 50953370!
+initializeOn: aPortNumber
+
+	| testObjectFactory |
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: testObjectFactory authSystemAllowingAll 
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			
+			"user _ request fields at: 'user'.
+			password _ request fields at: 'password'."
+			 
+			"request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password)."
+			request send200Response:  (WebUtils jsonEncode: request fields asString)
+		].
+	
+	
+	
+	
+		! !
+
+tusLibrosApi destroy!
+
+tusLibrosApi class allInstances!
+
+self first destroy!
+!TusLibrosRestApiXXX methodsFor: 'nil' stamp: 'AF 11/13/2021 01:26:47'!
+destroy
+	
+	webServer ifNotNil:[webServer destroy].! !
+
+tusLibrosApi destroy!
+
+tusLibrosApi _ TusLibrosRestApiXXX listeningOn: 8080!
+
+TusLibrosRestApiXXX allInstances!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:30:31' prior: 50953399!
+initializeOn: aPortNumber
+
+	| testObjectFactory |
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: testObjectFactory authSystemAllowingAll 
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			
+			user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			"request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password)."
+			request send200Response: 'nacho'
+		].
+	
+	
+	
+	
+		! !
+
+TusLibrosRestApiXXX allInstancesDo: [ :anInstance | anInstance destroy ].!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:32:43' prior: 50953440!
+initializeOn: aPortNumber
+
+	| testObjectFactory |
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: testObjectFactory authSystemAllowingAll 
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			
+			user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password).
+		].
+	
+	
+	
+	
+		! !
+
+tusLibrosApi _ TusLibrosRestApiXXX listeningOn: 8080!
+
+TusLibrosRestApiXXX allInstances!
+
+Clock subclass: #SystemClock
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #SystemClock category: 'TusLibros' stamp: 'AF 11/13/2021 01:34:23'!
+Clock subclass: #SystemClock
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+----End fileIn of /home/trona/Facu/ing1/20-tusLibros-It4/linux64/Packages/TerseGuide.pck.st----!
+
+Time now!
+!SystemClock methodsFor: 'no messages' stamp: 'AF 11/13/2021 01:35:44' overrides: 50952615!
+now
+
+	^0.! !
+!SystemClock methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:37:46' prior: 50956439 overrides: 50952615!
+now
+
+	^GregorianDateTime now.! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:38:43' prior: 50953472!
+initializeOn: aPortNumber
+
+	| testObjectFactory |
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: testObjectFactory authSystemAllowingAll 
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			
+			user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString .
+		].
+	
+	
+	
+	
+		! !
+!TusLibrosRestApiXXX class methodsFor: 'nil' stamp: 'AF 11/13/2021 01:39:26'!
+destroyAllInstances
+
+	self allInstancesDo: [ :anInstance | anInstance destroy ].! !
+
+TusLibrosRestApiXXX destroyAllInstances !
+
+TusLibrosRestApiXXX destroyAllInstances !
+
+tusLibrosApi _ TusLibrosRestApiXXX listeningOn: 8080!
+
+TusLibrosRestApiXXX allInstances!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:45:19' prior: 50956449!
+initializeOn: aPortNumber
+
+	| testObjectFactory |
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: testObjectFactory authSystemAllowingAll 
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString] 
+			on: Error
+			do:[ :error |request  send500Response: error messageText] .
+		] .
+	
+	
+	
+	
+		! !
+
+TusLibrosRestApiXXX destroyAllInstances   !
+
+tusLibrosApi _ TusLibrosRestApiXXX listeningOn: 8080!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:46:59' prior: 50956489!
+initializeOn: aPortNumber
+
+	| testObjectFactory |
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: testObjectFactory authSystemAllowingAll 
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	
+	
+	
+		! !
+
+AuthenticationSystem subclass: #ConfigurableAuthenticationSystem
+	instanceVariableNames: 'result'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #ConfigurableAuthenticationSystem category: 'TusLibros' stamp: 'AF 11/13/2021 01:48:56'!
+AuthenticationSystem subclass: #ConfigurableAuthenticationSystem
+	instanceVariableNames: 'result'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!ConfigurableAuthenticationSystem methodsFor: 'nil' stamp: 'AF 11/13/2021 01:49:24' overrides: 50952340!
+can: aUser beAuthenticatedBy: aPassword 
+
+	! !
+
+!classDefinition: #ConfigurableAuthenticationSystem category: 'TusLibros' stamp: 'AF 11/13/2021 01:51:34'!
+AuthenticationSystem subclass: #ConfigurableAuthenticationSystem
+	instanceVariableNames: 'result users'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!ConfigurableAuthenticationSystem methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:51:32'!
+initializeWith: userToPassword
+
+	users _ userToPassword.! !
+!ConfigurableAuthenticationSystem methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:51:39' prior: 50956582!
+initializeWith: userToPasswordxxxx
+
+	users _ userToPasswordxxxx.! !
+!ConfigurableAuthenticationSystem methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:56:23' prior: 50956568 overrides: 50952340!
+can: aUser beAuthenticatedBy: aPassword 
+
+	^ users at: aUser 
+		ifPresent:[ :password | ^ password = aPassword ] 
+		ifAbsent: [ ^false ].! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 02:03:05' prior: 50956523!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	
+	
+	authenticationSystem _ ConfigurableAuthenticationSystem initializeWith: Dictionary new at:'HAW' put: 'hunter2'; yourself.
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: testObjectFactory authSystemAllowingAll
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	
+	
+	
+		! !
+!ConfigurableAuthenticationSystem methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 02:09:24' overrides: 16896425!
+initialize
+
+	users _ Dictionary new.! !
+!ConfigurableAuthenticationSystem methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 02:10:30' overrides: 16880792!
+at: aUser put: aPassword
+
+	users at: aUser put: aPassword! !
+!ConfigurableAuthenticationSystem methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 02:12:00'!
+register: aUser authenticatedBy: aPassword
+
+	users at: aUser put: aPassword! !
+!ConfigurableAuthenticationSystem methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 02:12:00' prior: 50956645 overrides: 16880792!
+at: aUser put: aPassword
+
+	users register: aUser authenticatedBy: aPassword! !
+!ConfigurableAuthenticationSystem methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 02:12:00' prior: 50956651!
+register: aUser authenticatedBy: aPassword
+
+	users register: aUser authenticatedBy: aPassword! !
+
+!methodRemoval: ConfigurableAuthenticationSystem #at:put: stamp: 'AF 11/13/2021 02:12:00'!
+at: aUser put: aPassword
+
+	users register: aUser authenticatedBy: aPassword!
+!ConfigurableAuthenticationSystem methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 02:12:13' prior: 50956665!
+register: aUser authenticatedBy: aPassword
+
+	users at: aUser put:aPassword.! !
+!ConfigurableAuthenticationSystem methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 02:12:17' prior: 50956677!
+register: aUser authenticatedBy: aPassword
+
+	users at: aUser put: aPassword.! !
+
+!methodRemoval: ConfigurableAuthenticationSystem #initializeWith: stamp: 'AF 11/13/2021 02:12:30'!
+initializeWith: userToPasswordxxxx
+
+	users _ userToPasswordxxxx.!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 02:14:09' prior: 50956603!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new register: 'HAW' authenticatedBy: 'hunter2'.
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: testObjectFactory authSystemAllowingAll
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	
+	
+	
+		! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 02:15:49' prior: 50956695!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	
+	
+	
+		! !
+
+TusLibrosRestApiXXX destroyAllInstances     !
+
+tusLibrosApi _ TusLibrosRestApiXXX listeningOn: 8080 !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 02:17:17' prior: 50956730!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	
+	
+	
+		! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 02:20:30' prior: 50956767!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	
+	
+	
+		! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 02:30:14' prior: 50956812!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |cartId _ request fields at: 'cartId'.
+			isbn _ request fields at: 'ISBN'.
+			quantity _ request fields at:'quantity'.
+			request send200Response: (tusLibrosSystem add: quantity of: isbn to: cartId)] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		]
+	
+	
+	
+	
+		! !
+
+TusLibrosRestApiXXX destroyAllInstances     !
+
+tusLibrosApi _ TusLibrosRestApiXXX listeningOn: 8080  !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 02:35:40' prior: 50956858!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ request fields at: 'cartId'.
+			isbn _ request fields at: 'isbn'.
+			quantity _ request fields at:'quantity'.
+			request send200Response: (tusLibrosSystem add: quantity of: isbn to: cartId)] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		]
+	
+	
+	
+	
+		! !
+
+TusLibrosRestApiXXX destroyAllInstances  !
+
+tusLibrosApi _ TusLibrosRestApiXXX listeningOn: 8080 !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 02:36:39' prior: 50956907!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ request fields at: 'cartId' .
+			isbn _ request fields at: 'isbn'.
+			quantity _ request fields at:'quantity'.
+			request send200Response: (tusLibrosSystem add: quantity of: isbn to: cartId)] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		]
+	
+	
+	
+	
+		! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 02:39:24' prior: 50956956!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ request fields at: 'cartId' asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ request fields at:'quantity'.
+			request send200Response: (tusLibrosSystem add: quantity of: isbn to: cartId)] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		]
+	
+	
+	
+	
+		! !
+
+TusLibrosRestApiXXX destroyAllInstances !
+
+tusLibrosApi _ TusLibrosRestApiXXX listeningOn: 8080 !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 02:40:33' prior: 50957002!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ request fields at:'quantity'.
+			request send200Response: (tusLibrosSystem add: quantity of: isbn to: cartId)] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		]
+	
+	
+	
+	
+		! !
+
+TusLibrosRestApiXXX destroyAllInstances   !
+
+tusLibrosApi _ TusLibrosRestApiXXX listeningOn: 8080  !
+!TestObjectFactory methodsFor: 'products' stamp: 'AF 11/13/2021 02:41:50' prior: 50952868!
+firstProductSoldByTheStore
+
+	"The one true way of designing systems."
+	^ 'testing'
+! !
+!TestObjectFactory methodsFor: 'products' stamp: 'AF 11/13/2021 02:42:08' prior: 50957101!
+firstProductSoldByTheStore
+
+	"The one true way of designing systems."
+	^ '123'
+! !
+
+TusLibrosRestApiXXX destroyAllInstances  !
+
+tusLibrosApi _ TusLibrosRestApiXXX listeningOn: 8080 !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 02:45:29' prior: 50957052!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			request send200Response: (tusLibrosSystem add: quantity of: isbn to: cartId)] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		]
+	
+	
+	
+	
+		! !
+
+TusLibrosRestApiXXX destroyAllInstances!
+
+tusLibrosApi _ TusLibrosRestApiXXX listeningOn: 8080!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 02:48:03' prior: 50957116!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		]
+	
+	
+	
+	
+		! !
+
+TusLibrosRestApiXXX destroyAllInstances   !
+
+tusLibrosApi _ TusLibrosRestApiXXX listeningOn: 8080  !
+
+----SNAPSHOT----(13 November 2021 02:51:58) CuisUniversity-4913.image priorSource: 18662209!

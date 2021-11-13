@@ -642,6 +642,31 @@ can: aUser beAuthenticatedBy: aPassword
 	self subclassResponsibility.! !
 
 
+!classDefinition: #ConfigurableAuthenticationSystem category: 'TusLibros'!
+AuthenticationSystem subclass: #ConfigurableAuthenticationSystem
+	instanceVariableNames: 'result users'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!ConfigurableAuthenticationSystem methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:56:23'!
+can: aUser beAuthenticatedBy: aPassword 
+
+	^ users at: aUser 
+		ifPresent:[ :password | ^ password = aPassword ] 
+		ifAbsent: [ ^false ].! !
+
+!ConfigurableAuthenticationSystem methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 02:09:24'!
+initialize
+
+	users _ Dictionary new.! !
+
+!ConfigurableAuthenticationSystem methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 02:12:17'!
+register: aUser authenticatedBy: aPassword
+
+	users at: aUser put: aPassword.! !
+
+
 !classDefinition: #SimulatedAuthenticationSystem category: 'TusLibros'!
 AuthenticationSystem subclass: #SimulatedAuthenticationSystem
 	instanceVariableNames: 'result'
@@ -931,6 +956,19 @@ now
 	^ time! !
 
 
+!classDefinition: #SystemClock category: 'TusLibros'!
+Clock subclass: #SystemClock
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!SystemClock methodsFor: 'timekeeping' stamp: 'AF 11/13/2021 01:37:46'!
+now
+
+	^GregorianDateTime now.! !
+
+
 !classDefinition: #MerchantProcessor category: 'TusLibros'!
 Object subclass: #MerchantProcessor
 	instanceVariableNames: ''
@@ -1131,11 +1169,11 @@ defaultCatalog
 		yourself.
 ! !
 
-!TestObjectFactory methodsFor: 'products' stamp: 'MP 11/1/2021 23:48:37'!
+!TestObjectFactory methodsFor: 'products' stamp: 'AF 11/13/2021 02:42:08'!
 firstProductSoldByTheStore
 
 	"The one true way of designing systems."
-	^ 'growing object-oriented software guided by tests'
+	^ '123'
 ! !
 
 !TestObjectFactory methodsFor: 'products' stamp: 'MP 11/1/2021 23:46:12'!
@@ -1211,15 +1249,31 @@ defaultUser
 
 !classDefinition: #TusLibrosRestApiXXX category: 'TusLibros'!
 Object subclass: #TusLibrosRestApiXXX
-	instanceVariableNames: 'port webServer'
+	instanceVariableNames: 'port webServer tusLibrosSystem'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/11/2021 22:10:41'!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:26:47'!
+destroy
+	
+	webServer ifNotNil:[webServer destroy].! !
+
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 02:48:03'!
 initializeOn: aPortNumber
 
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
 	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
 	
 	webServer 
 		addService: '/ping'
@@ -1227,13 +1281,43 @@ initializeOn: aPortNumber
 	
 	webServer
 		addService: '/createCart' 
-		action: [].! !
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		]
+	
+	
+	
+	
+		! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'TusLibrosRestApiXXX class' category: 'TusLibros'!
 TusLibrosRestApiXXX class
 	instanceVariableNames: ''!
+
+!TusLibrosRestApiXXX class methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:39:26'!
+destroyAllInstances
+
+	self allInstancesDo: [ :anInstance | anInstance destroy ].! !
 
 !TusLibrosRestApiXXX class methodsFor: 'as yet unclassified' stamp: 'AF 11/11/2021 21:26:55'!
 listeningOn: aPortNumber
