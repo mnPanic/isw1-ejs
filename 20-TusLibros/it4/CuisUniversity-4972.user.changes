@@ -1,0 +1,2699 @@
+
+
+----QUIT----(13 November 2021 20:18:32) CuisUniversity-4972.image priorSource: 14896235!
+
+----STARTUP---- (13 November 2021 20:18:33) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-4972.image!
+
+
+----QUIT----(13 November 2021 20:18:33) CuisUniversity-4972.image priorSource: 18974023!
+
+----STARTUP---- (15 November 2021 18:22:24) as /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-vm/CuisUniversity-4972.image!
+
+
+CodePackage subclass: #ColorExtrasPackage
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Color-Extras'!
+
+!classDefinition: #ColorExtrasPackage category: 'Color-Extras' stamp: 'Install-Color-Extras 11/15/2021 18:22:58'!
+CodePackage subclass: #ColorExtrasPackage
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Color-Extras'!
+
+ColorExtrasPackage class
+	instanceVariableNames: ''!
+
+!classDefinition: 'ColorExtrasPackage class' category: 'Color-Extras' stamp: 'Install-Color-Extras 11/15/2021 18:22:58'!
+ColorExtrasPackage class
+	instanceVariableNames: ''!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-vm/Packages/Features/Color-Extras.pck.st----!
+
+CodePackage subclass: #MorphicMisc1Package
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+
+!classDefinition: #MorphicMisc1Package category: 'Morphic-Misc1' stamp: 'Install-Morphic-Misc1 11/15/2021 18:23:00'!
+CodePackage subclass: #MorphicMisc1Package
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!MorphicMisc1Package commentStamp: '<historical>' prior: 0!
+My purpose in life is to check that any base image methods overridden have not been updated.
+See #MorphMisc1Package class>>prePackageInstall!
+
+MorphicMisc1Package class
+	instanceVariableNames: ''!
+
+!classDefinition: 'MorphicMisc1Package class' category: 'Morphic-Misc1' stamp: 'Install-Morphic-Misc1 11/15/2021 18:23:00'!
+MorphicMisc1Package class
+	instanceVariableNames: ''!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-vm/Packages/Morphic/Morphic-Misc1/Morphic-Misc1.pck.st----!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-vm/Packages/Morphic/Morphic-Widgets-Extras.pck.st----!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/2021-2c/20-TusLibros/Iteracion 4/StringsServicesServer.st----!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-vm/Packages/System/Collections-CompactArrays.pck.st----!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-vm/Packages/Features/Compression.pck.st----!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-vm/Packages/Features/Sound.pck.st----!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-vm/Packages/Features/Cryptography-DigitalSignatures.pck.st----!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-vm/Packages/Features/Identities-UUID.pck.st----!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-vm/Packages/System/Network-Kernel.pck.st----!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/2021-2c/20-TusLibros/Iteracion 4/WebClient.pck.st----!
+
+----STARTUP---- (15 November 2021 18:26:54) as /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-vm/CuisUniversity-4972.image!
+
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-vm/Packages/System/Collections-CompactArrays.pck.st----!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-vm/Packages/Features/Compression.pck.st----!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-vm/Packages/Features/Sound.pck.st----!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-vm/Packages/Features/Cryptography-DigitalSignatures.pck.st----!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-vm/Packages/Features/Identities-UUID.pck.st----!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-vm/Packages/System/Network-Kernel.pck.st----!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/2021-2c/20-TusLibros/Iteracion 4/WebClient.pck.st----!
+
+CodePackage subclass: #ColorExtrasPackage
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Color-Extras'!
+
+!classDefinition: #ColorExtrasPackage category: 'Color-Extras' stamp: 'Install-Color-Extras 11/15/2021 18:29:50'!
+CodePackage subclass: #ColorExtrasPackage
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Color-Extras'!
+
+ColorExtrasPackage class
+	instanceVariableNames: ''!
+
+!classDefinition: 'ColorExtrasPackage class' category: 'Color-Extras' stamp: 'Install-Color-Extras 11/15/2021 18:29:50'!
+ColorExtrasPackage class
+	instanceVariableNames: ''!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-vm/Packages/Features/Color-Extras.pck.st----!
+
+CodePackage subclass: #MorphicMisc1Package
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+
+!classDefinition: #MorphicMisc1Package category: 'Morphic-Misc1' stamp: 'Install-Morphic-Misc1 11/15/2021 18:29:52'!
+CodePackage subclass: #MorphicMisc1Package
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!MorphicMisc1Package commentStamp: '<historical>' prior: 0!
+My purpose in life is to check that any base image methods overridden have not been updated.
+See #MorphMisc1Package class>>prePackageInstall!
+
+MorphicMisc1Package class
+	instanceVariableNames: ''!
+
+!classDefinition: 'MorphicMisc1Package class' category: 'Morphic-Misc1' stamp: 'Install-Morphic-Misc1 11/15/2021 18:29:52'!
+MorphicMisc1Package class
+	instanceVariableNames: ''!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-vm/Packages/Morphic/Morphic-Misc1/Morphic-Misc1.pck.st----!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-vm/Packages/Morphic/Morphic-Widgets-Extras.pck.st----!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-vm/Packages/Morphic/Morphic-Widgets-Extras.pck.st----!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/2021-2c/20-TusLibros/Iteracion 4/StringsServicesServer.st----!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/2021-2c/20-TusLibros/Iteracion 4/WordsClientDemo.st----!
+
+----QUIT----(15 November 2021 18:32:19) CuisUniversity-4972.image priorSource: 18974255!
+
+----STARTUP---- (15 November 2021 19:40:08) as /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-vm/CuisUniversity-4972.image!
+
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1-ejs/20-TusLibros/it4/TusLibros.st----!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 19:54:13' prior: 50974870!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		]
+	
+	webServer
+		addService: '/'
+	
+	
+	
+		! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 19:54:18' prior: 50975110!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	webServer
+		addService: '/'
+	
+	
+	
+		! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 19:55:19' prior: 50975159!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/list'
+	
+	
+	
+		! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 19:55:48' prior: 50975208!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: []
+	
+	
+	
+		! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 20:18:02' prior: 50975258!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | |cartId productList|		
+					cartId _ (request fields at: 'cartId') asNumber.
+					productList _ tusLibrosSystem listCart: cartId.
+					request send200Response: (WebUtils jsonEncode: productList)
+			
+			]
+	
+	
+	
+		! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 20:19:22' prior: 50975309!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				|cartId productList|		
+				cartId _ (request fields at: 'cartId') asNumber.
+				productList _ tusLibrosSystem listCart: cartId.
+				request send200Response: (WebUtils jsonEncode: productList)
+			
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 20:19:24' prior: 50975367!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				|cartId productList|		
+				cartId _ (request fields at: 'cartId') asNumber.
+				productList _ tusLibrosSystem listCart: cartId.
+				request send200Response: (WebUtils jsonEncode: productList)
+			
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 20:28:03' prior: 50975427!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				|cartId productList|		
+				cartId _ (request fields at: 'cartId') asNumber.
+				productList _ tusLibrosSystem listCart: cartId.
+				request send200Response: (WebUtils jsonEncode: productList)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	! !
+!TusLibrosRestApiXXX class methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 20:29:37'!
+cleanUpAndListeOn: aPortNumber
+
+	self destroyAllInstances.
+	^ self listeningOn: aPortNumber.! !
+!TusLibrosRestApiXXX class methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 20:29:46'!
+cleanUpAndListenOn: aPortNumber
+
+	self destroyAllInstances.
+	^ self listeningOn: aPortNumber.! !
+
+!methodRemoval: TusLibrosRestApiXXX class #cleanUpAndListeOn: stamp: 'IAR 11/15/2021 20:29:46'!
+cleanUpAndListeOn: aPortNumber
+
+	self destroyAllInstances.
+	^ self listeningOn: aPortNumber.!
+!TusLibrosRestApiXXX class methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 20:29:51' prior: 50975553!
+cleanUpAndListenOn: aPortNumber
+
+	self destroyAllInstances.
+	^ self listeningOn: aPortNumber.! !
+
+TusLibrosRestApiXXX cleanUpAndListenOn: 8080!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 20:33:56' prior: 50975487!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				|cartId productList|		
+				cartId _ (request fields at: 'cartId') asNumber.
+				productList _ tusLibrosSystem listCart: cartId.
+				request send200Response: (WebUtils jsonEncode: productList)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	! !
+
+TusLibrosRestApiXXX cleanUpAndListenOn: 8080!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 20:35:59' prior: 50975574!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				"|cartId productList|		
+				cartId _ (request fields at: 'cartId') asNumber.
+				productList _ tusLibrosSystem listCart: cartId.
+				request send200Response: (WebUtils jsonEncode: productList)"
+				request send200Response: (WebUtils jsonEncode: request fields)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	! !
+
+TusLibrosRestApiXXX cleanUpAndListenOn: 8080!
+
+TusLibrosRestApiXXX cleanUpAndListenOn: 8080!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 20:44:13' prior: 50975636!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				|cartId productList|		
+				cartId _ (request fields at: 'cartId') asNumber.
+				productList _ tusLibrosSystem listCart: cartId.
+				request send200Response: (WebUtils jsonEncode: productList)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	! !
+
+TusLibrosRestApiXXX cleanUpAndListenOn: 8080!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 20:46:55' prior: 50975701!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				|cartId productList|		
+				cartId _ (request fields at: 'cartId') asNumber.
+				productList _ tusLibrosSystem listCart: cartId.
+				request send200Response: (WebUtils jsonEncode: productList asString)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 20:47:11' prior: 50975763!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				|cartId productList|		
+				cartId _ (request fields at: 'cartId') asNumber.
+				productList _ tusLibrosSystem listCart: cartId.
+				request send200Response: (WebUtils jsonEncode: productList asOrderedCollection)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	! !
+
+TusLibrosRestApiXXX cleanUpAndListenOn: 8080!
+
+TusLibrosRestApiXXX cleanUpAndListenOn: 8080!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 20:47:28' prior: 50975823!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				|cartId productList|		
+				cartId _ (request fields at: 'cartId') asNumber.
+				productList _ tusLibrosSystem listCart: cartId.
+				request send200Response: (WebUtils jsonEncode: productList asString)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	! !
+
+TusLibrosRestApiXXX cleanUpAndListenOn: 8080!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 20:47:55' prior: 50975887!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				|cartId productList|		
+				cartId _ (request fields at: 'cartId') asNumber.
+				productList _ tusLibrosSystem listCart: cartId.
+				request send200Response: (WebUtils jsonEncode: productList asArray)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	! !
+
+TusLibrosRestApiXXX cleanUpAndListenOn: 8080!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 20:53:50' prior: 50975949!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				|cartId productList|		
+				cartId _ (request fields at: 'cartId') asNumber.
+				productList _ tusLibrosSystem listCart: cartId.
+				request send200Response: (WebUtils jsonEncode: productList asDictionary )
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 20:53:52' prior: 50976011!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				|cartId productList|		
+				cartId _ (request fields at: 'cartId') asNumber.
+				productList _ tusLibrosSystem listCart: cartId.
+				request send200Response: (WebUtils jsonEncode: productList asDictionary)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	! !
+
+TusLibrosRestApiXXX cleanUpAndListenOn: 8080!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 20:54:45' prior: 50976072!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				|cartId productList|		
+				cartId _ (request fields at: 'cartId') asNumber.
+				productList _ tusLibrosSystem listCart: cartId.
+				request send200Response: (WebUtils jsonEncode: productList asArray)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	! !
+
+TusLibrosRestApiXXX cleanUpAndListenOn: 8080!
+
+----End fileIn of /home/ignacio/Documents/Facultad/repos-isw1/isw1/vms/tus-libros-vm/Packages/TerseGuide.pck.st----!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 20:57:41' prior: 50976134!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				|cartId productList|		
+				cartId _ (request fields at: 'cartId') asNumber.
+				productList _ tusLibrosSystem listCart: cartId.
+				request send200Response: (WebUtils jsonEncode: productList asArray)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/listPurchases'
+		action: [ :request |
+			[
+		
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 20:57:45' prior: 50979123!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				|cartId productList|		
+				cartId _ (request fields at: 'cartId') asNumber.
+				productList _ tusLibrosSystem listCart: cartId.
+				request send200Response: (WebUtils jsonEncode: productList asArray)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/listPurchases'
+		action: [ :request |
+			[
+				
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 21:01:55' prior: 50979188!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				|cartId productList|		
+				cartId _ (request fields at: 'cartId') asNumber.
+				productList _ tusLibrosSystem listCart: cartId.
+				request send200Response: (WebUtils jsonEncode: productList asArray)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/listPurchases'
+		action: [ :request |
+			[
+				| user password userPurchases |
+				user _ request fields at: 'user'.
+				password _ request fields at: 'password'.
+				userPurchases _ tusLibrosSystem listPurchasesOf: user authenticatedBy: password.
+
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 21:02:01' prior: 50979253!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				|cartId productList|		
+				cartId _ (request fields at: 'cartId') asNumber.
+				productList _ tusLibrosSystem listCart: cartId.
+				request send200Response: (WebUtils jsonEncode: productList asArray)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/listPurchases'
+		action: [ :request |
+			[
+				| user password userPurchases |
+				
+				user _ request fields at: 'user'.
+				password _ request fields at: 'password'.
+				userPurchases _ tusLibrosSystem listPurchasesOf: user authenticatedBy: password.
+
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 21:02:30' prior: 50979325!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				|cartId productList|		
+				cartId _ (request fields at: 'cartId') asNumber.
+				productList _ tusLibrosSystem listCart: cartId.
+				request send200Response: (WebUtils jsonEncode: productList asArray)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/listPurchases'
+		action: [ :request |
+			[
+				| user password userPurchases |
+				
+				user _ request fields at: 'user'.
+				password _ request fields at: 'password'.
+				userPurchases _ tusLibrosSystem listPurchasesOf: user authenticatedBy: password.
+				
+				request send200Response: (WebUtils jsonEncode: userPurchases)
+
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 21:02:57' prior: 50979397!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				|cartId cartContents|		
+				cartId _ (request fields at: 'cartId') asNumber.
+				cartContents _ tusLibrosSystem listCart: cartId.
+				request send200Response: (WebUtils jsonEncode: cartContents asArray)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/listPurchases'
+		action: [ :request |
+			[
+				| user password userPurchases |
+				
+				user _ request fields at: 'user'.
+				password _ request fields at: 'password'.
+				userPurchases _ tusLibrosSystem listPurchasesOf: user authenticatedBy: password.
+				
+				request send200Response: (WebUtils jsonEncode: userPurchases)
+
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 21:03:06' prior: 50979471!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				| cartId cartContents |		
+				cartId _ (request fields at: 'cartId') asNumber.
+				cartContents _ tusLibrosSystem listCart: cartId.
+				request send200Response: (WebUtils jsonEncode: cartContents asArray)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/listPurchases'
+		action: [ :request |
+			[
+				| user password userPurchases |
+				
+				user _ request fields at: 'user'.
+				password _ request fields at: 'password'.
+				userPurchases _ tusLibrosSystem listPurchasesOf: user authenticatedBy: password.
+				
+				request send200Response: (WebUtils jsonEncode: userPurchases)
+
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 21:03:13' prior: 50979545!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				| cartId cartContents |
+				
+				cartId _ (request fields at: 'cartId') asNumber.
+				cartContents _ tusLibrosSystem listCart: cartId.
+				request send200Response: (WebUtils jsonEncode: cartContents asArray)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/listPurchases'
+		action: [ :request |
+			[
+				| user password userPurchases |
+				
+				user _ request fields at: 'user'.
+				password _ request fields at: 'password'.
+				userPurchases _ tusLibrosSystem listPurchasesOf: user authenticatedBy: password.
+				
+				request send200Response: (WebUtils jsonEncode: userPurchases)
+
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 21:03:15' prior: 50979619!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				| cartId cartContents |
+				
+				cartId _ (request fields at: 'cartId') asNumber.
+				cartContents _ tusLibrosSystem listCart: cartId.
+				
+				request send200Response: (WebUtils jsonEncode: cartContents asArray)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/listPurchases'
+		action: [ :request |
+			[
+				| user password userPurchases |
+				
+				user _ request fields at: 'user'.
+				password _ request fields at: 'password'.
+				userPurchases _ tusLibrosSystem listPurchasesOf: user authenticatedBy: password.
+				
+				request send200Response: (WebUtils jsonEncode: userPurchases)
+
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	! !
+
+TusLibrosRestApiXXX cleanUpAndListenOn: 8080!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 21:05:00' prior: 50979693!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				| cartId cartContents |
+				
+				cartId _ (request fields at: 'cartId') asNumber.
+				cartContents _ tusLibrosSystem listCart: cartId.
+				
+				request send200Response: (WebUtils jsonEncode: cartContents asArray)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/listPurchases'
+		action: [ :request |
+			[
+				| user password userPurchases |
+				
+				user _ request fields at: 'user'.
+				password _ request fields at: 'password'.
+				userPurchases _ tusLibrosSystem listPurchasesOf: user authenticatedBy: password.
+				
+				request send200Response: (WebUtils jsonEncode: userPurchases asArray)
+
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	! !
+
+TusLibrosRestApiXXX cleanUpAndListenOn: 8080!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 21:07:18' prior: 50979769!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				| cartId cartContents |
+				
+				cartId _ (request fields at: 'cartId') asNumber.
+				cartContents _ tusLibrosSystem listCart: cartId.
+				
+				request send200Response: (WebUtils jsonEncode: cartContents asArray)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/listPurchases'
+		action: [ :request |
+			[
+				| user password userPurchases |
+				
+				user _ request fields at: 'user'.
+				password _ request fields at: 'password'.
+				userPurchases _ tusLibrosSystem listPurchasesOf: user authenticatedBy: password.
+				
+				request send200Response: (WebUtils jsonEncode: userPurchases asArray)
+
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/checkout'
+		action: [ :request |
+			[
+				
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		]
+		
+	! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 21:16:28' prior: 50979845!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				| cartId cartContents |
+				
+				cartId _ (request fields at: 'cartId') asNumber.
+				cartContents _ tusLibrosSystem listCart: cartId.
+				
+				request send200Response: (WebUtils jsonEncode: cartContents asArray)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/listPurchases'
+		action: [ :request |
+			[
+				| user password userPurchases |
+				
+				user _ request fields at: 'user'.
+				password _ request fields at: 'password'.
+				userPurchases _ tusLibrosSystem listPurchasesOf: user authenticatedBy: password.
+				
+				request send200Response: (WebUtils jsonEncode: userPurchases asArray)
+
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/checkout'
+		action: [ :request |
+			[
+				| cartId transactionId |
+				
+				cartId _ (request fields at: 'cartId') asNumber.
+				transactionId _ tusLibrosSystem checkout: cartId charging: (testObjectFactory validCard).
+				
+				request send200Response: (WebUtils jsonEncode: transactionId)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		]
+		
+	! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 21:17:10' prior: 50979925!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (WebUtils jsonEncode: (tusLibrosSystem createCartFor: user authenticatedBy: password)) ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'Mister Tsukimoto' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				| cartId cartContents |
+				
+				cartId _ (request fields at: 'cartId') asNumber.
+				cartContents _ tusLibrosSystem listCart: cartId.
+				
+				request send200Response: (WebUtils jsonEncode: cartContents asArray)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/listPurchases'
+		action: [ :request |
+			[
+				| user password userPurchases |
+				
+				user _ request fields at: 'user'.
+				password _ request fields at: 'password'.
+				userPurchases _ tusLibrosSystem listPurchasesOf: user authenticatedBy: password.
+				
+				request send200Response: (WebUtils jsonEncode: userPurchases asArray)
+
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/checkout'
+		action: [ :request |
+			[
+				| cartId transactionId |
+				
+				cartId _ (request fields at: 'cartId') asNumber.
+				transactionId _ tusLibrosSystem checkout: cartId charging: (testObjectFactory validCard).
+				
+				request send200Response: (WebUtils jsonEncode: transactionId)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		]
+		
+	! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 21:17:49' prior: 50980012!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (WebUtils jsonEncode: (tusLibrosSystem createCartFor: user authenticatedBy: password)) ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'OK' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				| cartId cartContents |
+				
+				cartId _ (request fields at: 'cartId') asNumber.
+				cartContents _ tusLibrosSystem listCart: cartId.
+				
+				request send200Response: (WebUtils jsonEncode: cartContents asArray)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/listPurchases'
+		action: [ :request |
+			[
+				| user password userPurchases |
+				
+				user _ request fields at: 'user'.
+				password _ request fields at: 'password'.
+				userPurchases _ tusLibrosSystem listPurchasesOf: user authenticatedBy: password.
+				
+				request send200Response: (WebUtils jsonEncode: userPurchases asArray)
+
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/checkout'
+		action: [ :request |
+			[
+				| cartId transactionId |
+				
+				cartId _ (request fields at: 'cartId') asNumber.
+				transactionId _ tusLibrosSystem checkout: cartId charging: (testObjectFactory validCard).
+				
+				request send200Response: (WebUtils jsonEncode: transactionId)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		]
+		
+	! !
+
+8080!
+
+8080!
+
+TusLibrosRestApiXXX cleanUpAndListenOn: 8080!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 21:22:34' prior: 50980100!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (WebUtils jsonEncode: (tusLibrosSystem createCartFor: user authenticatedBy: password)) ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'OK' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				| cartId cartContents |
+				
+				cartId _ (request fields at: 'cartId') asNumber.
+				cartContents _ tusLibrosSystem listCart: cartId.
+				
+				request send200Response: (WebUtils jsonEncode: cartContents asArray)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/listPurchases'
+		action: [ :request |
+			[
+				| user password userPurchases |
+				
+				self halt.
+				user _ request fields at: 'user'.
+				password _ request fields at: 'password'.
+				userPurchases _ tusLibrosSystem listPurchasesOf: user authenticatedBy: password.
+				
+				request send200Response: (WebUtils jsonEncode: userPurchases asArray)
+
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/checkout'
+		action: [ :request |
+			[
+				| cartId transactionId |
+				
+				cartId _ (request fields at: 'cartId') asNumber.
+				transactionId _ tusLibrosSystem checkout: cartId charging: (testObjectFactory validCard).
+				
+				request send200Response: (WebUtils jsonEncode: transactionId)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		]
+		
+	! !
+
+TusLibrosRestApiXXX cleanUpAndListenOn: 8080!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 21:28:15' prior: 50980189!
+initializeOn: aPortNumber
+
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'HAW' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	webServer 
+		addService: '/ping'
+		action: [ :request |	 request send200Response: 'pumba' ].
+	
+	webServer
+		addService: '/createCart' 
+		action: [	 :request | | password user |
+			[user _ request fields at: 'user'.
+			password _ request fields at: 'password'.
+			
+			request send200Response: (WebUtils jsonEncode: (tusLibrosSystem createCartFor: user authenticatedBy: password)) ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].		
+	
+	webServer
+		addService: '/addProductToCart' 
+		action: [	 :request | 
+			[ | cartId isbn quantity |
+				cartId _ (request fields at: 'cartId') asNumber.
+			isbn _ request fields at: 'isbn'.
+			quantity _ (request fields at: 'quantity') asNumber.
+			tusLibrosSystem add: quantity of: isbn to: cartId.
+			request send200Response: 'OK' ] 
+			on: Error
+			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				| cartId cartContents |
+				
+				cartId _ (request fields at: 'cartId') asNumber.
+				cartContents _ tusLibrosSystem listCart: cartId.
+				
+				request send200Response: (WebUtils jsonEncode: cartContents asArray)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/listPurchases'
+		action: [ :request |
+			[
+				| user password userPurchases |
+				
+				self halt.
+				user _ request fields at: 'user'.
+				password _ request fields at: 'password'.
+				userPurchases _ tusLibrosSystem listPurchasesOf: user authenticatedBy: password.
+				"TODO: self encondePurchasesAsJson: userPurchases"
+				request send200Response: (WebUtils jsonEncode: userPurchases asArray)
+
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/checkout'
+		action: [ :request |
+			[
+				| cartId transactionId |
+				
+				cartId _ (request fields at: 'cartId') asNumber.
+				transactionId _ tusLibrosSystem checkout: cartId charging: (testObjectFactory validCard).
+				
+				request send200Response: (WebUtils jsonEncode: transactionId)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		]
+		
+	! !
+
+----SNAPSHOT----(15 November 2021 21:28:39) CuisUniversity-4972.image priorSource: 20541226!
+
+SystemWindow subclass: #TusLibrosClientWindow
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #TusLibrosClientWindow category: 'TusLibros' stamp: 'IAR 11/15/2021 21:37:20'!
+SystemWindow subclass: #TusLibrosClientWindow
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+----SNAPSHOT----(15 November 2021 21:39:15) CuisUniversity-4972.image priorSource: 20758903!
+!TusLibrosClientWindow class methodsFor: 'nil' stamp: 'IAR 11/15/2021 21:39:33'!
+open
+
+	^self new initializeWith: 'TusLibros Client Window'.! !
+!TusLibrosClientWindow methodsFor: 'no messages' stamp: 'IAR 11/15/2021 21:40:18'!
+initializeWith: aTitle
+
+	! !
+!TusLibrosClientWindow methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 21:43:50' prior: 50980390!
+initializeWith: aTitle
+
+	self setLabel: aTitle! !
+!TusLibrosClientWindow methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 21:43:52' prior: 50980395!
+initializeWith: aTitle
+
+	self setLabel: aTitle.! !
+
+TusLibrosClientWindow open!
+
+TusLibrosClientWindow open!
+!TusLibrosClientWindow methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 21:44:51' prior: 50980400!
+initializeWith: aTitle
+
+	self setLabel: aTitle.
+	self openInWorld.! !
+
+open!
+
+TusLibrosClientWindow open!
+
+TusLibrosRestApiXXX destroyAllInstances !
+
+TusLibrosRestApiXXX destroyAllInstances !
+
+----QUIT----(15 November 2021 21:54:10) CuisUniversity-4972.image priorSource: 20759382!

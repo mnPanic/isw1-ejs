@@ -1,3 +1,28 @@
+!classDefinition: #TusLibrosClientWindow category: 'TusLibros'!
+SystemWindow subclass: #TusLibrosClientWindow
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!TusLibrosClientWindow methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 21:44:51'!
+initializeWith: aTitle
+
+	self setLabel: aTitle.
+	self openInWorld.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TusLibrosClientWindow class' category: 'TusLibros'!
+TusLibrosClientWindow class
+	instanceVariableNames: ''!
+
+!TusLibrosClientWindow class methodsFor: 'instance creation' stamp: 'IAR 11/15/2021 21:39:33'!
+open
+
+	^self new initializeWith: 'TusLibros Client Window'.! !
+
+
 !classDefinition: #CartTest category: 'TusLibros'!
 TestCase subclass: #CartTest
 	instanceVariableNames: 'testObjectFactory'
@@ -1259,7 +1284,7 @@ destroy
 	
 	webServer ifNotNil:[webServer destroy].! !
 
-!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 02:48:03'!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 21:28:15'!
 initializeOn: aPortNumber
 
 	| testObjectFactory authenticationSystem |
@@ -1285,10 +1310,10 @@ initializeOn: aPortNumber
 			[user _ request fields at: 'user'.
 			password _ request fields at: 'password'.
 			
-			request send200Response: (tusLibrosSystem createCartFor: user authenticatedBy: password) asString ] 
+			request send200Response: (WebUtils jsonEncode: (tusLibrosSystem createCartFor: user authenticatedBy: password)) ] 
 			on: Error
 			do:[ :error | request  send500Response: error messageText ].
-		].
+		].		
 	
 	webServer
 		addService: '/addProductToCart' 
@@ -1298,21 +1323,77 @@ initializeOn: aPortNumber
 			isbn _ request fields at: 'isbn'.
 			quantity _ (request fields at: 'quantity') asNumber.
 			tusLibrosSystem add: quantity of: isbn to: cartId.
-			request send200Response: 'Mister Tsukimoto' ] 
+			request send200Response: 'OK' ] 
 			on: Error
 			do:[ :error | request  send500Response: error messageText ].
+		].
+	
+	"
+		- Checkout
+		- ListCart
+		- ListPurchases
+	"
+	webServer
+		addService: '/listCart'
+		action: [ :request | 
+			[
+				| cartId cartContents |
+				
+				cartId _ (request fields at: 'cartId') asNumber.
+				cartContents _ tusLibrosSystem listCart: cartId.
+				
+				request send200Response: (WebUtils jsonEncode: cartContents asArray)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/listPurchases'
+		action: [ :request |
+			[
+				| user password userPurchases |
+				
+				self halt.
+				user _ request fields at: 'user'.
+				password _ request fields at: 'password'.
+				userPurchases _ tusLibrosSystem listPurchasesOf: user authenticatedBy: password.
+				"TODO: self encondePurchasesAsJson: userPurchases"
+				request send200Response: (WebUtils jsonEncode: userPurchases asArray)
+
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
+		].
+	
+	webServer
+		addService: '/checkout'
+		action: [ :request |
+			[
+				| cartId transactionId |
+				
+				cartId _ (request fields at: 'cartId') asNumber.
+				transactionId _ tusLibrosSystem checkout: cartId charging: (testObjectFactory validCard).
+				
+				request send200Response: (WebUtils jsonEncode: transactionId)
+			]
+			on: Error
+			do: [ :error | request send500Response: error messageText ]
 		]
-	
-	
-	
-	
-		! !
+		
+	! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'TusLibrosRestApiXXX class' category: 'TusLibros'!
 TusLibrosRestApiXXX class
 	instanceVariableNames: ''!
+
+!TusLibrosRestApiXXX class methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 20:29:51'!
+cleanUpAndListenOn: aPortNumber
+
+	self destroyAllInstances.
+	^ self listeningOn: aPortNumber.! !
 
 !TusLibrosRestApiXXX class methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:39:26'!
 destroyAllInstances
