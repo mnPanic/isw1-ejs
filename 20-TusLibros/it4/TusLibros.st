@@ -5,10 +5,75 @@ SystemWindow subclass: #TusLibrosClientWindow
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!TusLibrosClientWindow methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 21:44:51'!
+!TusLibrosClientWindow methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 23:46:01'!
+buildMorphicWindow
+
+	| loginButtonMorph userRowLayoutMorph passwordRowLayoutMorph usernameTextBoxMorph passwordTextBoxMorph |
+
+	loginButtonMorph _ PluggableButtonMorph 
+		model: self model
+		stateGetter: nil 
+		action: #loginRequest
+		label: 'Login'.
+	
+	usernameTextBoxMorph := TextModelMorph
+		textProvider: self model
+		textGetter: #usernameText
+		textSetter: #usernameText:.
+	
+	usernameTextBoxMorph 
+		innerTextMorph setProperty: #keyStroke: 
+		toValue:  [ :key | 
+			usernameTextBoxMorph innerTextMorph acceptContents ].
+
+	usernameTextBoxMorph
+		borderWidth: 1; 
+		borderColor: Color skyBlue; 
+		morphWidth: 300.
+		
+	passwordTextBoxMorph _ TextModelMorph
+		textProvider: self model
+		textGetter: #passwordText
+		textSetter: #passwordText:.
+	
+	passwordTextBoxMorph 
+		innerTextMorph setProperty: #keyStroke: 
+		toValue:  [ :key | 
+			passwordTextBoxMorph innerTextMorph acceptContents ].
+
+	passwordTextBoxMorph
+		borderWidth: 1; 
+		borderColor: Color skyBlue; 
+		morphWidth: 300.
+
+	userRowLayoutMorph _ LayoutMorph newRow
+		addMorph: (LabelMorph contents: 'Username');
+		addMorph: usernameTextBoxMorph;
+		axisEdgeWeight: 0.5;
+		yourself.
+	
+	passwordRowLayoutMorph _ LayoutMorph newRow
+		addMorph: (LabelMorph contents: 'Password');
+		addMorph: passwordTextBoxMorph;
+		axisEdgeWeight: 0.5;
+		yourself.
+
+	self layoutMorph
+		beColumn;
+		separation: 15;
+		axisEdgeWeight: 0; "TODO: metodo para declaratividad"
+		addMorph: userRowLayoutMorph;
+		addMorph: passwordRowLayoutMorph;
+		addMorph: loginButtonMorph.
+
+	! !
+
+!TusLibrosClientWindow methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 23:15:19'!
 initializeWith: aTitle
 
 	self setLabel: aTitle.
+	self model: (TusLibrosClientWindowModel new).
+	self buildMorphicWindow.
 	self openInWorld.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
@@ -1272,6 +1337,50 @@ defaultUser
 	^'HAW'! !
 
 
+!classDefinition: #TusLibrosClientWindowModel category: 'TusLibros'!
+Object subclass: #TusLibrosClientWindowModel
+	instanceVariableNames: 'username password'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 23:36:09'!
+initialize
+
+	username _ ''.
+	password _ ''.! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 23:46:28'!
+loginRequest
+
+	TranscriptWindow openTranscript.
+	Transcript clear.
+	Transcript log: username.
+	Transcript log: password.! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 23:35:57'!
+passwordText
+
+	^ password! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 23:43:14'!
+passwordText: aPassword
+
+	password _ aPassword.
+	^true.! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 23:35:51'!
+usernameText
+
+	^ username! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 23:43:21'!
+usernameText: aUsername
+
+	username _ aUsername.
+	^true.! !
+
+
 !classDefinition: #TusLibrosRestApiXXX category: 'TusLibros'!
 Object subclass: #TusLibrosRestApiXXX
 	instanceVariableNames: 'port webServer tusLibrosSystem'
@@ -1279,12 +1388,88 @@ Object subclass: #TusLibrosRestApiXXX
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 22:51:29'!
+addService: serviceName withErrorSafeAction: action
+
+	webServer
+		addService: serviceName 
+		action: [	 :request |
+			[ action value: request ] 
+			on: Error
+			do: [ :error | request  send500Response: error messageText ].
+		].
+! !
+
 !TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:26:47'!
 destroy
 	
 	webServer ifNotNil:[webServer destroy].! !
 
-!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 21:28:15'!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 22:46:04'!
+handleAddProductToCart: request
+
+	| cartId isbn quantity |
+
+	cartId _ (request fields at: 'cartId') asNumber.
+	isbn _ request fields at: 'isbn'.
+	quantity _ (request fields at: 'quantity') asNumber.
+
+	tusLibrosSystem add: quantity of: isbn to: cartId.
+
+	request send200Response: 'OK'! !
+
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 23:06:04'!
+handleCheckout: request
+
+	| cartId transactionId hardcodedCard |
+
+	self halt.
+
+	cartId _ (request fields at: 'cartId') asNumber.
+	
+	 "TODO: pedir la tarjeta"	
+	hardcodedCard _ (Card withNumber: '4509790000001234' expiringAt: (September of: 2022)).
+	transactionId _ tusLibrosSystem checkout: cartId charging: hardcodedCard.
+
+	request send200Response: (WebUtils jsonEncode: transactionId)! !
+
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 22:44:51'!
+handleCreateCart: request
+
+	 | password user |
+	user _ request fields at: 'user'.
+	password _ request fields at: 'password'.
+	
+	request send200Response: (WebUtils jsonEncode: (tusLibrosSystem createCartFor: user authenticatedBy: password))! !
+
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 22:46:35'!
+handleListCart: request
+
+	| cartId cartContents |
+				
+	cartId _ (request fields at: 'cartId') asNumber.
+	cartContents _ tusLibrosSystem listCart: cartId.
+	
+	request send200Response: (WebUtils jsonEncode: cartContents asArray)! !
+
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 22:47:07'!
+handleListPurchases: request
+
+	| user password userPurchases |
+	user _ request fields at: 'user'.
+	password _ request fields at: 'password'.
+
+	userPurchases _ tusLibrosSystem listPurchasesOf: user authenticatedBy: password.
+
+	"TODO: self encondePurchasesAsJson: userPurchases"
+	request send200Response: (WebUtils jsonEncode: userPurchases asArray)! !
+
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 22:43:07'!
+handlePing: request
+
+	request send200Response: 'pumba'! !
+
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 22:54:42'!
 initializeOn: aPortNumber
 
 	| testObjectFactory authenticationSystem |
@@ -1300,86 +1485,23 @@ initializeOn: aPortNumber
 		chargingThrough: testObjectFactory defaultSimulatedMP 
 		withClock: SystemClock new. 
 	
-	webServer 
-		addService: '/ping'
-		action: [ :request |	 request send200Response: 'pumba' ].
+	webServer addService: '/ping'
+		action: [ :request |	 self handlePing: request ].
 	
-	webServer
-		addService: '/createCart' 
-		action: [	 :request | | password user |
-			[user _ request fields at: 'user'.
-			password _ request fields at: 'password'.
-			
-			request send200Response: (WebUtils jsonEncode: (tusLibrosSystem createCartFor: user authenticatedBy: password)) ] 
-			on: Error
-			do:[ :error | request  send500Response: error messageText ].
-		].		
+	self addService: '/createCart' 
+		withErrorSafeAction: [ :request | self handleCreateCart: request ].
 	
-	webServer
-		addService: '/addProductToCart' 
-		action: [	 :request | 
-			[ | cartId isbn quantity |
-				cartId _ (request fields at: 'cartId') asNumber.
-			isbn _ request fields at: 'isbn'.
-			quantity _ (request fields at: 'quantity') asNumber.
-			tusLibrosSystem add: quantity of: isbn to: cartId.
-			request send200Response: 'OK' ] 
-			on: Error
-			do:[ :error | request  send500Response: error messageText ].
-		].
-	
-	"
-		- Checkout
-		- ListCart
-		- ListPurchases
-	"
-	webServer
-		addService: '/listCart'
-		action: [ :request | 
-			[
-				| cartId cartContents |
-				
-				cartId _ (request fields at: 'cartId') asNumber.
-				cartContents _ tusLibrosSystem listCart: cartId.
-				
-				request send200Response: (WebUtils jsonEncode: cartContents asArray)
-			]
-			on: Error
-			do: [ :error | request send500Response: error messageText ]
-		].
-	
-	webServer
-		addService: '/listPurchases'
-		action: [ :request |
-			[
-				| user password userPurchases |
-				
-				self halt.
-				user _ request fields at: 'user'.
-				password _ request fields at: 'password'.
-				userPurchases _ tusLibrosSystem listPurchasesOf: user authenticatedBy: password.
-				"TODO: self encondePurchasesAsJson: userPurchases"
-				request send200Response: (WebUtils jsonEncode: userPurchases asArray)
+	self addService: '/addProductToCart'
+		withErrorSafeAction: [ :request | self handleAddProductToCart: request ].
+		
+	self addService: '/listCart'
+		withErrorSafeAction: [ :request | self handleListCart: request ].
 
-			]
-			on: Error
-			do: [ :error | request send500Response: error messageText ]
-		].
-	
-	webServer
-		addService: '/checkout'
-		action: [ :request |
-			[
-				| cartId transactionId |
-				
-				cartId _ (request fields at: 'cartId') asNumber.
-				transactionId _ tusLibrosSystem checkout: cartId charging: (testObjectFactory validCard).
-				
-				request send200Response: (WebUtils jsonEncode: transactionId)
-			]
-			on: Error
-			do: [ :error | request send500Response: error messageText ]
-		]
+	self addService: '/listPurchases'
+		withErrorSafeAction: [ :request | self handleListPurchases: request ].
+
+	self addService: '/checkout'
+		withErrorSafeAction: [ :request | self handleCheckout: request. ].
 		
 	! !
 
