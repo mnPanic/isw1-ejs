@@ -1489,18 +1489,43 @@ defaultUser
 
 !classDefinition: #TusLibrosClientModel category: 'TusLibros'!
 Object subclass: #TusLibrosClientModel
-	instanceVariableNames: 'username password cartId catalogIndex'
+	instanceVariableNames: 'username password cartId catalogIndex catalog'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'MP 11/19/2021 01:45:52'!
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 01:22:17'!
+addToCart
+	
+	| selectedBookIsbn |
+	self halt.
+	selectedBookIsbn _ (catalog at: catalogIndex) isbn.
+	self addToCartRequest: selectedBookIsbn.! !
+
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 01:19:55'!
+addToCartRequest: aIsbn
+	
+	| resp fields |
+
+	fields _ Dictionary new 
+		at: 'cartId' put: cartId;
+		at: 'isbn' put: aIsbn ;
+		at: 'quantity' put: '1';
+		yourself.
+	
+	resp _ WebClient htmlSubmit: (self url, '/addProductToCart') fields: fields.
+	
+	resp isSuccess 
+		ifTrue: [^ self ] 
+		ifFalse:[ ^ self error: resp content ].! !
+
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 00:56:21'!
 catalog
 	
-	| aCatalog |
-	aCatalog _ self catalogRequest.
+	catalog ifNotNil:[ ^catalog ].
 	
-	^ aCatalog collect: [ :aBook | 	'(ISBN #', aBook isbn, ') ', aBook title ].! !
+	catalog _ self catalogRequest.
+	^ catalog collect: [ :aBook | 	'(ISBN #', aBook isbn, ') ', aBook title ].! !
 
 !TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'MP 11/19/2021 00:30:40'!
 catalogIndex
@@ -1546,12 +1571,12 @@ createCartRequest
 		ifTrue: [^ resp content asNumber ] 
 		ifFalse:[ ^ self error: resp content ].! !
 
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'MP 11/19/2021 00:32:53'!
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 00:59:59'!
 initialize
 
-	username _ ''.
-	password _ ''.
-	catalogIndex _ 0.! !
+	username _ 'haw'.
+	password _ 'hunter2'.
+	catalogIndex _ 1.! !
 
 !TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'MP 11/18/2021 18:08:36'!
 password
