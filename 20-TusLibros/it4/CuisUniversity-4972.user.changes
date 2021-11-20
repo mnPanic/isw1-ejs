@@ -7327,4 +7327,2111 @@ addToCart
 	| selectedBookIsbn |
 	self halt.
 	selectedBookIsbn _ (catalog at: catalogIndex) isbn.
+<<<<<<< HEAD
 	self addToCartRequest: selectedBookIsbn.! !
+=======
+	self addToCartRequest: selectedBookIsbn.! !
+
+----QUIT----(20 November 2021 01:38:06) CuisUniversity-4972.image priorSource: 20906439!
+
+----STARTUP---- (20 November 2021 14:22:12) as /home/agus/Documents/inge1/cuis-tus-libros-it4/CuisUniversity-4972.image!
+
+
+TusLibrosLoginWindow open.!
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 14:29:12' prior: 50985174!
+addToCart
+	
+	| selectedBookIsbn |
+	
+	selectedBookIsbn _ (catalog at: catalogIndex) isbn.
+	self addToCartRequest: selectedBookIsbn.! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 14:29:49' prior: 50976338!
+handleAddProductToCart: request
+
+	| cartId isbn quantity |
+	self halt.
+	cartId _ (request fields at: 'cartId') asNumber.
+	isbn _ request fields at: 'isbn'.
+	quantity _ (request fields at: 'quantity') asNumber.
+
+	tusLibrosSystem add: quantity of: isbn to: cartId.
+
+	request send200Response: 'OK'! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 14:32:17' prior: 50985198!
+handleAddProductToCart: request
+
+	| cartId isbn quantity |
+	
+	cartId _ (request fields at: 'cartId') asNumber.
+	isbn _ request fields at: 'isbn'.
+	quantity _ (request fields at: 'quantity') asNumber.
+
+	tusLibrosSystem add: quantity of: isbn to: cartId.
+
+	request send200Response: 'OK'! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 14:33:18' prior: 50985159!
+addToCartRequest: aIsbn
+	
+	| resp fields |
+
+	fields _ Dictionary new 
+		at: 'cartId' put: cartId;
+		at: 'isbn' put: aIsbn ;
+		at: 'quantity' put: '1';
+		yourself.
+	
+	resp _ WebClient htmlSubmit: (self url, '/addProductToCart') fields: fields.
+	
+	resp isSuccess 
+		ifTrue: [^ self ] 
+		ifFalse:[ ^ self handleErrorResponse: resp ].! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 14:35:06'!
+handleErrorResponse: aResponse
+
+	TranscriptWindow openTranscript.
+	Transcript show: aResponse contents.! !
+
+TusLibrosLoginWindow open.!
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 14:35:41' prior: 50985238!
+handleErrorResponse: aResponse
+
+	TranscriptWindow openTranscript.
+	Transcript show: aResponse content.! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 14:36:01' prior: 50985246!
+handleErrorResponse: aResponse
+
+	TranscriptWindow openTranscript.
+	Transcript clear. 
+	Transcript show: aResponse content.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CannotCreateCartWithInvalidCredentials stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CartCreatedWithValidCredentialsIsEmpty stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03AddingMultipleOcurrencesOfAProductListsEachOne stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04AddingToACartDoesntAffectTheOthers stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CannotAddProductToCartWithInvalidId stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CannotListCartWithInvalidId stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07CannotCheckoutInvalidCartId stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CheckoutOfCartRegistersSales stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09CheckoutReturnsDifferentIdsEachTime stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CannotListExpiredCart stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CartsExpireOnlyAfterThirtyMinutes stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12ListingRefreshesCart stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CannotAddProductsToExpiredCart stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14CannotCheckoutExpiredCart stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15AddingProductsRefreshesCart stamp: 'AF 11/20/2021 14:36:28'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16 stamp: 'AF 11/20/2021 14:36:28'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test16 stamp: 'AF 11/20/2021 14:36:28'!
+FAILURE!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CannotCreateCartWithInvalidCredentials stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CartCreatedWithValidCredentialsIsEmpty stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03AddingMultipleOcurrencesOfAProductListsEachOne stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04AddingToACartDoesntAffectTheOthers stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CannotAddProductToCartWithInvalidId stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CannotListCartWithInvalidId stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07CannotCheckoutInvalidCartId stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CheckoutOfCartRegistersSales stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09CheckoutReturnsDifferentIdsEachTime stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CannotListExpiredCart stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CartsExpireOnlyAfterThirtyMinutes stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12ListingRefreshesCart stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CannotAddProductsToExpiredCart stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14CannotCheckoutExpiredCart stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15AddingProductsRefreshesCart stamp: 'AF 11/20/2021 14:36:49'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16 stamp: 'AF 11/20/2021 14:36:49'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test16 stamp: 'AF 11/20/2021 14:36:49'!
+FAILURE!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CannotCreateCartWithInvalidCredentials stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CartCreatedWithValidCredentialsIsEmpty stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03AddingMultipleOcurrencesOfAProductListsEachOne stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04AddingToACartDoesntAffectTheOthers stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CannotAddProductToCartWithInvalidId stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CannotListCartWithInvalidId stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07CannotCheckoutInvalidCartId stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CheckoutOfCartRegistersSales stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09CheckoutReturnsDifferentIdsEachTime stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CannotListExpiredCart stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CartsExpireOnlyAfterThirtyMinutes stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12ListingRefreshesCart stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CannotAddProductsToExpiredCart stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14CannotCheckoutExpiredCart stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15AddingProductsRefreshesCart stamp: 'AF 11/20/2021 14:37:03'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16 stamp: 'AF 11/20/2021 14:37:03'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test16 stamp: 'AF 11/20/2021 14:37:03'!
+FAILURE!
+
+tusLibros catalog!
+
+expectedCatalog!
+
+expectedCatalog asString!
+
+expectedCatalog!
+
+testObjectFactory firstProductSoldByTheStore!
+
+testObjectFactory firstProductSoldByTheStore!
+
+tusLibros catalog!
+!TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'AF 11/20/2021 14:40:28' prior: 50983583!
+test16
+
+	| tusLibros expectedCatalog |
+
+	tusLibros _ self defaultTusLibrosSystemFacade.
+
+	expectedCatalog _ testObjectFactory defaultCatalog.
+	
+	self assert: expectedCatalog equals: tusLibros catalog.
+
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test16 stamp: 'AF 11/20/2021 14:40:30'!
+FAILURE!
+
+testObjectFactory defaultCatalog keys!
+
+ testObjectFactory defaultCatalog keys asOrderedCollection!
+
+!testRun: #TusLibrosSystemFacadeTest #test16 stamp: 'AF 11/20/2021 14:42:21'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CannotCreateCartWithInvalidCredentials stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CartCreatedWithValidCredentialsIsEmpty stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03AddingMultipleOcurrencesOfAProductListsEachOne stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04AddingToACartDoesntAffectTheOthers stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CannotAddProductToCartWithInvalidId stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CannotListCartWithInvalidId stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07CannotCheckoutInvalidCartId stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CheckoutOfCartRegistersSales stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09CheckoutReturnsDifferentIdsEachTime stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CannotListExpiredCart stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CartsExpireOnlyAfterThirtyMinutes stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12ListingRefreshesCart stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CannotAddProductsToExpiredCart stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14CannotCheckoutExpiredCart stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15AddingProductsRefreshesCart stamp: 'AF 11/20/2021 14:42:24'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16 stamp: 'AF 11/20/2021 14:42:24'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test16 stamp: 'AF 11/20/2021 14:42:24'!
+FAILURE!
+!TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'AF 11/20/2021 14:42:36' prior: 50985602!
+test16
+
+	| tusLibros expectedCatalog |
+
+	tusLibros _ self defaultTusLibrosSystemFacade.
+
+	expectedCatalog _ testObjectFactory defaultCatalog keys asOrderedCollection .
+	
+	self assert: expectedCatalog equals: tusLibros catalog.
+
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test16 stamp: 'AF 11/20/2021 14:42:37'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CannotCreateCartWithInvalidCredentials stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CartCreatedWithValidCredentialsIsEmpty stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03AddingMultipleOcurrencesOfAProductListsEachOne stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04AddingToACartDoesntAffectTheOthers stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CannotAddProductToCartWithInvalidId stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CannotListCartWithInvalidId stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07CannotCheckoutInvalidCartId stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CheckoutOfCartRegistersSales stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09CheckoutReturnsDifferentIdsEachTime stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CannotListExpiredCart stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CartsExpireOnlyAfterThirtyMinutes stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12ListingRefreshesCart stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CannotAddProductsToExpiredCart stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14CannotCheckoutExpiredCart stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15AddingProductsRefreshesCart stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16 stamp: 'AF 11/20/2021 14:42:40'!
+PASSED!
+!TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'AF 11/20/2021 14:43:36' prior: 50985732!
+test16
+
+	| tusLibros expectedCatalog |
+
+	tusLibros _ self defaultTusLibrosSystemFacade.
+
+	expectedCatalog _ testObjectFactory defaultCatalog keys asOrderedCollection .
+	
+	self assert: tusLibros catalog includes: testObjectFactory firstProductSoldByTheStore.
+	self assert: tusLibros catalog includes: testObjectFactory secondProductSoldByTheStore .
+
+! !
+!TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'AF 11/20/2021 14:44:05' prior: 50985854!
+test16
+
+	| tusLibros expectedCatalog |
+
+	tusLibros _ self defaultTusLibrosSystemFacade.
+
+	expectedCatalog _ testObjectFactory defaultCatalog keys asOrderedCollection .
+	
+	self assert: tusLibros catalog includes: testObjectFactory firstProductSoldByTheStore.
+	self assert: tusLibros catalog includes: testObjectFactory secondProductSoldByTheStore.
+	self assert: tusLibros catalog size equals: 2.
+
+! !
+!TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'AF 11/20/2021 14:44:21' prior: 50985869!
+test16
+
+	| tusLibros expectedCatalog |
+
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	
+	self assert: tusLibros catalog includes: testObjectFactory firstProductSoldByTheStore.
+	self assert: tusLibros catalog includes: testObjectFactory secondProductSoldByTheStore.
+	self assert: 2 equals:  tusLibros catalog size.
+
+! !
+!TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'AF 11/20/2021 14:44:26' prior: 50985885!
+test16
+
+	| tusLibros |
+
+	tusLibros _ self defaultTusLibrosSystemFacade.
+	
+	self assert: tusLibros catalog includes: testObjectFactory firstProductSoldByTheStore.
+	self assert: tusLibros catalog includes: testObjectFactory secondProductSoldByTheStore.
+	self assert: 2 equals: tusLibros catalog size.
+
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test16 stamp: 'AF 11/20/2021 14:44:30'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CannotCreateCartWithInvalidCredentials stamp: 'AF 11/20/2021 14:44:30'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CartCreatedWithValidCredentialsIsEmpty stamp: 'AF 11/20/2021 14:44:30'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03AddingMultipleOcurrencesOfAProductListsEachOne stamp: 'AF 11/20/2021 14:44:30'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04AddingToACartDoesntAffectTheOthers stamp: 'AF 11/20/2021 14:44:30'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CannotAddProductToCartWithInvalidId stamp: 'AF 11/20/2021 14:44:30'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CannotListCartWithInvalidId stamp: 'AF 11/20/2021 14:44:30'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07CannotCheckoutInvalidCartId stamp: 'AF 11/20/2021 14:44:30'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CheckoutOfCartRegistersSales stamp: 'AF 11/20/2021 14:44:30'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09CheckoutReturnsDifferentIdsEachTime stamp: 'AF 11/20/2021 14:44:30'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CannotListExpiredCart stamp: 'AF 11/20/2021 14:44:30'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CartsExpireOnlyAfterThirtyMinutes stamp: 'AF 11/20/2021 14:44:30'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12ListingRefreshesCart stamp: 'AF 11/20/2021 14:44:30'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CannotAddProductsToExpiredCart stamp: 'AF 11/20/2021 14:44:30'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14CannotCheckoutExpiredCart stamp: 'AF 11/20/2021 14:44:30'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15AddingProductsRefreshesCart stamp: 'AF 11/20/2021 14:44:30'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16 stamp: 'AF 11/20/2021 14:44:30'!
+PASSED!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 14:50:51' prior: 50985211!
+handleAddProductToCart: request
+
+	| cartId isbn quantity book |
+	
+	cartId _ (request fields at: 'cartId') asNumber.
+	isbn _ request fields at: 'isbn'.
+	quantity _ (request fields at: 'quantity') asNumber.
+	
+	book _ self findBookBy: isbn.	
+
+	tusLibrosSystem add: quantity of: isbn to: cartId.
+
+	request send200Response: 'OK'! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 14:51:17' prior: 50985973!
+handleAddProductToCart: request
+
+	| cartId isbn quantity book |
+	
+	cartId _ (request fields at: 'cartId') asNumber.
+	isbn _ request fields at: 'isbn'.
+	quantity _ (request fields at: 'quantity') asNumber.
+	
+	book _ self findBookBy: isbn.	
+
+	tusLibrosSystem add: quantity of: book to: cartId.
+
+	request send200Response: 'OK'! !
+
+!classDefinition: #TusLibrosRestApiXXX category: 'TusLibros' stamp: 'AF 11/20/2021 14:56:13'!
+Object subclass: #TusLibrosRestApiXXX
+	instanceVariableNames: 'port webServer tusLibrosSystem booksByISBN'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 14:56:12'!
+findBookBy: anISBN
+
+	^ booksByISBN at: anISBN.! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:00:03' prior: 50986009!
+findBookBy: anISBN
+	
+	
+	^ booksByISBN at: anISBN ifAbsent: [self error: self class bookNotFoundErrorDescription ].! !
+!TusLibrosRestApiXXX class methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:01:14'!
+bookNotFoundErrorDescription
+ 
+	^'ISBN dosent match any book'! !
+!TusLibrosRestApiXXX class methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:02:18' prior: 50986021!
+bookNotFoundErrorDescription
+ 
+	^ 'book not found with recived ISBN'! !
+!TusLibrosRestApiXXX class methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:02:22' prior: 50986027!
+bookNotFoundErrorDescription
+ 
+	^ 'book not found with that ISBN'! !
+!TusLibrosRestApiXXX class methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:02:33' prior: 50986033!
+bookNotFoundErrorDescription
+ 
+	^ 'book with that ISBN not found '! !
+!TusLibrosRestApiXXX class methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:02:38' prior: 50986039!
+bookNotFoundErrorDescription
+ 
+	^ 'book with that ISBN not found'! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:05:50' prior: 50984914!
+initializeOn: aPortNumber
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'haw' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	booksByISBN _ Dictionary new 
+		at: self firstBookISBN put: self firstBook.
+	
+	webServer addService: '/ping'
+		action: [ :request |	 self handlePing: request ].
+	
+	self addService: '/catalog' 
+		withErrorSafeAction: [ :request | self handleCatalog: request ].
+	
+	self addService: '/createCart' 
+		withErrorSafeAction: [ :request | self handleCreateCart: request ].
+	
+	self addService: '/addProductToCart'
+		withErrorSafeAction: [ :request | self handleAddProductToCart: request ].
+		
+	self addService: '/listCart'
+		withErrorSafeAction: [ :request | self handleListCart: request ].
+
+	self addService: '/listPurchases'
+		withErrorSafeAction: [ :request | self handleListPurchases: request ].
+
+	self addService: '/checkout'
+		withErrorSafeAction: [ :request | self handleCheckout: request. ].
+		
+	! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:06:22' prior: 50986051!
+initializeOn: aPortNumber
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'haw' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: testObjectFactory defaultCatalog 
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	booksByISBN _ Dictionary new 
+		at: self firstBookISBN put: self firstBook;
+		at: self secondBookISBN put: self secondBook;
+		yourself.
+	
+	webServer addService: '/ping'
+		action: [ :request |	 self handlePing: request ].
+	
+	self addService: '/catalog' 
+		withErrorSafeAction: [ :request | self handleCatalog: request ].
+	
+	self addService: '/createCart' 
+		withErrorSafeAction: [ :request | self handleCreateCart: request ].
+	
+	self addService: '/addProductToCart'
+		withErrorSafeAction: [ :request | self handleAddProductToCart: request ].
+		
+	self addService: '/listCart'
+		withErrorSafeAction: [ :request | self handleListCart: request ].
+
+	self addService: '/listPurchases'
+		withErrorSafeAction: [ :request | self handleListPurchases: request ].
+
+	self addService: '/checkout'
+		withErrorSafeAction: [ :request | self handleCheckout: request. ].
+		
+	! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #CartTest #test02CartWithABookShouldNotBeEmpty stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #CartTest #test03CartIncludesBookAfterAdding stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #CartTest #test04CantAddBookNotIncludedInCatalog stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #CartTest #test05CartIncludesAllOccurrencesOfBookAfterAdding stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddBookWithZeroQuantity stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddBookWithNegativeQuantity stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #CheckoutTest #test01CannotCheckoutWithEmptyCart stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #CheckoutTest #test02CheckoutOfCartWithSingleItemReturnsReceiptOfItsPrice stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #CheckoutTest #test03CheckoutOfCartWithItemWithMultipleOcurrencesReturnsRecepitOfItsTotalPrice stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #CheckoutTest #test04CheckoutOfCartWithMultipleItemsReturnsReceiptWithASumOfTheirPrices stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #CheckoutTest #test05CannotCheckoutWithExpiredCard stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #CheckoutTest #test06CannotCheckoutWithInvalidNumberCard stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #CheckoutTest #test07CannotCheckoutWithCardWithoutFunds stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #CheckoutTest #test08CannotCheckoutWithStolenCard stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CannotCreateCartWithInvalidCredentials stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CartCreatedWithValidCredentialsIsEmpty stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03AddingMultipleOcurrencesOfAProductListsEachOne stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04AddingToACartDoesntAffectTheOthers stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CannotAddProductToCartWithInvalidId stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CannotListCartWithInvalidId stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test07CannotCheckoutInvalidCartId stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CheckoutOfCartRegistersSales stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09CheckoutReturnsDifferentIdsEachTime stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CannotListExpiredCart stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CartsExpireOnlyAfterThirtyMinutes stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12ListingRefreshesCart stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CannotAddProductsToExpiredCart stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14CannotCheckoutExpiredCart stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15AddingProductsRefreshesCart stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16 stamp: 'AF 11/20/2021 15:06:31'!
+PASSED!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:06:58'!
+firstBookISBN
+
+	^'123'! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:07:05' prior: 50986251!
+firstBookISBN
+
+	^'1'! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:08:12' prior: 50986256!
+firstBookISBN
+
+	^'9780262033848'! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:09:00' prior: 50986260!
+firstBookISBN
+
+	^'9780262033848'! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:09:13'!
+firstBook
+
+	! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:09:54' prior: 50986269!
+firstBook
+
+	^ Book titled: 'Introduction to Algorithms, 3rd Edition' isbn: nil! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:10:04' prior: 50986273!
+firstBook
+
+	^ Book titled: 'Introduction to Algorithms, 3rd Edition' isbn: '9780262033848'! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:10:21' prior: 50986279!
+firstBook
+
+	^ Book titled: 'Introduction to Algorithms, 3rd Edition' isbn: self firstBookISBN ! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:10:23' prior: 50986286!
+firstBook
+
+	^ Book titled: 'Introduction to Algorithms, 3rd Edition' isbn: self firstBookISBN.! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:10:37'!
+secondBookISBN
+
+	^ Book titled: 'Introduction to Algorithms, 3rd Edition' isbn: self firstBookISBN.! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:11:26' prior: 50986299!
+secondBookISBN
+
+	^ nil! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:13:07' prior: 50986306!
+secondBookISBN
+
+	^ '8420412147'.! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:13:39'!
+secondBook
+
+	^ Book titled: 'Don Quijote de la Mancha' isbn: self secondBookISBN .! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:13:41' prior: 50986315!
+secondBook
+
+	^ Book titled: 'Don Quijote de la Mancha' isbn: self secondBookISBN.! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:16:42' prior: 50986096!
+initializeOn: aPortNumber
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'haw' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: self catalog
+		chargingThrough: self SimulatedMP 
+		withClock: SystemClock new. 
+	
+	booksByISBN _ Dictionary new 
+		at: self firstBookISBN put: self firstBook;
+		at: self secondBookISBN put: self secondBook;
+		yourself.
+	
+	webServer addService: '/ping'
+		action: [ :request |	 self handlePing: request ].
+	
+	self addService: '/catalog' 
+		withErrorSafeAction: [ :request | self handleCatalog: request ].
+	
+	self addService: '/createCart' 
+		withErrorSafeAction: [ :request | self handleCreateCart: request ].
+	
+	self addService: '/addProductToCart'
+		withErrorSafeAction: [ :request | self handleAddProductToCart: request ].
+		
+	self addService: '/listCart'
+		withErrorSafeAction: [ :request | self handleListCart: request ].
+
+	self addService: '/listPurchases'
+		withErrorSafeAction: [ :request | self handleListPurchases: request ].
+
+	self addService: '/checkout'
+		withErrorSafeAction: [ :request | self handleCheckout: request. ].
+		
+	! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:16:50' prior: 50986327!
+initializeOn: aPortNumber
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'haw' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: self catalog
+		chargingThrough: testObjectFactory defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	booksByISBN _ Dictionary new 
+		at: self firstBookISBN put: self firstBook;
+		at: self secondBookISBN put: self secondBook;
+		yourself.
+	
+	webServer addService: '/ping'
+		action: [ :request |	 self handlePing: request ].
+	
+	self addService: '/catalog' 
+		withErrorSafeAction: [ :request | self handleCatalog: request ].
+	
+	self addService: '/createCart' 
+		withErrorSafeAction: [ :request | self handleCreateCart: request ].
+	
+	self addService: '/addProductToCart'
+		withErrorSafeAction: [ :request | self handleAddProductToCart: request ].
+		
+	self addService: '/listCart'
+		withErrorSafeAction: [ :request | self handleListCart: request ].
+
+	self addService: '/listPurchases'
+		withErrorSafeAction: [ :request | self handleListPurchases: request ].
+
+	self addService: '/checkout'
+		withErrorSafeAction: [ :request | self handleCheckout: request. ].
+		
+	! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:18:36'!
+catalog
+
+	^ nil! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:20:18' prior: 50986417!
+catalog
+
+	^ Dictionary new
+		at: self firstBook put: 119;
+		at: self secondBook put: 999;
+		yourself.! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:22:38' prior: 50986372!
+initializeOn: aPortNumber
+	| testObjectFactory authenticationSystem |
+	
+	testObjectFactory _ TestObjectFactory new.
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'haw' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: self catalog
+		chargingThrough: self defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	booksByISBN _ Dictionary new 
+		at: self firstBookISBN put: self firstBook;
+		at: self secondBookISBN put: self secondBook;
+		yourself.
+	
+	webServer addService: '/ping'
+		action: [ :request |	 self handlePing: request ].
+	
+	self addService: '/catalog' 
+		withErrorSafeAction: [ :request | self handleCatalog: request ].
+	
+	self addService: '/createCart' 
+		withErrorSafeAction: [ :request | self handleCreateCart: request ].
+	
+	self addService: '/addProductToCart'
+		withErrorSafeAction: [ :request | self handleAddProductToCart: request ].
+		
+	self addService: '/listCart'
+		withErrorSafeAction: [ :request | self handleListCart: request ].
+
+	self addService: '/listPurchases'
+		withErrorSafeAction: [ :request | self handleListPurchases: request ].
+
+	self addService: '/checkout'
+		withErrorSafeAction: [ :request | self handleCheckout: request. ].
+		
+	! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:24:13'!
+defaultSimulatedMP
+
+	^ nil! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:28:12' prior: 50986473!
+defaultSimulatedMP
+
+	^ SimulatedMP
+		withNoFundsCard: self cardWithoutFundsNumber
+		stolenCard: self stolenCardNumber.! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:28:30'!
+cardWithoutFundsNumber
+	
+	^ '4509790000006789'! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:29:22'!
+stolenCardNumber
+	
+	^ '4509790000000000'! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:30:09' prior: 50986478!
+defaultSimulatedMP
+
+	^ SimulatedMP
+		withNoFundsCard: self cardWithoutFundsNumber
+		stolenCard: self stolenCardNumber.! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:30:47' prior: 50986428!
+initializeOn: aPortNumber
+	| authenticationSystem |
+	
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'haw' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: self catalog
+		chargingThrough: self defaultSimulatedMP 
+		withClock: SystemClock new. 
+	
+	booksByISBN _ Dictionary new 
+		at: self firstBookISBN put: self firstBook;
+		at: self secondBookISBN put: self secondBook;
+		yourself.
+	
+	webServer addService: '/ping'
+		action: [ :request |	 self handlePing: request ].
+	
+	self addService: '/catalog' 
+		withErrorSafeAction: [ :request | self handleCatalog: request ].
+	
+	self addService: '/createCart' 
+		withErrorSafeAction: [ :request | self handleCreateCart: request ].
+	
+	self addService: '/addProductToCart'
+		withErrorSafeAction: [ :request | self handleAddProductToCart: request ].
+		
+	self addService: '/listCart'
+		withErrorSafeAction: [ :request | self handleListCart: request ].
+
+	self addService: '/listPurchases'
+		withErrorSafeAction: [ :request | self handleListPurchases: request ].
+
+	self addService: '/checkout'
+		withErrorSafeAction: [ :request | self handleCheckout: request. ].
+		
+	! !
+
+TusLibrosLoginWindow open.!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:32:12'!
+simulatedMP
+
+	^ SimulatedMP
+		withNoFundsCard: self cardWithoutFundsNumber
+		stolenCard: self stolenCardNumber.! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:32:12' prior: 50986503!
+initializeOn: aPortNumber
+	| authenticationSystem |
+	
+	webServer _ WebServer new listenOn: aPortNumber.
+	authenticationSystem _ ConfigurableAuthenticationSystem new 
+		register: 'haw' authenticatedBy: 'hunter2'.
+	
+	tusLibrosSystem _ TusLibrosSystemFacade 
+		authenticatingWith: authenticationSystem
+		sourcingProductsFrom: self catalog
+		chargingThrough: self simulatedMP 
+		withClock: SystemClock new. 
+	
+	booksByISBN _ Dictionary new 
+		at: self firstBookISBN put: self firstBook;
+		at: self secondBookISBN put: self secondBook;
+		yourself.
+	
+	webServer addService: '/ping'
+		action: [ :request |	 self handlePing: request ].
+	
+	self addService: '/catalog' 
+		withErrorSafeAction: [ :request | self handleCatalog: request ].
+	
+	self addService: '/createCart' 
+		withErrorSafeAction: [ :request | self handleCreateCart: request ].
+	
+	self addService: '/addProductToCart'
+		withErrorSafeAction: [ :request | self handleAddProductToCart: request ].
+		
+	self addService: '/listCart'
+		withErrorSafeAction: [ :request | self handleListCart: request ].
+
+	self addService: '/listPurchases'
+		withErrorSafeAction: [ :request | self handleListPurchases: request ].
+
+	self addService: '/checkout'
+		withErrorSafeAction: [ :request | self handleCheckout: request. ].
+		
+	! !
+
+!methodRemoval: TusLibrosRestApiXXX #defaultSimulatedMP stamp: 'AF 11/20/2021 15:32:12'!
+defaultSimulatedMP
+
+	^ SimulatedMP
+		withNoFundsCard: self cardWithoutFundsNumber
+		stolenCard: self stolenCardNumber.!
+
+TusLibrosRestApiXXX cleanUpAndListenOn: 8080. a TusLibrosRestApiXXX !
+
+TusLibrosRestApiXXX cleanUpAndListenOn: 8080!
+
+TusLibrosLoginWindow open.!
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:36:00' prior: 50982931!
+buildMorphicWindow
+	
+	| addToCartButtonMorph catalogAndButtonColumnLayoutMorph catalogMorph listPurchasesButtonMorph viewCartButtonMorph |
+
+	catalogMorph := PluggableListMorph 
+		model: self model 
+		listGetter: #catalog
+		indexGetter: #catalogIndex
+		indexSetter: #catalogIndex:.
+
+	addToCartButtonMorph _ PluggableButtonMorph 
+		model: self model
+		stateGetter: nil 
+		action: #addToCart
+		label: 'Add to cart'.
+	
+	catalogAndButtonColumnLayoutMorph _ LayoutMorph newColumn
+		addMorph: catalogMorph;
+		addMorph: addToCartButtonMorph;
+		axisEdgeWeight: 0.5;
+		yourself.
+	
+	catalogMorph := PluggableListMorph 
+		model: self model 
+		listGetter: #catalog
+		indexGetter: #catalogIndex
+		indexSetter: #catalogIndex:.
+
+	addToCartButtonMorph _ PluggableButtonMorph 
+		model: self model
+		stateGetter: nil 
+		action: #addToCart
+		label: 'Add to cart'.
+	
+	catalogAndButtonColumnLayoutMorph _ LayoutMorph newColumn
+		addMorph: catalogMorph;
+		addMorph: addToCartButtonMorph;
+		axisEdgeWeight: 0.5;
+		yourself.
+		
+		
+
+	listPurchasesButtonMorph _ PluggableButtonMorph 
+		model: self model
+		stateGetter: nil 
+		action: #listPurchases
+		label: 'List purchases'.
+
+	self layoutMorph
+		beRow;
+		separation: 15;
+		axisEdgeWeight: 0;
+		addMorph: catalogAndButtonColumnLayoutMorph;
+		addMorph: viewCartButtonMorph;
+		addMorph: listPurchasesButtonMorph.! !
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:36:59' prior: 50986609!
+buildMorphicWindow
+	
+	| addToCartButtonMorph catalogAndButtonColumnLayoutMorph catalogMorph listPurchasesButtonMorph viewCartButtonMorph |
+
+
+	
+	catalogAndButtonColumnLayoutMorph _ self buildCatalogColumn.
+	
+	catalogMorph := PluggableListMorph 
+		model: self model 
+		listGetter: #catalog
+		indexGetter: #catalogIndex
+		indexSetter: #catalogIndex:.
+
+	addToCartButtonMorph _ PluggableButtonMorph 
+		model: self model
+		stateGetter: nil 
+		action: #addToCart
+		label: 'Add to cart'.
+	
+	catalogAndButtonColumnLayoutMorph _ LayoutMorph newColumn
+		addMorph: catalogMorph;
+		addMorph: addToCartButtonMorph;
+		axisEdgeWeight: 0.5;
+		yourself.
+		
+		
+
+	listPurchasesButtonMorph _ PluggableButtonMorph 
+		model: self model
+		stateGetter: nil 
+		action: #listPurchases
+		label: 'List purchases'.
+
+	self layoutMorph
+		beRow;
+		separation: 15;
+		axisEdgeWeight: 0;
+		addMorph: catalogAndButtonColumnLayoutMorph;
+		addMorph: viewCartButtonMorph;
+		addMorph: listPurchasesButtonMorph.! !
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:37:10' prior: 50986655!
+buildMorphicWindow
+	
+	| addToCartButtonMorph catalogAndButtonColumnLayoutMorph catalogMorph listPurchasesButtonMorph viewCartButtonMorph |
+
+	catalogAndButtonColumnLayoutMorph _ self buildCatalogColumn.
+	
+	catalogMorph := PluggableListMorph 
+		model: self model 
+		listGetter: #catalog
+		indexGetter: #catalogIndex
+		indexSetter: #catalogIndex:.
+
+	addToCartButtonMorph _ PluggableButtonMorph 
+		model: self model
+		stateGetter: nil 
+		action: #addToCart
+		label: 'Add to cart'.
+	
+	catalogAndButtonColumnLayoutMorph _ LayoutMorph newColumn
+		addMorph: catalogMorph;
+		addMorph: addToCartButtonMorph;
+		axisEdgeWeight: 0.5;
+		yourself.
+		
+		
+
+	listPurchasesButtonMorph _ PluggableButtonMorph 
+		model: self model
+		stateGetter: nil 
+		action: #listPurchases
+		label: 'List purchases'.
+
+	self layoutMorph
+		beRow;
+		separation: 15;
+		axisEdgeWeight: 0;
+		addMorph: catalogAndButtonColumnLayoutMorph;
+		addMorph: viewCartButtonMorph;
+		addMorph: listPurchasesButtonMorph.! !
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:38:19'!
+buildCatalogColumn
+	
+	| addToCartButtonMorph catalogMorph |
+	catalogMorph := PluggableListMorph 
+		model: self model 
+		listGetter: #catalog
+		indexGetter: #catalogIndex
+		indexSetter: #catalogIndex:.
+
+	addToCartButtonMorph _ PluggableButtonMorph 
+		model: self model
+		stateGetter: nil 
+		action: #addToCart
+		label: 'Add to cart'.
+	
+	^ LayoutMorph newColumn
+		addMorph: catalogMorph;
+		addMorph: addToCartButtonMorph;
+		axisEdgeWeight: 0.5;
+		yourself.
+		
+! !
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:38:34'!
+buildCartColumn
+	
+	| addToCartButtonMorph catalogMorph |
+	catalogMorph := PluggableListMorph 
+		model: self model 
+		listGetter: #catalog
+		indexGetter: #catalogIndex
+		indexSetter: #catalogIndex:.
+
+	addToCartButtonMorph _ PluggableButtonMorph 
+		model: self model
+		stateGetter: nil 
+		action: #addToCart
+		label: 'Add to cart'.
+	
+	^ LayoutMorph newColumn
+		addMorph: catalogMorph;
+		addMorph: addToCartButtonMorph;
+		axisEdgeWeight: 0.5;
+		yourself.
+		
+! !
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:39:58' prior: 50986741!
+buildCartColumn
+	
+	| addToCartButtonMorph catalogMorph |
+	catalogMorph := PluggableListMorph 
+		model: self model 
+		listGetter: #cart
+		indexGetter: #cartIndex
+		indexSetter: #cartIndex:.
+
+	addToCartButtonMorph _ PluggableButtonMorph 
+		model: self model
+		stateGetter: nil 
+		action: #removeFromCart
+		label: 'Add to cart'.
+	
+	^ LayoutMorph newColumn
+		addMorph: catalogMorph;
+		addMorph: addToCartButtonMorph;
+		axisEdgeWeight: 0.5;
+		yourself.
+		
+! !
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:40:58' prior: 50986689!
+buildMorphicWindow
+	
+	| catalogAndButtonColumnLayoutMorph listPurchasesButtonMorph viewCartButtonMorph |
+
+	catalogAndButtonColumnLayoutMorph _ self buildCatalogColumn.
+
+	listPurchasesButtonMorph _ PluggableButtonMorph 
+		model: self model
+		stateGetter: nil 
+		action: #listPurchases
+		label: 'List purchases'.
+
+	self layoutMorph
+		beRow;
+		separation: 15;
+		axisEdgeWeight: 0;
+		addMorph: catalogAndButtonColumnLayoutMorph;
+		addMorph: viewCartButtonMorph;
+		addMorph: listPurchasesButtonMorph.! !
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:42:12' prior: 50986777!
+buildMorphicWindow
+	
+	| listPurchasesButtonMorph |
+
+	
+	
+	listPurchasesButtonMorph _ PluggableButtonMorph 
+		model: self model
+		stateGetter: nil 
+		action: #listPurchases
+		label: 'List purchases'.
+
+	self layoutMorph
+		beRow;
+		separation: 15;
+		axisEdgeWeight: 0;
+		addMorph: self buildCatalogColumn;
+		addMorph: self buildCartColumn;
+		addMorph: listPurchasesButtonMorph.! !
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:49:56' prior: 50986759!
+buildCartColumn
+	
+	| addToCartButtonMorph catalogMorph |
+	catalogMorph := PluggableListMorph 
+		model: self model 
+		listGetter: #cartProducts
+		indexGetter: #cartIndex
+		indexSetter: #cartIndex:.
+
+	addToCartButtonMorph _ PluggableButtonMorph 
+		model: self model
+		stateGetter: nil 
+		action: #removeFromCart
+		label: 'Add to cart'.
+	
+	^ LayoutMorph newColumn
+		addMorph: catalogMorph;
+		addMorph: addToCartButtonMorph;
+		axisEdgeWeight: 0.5;
+		yourself.
+		
+! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:51:28'!
+cartProducts
+	
+	^self listCartRequest.! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:52:26' prior: 50984718!
+catalogRequest
+
+	| resp |
+
+	resp _ WebClient httpGet: (self url, '/listCart').
+
+	resp isSuccess 
+		ifTrue: [^ (TusLibrosEncoder decodeCatalog: resp content readStream) asOrderedCollection ] 
+		ifFalse:[ ^ self error: resp content ].! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'MP 11/19/2021 01:35:43' prior: 50986836!
+catalogRequest
+
+	| resp |
+
+	resp _ WebClient httpGet: (self url, '/catalog').
+
+	resp isSuccess 
+		ifTrue: [^ (TusLibrosEncoder decodeCatalog: resp content readStream) asOrderedCollection ] 
+		ifFalse:[ ^ self error: resp content ].! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:53:16'!
+listCartRequest
+
+	| resp |
+
+	resp _ WebClient httpGet: (self url, '/listCart').
+
+	resp isSuccess 
+		ifTrue: [^ (TusLibrosEncoder decodeCatalog: resp content readStream) asOrderedCollection ] 
+		ifFalse:[ ^ self error: resp content ].! !
+!TusLibrosEncoder class methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:55:02' prior: 50984584!
+decodeCatalog: anEncodedBookCollection
+
+	| decodedCatalog |
+	decodedCatalog _ WebUtils jsonDecode: anEncodedBookCollection.
+	^ decodedCatalog collect: [ :anEncodedBook | self decodeBook: anEncodedBook ].
+	
+
+	! !
+!TusLibrosEncoder class methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:55:06'!
+decodeBookCollection: anEncodedBookCollection
+
+	| decodedCatalog |
+	decodedCatalog _ WebUtils jsonDecode: anEncodedBookCollection.
+	^ decodedCatalog collect: [ :anEncodedBook | self decodeBook: anEncodedBook ].
+	
+
+	! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:55:06' prior: 50986847!
+catalogRequest
+
+	| resp |
+
+	resp _ WebClient httpGet: (self url, '/catalog').
+
+	resp isSuccess 
+		ifTrue: [^ (TusLibrosEncoder decodeBookCollection: resp content readStream) asOrderedCollection ] 
+		ifFalse:[ ^ self error: resp content ].! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:55:06' prior: 50986858!
+listCartRequest
+
+	| resp |
+
+	resp _ WebClient httpGet: (self url, '/listCart').
+
+	resp isSuccess 
+		ifTrue: [^ (TusLibrosEncoder decodeBookCollection: resp content readStream) asOrderedCollection ] 
+		ifFalse:[ ^ self error: resp content ].! !
+
+!methodRemoval: TusLibrosEncoder class #decodeCatalog: stamp: 'AF 11/20/2021 15:55:06'!
+decodeCatalog: anEncodedBookCollection
+
+	| decodedCatalog |
+	decodedCatalog _ WebUtils jsonDecode: anEncodedBookCollection.
+	^ decodedCatalog collect: [ :anEncodedBook | self decodeBook: anEncodedBook ].
+	
+
+	!
+!TusLibrosEncoder class methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:56:17'!
+encodeBookCollection: aCatalog
+
+	| catalogWithEncodedBooks |
+	catalogWithEncodedBooks _ 
+		aCatalog collect: [ :aBook | self encodeBook: aBook ].
+	
+	^ WebUtils jsonEncode: catalogWithEncodedBooks asArray.
+
+	! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:56:17' prior: 50984877!
+handleCatalog: request
+
+	| catalog |
+	catalog _ tusLibrosSystem catalog.
+
+	request send200Response: (TusLibrosEncoder encodeBookCollection: catalog)! !
+
+!methodRemoval: TusLibrosEncoder class #encodeCatalog: stamp: 'AF 11/20/2021 15:56:17'!
+encodeCatalog: aCatalog
+
+	| catalogWithEncodedBooks |
+	catalogWithEncodedBooks _ 
+		aCatalog collect: [ :aBook | self encodeBook: aBook ].
+	
+	^ WebUtils jsonEncode: catalogWithEncodedBooks asArray.
+
+	!
+!TusLibrosEncoder class methodsFor: 'nil' stamp: 'AF 11/20/2021 15:56:17'!
+encodeCatalog: aBookCollection
+
+	| catalogWithEncodedBooks |
+	catalogWithEncodedBooks _ 
+		aBookCollection collect: [ :aBook | self encodeBook: aBook ].
+	
+	^ WebUtils jsonEncode: catalogWithEncodedBooks asArray.
+
+	! !
+!TusLibrosEncoder class methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:57:33' prior: 50986921!
+encodeBookCollection: aBookCollection
+
+	| catalogWithEncodedBooks |
+	catalogWithEncodedBooks _ 
+		aBookCollection collect: [ :aBook | self encodeBook: aBook ].
+	
+	^ WebUtils jsonEncode: catalogWithEncodedBooks asArray.
+
+	! !
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:59:30' prior: 50976487!
+handleListCart: request
+
+	| cartId cartContents |
+				
+	cartId _ (request fields at: 'cartId') asNumber.
+	
+	request send200Response: (TusLibrosEncoder encodeBookCollection: (tusLibrosSystem listCart: cartId)). ! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:03:17' prior: 50985190!
+addToCart
+	
+	| selectedBookIsbn |
+	
+	selectedBookIsbn _ (catalog at: catalogIndex) isbn.
+	self addToCartRequest: selectedBookIsbn.
+	self triggerEvent: nil.! !
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:04:56' prior: 50982753!
+initializeWithModel: aTusLibrosClientModel title: aTitle
+
+	self setLabel: aTitle.
+	self model: aTusLibrosClientModel.
+	self buildMorphicWindow.
+	
+	self model when: #bookAddedToCart send: #refreshCartList to: self.
+	
+	self openInWorld.! !
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:05:24' prior: 50986813!
+buildCartColumn
+	
+	| addToCartButtonMorph catalogMorph |
+	catalogMorph := PluggableListMorph 
+		model: self model 
+		listGetter: #cart
+		indexGetter: #cartIndex
+		indexSetter: #cartIndex:.
+
+	addToCartButtonMorph _ PluggableButtonMorph 
+		model: self model
+		stateGetter: nil 
+		action: #removeFromCart
+		label: 'Add to cart'.
+	
+	^ LayoutMorph newColumn
+		addMorph: catalogMorph;
+		addMorph: addToCartButtonMorph;
+		axisEdgeWeight: 0.5;
+		yourself.
+		
+! !
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:05:31' prior: 50986989!
+initializeWithModel: aTusLibrosClientModel title: aTitle
+
+	self setLabel: aTitle.
+	self model: aTusLibrosClientModel.
+	self buildMorphicWindow.
+	
+	self model when: #bookAddedToCart send: #refreshCart to: self.
+	
+	self openInWorld.! !
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:05:51'!
+refreshCart
+	
+	! !
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:06:27' prior: 50987029!
+refreshCart
+	
+	nil updateList.
+	nil setSelectionIndex: 0.! !
+
+!classDefinition: #TusLibrosClientMainWindow category: 'TusLibros' stamp: 'AF 11/20/2021 16:07:21'!
+SystemWindow subclass: #TusLibrosClientMainWindow
+	instanceVariableNames: 'cartMorph'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:07:20' prior: 50987000!
+buildCartColumn
+	
+	| addToCartButtonMorph catalogMorph |
+	cartMorph := PluggableListMorph 
+		model: self model 
+		listGetter: #cart
+		indexGetter: #cartIndex
+		indexSetter: #cartIndex:.
+
+	addToCartButtonMorph _ PluggableButtonMorph 
+		model: self model
+		stateGetter: nil 
+		action: #removeFromCart
+		label: 'Add to cart'.
+	
+	^ LayoutMorph newColumn
+		addMorph: catalogMorph;
+		addMorph: addToCartButtonMorph;
+		axisEdgeWeight: 0.5;
+		yourself.
+		
+! !
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:07:29' prior: 50987048!
+buildCartColumn
+	
+	| addToCartButtonMorph |
+	cartMorph := PluggableListMorph 
+		model: self model 
+		listGetter: #cart
+		indexGetter: #cartIndex
+		indexSetter: #cartIndex:.
+
+	addToCartButtonMorph _ PluggableButtonMorph 
+		model: self model
+		stateGetter: nil 
+		action: #removeFromCart
+		label: 'Add to cart'.
+	
+	^ LayoutMorph newColumn
+		addMorph: cartMorph;
+		addMorph: addToCartButtonMorph;
+		axisEdgeWeight: 0.5;
+		yourself.
+		
+! !
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:07:57' prior: 50987034!
+refreshCart
+	
+	cartMorph updateList.
+	cartMorph setSelectionIndex: 1.! !
+
+TusLibrosRestApiXXX cleanUpAndListenOn: 8080!
+
+TusLibrosLoginWindow open.!
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:09:23'!
+cart
+	
+	^self listCartRequest.! !
+
+!methodRemoval: TusLibrosClientModel #cartProducts stamp: 'AF 11/20/2021 16:09:34'!
+cartProducts
+	
+	^self listCartRequest.!
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:10:00' prior: 50987092!
+cart
+	
+	^self listCartRequest.! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:10:11'!
+cartProducts
+	
+	^self listCartRequest.! !
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:10:11' prior: 50987066!
+buildCartColumn
+	
+	| addToCartButtonMorph |
+	cartMorph := PluggableListMorph 
+		model: self model 
+		listGetter: #cartProducts
+		indexGetter: #cartIndex
+		indexSetter: #cartIndex:.
+
+	addToCartButtonMorph _ PluggableButtonMorph 
+		model: self model
+		stateGetter: nil 
+		action: #removeFromCart
+		label: 'Add to cart'.
+	
+	^ LayoutMorph newColumn
+		addMorph: cartMorph;
+		addMorph: addToCartButtonMorph;
+		axisEdgeWeight: 0.5;
+		yourself.
+		
+! !
+
+!methodRemoval: TusLibrosClientModel #cart stamp: 'AF 11/20/2021 16:10:11'!
+cart
+	
+	^self listCartRequest.!
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:10:21' prior: 50987110!
+buildCartColumn
+	
+	| addToCartButtonMorph |
+	cartMorph := PluggableListMorph 
+		model: self model 
+		listGetter: #cartProducts
+		indexGetter: #cartIndex
+		indexSetter: #cartIndex:.
+
+	addToCartButtonMorph _ PluggableButtonMorph 
+		model: self model
+		stateGetter: nil 
+		action: #removeFromCart
+		label: 'Add to cart'.
+	
+	^ LayoutMorph newColumn
+		addMorph: cartMorph;
+		addMorph: addToCartButtonMorph;
+		axisEdgeWeight: 0.5;
+		yourself.
+		
+! !
+
+TusLibrosLoginWindow open.!
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:12:44' prior: 50986901!
+listCartRequest
+
+	| resp fields |
+
+	fields _ Dictionary new 
+		at: 'cartId' put: cartId;
+		yourself.
+	resp _ WebClient httpGet: (self url, '/listCart') .
+
+	resp isSuccess 
+		ifTrue: [^ (TusLibrosEncoder decodeBookCollection: resp content readStream) asOrderedCollection ] 
+		ifFalse:[ ^ self error: resp content ].! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:13:08' prior: 50987150!
+listCartRequest
+
+	| resp fields |
+
+	fields _ Dictionary new 
+		at: 'cartId' put: cartId;
+		yourself.
+	resp _ WebClient httpGet: (self url, '/listCart') "fields: fields" .
+
+	resp isSuccess 
+		ifTrue: [^ (TusLibrosEncoder decodeBookCollection: resp content readStream) asOrderedCollection ] 
+		ifFalse:[ ^ self error: resp content ].! !
+
+WebClient!
+
+WebClient!
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:18:02' prior: 50987164!
+listCartRequest
+
+	| resp fields |
+
+	
+	resp _ WebClient 
+		htmlSubmit: self url, '/listCart' 
+		fields: { 'cartId' -> cartId }
+		method: 'GET'.
+
+	resp isSuccess 
+		ifTrue: [^ (TusLibrosEncoder decodeBookCollection: resp content readStream) asOrderedCollection ] 
+		ifFalse:[ ^ self error: resp content ].! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:18:11' prior: 50987179!
+listCartRequest
+
+	| resp |
+
+	
+	resp _ WebClient 
+		htmlSubmit: self url, '/listCart' 
+		fields: { 'cartId' -> cartId }
+		method: 'GET'.
+
+	resp isSuccess 
+		ifTrue: [^ (TusLibrosEncoder decodeBookCollection: resp content readStream) asOrderedCollection ] 
+		ifFalse:[ ^ self error: resp content ].! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:18:18' prior: 50987192!
+listCartRequest
+
+	| resp |
+
+	resp _ WebClient 
+		htmlSubmit: self url, '/listCart' 
+		fields: { 'cartId' -> cartId }
+		method: 'GET'.
+
+	resp isSuccess 
+		ifTrue: [^ (TusLibrosEncoder decodeBookCollection: resp content readStream) asOrderedCollection ] 
+		ifFalse:[ ^ self error: resp content ].! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:18:33' prior: 50986890!
+catalogRequest
+
+	| resp |
+
+	resp _ WebClient httpGet: self url, '/catalog'.
+
+	resp isSuccess 
+		ifTrue: [^ (TusLibrosEncoder decodeBookCollection: resp content readStream) asOrderedCollection ] 
+		ifFalse:[ ^ self error: resp content ].! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:20:14' prior: 50985224!
+addToCartRequest: aIsbn
+	
+	| resp fields |
+
+	fields _ Dictionary new 
+		at: 'cartId' put: cartId;
+		at: 'isbn' put: aIsbn ;
+		at: 'quantity' put: '1';
+		yourself.
+	
+	resp _ WebClient 
+		htmlSubmit: self url, '/addProductToCart' 
+		fields: {
+		'cartId' -> cartId.
+		'isbn' -> aIsbn.
+		'quantity' -> '1'.
+		} method: 'POST'.
+	
+	resp isSuccess 
+		ifTrue: [^ self ] 
+		ifFalse:[ ^ self handleErrorResponse: resp ].! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:20:25' prior: 50987229!
+addToCartRequest: aIsbn
+	
+	| resp fields |
+
+	fields _ Dictionary new 
+		at: 'cartId' put: cartId;
+		at: 'isbn' put: aIsbn ;
+		at: 'quantity' put: '1';
+		yourself.
+	
+	resp _ WebClient 
+		htmlSubmit: self url, '/addProductToCart' 
+		fields: {
+			'cartId' -> cartId.
+			'isbn' -> aIsbn.
+			'quantity' -> '1'.
+		} method: 'POST'.
+	
+	resp isSuccess 
+		ifTrue: [^ self ] 
+		ifFalse:[ ^ self handleErrorResponse: resp ].! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:20:33' prior: 50987246!
+addToCartRequest: aIsbn
+	
+	| resp |
+	
+	resp _ WebClient 
+		htmlSubmit: self url, '/addProductToCart' 
+		fields: {
+			'cartId' -> cartId.
+			'isbn' -> aIsbn.
+			'quantity' -> '1'.
+		} method: 'POST'.
+	
+	resp isSuccess 
+		ifTrue: [^ self ] 
+		ifFalse:[ ^ self handleErrorResponse: resp ].! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:20:44' prior: 50987263!
+addToCartRequest: aIsbn
+	
+	| resp |
+	
+	resp _ WebClient 
+		htmlSubmit: self url, '/addProductToCart' 
+		fields: {
+			'cartId' -> cartId.
+			'isbn' -> aIsbn.
+			'quantity' -> '1'
+		} method: 'POST'.
+	
+	resp isSuccess 
+		ifTrue: [^ self ] 
+		ifFalse:[ ^ self handleErrorResponse: resp ].! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:20:49' prior: 50987276!
+addToCartRequest: aIsbn
+	
+	| resp |
+	
+	resp _ WebClient 
+		htmlSubmit: self url, '/addProductToCart' 
+		fields: {
+			'cartId' -> cartId.
+			'isbn' -> aIsbn.
+			'quantity' -> '1'.
+		} method: 'POST'.
+	
+	resp isSuccess 
+		ifTrue: [^ self ] 
+		ifFalse:[ ^ self handleErrorResponse: resp ].! !
+
+!classDefinition: #TusLibrosClientModel category: 'TusLibros' stamp: 'AF 11/20/2021 16:21:48'!
+Object subclass: #TusLibrosClientModel
+	instanceVariableNames: 'username password cartId catalogIndex catalog cartIndex'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:21:46'!
+cartIndex
+
+ 	^cartIndex.! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:22:04'!
+cartIndex: aCartIndex
+
+ 	cartIndex _ aCartIndex.! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:23:14' prior: 50985051 overrides: 16896425!
+initialize
+
+	username _ 'haw'.
+	password _ 'hunter2'.
+	catalogIndex _ 1.
+	cartIndex _ 1.! !
+
+TusLibrosLoginWindow open.!
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:24:19' prior: 50986980!
+addToCart
+	
+	| selectedBookIsbn |
+	
+	selectedBookIsbn _ (catalog at: catalogIndex) isbn.
+	self addToCartRequest: selectedBookIsbn.
+	self triggerEvent: #productAddedToCart.! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:24:26' prior: 50987328!
+addToCart
+	
+	| selectedBookIsbn |
+	
+	selectedBookIsbn _ (catalog at: catalogIndex) isbn.
+	self addToCartRequest: selectedBookIsbn.
+	self triggerEvent: #bookAddedToCart.! !
+!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:27:23' prior: 50987105!
+cartProducts
+	
+	| cartProducts |
+	cartProducts _ self listCartRequest.
+	^cartProducts collect: [ :aBook | 	'(ISBN #', aBook isbn, ') ', aBook title ].! !
+
+TusLibrosLoginWindow open.!
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:28:26' prior: 50987084!
+refreshCart
+	
+	cartMorph updateList.
+	cartMorph setSelectionIndex: 1.! !
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:30:02' prior: 50987356!
+refreshCart
+	
+	cartMorph updateList.
+	cartMorph setSelectionIndex: cartMorph maximumSelection .! !
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:30:10' prior: 50987362!
+refreshCart
+	
+	cartMorph updateList.
+	cartMorph setSelectionIndex: cartMorph maximumSelection.! !
+
+TusLibrosLoginWindow open.!
+
+TusLibrosLoginWindow open.!
+
+----QUIT----(20 November 2021 16:36:28) CuisUniversity-4972.image priorSource: 20912975!
+>>>>>>> 20/it4: agrego morph del carrito en la vantana principal
