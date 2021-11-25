@@ -24,51 +24,46 @@ blueTeamWithMeteorologicalService: aMeteorologicalService
 		consultingWeatherTo: aMeteorologicalService.
 ! !
 
-!SmartBuildingTest methodsFor: 'team building' stamp: 'MP 11/25/2021 18:22:50'!
-constructionTeamWithFixedPricePerDay: aPricePerDay constantCapacity: aCapacityPerDay
+!SmartBuildingTest methodsFor: 'team building' stamp: 'MP 11/25/2021 19:43:26'!
+constructionTeamWithFixedPricePerDay: aPricePerDay
+constantCapacity: aCapacityPerDay
 
-	^FixedDateAndConstantCapacityConstructionTeam withFixedPrice: aPricePerDay constantCapacity: aCapacityPerDay.
+	^ ConstructionTeam
+		withPricingPolicy: (FixedPrice perDay: aPricePerDay)
+		withCapacityPolicy: (ConstantCapacity perDay: aCapacityPerDay).
 	
 	! !
 
-!SmartBuildingTest methodsFor: 'team building' stamp: 'MP 11/25/2021 19:21:10'!
+!SmartBuildingTest methodsFor: 'team building' stamp: 'MP 11/25/2021 19:53:06'!
 constructionTeamWithFixedPricePerDay: aPricePerDay
 startingCapacity: aStartingCapacity
 after: anAmountOfDays
 decreasingCapacityTo: aCapacityAfterDecrease 
 
-	^ FixedPriceAndVariableCapacityConstructionTeam
-		withPricePerDay: aPricePerDay
-		startingCapacity: aStartingCapacity after: anAmountOfDays
-		decreasingCapacityTo: aCapacityAfterDecrease! !
+	^ ConstructionTeam
+		withPricingPolicy: (FixedPrice perDay: aPricePerDay)
+		withCapacityPolicy: (DecreasingCapacity
+			withStartingCapacity: aStartingCapacity
+			andAfter: anAmountOfDays
+			decreasingCapacityTo: aCapacityAfterDecrease)! !
 
-!SmartBuildingTest methodsFor: 'team building' stamp: 'MP 11/25/2021 19:07:19'!
-constructionTeamWithPricePerDay: aPricePerNormalDay
-whenRaining: aPricePerRainyDay
-constantCapacity: aCapacityPerDay
-
-	^ RainyPriceAndConstantCapacityConstructionTeam
-		withPricePerDay: aPricePerNormalDay
-		whenRaining: aPricePerRainyDay
-		constantCapacity: aCapacityPerDay.
-
-	! !
-
-!SmartBuildingTest methodsFor: 'team building' stamp: 'MP 11/25/2021 19:12:38'!
+!SmartBuildingTest methodsFor: 'team building' stamp: 'MP 11/25/2021 19:57:54'!
 constructionTeamWithPricePerDay: aPricePerNormalDay
 whenRaining: aPricePerRainyDay
 constantCapacity: aCapacityPerDay
 consultingWeatherTo: aMeteorologicalService.
 
-	^ RainyPriceAndConstantCapacityConstructionTeam
-		withPricePerDay: aPricePerNormalDay
-		whenRaining: aPricePerRainyDay
-		constantCapacity: aCapacityPerDay
-		consultingWeatherTo: aMeteorologicalService.
+	^ ConstructionTeam
+		withPricingPolicy: (RainPrice 	
+			withPricePerNormalDay: aPricePerNormalDay
+			whenRaining: aPricePerRainyDay
+			consultingWeatherTo: aMeteorologicalService)
+		withCapacityPolicy: (ConstantCapacity perDay: aCapacityPerDay).
+
 
 	! !
 
-!SmartBuildingTest methodsFor: 'team building' stamp: 'MP 11/25/2021 19:07:03'!
+!SmartBuildingTest methodsFor: 'team building' stamp: 'MP 11/25/2021 19:57:54'!
 constructionTeamWithPricePerDay: aPricePerNormalDay
 whenRaining: aPricePerRainyDay
 startingCapacity: aStartingCapacity
@@ -76,22 +71,22 @@ after: anAmountOfDays
 decreasingCapacityTo: aCapacityAfterDecrease 
 consultingWeatherTo: aMeteorologicalService
 
-	^ RainyPriceAndVariableCapacityConstructionTeam
-		withPricePerDay: aPricePerNormalDay
-		whenRaining: aPricePerRainyDay
-		startingCapacity: aStartingCapacity after: anAmountOfDays
-		decreasingCapacityTo: aCapacityAfterDecrease
-		consultingWeatherTo: aMeteorologicalService.! !
+	^ ConstructionTeam
+		withPricingPolicy: (RainPrice 	
+			withPricePerNormalDay: aPricePerNormalDay
+			whenRaining: aPricePerRainyDay
+			consultingWeatherTo: aMeteorologicalService)
+		withCapacityPolicy: (DecreasingCapacity 
+			withStartingCapacity: aStartingCapacity
+			andAfter: anAmountOfDays
+			decreasingCapacityTo: aCapacityAfterDecrease
+		)
+! !
 
-!SmartBuildingTest methodsFor: 'team building' stamp: 'MP 11/25/2021 19:20:13'!
+!SmartBuildingTest methodsFor: 'team building' stamp: 'MP 11/25/2021 19:12:06'!
 greenTeam
 
-	^ self
-		constructionTeamWithFixedPricePerDay: 1500 * peso / day
-		startingCapacity: 300 * (meter^2) / week
-		after: 10 * day "les agarra la pachorra"
-		decreasingCapacityTo: 20 * (meter^2) / day
-! !
+	^ self greenTeamWithMeteorologicalService: self meteorologicalServiceWithoutRainyDays.! !
 
 !SmartBuildingTest methodsFor: 'team building' stamp: 'MP 11/25/2021 19:12:23'!
 greenTeamWithMeteorologicalService: aMeteorologicalService 
@@ -112,6 +107,15 @@ meteorologicalServiceWithoutRainyDays
 redTeam
 
 	^ self constructionTeamWithFixedPricePerDay: 1000 * peso / day constantCapacity: 25 * (meter^2) / day! !
+
+!SmartBuildingTest methodsFor: 'team building' stamp: 'MP 11/25/2021 19:23:49'!
+yellowTeam
+
+	^ self
+		constructionTeamWithFixedPricePerDay: 1000 * peso / day
+		startingCapacity: 300 * (meter^2) / week
+		after: 10 * day "les agarra la pachorra"
+		decreasingCapacityTo: 20 * (meter^2) / day.! !
 
 
 !SmartBuildingTest methodsFor: 'as yet unclassified' stamp: 'MP 11/25/2021 18:15:01'!
@@ -200,61 +204,174 @@ test09RainyPriceAndConstantCapacityComputesCostOfBuildingWithRainyAndNormalDays
 
 	self assert: (5 * (1000 * peso)) + (5 * (1200 * peso)) equals: (greenTeam costOfBuilding: 25 * 10 * (meter^2)).! !
 
-!SmartBuildingTest methodsFor: 'as yet unclassified' stamp: 'MP 11/25/2021 19:18:13'!
-test10
+!SmartBuildingTest methodsFor: 'as yet unclassified' stamp: 'MP 11/25/2021 19:31:25'!
+test10FixedPriceAndVariableCapacityComputesTimeTakenAfterDecrease
 
 	| yellowTeam |
 	yellowTeam _ self yellowTeam.
 
-	self assert: 1 * day equals: (yellowTeam timeInDaysTakenToBuild: 25 * 10 * (meter^2)).! !
+	self assert: 14 * day equals: (yellowTeam timeInDaysTakenToBuild: 500 * (meter^2)).! !
+
+!SmartBuildingTest methodsFor: 'as yet unclassified' stamp: 'MP 11/25/2021 19:31:35'!
+test11FixedPriceAndVariableCapacityComputesCost
+
+	| yellowTeam |
+	yellowTeam _ self yellowTeam.
+
+	self assert: 14 * 1000 * peso equals: (yellowTeam costOfBuilding: 500 * (meter^2)).! !
 
 
-!classDefinition: #FixedDateAndConstantCapacityConstructionTeam category: 'ISW1-2021-2C-2doParcial'!
-Object subclass: #FixedDateAndConstantCapacityConstructionTeam
-	instanceVariableNames: 'pricePerDay capacityPerDay'
+!classDefinition: #CapacityPolicy category: 'ISW1-2021-2C-2doParcial'!
+Object subclass: #CapacityPolicy
+	instanceVariableNames: 'pricingPolicy capacityPolicy'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'ISW1-2021-2C-2doParcial'!
 
-!FixedDateAndConstantCapacityConstructionTeam methodsFor: 'initialization' stamp: 'MP 11/25/2021 18:01:11'!
-initializeWithFixedPrice: aPricePerDay constantCapacity: aCapacityPerDay 
-
-	pricePerDay := aPricePerDay.
-	capacityPerDay := aCapacityPerDay.! !
-
-
-!FixedDateAndConstantCapacityConstructionTeam methodsFor: 'as yet unclassified' stamp: 'MP 11/25/2021 18:08:40'!
-costOfBuilding: anArea 
-	
-	^ (self timeInDaysTakenToBuild: anArea) * pricePerDay.! !
-
-!FixedDateAndConstantCapacityConstructionTeam methodsFor: 'as yet unclassified' stamp: 'MP 11/25/2021 18:11:36'!
+!CapacityPolicy methodsFor: 'time calculation' stamp: 'MP 11/25/2021 19:57:09'!
 timeInDaysTakenToBuild: anArea
 
-	^ (anArea / capacityPerDay) ceiling.! !
+	self subclassResponsibility! !
+
+
+!classDefinition: #ConstantCapacity category: 'ISW1-2021-2C-2doParcial'!
+CapacityPolicy subclass: #ConstantCapacity
+	instanceVariableNames: 'capacity'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-2C-2doParcial'!
+
+!ConstantCapacity methodsFor: 'initialization' stamp: 'MP 11/25/2021 19:40:58'!
+initializePerDay: aCapacity 
+
+	capacity := aCapacity.! !
+
+
+!ConstantCapacity methodsFor: 'time calculation' stamp: 'MP 11/25/2021 19:42:25'!
+timeInDaysTakenToBuild: anArea
+
+	^ (anArea / capacity) ceiling.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'FixedDateAndConstantCapacityConstructionTeam class' category: 'ISW1-2021-2C-2doParcial'!
-FixedDateAndConstantCapacityConstructionTeam class
+!classDefinition: 'ConstantCapacity class' category: 'ISW1-2021-2C-2doParcial'!
+ConstantCapacity class
 	instanceVariableNames: ''!
 
-!FixedDateAndConstantCapacityConstructionTeam class methodsFor: 'instance creation' stamp: 'MP 11/25/2021 18:00:53'!
-withFixedPrice: aPricePerDay constantCapacity: aCapacityPerDay 
+!ConstantCapacity class methodsFor: 'instance creation' stamp: 'MP 11/25/2021 19:40:48'!
+perDay: aCapacity 
 
-	^self new initializeWithFixedPrice: aPricePerDay constantCapacity: aCapacityPerDay ! !
+	^self new initializePerDay: aCapacity ! !
 
 
-!classDefinition: #FixedPriceAndVariableCapacityConstructionTeam category: 'ISW1-2021-2C-2doParcial'!
-Object subclass: #FixedPriceAndVariableCapacityConstructionTeam
+!classDefinition: #DecreasingCapacity category: 'ISW1-2021-2C-2doParcial'!
+CapacityPolicy subclass: #DecreasingCapacity
+	instanceVariableNames: 'startingCapacity daysBeforeDecrease capacityAfterDecrease'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-2C-2doParcial'!
+
+!DecreasingCapacity methodsFor: 'initialization' stamp: 'MP 11/25/2021 19:53:28'!
+initializeWithStartingCapacity: aStartingCapacity
+andAfter: anAmountOfDays
+decreasingCapacityTo: aCapacityAfterDecrease 
+
+	startingCapacity := aStartingCapacity.
+	daysBeforeDecrease := anAmountOfDays.
+	capacityAfterDecrease := aCapacityAfterDecrease.! !
+
+
+!DecreasingCapacity methodsFor: 'time calculation' stamp: 'MP 11/25/2021 19:46:50'!
+timeInDaysTakenToBuild: anArea
+	
+	| areaConstructedEfficiently remainderToConstruct timeToConstructEfficiently timeToConstructRemainder |
+	areaConstructedEfficiently _ startingCapacity * daysBeforeDecrease.	
+	areaConstructedEfficiently > anArea ifTrue: [
+		^ anArea / startingCapacity ceiling. "TODO: test para ceiling"
+	].
+
+	remainderToConstruct _ anArea - areaConstructedEfficiently.
+	timeToConstructRemainder _ remainderToConstruct / capacityAfterDecrease.
+	timeToConstructEfficiently _ areaConstructedEfficiently / startingCapacity.
+	
+	^ (timeToConstructEfficiently + timeToConstructRemainder) ceiling.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'DecreasingCapacity class' category: 'ISW1-2021-2C-2doParcial'!
+DecreasingCapacity class
+	instanceVariableNames: ''!
+
+!DecreasingCapacity class methodsFor: 'instance creation' stamp: 'MP 11/25/2021 19:53:37'!
+withStartingCapacity: aStartingCapacity
+andAfter: anAmountOfDays
+decreasingCapacityTo: aCapacityAfterDecrease	
+
+	^self new
+		initializeWithStartingCapacity: aStartingCapacity
+		andAfter: anAmountOfDays
+		decreasingCapacityTo: aCapacityAfterDecrease ! !
+
+
+!classDefinition: #ConstructionTeam category: 'ISW1-2021-2C-2doParcial'!
+Object subclass: #ConstructionTeam
+	instanceVariableNames: 'pricingPolicy capacityPolicy'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-2C-2doParcial'!
+
+!ConstructionTeam methodsFor: 'as yet unclassified' stamp: 'MP 11/25/2021 19:44:19'!
+costOfBuilding: anArea
+
+	^ pricingPolicy costOf: (self timeInDaysTakenToBuild: anArea)! !
+
+!ConstructionTeam methodsFor: 'as yet unclassified' stamp: 'MP 11/25/2021 19:44:05'!
+timeInDaysTakenToBuild: anArea
+
+	^ capacityPolicy timeInDaysTakenToBuild: anArea.! !
+
+
+!ConstructionTeam methodsFor: 'initialization' stamp: 'MP 11/25/2021 19:53:52'!
+initializeWithPricingPolicy: aPricingPolicy
+withCapacityPolicy: aCapacityPolicy
+
+	pricingPolicy := aPricingPolicy.
+	capacityPolicy := aCapacityPolicy.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'ConstructionTeam class' category: 'ISW1-2021-2C-2doParcial'!
+ConstructionTeam class
+	instanceVariableNames: ''!
+
+!ConstructionTeam class methodsFor: 'as yet unclassified' stamp: 'MP 11/25/2021 19:32:46'!
+withPricingPolicy: aPricingPolicy ! !
+
+
+!ConstructionTeam class methodsFor: 'instance creation' stamp: 'MP 11/25/2021 19:53:47'!
+withPricingPolicy: aPricingPolicy
+withCapacityPolicy: aCapacityPolicy
+
+	^self new 
+		initializeWithPricingPolicy: aPricingPolicy
+		withCapacityPolicy: aCapacityPolicy ! !
+
+
+!classDefinition: #MeteorologicalService category: 'ISW1-2021-2C-2doParcial'!
+Object subclass: #MeteorologicalService
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'ISW1-2021-2C-2doParcial'!
 
+!MeteorologicalService methodsFor: 'weather forecasting' stamp: 'MP 11/25/2021 19:55:43'!
+daysOfRainInTheNext: aNumberOfDays
+	
+	self subclassResponsibility! !
+
 
 !classDefinition: #MeteorologicalServiceStub category: 'ISW1-2021-2C-2doParcial'!
-Object subclass: #MeteorologicalServiceStub
+MeteorologicalService subclass: #MeteorologicalServiceStub
 	instanceVariableNames: 'daysOfRain'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -266,7 +383,7 @@ initializeWithRainyDays: aNumberOfDays
 	daysOfRain := aNumberOfDays.! !
 
 
-!MeteorologicalServiceStub methodsFor: 'as yet unclassified' stamp: 'MP 11/25/2021 18:59:25'!
+!MeteorologicalServiceStub methodsFor: 'weather forecasting' stamp: 'MP 11/25/2021 18:59:25'!
 daysOfRainInTheNext: aNumberOfDays
 	
 	^ daysOfRain.! !
@@ -283,127 +400,87 @@ withRainyDays: aNumberOfDays
 	^self new initializeWithRainyDays: aNumberOfDays ! !
 
 
-!classDefinition: #RainyPriceAndConstantCapacityConstructionTeam category: 'ISW1-2021-2C-2doParcial'!
-Object subclass: #RainyPriceAndConstantCapacityConstructionTeam
-	instanceVariableNames: 'pricePerNormalDay pricePerRainyDay capacityPerDay weatherService meteorologicalService'
+!classDefinition: #PricingPolicy category: 'ISW1-2021-2C-2doParcial'!
+Object subclass: #PricingPolicy
+	instanceVariableNames: 'pricingPolicy capacityPolicy'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'ISW1-2021-2C-2doParcial'!
 
-!RainyPriceAndConstantCapacityConstructionTeam methodsFor: 'initialization' stamp: 'MP 11/25/2021 19:15:29'!
-initializeWithPricePerDay: aPricePerNormalDay
+!PricingPolicy methodsFor: 'cost calculation' stamp: 'MP 11/25/2021 19:36:57'!
+costOf: aNumberOfDays
+
+	self subclassResponsibility.! !
+
+
+!classDefinition: #FixedPrice category: 'ISW1-2021-2C-2doParcial'!
+PricingPolicy subclass: #FixedPrice
+	instanceVariableNames: 'pricePerDay'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-2C-2doParcial'!
+
+!FixedPrice methodsFor: 'initialization' stamp: 'MP 11/25/2021 19:40:13'!
+initializePerDay: aPricePerDay 
+
+	pricePerDay _ aPricePerDay.! !
+
+
+!FixedPrice methodsFor: 'cost calculation' stamp: 'MP 11/25/2021 19:37:17'!
+costOf: aNumberOfDays
+
+	^ pricePerDay * aNumberOfDays.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'FixedPrice class' category: 'ISW1-2021-2C-2doParcial'!
+FixedPrice class
+	instanceVariableNames: ''!
+
+!FixedPrice class methodsFor: 'instance creation' stamp: 'MP 11/25/2021 19:39:53'!
+perDay: aPricePerDay
+
+	^self new initializePerDay: aPricePerDay ! !
+
+
+!classDefinition: #RainPrice category: 'ISW1-2021-2C-2doParcial'!
+PricingPolicy subclass: #RainPrice
+	instanceVariableNames: 'pricePerNormalDay pricePerRainyDay meteorologicalService'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-2C-2doParcial'!
+
+!RainPrice methodsFor: 'initialization' stamp: 'MP 11/25/2021 19:54:02'!
+initializeWithPricePerNormalDay: aPricePerNormalDay
 whenRaining: aPricePerRainyDay
-constantCapacity: aConstantCapacity 
-consultingWeatherTo: aMeteorologicalService
+consultingWeatherTo: aMeteorologicalService 
 
 	pricePerNormalDay := aPricePerNormalDay.
 	pricePerRainyDay := aPricePerRainyDay.
-	capacityPerDay := aConstantCapacity.
-	meteorologicalService _ aMeteorologicalService.! !
-
-!RainyPriceAndConstantCapacityConstructionTeam methodsFor: 'initialization' stamp: 'MP 11/25/2021 19:08:30'!
-timeInDaysTakenToBuild: anArea
-
-	^ (anArea / capacityPerDay) ceiling.! !
+	meteorologicalService := aMeteorologicalService.! !
 
 
-!RainyPriceAndConstantCapacityConstructionTeam methodsFor: 'as yet unclassified' stamp: 'MP 11/25/2021 19:15:09'!
-costOfBuilding: anArea 
+!RainPrice methodsFor: 'cost calculation' stamp: 'MP 11/25/2021 19:51:11'!
+costOf: aNumberOfDays
 
-	| normalDays rainyDays timeTakenInDays |
-	timeTakenInDays _ self timeInDaysTakenToBuild: anArea.
-	rainyDays _ meteorologicalService daysOfRainInTheNext: timeTakenInDays.
-	normalDays _ timeTakenInDays - rainyDays.
-	
-	^ (normalDays * pricePerNormalDay) + (rainyDays * pricePerRainyDay).
-	
-	! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'RainyPriceAndConstantCapacityConstructionTeam class' category: 'ISW1-2021-2C-2doParcial'!
-RainyPriceAndConstantCapacityConstructionTeam class
-	instanceVariableNames: ''!
-
-!RainyPriceAndConstantCapacityConstructionTeam class methodsFor: 'instance creation' stamp: 'MP 11/25/2021 19:14:12'!
-withPricePerDay: aPricePerNormalDay
-whenRaining: aPricePerRainyDay
-constantCapacity: aConstantCapacity
-consultingWeatherTo: aWeatherService
-
-	^self new
-		initializeWithPricePerDay: aPricePerNormalDay
-		whenRaining: aPricePerRainyDay
-		constantCapacity: aConstantCapacity 
-		consultingWeatherTo: aWeatherService
-! !
-
-
-!classDefinition: #RainyPriceAndVariableCapacityConstructionTeam category: 'ISW1-2021-2C-2doParcial'!
-Object subclass: #RainyPriceAndVariableCapacityConstructionTeam
-	instanceVariableNames: 'pricePerNormalDay pricePerRainyDay startingCapacity daysBeforeDecrease capacityAfterDecrease meteorologicalService'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'ISW1-2021-2C-2doParcial'!
-
-!RainyPriceAndVariableCapacityConstructionTeam methodsFor: 'initialization' stamp: 'MP 11/25/2021 18:52:43'!
-initializeWithPricePerDay: aPricePerNormalDay
-whenRaining: aPricePerRainyDay
-startingCapacity: aStartingCapacity
-after: anAmountOfDays
-decreasingCapacityTo: aCapacityAfterDecrease
-consultingWeatherTo: aMeteorologicalService
-
-	pricePerNormalDay _ aPricePerNormalDay.
-	pricePerRainyDay _ aPricePerRainyDay.
-	startingCapacity _ aStartingCapacity.
-	daysBeforeDecrease _ anAmountOfDays.
-	capacityAfterDecrease _ aCapacityAfterDecrease.
-	meteorologicalService _ aMeteorologicalService.! !
-
-
-!RainyPriceAndVariableCapacityConstructionTeam methodsFor: 'as yet unclassified' stamp: 'MP 11/25/2021 18:58:30'!
-costOfBuilding: anArea
-
-	| normalDays rainyDays timeTakenInDays |
-	timeTakenInDays _ self timeInDaysTakenToBuild: anArea.
-	rainyDays _ meteorologicalService daysOfRainInTheNext: timeTakenInDays.
-	normalDays _ timeTakenInDays - rainyDays.
+	| normalDays rainyDays |
+	rainyDays _ meteorologicalService daysOfRainInTheNext: aNumberOfDays.
+	normalDays _ aNumberOfDays - rainyDays.
 	
 	^ (normalDays * pricePerNormalDay) + (rainyDays * pricePerRainyDay).! !
 
-!RainyPriceAndVariableCapacityConstructionTeam methodsFor: 'as yet unclassified' stamp: 'MP 11/25/2021 18:46:28'!
-timeInDaysTakenToBuild: anArea
-	
-	| areaConstructedEfficiently remainderToConstruct timeToConstructEfficiently timeToConstructRemainder |
-	areaConstructedEfficiently _ startingCapacity * daysBeforeDecrease.	
-	areaConstructedEfficiently > anArea ifTrue: [
-		^ anArea / startingCapacity.	
-	].
-
-	remainderToConstruct _ anArea - areaConstructedEfficiently.
-	timeToConstructRemainder _ remainderToConstruct / capacityAfterDecrease.
-	timeToConstructEfficiently _ areaConstructedEfficiently / startingCapacity.
-	
-	^ (timeToConstructEfficiently + timeToConstructRemainder) ceiling.! !
-
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'RainyPriceAndVariableCapacityConstructionTeam class' category: 'ISW1-2021-2C-2doParcial'!
-RainyPriceAndVariableCapacityConstructionTeam class
+!classDefinition: 'RainPrice class' category: 'ISW1-2021-2C-2doParcial'!
+RainPrice class
 	instanceVariableNames: ''!
 
-!RainyPriceAndVariableCapacityConstructionTeam class methodsFor: 'instance creation' stamp: 'MP 11/25/2021 18:52:22'!
-withPricePerDay: aPricePerNormalDay
+!RainPrice class methodsFor: 'instance creation' stamp: 'MP 11/25/2021 19:50:19'!
+withPricePerNormalDay: aPricePerNormalDay
 whenRaining: aPricePerRainyDay
-startingCapacity: aStartingCapacity
-after: anAmountOfDays
-decreasingCapacityTo: aCapacityAfterDecrease 
-consultingWeatherTo: aMeteorologicalService
+consultingWeatherTo: aMeteorologicalService	
 
 	^self new
-		initializeWithPricePerDay: aPricePerNormalDay
+		initializeWithPricePerNormalDay: aPricePerNormalDay
 		whenRaining: aPricePerRainyDay
-		startingCapacity: aStartingCapacity after: anAmountOfDays
-		decreasingCapacityTo: aCapacityAfterDecrease 
-		consultingWeatherTo: aMeteorologicalService.! !
+		consultingWeatherTo: aMeteorologicalService ! !
