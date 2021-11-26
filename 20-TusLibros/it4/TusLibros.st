@@ -1,40 +1,29 @@
 !classDefinition: #TusLibrosClientMainWindow category: 'TusLibros'!
 SystemWindow subclass: #TusLibrosClientMainWindow
-<<<<<<< HEAD
-	instanceVariableNames: ''
-=======
 	instanceVariableNames: 'cartMorph'
->>>>>>> 20/it4: agrego morph del carrito en la vantana principal
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-<<<<<<< HEAD
-!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'MP 11/19/2021 00:21:18'!
-buildMorphicWindow
-	
-	| addToCartButtonMorph catalogAndButtonColumnLayoutMorph catalogMorph listPurchasesButtonMorph viewCartButtonMorph |
-
-=======
-!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:10:21'!
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'IAR 11/26/2021 20:13:51'!
 buildCartColumn
 	
-	| addToCartButtonMorph |
+	| removeFromCartButtonMorph |
 	cartMorph := PluggableListMorph 
 		model: self model 
-		listGetter: #cartProducts
+		listGetter: #booksInCart
 		indexGetter: #cartIndex
 		indexSetter: #cartIndex:.
 
-	addToCartButtonMorph _ PluggableButtonMorph 
+	removeFromCartButtonMorph _ PluggableButtonMorph 
 		model: self model
 		stateGetter: nil 
 		action: #removeFromCart
-		label: 'Add to cart'.
+		label: 'Remove from cart'.
 	
 	^ LayoutMorph newColumn
 		addMorph: cartMorph;
-		addMorph: addToCartButtonMorph;
+		addMorph: removeFromCartButtonMorph;
 		axisEdgeWeight: 0.5;
 		yourself.
 		
@@ -44,7 +33,6 @@ buildCartColumn
 buildCatalogColumn
 	
 	| addToCartButtonMorph catalogMorph |
->>>>>>> 20/it4: agrego morph del carrito en la vantana principal
 	catalogMorph := PluggableListMorph 
 		model: self model 
 		listGetter: #catalog
@@ -57,24 +45,11 @@ buildCatalogColumn
 		action: #addToCart
 		label: 'Add to cart'.
 	
-<<<<<<< HEAD
-	catalogAndButtonColumnLayoutMorph _ LayoutMorph newColumn
-=======
 	^ LayoutMorph newColumn
->>>>>>> 20/it4: agrego morph del carrito en la vantana principal
 		addMorph: catalogMorph;
 		addMorph: addToCartButtonMorph;
 		axisEdgeWeight: 0.5;
 		yourself.
-<<<<<<< HEAD
-	
-	viewCartButtonMorph _ PluggableButtonMorph 
-		model: self model
-		stateGetter: nil 
-		action: #viewCart
-		label: 'View cart'.
-
-=======
 		
 ! !
 
@@ -85,7 +60,6 @@ buildMorphicWindow
 
 	
 	
->>>>>>> 20/it4: agrego morph del carrito en la vantana principal
 	listPurchasesButtonMorph _ PluggableButtonMorph 
 		model: self model
 		stateGetter: nil 
@@ -96,31 +70,17 @@ buildMorphicWindow
 		beRow;
 		separation: 15;
 		axisEdgeWeight: 0;
-<<<<<<< HEAD
-		addMorph: catalogAndButtonColumnLayoutMorph;
-		addMorph: viewCartButtonMorph;
-		addMorph: listPurchasesButtonMorph.! !
-
-!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'MP 11/19/2021 00:00:19'!
-=======
 		addMorph: self buildCatalogColumn;
 		addMorph: self buildCartColumn;
 		addMorph: listPurchasesButtonMorph.! !
 
 !TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:05:31'!
->>>>>>> 20/it4: agrego morph del carrito en la vantana principal
 initializeWithModel: aTusLibrosClientModel title: aTitle
 
 	self setLabel: aTitle.
 	self model: aTusLibrosClientModel.
 	self buildMorphicWindow.
 	
-<<<<<<< HEAD
-	"self model when: #loginSuccessful send: #openMainWindow to: self."
-	
-	self openInWorld.! !
-
-=======
 	self model when: #bookAddedToCart send: #refreshCart to: self.
 	
 	self openInWorld.! !
@@ -131,7 +91,6 @@ refreshCart
 	cartMorph updateList.
 	cartMorph setSelectionIndex: cartMorph maximumSelection.! !
 
->>>>>>> 20/it4: agrego morph del carrito en la vantana principal
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'TusLibrosClientMainWindow class' category: 'TusLibros'!
@@ -755,20 +714,6 @@ test15AddingProductsRefreshesCart
 
 ! !
 
-<<<<<<< HEAD
-!TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'MP 11/19/2021 00:44:43'!
-test16
-
-	| tusLibros expectedCatalog |
-
-	tusLibros _ self defaultTusLibrosSystemFacade.
-
-	expectedCatalog _ OrderedCollection
-		with: testObjectFactory firstProductSoldByTheStore
-		with: testObjectFactory secondProductSoldByTheStore.
-
-	self assert: expectedCatalog equals: tusLibros catalog.
-=======
 !TusLibrosSystemFacadeTest methodsFor: 'tests' stamp: 'AF 11/20/2021 14:44:26'!
 test16
 
@@ -779,7 +724,6 @@ test16
 	self assert: tusLibros catalog includes: testObjectFactory firstProductSoldByTheStore.
 	self assert: tusLibros catalog includes: testObjectFactory secondProductSoldByTheStore.
 	self assert: 2 equals: tusLibros catalog size.
->>>>>>> 20/it4: agrego morph del carrito en la vantana principal
 
 ! !
 
@@ -1575,42 +1519,12 @@ defaultUser
 
 !classDefinition: #TusLibrosClientModel category: 'TusLibros'!
 Object subclass: #TusLibrosClientModel
-<<<<<<< HEAD
-	instanceVariableNames: 'username password cartId catalogIndex catalog'
-=======
 	instanceVariableNames: 'username password cartId catalogIndex catalog cartIndex'
->>>>>>> 20/it4: agrego morph del carrito en la vantana principal
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-<<<<<<< HEAD
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 01:22:17'!
-addToCart
-	
-	| selectedBookIsbn |
-	self halt.
-	selectedBookIsbn _ (catalog at: catalogIndex) isbn.
-	self addToCartRequest: selectedBookIsbn.! !
-
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 01:19:55'!
-addToCartRequest: aIsbn
-	
-	| resp fields |
-
-	fields _ Dictionary new 
-		at: 'cartId' put: cartId;
-		at: 'isbn' put: aIsbn ;
-		at: 'quantity' put: '1';
-		yourself.
-	
-	resp _ WebClient htmlSubmit: (self url, '/addProductToCart') fields: fields.
-	
-	resp isSuccess 
-		ifTrue: [^ self ] 
-		ifFalse:[ ^ self error: resp content ].! !
-=======
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:24:26'!
+!TusLibrosClientModel methodsFor: 'hooks' stamp: 'AF 11/20/2021 16:24:26'!
 addToCart
 	
 	| selectedBookIsbn |
@@ -1619,7 +1533,109 @@ addToCart
 	self addToCartRequest: selectedBookIsbn.
 	self triggerEvent: #bookAddedToCart.! !
 
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:20:49'!
+!TusLibrosClientModel methodsFor: 'hooks' stamp: 'IAR 11/26/2021 20:28:28'!
+booksInCart
+
+	| booksInCart |
+	
+	booksInCart _ self listCartRequest.
+	^self renderCartContents: booksInCart.! !
+
+!TusLibrosClientModel methodsFor: 'hooks' stamp: 'AF 11/20/2021 16:21:46'!
+cartIndex
+
+ 	^cartIndex.! !
+
+!TusLibrosClientModel methodsFor: 'hooks' stamp: 'AF 11/20/2021 16:22:04'!
+cartIndex: aCartIndex
+
+ 	cartIndex _ aCartIndex.! !
+
+!TusLibrosClientModel methodsFor: 'hooks' stamp: 'IAR 11/26/2021 20:17:42'!
+catalog
+	
+	catalog ifNotNil:[ ^ self renderCatalog ].
+	
+	catalog _ self catalogRequest.
+	^ self renderCatalog.! !
+
+!TusLibrosClientModel methodsFor: 'hooks' stamp: 'MP 11/19/2021 00:30:40'!
+catalogIndex
+	
+	^ catalogIndex! !
+
+!TusLibrosClientModel methodsFor: 'hooks' stamp: 'MP 11/19/2021 00:31:35'!
+catalogIndex: aCatalogIndex
+	
+	catalogIndex _ aCatalogIndex.! !
+
+!TusLibrosClientModel methodsFor: 'hooks' stamp: 'MP 11/19/2021 00:04:05'!
+createCart
+
+	cartId _ self createCartRequest.
+	
+	self triggerEvent: #cartCreationSuccessful! !
+
+!TusLibrosClientModel methodsFor: 'hooks' stamp: 'MP 11/18/2021 18:08:36'!
+password
+
+	^ password! !
+
+!TusLibrosClientModel methodsFor: 'hooks' stamp: 'MP 11/18/2021 18:08:40'!
+password: aPassword
+
+	password _ aPassword.
+	^true.! !
+
+!TusLibrosClientModel methodsFor: 'hooks' stamp: 'IAR 11/26/2021 20:30:07'!
+renderCartContents: cartContents
+
+	| renderedCartContents |
+	
+	renderedCartContents _ OrderedCollection new.
+	cartContents contents keysAndValuesDo: [ :book :quantity |
+			renderedCartContents add: (	self renderBook: book withQuantity: quantity)].
+	
+	^renderedCartContents.! !
+
+!TusLibrosClientModel methodsFor: 'hooks' stamp: 'MP 11/18/2021 18:08:43'!
+username
+
+	^ username! !
+
+!TusLibrosClientModel methodsFor: 'hooks' stamp: 'MP 11/18/2021 18:08:46'!
+username: aUsername
+
+	username _ aUsername.
+	^true.! !
+
+
+!TusLibrosClientModel methodsFor: 'initialization' stamp: 'AF 11/20/2021 16:23:14'!
+initialize
+
+	username _ 'haw'.
+	password _ 'hunter2'.
+	catalogIndex _ 1.
+	cartIndex _ 1.! !
+
+
+!TusLibrosClientModel methodsFor: 'rendering' stamp: 'IAR 11/26/2021 20:17:18'!
+renderBook: book
+
+	^ '(ISBN #', book isbn, ') ', book title.! !
+
+!TusLibrosClientModel methodsFor: 'rendering' stamp: 'IAR 11/26/2021 20:19:08'!
+renderBook: book withQuantity: quantity
+
+	^ (self renderBook: book), ' (', quantity asString, ')'! !
+
+!TusLibrosClientModel methodsFor: 'rendering' stamp: 'IAR 11/26/2021 20:17:42'!
+renderCatalog
+
+	^ catalog collect: [ :book | self renderBook: book ]! !
+
+
+!TusLibrosClientModel methodsFor: 'requests' stamp: 'AF 11/20/2021 16:20:49'!
 addToCartRequest: aIsbn
 	
 	| resp |
@@ -1636,72 +1652,18 @@ addToCartRequest: aIsbn
 		ifTrue: [^ self ] 
 		ifFalse:[ ^ self handleErrorResponse: resp ].! !
 
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:21:46'!
-cartIndex
-
- 	^cartIndex.! !
-
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:22:04'!
-cartIndex: aCartIndex
-
- 	cartIndex _ aCartIndex.! !
-
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:27:23'!
-cartProducts
-	
-	| cartProducts |
-	cartProducts _ self listCartRequest.
-	^cartProducts collect: [ :aBook | 	'(ISBN #', aBook isbn, ') ', aBook title ].! !
->>>>>>> 20/it4: agrego morph del carrito en la vantana principal
-
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 00:56:21'!
-catalog
-	
-	catalog ifNotNil:[ ^catalog ].
-	
-	catalog _ self catalogRequest.
-	^ catalog collect: [ :aBook | 	'(ISBN #', aBook isbn, ') ', aBook title ].! !
-
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'MP 11/19/2021 00:30:40'!
-catalogIndex
-	
-	^ catalogIndex! !
-
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'MP 11/19/2021 00:31:35'!
-catalogIndex: aCatalogIndex
-	
-	catalogIndex _ aCatalogIndex.! !
-
-<<<<<<< HEAD
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'MP 11/19/2021 01:35:43'!
-=======
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:18:33'!
->>>>>>> 20/it4: agrego morph del carrito en la vantana principal
+!TusLibrosClientModel methodsFor: 'requests' stamp: 'AF 11/20/2021 16:18:33'!
 catalogRequest
 
 	| resp |
 
-<<<<<<< HEAD
-	resp _ WebClient httpGet: (self url, '/catalog').
-
-	resp isSuccess 
-		ifTrue: [^ (TusLibrosEncoder decodeCatalog: resp content readStream) asOrderedCollection ] 
-=======
 	resp _ WebClient httpGet: self url, '/catalog'.
 
 	resp isSuccess 
 		ifTrue: [^ (TusLibrosEncoder decodeBookCollection: resp content readStream) asOrderedCollection ] 
->>>>>>> 20/it4: agrego morph del carrito en la vantana principal
 		ifFalse:[ ^ self error: resp content ].! !
 
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'MP 11/19/2021 00:04:05'!
-createCart
-
-	cartId _ self createCartRequest.
-	
-	self triggerEvent: #cartCreationSuccessful! !
-
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'MP 11/19/2021 00:29:28'!
+!TusLibrosClientModel methodsFor: 'requests' stamp: 'MP 11/19/2021 00:29:28'!
 createCartRequest
 
 	| fields resp |
@@ -1717,29 +1679,7 @@ createCartRequest
 		ifTrue: [^ resp content asNumber ] 
 		ifFalse:[ ^ self error: resp content ].! !
 
-<<<<<<< HEAD
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 00:59:59'!
-=======
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 14:36:01'!
-handleErrorResponse: aResponse
-
-	TranscriptWindow openTranscript.
-	Transcript clear. 
-	Transcript show: aResponse content.! !
-
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:23:14'!
->>>>>>> 20/it4: agrego morph del carrito en la vantana principal
-initialize
-
-	username _ 'haw'.
-	password _ 'hunter2'.
-<<<<<<< HEAD
-	catalogIndex _ 1.! !
-=======
-	catalogIndex _ 1.
-	cartIndex _ 1.! !
-
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:18:18'!
+!TusLibrosClientModel methodsFor: 'requests' stamp: 'IAR 11/26/2021 19:55:40'!
 listCartRequest
 
 	| resp |
@@ -1750,41 +1690,26 @@ listCartRequest
 		method: 'GET'.
 
 	resp isSuccess 
-		ifTrue: [^ (TusLibrosEncoder decodeBookCollection: resp content readStream) asOrderedCollection ] 
+		ifTrue: [^ TusLibrosEncoder decodeBooksInCart: resp content readStream ]
 		ifFalse:[ ^ self error: resp content ].! !
->>>>>>> 20/it4: agrego morph del carrito en la vantana principal
 
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'MP 11/18/2021 18:08:36'!
-password
-
-	^ password! !
-
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'MP 11/18/2021 18:08:40'!
-password: aPassword
-
-	password _ aPassword.
-	^true.! !
-
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'MP 11/18/2021 23:44:29'!
+!TusLibrosClientModel methodsFor: 'requests' stamp: 'MP 11/18/2021 23:44:29'!
 port
 
 	^ 8080! !
 
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'MP 11/18/2021 23:44:24'!
+!TusLibrosClientModel methodsFor: 'requests' stamp: 'MP 11/18/2021 23:44:24'!
 url
 
 	^ 'http://localhost:', self port asString! !
 
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'MP 11/18/2021 18:08:43'!
-username
 
-	^ username! !
+!TusLibrosClientModel methodsFor: 'errors' stamp: 'AF 11/20/2021 14:36:01'!
+handleErrorResponse: aResponse
 
-!TusLibrosClientModel methodsFor: 'as yet unclassified' stamp: 'MP 11/18/2021 18:08:46'!
-username: aUsername
-
-	username _ aUsername.
-	^true.! !
+	TranscriptWindow openTranscript.
+	Transcript clear. 
+	Transcript show: aResponse content.! !
 
 
 !classDefinition: #TusLibrosEncoder category: 'TusLibros'!
@@ -1807,23 +1732,31 @@ decodeBook: anEncodedBook
 		titled: (anEncodedBook at: 'title')
 		isbn: (anEncodedBook at: 'isbn').! !
 
-<<<<<<< HEAD
-!TusLibrosEncoder class methodsFor: 'as yet unclassified' stamp: 'MP 11/19/2021 01:28:14'!
-decodeCatalog: anEncodedCatalog
-
-	| decodedCatalog |
-	decodedCatalog _ WebUtils jsonDecode: anEncodedCatalog.
-=======
 !TusLibrosEncoder class methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:55:06'!
 decodeBookCollection: anEncodedBookCollection
 
 	| decodedCatalog |
 	decodedCatalog _ WebUtils jsonDecode: anEncodedBookCollection.
->>>>>>> 20/it4: agrego morph del carrito en la vantana principal
 	^ decodedCatalog collect: [ :anEncodedBook | self decodeBook: anEncodedBook ].
 	
 
 	! !
+
+!TusLibrosEncoder class methodsFor: 'as yet unclassified' stamp: 'IAR 11/26/2021 20:10:52'!
+decodeBooksInCart: encodedBooksInCart
+
+	| booksInCart decodedBooksInCart |
+	
+	decodedBooksInCart _ WebUtils jsonDecode: encodedBooksInCart.
+	booksInCart _ Bag new.
+	
+	decodedBooksInCart do: [ :encodedBookWithQuantity | | book quantity |
+		book _ self decodeBook: (encodedBookWithQuantity at: 'book').
+		quantity _ encodedBookWithQuantity at: 'quantity'.
+		
+		booksInCart add: book withOccurrences: quantity. ].
+	
+	^ booksInCart! !
 
 !TusLibrosEncoder class methodsFor: 'as yet unclassified' stamp: 'MP 11/19/2021 01:33:03'!
 encodeBook: aBook
@@ -1834,14 +1767,14 @@ encodeBook: aBook
 		yourself.
 	! !
 
-<<<<<<< HEAD
-!TusLibrosEncoder class methodsFor: 'as yet unclassified' stamp: 'MP 11/19/2021 01:38:40'!
-encodeCatalog: aCatalog
+!TusLibrosEncoder class methodsFor: 'as yet unclassified' stamp: 'IAR 11/26/2021 20:02:33'!
+encodeBook: aBook withQuantity: aQuantity
 
-	| catalogWithEncodedBooks |
-	catalogWithEncodedBooks _ 
-		aCatalog collect: [ :aBook | self encodeBook: aBook ].
-=======
+	^ Dictionary new
+		at: 'book' put: (self encodeBook: aBook)	;
+		at: 'quantity' put: aQuantity;
+		yourself.! !
+
 !TusLibrosEncoder class methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:57:33'!
 encodeBookCollection: aBookCollection
 
@@ -1853,13 +1786,24 @@ encodeBookCollection: aBookCollection
 
 	! !
 
+!TusLibrosEncoder class methodsFor: 'as yet unclassified' stamp: 'IAR 11/26/2021 20:00:30'!
+encodeBooksInCart: booksInCart
+
+	| encodedBooksInCart |
+	
+	encodedBooksInCart _ OrderedCollection new.
+	
+	booksInCart contents keysAndValuesDo: [ :book :quantity |
+		encodedBooksInCart add: (self encodeBook: book withQuantity: quantity) ].
+	
+	^ WebUtils jsonEncode: encodedBooksInCart asArray.! !
+
 !TusLibrosEncoder class methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:56:17'!
 encodeCatalog: aBookCollection
 
 	| catalogWithEncodedBooks |
 	catalogWithEncodedBooks _ 
 		aBookCollection collect: [ :aBook | self encodeBook: aBook ].
->>>>>>> 20/it4: agrego morph del carrito en la vantana principal
 	
 	^ WebUtils jsonEncode: catalogWithEncodedBooks asArray.
 
@@ -1868,121 +1812,11 @@ encodeCatalog: aBookCollection
 
 !classDefinition: #TusLibrosRestApiXXX category: 'TusLibros'!
 Object subclass: #TusLibrosRestApiXXX
-<<<<<<< HEAD
-	instanceVariableNames: 'port webServer tusLibrosSystem'
-=======
 	instanceVariableNames: 'port webServer tusLibrosSystem booksByISBN'
->>>>>>> 20/it4: agrego morph del carrito en la vantana principal
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-<<<<<<< HEAD
-!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 22:51:29'!
-addService: serviceName withErrorSafeAction: action
-
-	webServer
-		addService: serviceName 
-		action: [	 :request |
-			[ action value: request ] 
-			on: Error
-			do: [ :error | request  send500Response: error messageText ].
-		].
-! !
-
-!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/13/2021 01:26:47'!
-destroy
-	
-	webServer ifNotNil:[webServer destroy].! !
-
-!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 22:46:04'!
-handleAddProductToCart: request
-
-	| cartId isbn quantity |
-
-	cartId _ (request fields at: 'cartId') asNumber.
-	isbn _ request fields at: 'isbn'.
-	quantity _ (request fields at: 'quantity') asNumber.
-
-	tusLibrosSystem add: quantity of: isbn to: cartId.
-
-	request send200Response: 'OK'! !
-
-!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'MP 11/19/2021 01:39:51'!
-handleCatalog: request
-
-	| catalog |
-	catalog _ tusLibrosSystem catalog.
-
-	request send200Response: (TusLibrosEncoder encodeCatalog: catalog)! !
-
-!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 23:06:04'!
-handleCheckout: request
-
-	| cartId transactionId hardcodedCard |
-
-	self halt.
-
-	cartId _ (request fields at: 'cartId') asNumber.
-	
-	 "TODO: pedir la tarjeta"	
-	hardcodedCard _ (Card withNumber: '4509790000001234' expiringAt: (September of: 2022)).
-	transactionId _ tusLibrosSystem checkout: cartId charging: hardcodedCard.
-
-	request send200Response: (WebUtils jsonEncode: transactionId)! !
-
-!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 22:44:51'!
-handleCreateCart: request
-
-	 | password user |
-	user _ request fields at: 'user'.
-	password _ request fields at: 'password'.
-	
-	request send200Response: (WebUtils jsonEncode: (tusLibrosSystem createCartFor: user authenticatedBy: password))! !
-
-!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 22:46:35'!
-handleListCart: request
-
-	| cartId cartContents |
-				
-	cartId _ (request fields at: 'cartId') asNumber.
-	cartContents _ tusLibrosSystem listCart: cartId.
-	
-	request send200Response: (WebUtils jsonEncode: cartContents asArray)! !
-
-!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 22:47:07'!
-handleListPurchases: request
-
-	| user password userPurchases |
-	user _ request fields at: 'user'.
-	password _ request fields at: 'password'.
-
-	userPurchases _ tusLibrosSystem listPurchasesOf: user authenticatedBy: password.
-
-	"TODO: self encondePurchasesAsJson: userPurchases"
-	request send200Response: (WebUtils jsonEncode: userPurchases asArray)! !
-
-!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 22:43:07'!
-handlePing: request
-
-	request send200Response: 'pumba'! !
-
-!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'MP 11/19/2021 01:43:38'!
-initializeOn: aPortNumber
-	| testObjectFactory authenticationSystem |
-	
-	testObjectFactory _ TestObjectFactory new.
-	webServer _ WebServer new listenOn: aPortNumber.
-	authenticationSystem _ ConfigurableAuthenticationSystem new 
-		register: 'haw' authenticatedBy: 'hunter2'.
-	
-	tusLibrosSystem _ TusLibrosSystemFacade 
-		authenticatingWith: authenticationSystem
-		sourcingProductsFrom: testObjectFactory defaultCatalog 
-		chargingThrough: testObjectFactory defaultSimulatedMP 
-		withClock: SystemClock new. 
-	
-=======
 !TusLibrosRestApiXXX methodsFor: 'books creation' stamp: 'AF 11/20/2021 15:10:23'!
 firstBook
 
@@ -2093,14 +1927,14 @@ handleCreateCart: request
 	
 	request send200Response: (WebUtils jsonEncode: (tusLibrosSystem createCartFor: user authenticatedBy: password))! !
 
-!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:59:30'!
+!TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'IAR 11/26/2021 19:56:10'!
 handleListCart: request
 
-	| cartId cartContents |
+	| cartId |
 				
 	cartId _ (request fields at: 'cartId') asNumber.
 	
-	request send200Response: (TusLibrosEncoder encodeBookCollection: (tusLibrosSystem listCart: cartId)). ! !
+	request send200Response: (TusLibrosEncoder encodeBooksInCart: (tusLibrosSystem listCart: cartId)). ! !
 
 !TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'MP 11/17/2021 22:47:07'!
 handleListPurchases: request
@@ -2138,7 +1972,6 @@ initializeOn: aPortNumber
 		at: self secondBookISBN put: self secondBook;
 		yourself.
 	
->>>>>>> 20/it4: agrego morph del carrito en la vantana principal
 	webServer addService: '/ping'
 		action: [ :request |	 self handlePing: request ].
 	
@@ -2161,8 +1994,6 @@ initializeOn: aPortNumber
 		withErrorSafeAction: [ :request | self handleCheckout: request. ].
 		
 	! !
-<<<<<<< HEAD
-=======
 
 !TusLibrosRestApiXXX methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:32:12'!
 simulatedMP
@@ -2170,7 +2001,6 @@ simulatedMP
 	^ SimulatedMP
 		withNoFundsCard: self cardWithoutFundsNumber
 		stolenCard: self stolenCardNumber.! !
->>>>>>> 20/it4: agrego morph del carrito en la vantana principal
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -2178,14 +2008,11 @@ simulatedMP
 TusLibrosRestApiXXX class
 	instanceVariableNames: ''!
 
-<<<<<<< HEAD
-=======
 !TusLibrosRestApiXXX class methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 15:02:38'!
 bookNotFoundErrorDescription
  
 	^ 'book with that ISBN not found'! !
 
->>>>>>> 20/it4: agrego morph del carrito en la vantana principal
 !TusLibrosRestApiXXX class methodsFor: 'as yet unclassified' stamp: 'IAR 11/15/2021 20:29:51'!
 cleanUpAndListenOn: aPortNumber
 
