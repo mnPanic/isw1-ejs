@@ -96,7 +96,7 @@ buildPurchasesColumn
 		axisEdgeWeight: 0.5;
 		yourself.! !
 
-!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'AF 11/20/2021 16:05:31'!
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'MP 11/27/2021 23:55:55'!
 initializeWithModel: aTusLibrosClientModel title: aTitle
 
 	self setLabel: aTitle.
@@ -104,8 +104,15 @@ initializeWithModel: aTusLibrosClientModel title: aTitle
 	self buildMorphicWindow.
 	
 	self model when: #bookAddedToCart send: #refreshCart to: self.
+	self model when: #checkoutSuccessful send: #openPostSaleWindow to: self.
 	
 	self openInWorld.! !
+
+!TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'MP 11/27/2021 23:57:34'!
+openPostSaleWindow
+
+	TusLibrosClientPostSaleWindow openWithModel: self model.
+	self closeBoxHit.! !
 
 !TusLibrosClientMainWindow methodsFor: 'as yet unclassified' stamp: 'MP 11/27/2021 22:35:17'!
 refreshCart
@@ -123,6 +130,109 @@ TusLibrosClientMainWindow class
 openWithModel: aTusLibrosClientModel
 
 	^self new initializeWithModel: aTusLibrosClientModel title: 'TusLibros Main Client'.! !
+
+
+!classDefinition: #TusLibrosClientPostSaleWindow category: 'TusLibros'!
+SystemWindow subclass: #TusLibrosClientPostSaleWindow
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!TusLibrosClientPostSaleWindow methodsFor: 'as yet unclassified' stamp: 'MP 11/28/2021 00:44:33'!
+buildActionsColumn
+
+	| continueButtonMorph logoutButtonMorph columnMorph |
+	logoutButtonMorph _ PluggableButtonMorph 
+		model: self
+		stateGetter: nil 
+		action: #logout
+		label: 'Logout & exit'.
+	
+	continueButtonMorph _ PluggableButtonMorph 
+		model: self
+		stateGetter: nil 
+		action: #TOOD
+		label: 'Continue shopping'.
+	
+	columnMorph _ LayoutMorph newColumn
+		addMorph: logoutButtonMorph;
+		addMorph: continueButtonMorph;
+		axisEdgeWeight: 0.5;
+		yourself.
+	
+	^columnMorph.
+	! !
+
+!TusLibrosClientPostSaleWindow methodsFor: 'as yet unclassified' stamp: 'MP 11/28/2021 00:44:37'!
+buildBottomRow
+
+	^LayoutMorph newRow
+		addMorph: self buildTotalColumn;
+		addMorph: self buildActionsColumn;
+		yourself.! !
+
+!TusLibrosClientPostSaleWindow methodsFor: 'as yet unclassified' stamp: 'MP 11/28/2021 00:39:23'!
+buildMorphicWindow
+
+	self layoutMorph
+		beColumn;
+		separation: 15;
+		axisEdgeWeight: 0;
+		addMorph: self buildSaleRow;
+		addMorph: self buildBottomRow.! !
+
+!TusLibrosClientPostSaleWindow methodsFor: 'as yet unclassified' stamp: 'MP 11/28/2021 00:25:54'!
+buildSaleRow
+
+	| saleMorph |
+	saleMorph _ PluggableListMorph 
+		model: self model 
+		listGetter: #saleContents
+		indexGetter: nil
+		indexSetter: nil.
+	
+	saleMorph
+		borderColor: Color skyBlue; 
+		borderWidth: 1;
+		morphWidth: 500;
+		morphHeight: 600.
+
+	^ saleMorph.	! !
+
+!TusLibrosClientPostSaleWindow methodsFor: 'as yet unclassified' stamp: 'MP 11/28/2021 00:34:27'!
+buildTotalColumn
+
+	^ LabelMorph contents:'Total: $', self model saleTotalPrice.! !
+
+!TusLibrosClientPostSaleWindow methodsFor: 'as yet unclassified' stamp: 'MP 11/28/2021 00:25:16'!
+initializeWithModel: aTusLibrosClientModel title: aTitle
+
+	self setLabel: aTitle.
+	self model: aTusLibrosClientModel.
+	self buildMorphicWindow.
+
+	self openInWorld.
+
+	"Por alguna razón, esto tiene que ir después del open in world."	
+	self morphWidth: 540.
+! !
+
+!TusLibrosClientPostSaleWindow methodsFor: 'as yet unclassified' stamp: 'MP 11/28/2021 00:10:14'!
+logout
+
+	self closeBoxHit.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TusLibrosClientPostSaleWindow class' category: 'TusLibros'!
+TusLibrosClientPostSaleWindow class
+	instanceVariableNames: ''!
+
+!TusLibrosClientPostSaleWindow class methodsFor: 'as yet unclassified' stamp: 'MP 11/27/2021 23:59:07'!
+openWithModel: aTusLibrosClientModel
+
+	^self new initializeWithModel: aTusLibrosClientModel title: 'TusLibros Sale View'.! !
 
 
 !classDefinition: #TusLibrosLoginWindow category: 'TusLibros'!
@@ -195,7 +305,7 @@ buildMorphicWindow
 
 	! !
 
-!TusLibrosLoginWindow methodsFor: 'as yet unclassified' stamp: 'MP 11/19/2021 00:04:26'!
+!TusLibrosLoginWindow methodsFor: 'as yet unclassified' stamp: 'MP 11/28/2021 00:20:06'!
 initializeWith: aTitle
 
 	self setLabel: aTitle.
@@ -1322,7 +1432,7 @@ withNoFundsCard: aNoFundsCardNumber stolenCard: aStolenCardNumber
 
 !classDefinition: #Sale category: 'TusLibros'!
 Object subclass: #Sale
-	instanceVariableNames: 'collectionOfContents totalPrice contents user amount'
+	instanceVariableNames: 'totalPrice contents user'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
@@ -1604,10 +1714,20 @@ password: aPassword
 	password _ aPassword.
 	^true.! !
 
-!TusLibrosClientModel methodsFor: 'actions' stamp: 'MP 11/27/2021 23:49:42'!
-sale
+!TusLibrosClientModel methodsFor: 'actions' stamp: 'MP 11/28/2021 00:36:31'!
+renderSaleTotalPrice
 
-	^ sale.! !
+	^ sale totalPrice asString! !
+
+!TusLibrosClientModel methodsFor: 'actions' stamp: 'MP 11/28/2021 00:13:54'!
+saleContents
+
+	^ self renderCartContents: sale contents.! !
+
+!TusLibrosClientModel methodsFor: 'actions' stamp: 'MP 11/28/2021 00:36:17'!
+saleTotalPrice
+
+	^ self renderSaleTotalPrice.! !
 
 !TusLibrosClientModel methodsFor: 'actions' stamp: 'MP 11/18/2021 18:08:43'!
 username
@@ -1762,7 +1882,7 @@ decodeCartContents: encodedBooksInCart
 
 	^self unmarshalCartContents: (WebUtils jsonDecode: encodedBooksInCart).! !
 
-!TusLibrosEncoder class methodsFor: 'as yet unclassified' stamp: 'MP 11/27/2021 23:47:58'!
+!TusLibrosEncoder class methodsFor: 'as yet unclassified' stamp: 'MP 11/28/2021 00:16:01'!
 decodeSale: encodedSale
 
 	| decodedSale |
@@ -1771,8 +1891,8 @@ decodeSale: encodedSale
 	
 	^Sale
 		by: (decodedSale at: 'user')
-		of: (decodedSale at: 'totalPrice')
-		totalling: (self unmarshalCartContents: (decodedSale at: 'contents')).
+		of: (self unmarshalCartContents: (decodedSale at: 'contents'))
+		totalling: (decodedSale at: 'totalPrice').
 ! !
 
 !TusLibrosEncoder class methodsFor: 'as yet unclassified' stamp: 'MP 11/27/2021 23:43:31'!
